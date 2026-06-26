@@ -108,7 +108,6 @@ document.addEventListener('DOMContentLoaded', function() {
   initDarkMode();
   initScrollReveal();
   initCampusTour();
-  initScrollReveal();
   initDanmaku();
   initPostsToggle();
   initModal();
@@ -192,6 +191,11 @@ function initScrollReveal() {
   var indexMap = new Map();
   for (var i = 0; i < els.length; i++) indexMap.set(els[i], i);
 
+  /* 检测是否为移动设备，调整阈值 */
+  var isMobile = window.innerWidth <= 734;
+  var threshold = isMobile ? 0.05 : 0.12;
+  var rootMargin = isMobile ? '0px 0px -20px 0px' : '0px 0px -40px 0px';
+  
   var obs = new IntersectionObserver(function(entries) {
     var batch = [];
     entries.forEach(function(e) {
@@ -207,7 +211,7 @@ function initScrollReveal() {
         requestAnimationFrame(function() { item.el.classList.add('visible'); });
       }
     });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  }, { threshold: threshold, rootMargin: rootMargin });
   els.forEach(function(el) { obs.observe(el); });
 }
 
@@ -241,12 +245,20 @@ function initDanmaku() {
   if (!container) return;
   var colors = ['#FF6B6B','#FFA07A','#FFD700','#98FB98','#87CEEB','#DDA0DD','#F0E68C','#E6E6FA','#FFB6C1','#AFEEEE','#B0E0E6','#FFE4B5','#FFC0CB','#D8BFD8','#F5DEB3','#FF69B4','#00CED1','#FF7F50','#6A5ACD','#20B2AA'];
   var sizes = [14,15,16,17,18,19,20,21,22];
+  
+  /* 检测是否为移动设备 */
+  var isMobile = window.innerWidth <= 734;
+  var maxDanmaku = isMobile ? 15 : 35;
+  var spawnInterval = isMobile ? 1200 : 800;
+  var initInterval = isMobile ? 600 : 400;
+  var initTotal = isMobile ? 10 : DANMAKU_DATA.length;
 
   function createDanmaku() {
+    if (container.children.length >= maxDanmaku) return;
     var el = document.createElement('div');
     el.className = 'danmaku-item';
     el.textContent = DANMAKU_DATA[Math.floor(Math.random() * DANMAKU_DATA.length)];
-    var size = sizes[Math.floor(Math.random() * sizes.length)];
+    var size = isMobile ? sizes[Math.floor(Math.random() * 3)] : sizes[Math.floor(Math.random() * sizes.length)];
     var color = colors[Math.floor(Math.random() * colors.length)];
     el.style.cssText = 'font-size:'+size+'px;color:'+color+';top:'+(Math.random()*85)+'%;animation-duration:'+(12+Math.random()*10)+'s;text-shadow:0 1px 3px rgba(0,0,0,.3);';
     container.appendChild(el);
@@ -254,19 +266,19 @@ function initDanmaku() {
   }
 
   /* 初始弹幕：rAF 分批创建 */
-  var initTotal = DANMAKU_DATA.length, initCreated = 0, initLast = 0;
+  var initCreated = 0, initLast = 0;
   function initTick(now) {
     if (initCreated < initTotal) {
-      if (now - initLast >= 400) { createDanmaku(); initCreated++; initLast = now; }
+      if (now - initLast >= initInterval) { createDanmaku(); initCreated++; initLast = now; }
       requestAnimationFrame(initTick);
     }
   }
   requestAnimationFrame(function(now) { initLast = now; requestAnimationFrame(initTick); });
 
   /* 持续补充：rAF 时间驱动 */
-  var spawnLast = 0, SPAWN_MS = 800;
+  var spawnLast = 0;
   function spawnTick(now) {
-    if (container.children.length < 35 && now - spawnLast >= SPAWN_MS) {
+    if (container.children.length < maxDanmaku && now - spawnLast >= spawnInterval) {
       createDanmaku(); spawnLast = now;
     }
     requestAnimationFrame(spawnTick);
