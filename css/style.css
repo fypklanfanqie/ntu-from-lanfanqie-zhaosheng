@@ -221,7 +221,8 @@ section{scroll-margin-top:48px}
 .section{padding:6rem 2rem;max-width:var(--max-width);margin:0 auto}
 .section-header{
   text-align:center;margin-bottom:4rem;
-  padding:0 1rem;
+  padding:0 2rem;
+  max-width:var(--max-width);margin-left:auto;margin-right:auto;
 }
 .section-label{
   display:inline-block;
@@ -355,7 +356,7 @@ section{scroll-margin-top:48px}
   height:55vh;min-height:380px;
   position:relative;overflow:hidden;
   border-radius:var(--apple-radius-xl);
-  margin:0 2rem;
+  max-width:var(--max-width);margin:0 auto;
   box-shadow:var(--apple-shadow-strong);
 }
 .campus-banner img{
@@ -586,6 +587,7 @@ section{scroll-margin-top:48px}
 .danmaku-container{
   position:relative;width:100%;height:420px;
   overflow:hidden;margin:0 auto;
+  max-width:var(--max-width);padding:0 2rem;
   contain:layout style;
 }
 .danmaku-track{position:relative;width:100%;height:100%}
@@ -614,6 +616,7 @@ section{scroll-margin-top:48px}
 }
 .testimonials-source{
   text-align:center;margin-top:2.5rem;padding:0 2rem;
+  max-width:var(--max-width);margin-left:auto;margin-right:auto;
 }
 .testimonials-source p{
   font-size:0.875rem;
@@ -622,21 +625,30 @@ section{scroll-margin-top:48px}
 }
 .testimonials-posts{
   text-align:center;margin-top:2rem;padding:0 2rem;
+  max-width:var(--max-width);margin-left:auto;margin-right:auto;
 }
 .posts-toggle-btn{
   display:inline-flex;align-items:center;gap:0.5rem;
   padding:0.75rem 1.75rem;
-  background:rgba(0,0,0,0.06);
-  color:#1d1d1f;
-  border:1px solid rgba(0,0,0,0.1);
+  background:rgba(255,255,255,0.45);
+  backdrop-filter:blur(20px) saturate(180%);
+  -webkit-backdrop-filter:blur(20px) saturate(180%);
+  color:#4a4a4f;
+  border:0.5px solid rgba(255,255,255,0.6);
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.4),
+    0 2px 12px rgba(0,0,0,0.04);
   border-radius:980px;
   font-size:0.9375rem;font-weight:400;
   cursor:pointer;
   transition:all 0.3s var(--apple-ease);
 }
 .posts-toggle-btn:hover{
-  background:rgba(0,0,0,0.1);
-  border-color:rgba(0,0,0,0.15);
+  background:rgba(255,255,255,0.65);
+  border-color:rgba(255,255,255,0.8);
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.5),
+    0 6px 20px rgba(0,0,0,0.08);
 }
 .posts-toggle-btn svg{transition:transform 0.3s var(--apple-ease)}
 .posts-toggle-btn.active svg{transform:rotate(180deg)}
@@ -653,27 +665,93 @@ section{scroll-margin-top:48px}
 .post-link{
   display:flex;align-items:center;justify-content:space-between;
   padding:1rem 1.5rem;
-  background:rgba(0,0,0,0.04);
-  border:1px solid rgba(0,0,0,0.08);
+  background:linear-gradient(135deg,rgba(245,245,247,0.7),rgba(235,235,237,0.5));
+  backdrop-filter:blur(24px) saturate(200%);
+  -webkit-backdrop-filter:blur(24px) saturate(200%);
+  border:0.5px solid rgba(255,255,255,0.8);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255,255,255,0.6),
+    inset 0 0 0 1px rgba(255,255,255,0.3),
+    0 1px 3px rgba(0,0,0,0.04),
+    0 4px 12px rgba(0,0,0,0.03);
   border-radius:var(--apple-radius);
   text-decoration:none;
   transition:all 0.3s var(--apple-ease);
 }
 .post-link:hover{
-  background:rgba(0,0,0,0.08);
-  border-color:rgba(0,0,0,0.15);
+  background:linear-gradient(135deg,rgba(250,250,252,0.85),rgba(242,242,244,0.65));
+  border-color:rgba(255,255,255,0.9);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255,255,255,0.7),
+    inset 0 0 0 1px rgba(255,255,255,0.4),
+    0 2px 8px rgba(0,0,0,0.05),
+    0 8px 24px rgba(0,0,0,0.06);
   transform:translateX(4px);
 }
 .post-title{
-  color:#1d1d1f;font-size:0.9375rem;font-weight:400;
+  color:#4a4a4f;font-size:0.9375rem;font-weight:400;
   flex:1;text-align:left;
 }
 .post-platform{
-  color:var(--apple-blue);font-size:0.8125rem;font-weight:500;
-  padding:0.25rem 0.75rem;
-  background:rgba(0,113,227,0.1);
-  border-radius:980px;
+  color:#86868b;font-size:0.75rem;font-weight:500;
+  padding:0.2rem 0.625rem;
+  background:linear-gradient(135deg,rgba(245,245,247,0.65),rgba(238,238,240,0.45));
+  backdrop-filter:blur(20px) saturate(200%);
+  -webkit-backdrop-filter:blur(20px) saturate(200%);
+  border:0.5px solid rgba(255,255,255,0.75);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255,255,255,0.5),
+    0 1px 4px rgba(0,0,0,0.03);
+  border-radius:6px;
   margin-left:1rem;
+  letter-spacing:0.02em;
+  flex-shrink:0;
+}
+.post-platform:hover{
+  background:linear-gradient(135deg,rgba(250,250,252,0.8),rgba(245,245,247,0.6));
+  box-shadow:
+    inset 0 1px 0 0 rgba(255,255,255,0.6),
+    0 2px 8px rgba(0,0,0,0.06);
+}
+body.dark .post-platform{
+  color:#98989d;
+  background:linear-gradient(135deg,rgba(50,50,52,0.6),rgba(40,40,42,0.4));
+  border-color:rgba(255,255,255,0.1);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255,255,255,0.08),
+    0 1px 4px rgba(0,0,0,0.2);
+}
+body.dark .post-platform:hover{
+  background:linear-gradient(135deg,rgba(60,60,62,0.7),rgba(50,50,52,0.5));
+  border-color:rgba(255,255,255,0.16);
+}
+body.dark .post-link{
+  background:linear-gradient(135deg,rgba(44,44,46,0.7),rgba(36,36,38,0.5));
+  border-color:rgba(255,255,255,0.08);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255,255,255,0.06),
+    inset 0 0 0 1px rgba(255,255,255,0.04),
+    0 2px 12px rgba(0,0,0,0.25);
+}
+body.dark .post-link:hover{
+  background:linear-gradient(135deg,rgba(54,54,56,0.8),rgba(44,44,46,0.6));
+  border-color:rgba(255,255,255,0.14);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255,255,255,0.08),
+    inset 0 0 0 1px rgba(255,255,255,0.06),
+    0 8px 24px rgba(0,0,0,0.35);
+}
+body.dark .posts-toggle-btn{
+  color:#a1a1a6;
+  background:rgba(255,255,255,0.06);
+  border-color:rgba(255,255,255,0.1);
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.05),
+    0 2px 12px rgba(0,0,0,0.2);
+}
+body.dark .posts-toggle-btn:hover{
+  background:rgba(255,255,255,0.1);
+  border-color:rgba(255,255,255,0.16);
 }
 
 /* ================================================================
@@ -816,7 +894,7 @@ section{scroll-margin-top:48px}
    预估分数线区段 — 深色渐变背景 + 白色表格卡片
    ================================================================ */
 .estimated-scores{
-  padding:6rem 2rem;
+  padding:6rem 0;
   background:var(--apple-bg);
   color:var(--apple-text);
 }
@@ -1028,7 +1106,7 @@ body.dark .footer-social svg{fill:var(--apple-text3)}
   .campus-tour{padding:4rem 0}
   .campus-banner{
     height:40vh;min-height:280px;
-    margin:0 1rem;border-radius:var(--apple-radius);
+    border-radius:var(--apple-radius);
   }
   .campus-banner-overlay{padding:2rem}
   .buildings-grid{padding:0 1rem}
@@ -1099,6 +1177,7 @@ body.dark .footer-social svg{fill:var(--apple-text3)}
   .post-link{
     backdrop-filter:none;
     -webkit-backdrop-filter:none;
+    background:rgba(255,255,255,0.85) !important;
   }
 
   /* 活力校园卡片禁用 backdrop-filter */
