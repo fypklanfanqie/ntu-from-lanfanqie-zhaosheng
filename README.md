@@ -300,8 +300,8 @@ ntu-campus/
 ## 📞 联系方式
 
 - **作者**：五元一斤的烂番茄
-- **B站**：[南通大学招生办](https://space.bilibili.com/)
-- **邮箱**：[待添加]
+- **B站**：https://space.bilibili.com/478982550?spm_id_from=333.1391.0.0
+- **邮箱**：Lfq061218@163.com
 
 ## 🔗 相关链接
 
