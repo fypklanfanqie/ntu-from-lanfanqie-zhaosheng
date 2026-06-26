@@ -314,41 +314,16 @@
 
   /* ================================================================
      动态加载内容后重新初始化
-     监听 DOM 变化，对新插入的卡片注入玻璃类
+     暴露全局函数供异步生成的内容调用（替代 MutationObserver）
      ================================================================ */
-  if ('MutationObserver' in window) {
-    var moTimer = null;
-    var mo = new MutationObserver(function (mutations) {
-      var needsReinit = false;
-      for (var i = 0; i < mutations.length && !needsReinit; i++) {
-        var m = mutations[i];
-        for (var j = 0; j < m.addedNodes.length && !needsReinit; j++) {
-          var node = m.addedNodes[j];
-          if (node.nodeType === 1) {
-            var hasCard = LG_CARD_SELECTORS.some(function (sel) {
-              return (node.matches && node.matches(sel)) ||
-                (node.querySelector && node.querySelector(sel));
-            });
-            if (hasCard) needsReinit = true;
-          }
-        }
-      }
-      if (needsReinit) {
-        /* 防抖：合并多次 DOM 变化为一次重初始化 */
-        if (moTimer) clearTimeout(moTimer);
-        moTimer = setTimeout(function () {
-          moTimer = null;
-          injectGlassClasses();
-          if (supportsBackdropFilter && !prefersReducedMotion && !isTouchDevice) {
-            initMouseTracking();
-          }
-          if (supportsBackdropFilter && !prefersReducedMotion) {
-            initScrollParallax();
-          }
-        }, 150);
-      }
-    });
-    mo.observe(document.body, { childList: true, subtree: true });
-  }
+  window._reinitLiquidGlass = function (container) {
+    injectGlassClasses();
+    if (supportsBackdropFilter && !prefersReducedMotion && !isTouchDevice) {
+      initMouseTracking();
+    }
+    if (supportsBackdropFilter && !prefersReducedMotion) {
+      initScrollParallax();
+    }
+  };
 
 })();

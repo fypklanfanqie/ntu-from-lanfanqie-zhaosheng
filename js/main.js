@@ -178,7 +178,7 @@ function initDarkMode() {
 
 /* ===== 滚动动画（优化：Map 缓存索引 + 批量 DOM 操作） ===== */
 function initScrollReveal() {
-  document.querySelectorAll('section:not(.hero), .college-card, .bld-card, .sl-card, .guide-card, .info-card, .feature-card, .activity-card, .step-card, .campus-card, .post-card, .campus-section, .video-section, .college-detail-section').forEach(function(el) {
+  document.querySelectorAll('section:not(.hero):not(.campus-tour), .college-card, .bld-card, .sl-card, .guide-card, .info-card, .feature-card, .activity-card, .step-card, .campus-card, .post-card, .campus-section, .video-section, .college-detail-section').forEach(function(el) {
     if (!el.classList.contains('reveal') && !el.classList.contains('reveal-left') && !el.classList.contains('reveal-right')) {
       el.classList.add('reveal');
     }
@@ -251,6 +251,8 @@ function initCampusTour() {
     });
     /* 补观察动态生成的 reveal 元素 */
     if (window._observeRevealElements) window._observeRevealElements(container);
+    /* 回调 liquid-glass 重新初始化玻璃效果 */
+    if (window._reinitLiquidGlass) window._reinitLiquidGlass(container);
   } catch(err) { console.error('initCampusTour:', err); }
 }
 
@@ -407,6 +409,8 @@ function renderMajorCards(majors) {
   }).join('');
   /* 补观察动态生成的 reveal 元素 */
   if (window._observeRevealElements) window._observeRevealElements(grid);
+  /* 回调 liquid-glass 重新初始化玻璃效果 */
+  if (window._reinitLiquidGlass) window._reinitLiquidGlass(grid);
 }
 
 /* ===== 彩蛋 ===== */
