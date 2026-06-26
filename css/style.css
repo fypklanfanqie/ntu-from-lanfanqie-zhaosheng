@@ -1041,7 +1041,7 @@ body.dark .footer-social svg{fill:var(--apple-text3)}
   .major-card-name{font-size:0.8125rem}
   .major-card-college{font-size:0.625rem}
   .testimonials{padding:4rem 0}
-  .danmaku-container{height:280px}
+  .danmaku-container{height:280px;contain:layout style}
   .danmaku-item{font-size:12px;padding:6px 14px}
   .student-life{padding:4rem 0}
   .sl-grid{padding:0 1rem}
@@ -1049,6 +1049,76 @@ body.dark .footer-social svg{fill:var(--apple-text3)}
   .guide-grid{padding:0 1rem;grid-template-columns:1fr}
   .footer-grid{grid-template-columns:1fr;gap:2rem;padding:0 1.25rem}
   .footer-bottom{flex-direction:column;gap:0.75rem;text-align:center;padding:1.5rem 1.25rem 0}
+
+  /* ===== 移动端性能优化：禁用高耗GPU效果 ===== */
+
+  /* 移除弹幕容器和项目的 contain 属性，避免渲染隔离问题 */
+  .danmaku-container{contain:unset}
+  .danmaku-item{
+    contain:unset;
+    /* 用半透明背景替代 backdrop-filter，大幅降低GPU负载 */
+    backdrop-filter:none !important;
+    -webkit-backdrop-filter:none !important;
+    background:rgba(255,255,255,0.85) !important;
+    border:1px solid rgba(0,0,0,0.1) !important;
+    box-shadow:0 2px 8px rgba(0,0,0,0.06) !important;
+  }
+  body.dark .danmaku-item{
+    background:rgba(40,40,42,0.9) !important;
+    border-color:rgba(255,255,255,0.1) !important;
+  }
+
+  /* 降低 will-change 开销：仅在需要时使用 */
+  .reveal,.reveal-left,.reveal-right{
+    will-change:auto;
+  }
+  .reveal.visible,.reveal-left.visible,.reveal-right.visible{
+    will-change:auto;
+  }
+
+  /* 降低 hero 区域 backdrop-filter 负载 */
+  .hero-cta{
+    backdrop-filter:none;
+    -webkit-backdrop-filter:none;
+    background:rgba(255,255,255,0.25);
+  }
+
+  /* 减少 bld-card 的阴影和动画 */
+  .bld-card{
+    box-shadow:0 2px 8px rgba(0,0,0,0.06);
+    will-change:auto;
+  }
+
+  /* 减少 campus-banner 的高度以降低GPU纹理尺寸 */
+  .campus-banner{
+    height:35vh;
+    min-height:220px;
+  }
+
+  /* 学长学姐说帖子链接简化 */
+  .post-link{
+    backdrop-filter:none;
+    -webkit-backdrop-filter:none;
+  }
+
+  /* 活力校园卡片禁用 backdrop-filter */
+  .sl-card{
+    backdrop-filter:none;
+    -webkit-backdrop-filter:none;
+    background:rgba(0,0,0,0.06);
+  }
+
+  /* 确保滚动动画不会因GPU问题卡住 */
+  .campus-tour .campus-section,
+  .college-tour,
+  .testimonials,
+  .student-life,
+  .guide,
+  .estimated-scores{
+    transform:none !important;
+    opacity:1 !important;
+    will-change:auto;
+  }
 }
 @media(max-width:480px){
   .hero-title{font-size:2.25rem}

@@ -23,6 +23,11 @@
   /* 若不支持 backdrop-filter，仅注入类名用于降级纯色背景 */
   /* 若用户开启减弱动效，不绑定鼠标追踪，仅保留静态玻璃 */
 
+  /* ---------- 去重追踪 ---------- */
+  var processedGlassElements = new Set();
+  var trackedWithListeners = new Set();
+  var scrollParallaxObserver = null;
+
   /* ================================================================
      目标元素选择器
      仅对主卡片、面板、弹窗等应用液态玻璃，保持克制
@@ -83,21 +88,30 @@
     /* 卡片类 */
     LG_CARD_SELECTORS.forEach(function (selector) {
       document.querySelectorAll(selector).forEach(function (el) {
-        el.classList.add('lg-card');
+        if (!processedGlassElements.has(el)) {
+          el.classList.add('lg-card');
+          processedGlassElements.add(el);
+        }
       });
     });
 
     /* 面板类 */
     LG_PANEL_SELECTORS.forEach(function (selector) {
       document.querySelectorAll(selector).forEach(function (el) {
-        el.classList.add('lg-panel');
+        if (!processedGlassElements.has(el)) {
+          el.classList.add('lg-panel');
+          processedGlassElements.add(el);
+        }
       });
     });
 
     /* 导航栏类 */
     LG_NAV_SELECTORS.forEach(function (selector) {
       document.querySelectorAll(selector).forEach(function (el) {
-        el.classList.add('lg-nav');
+        if (!processedGlassElements.has(el)) {
+          el.classList.add('lg-nav');
+          processedGlassElements.add(el);
+        }
       });
     });
 
@@ -105,7 +119,10 @@
     /* 筛选按钮已有 .es-filter-btn 类（CSS 直接覆盖） */
     /* 帖子链接加 lg-surface */
     document.querySelectorAll('.post-link').forEach(function (el) {
-      el.classList.add('lg-surface');
+      if (!processedGlassElements.has(el)) {
+        el.classList.add('lg-surface');
+        processedGlassElements.add(el);
+      }
     });
   }
 
@@ -120,6 +137,10 @@
 
     /* 为每个可追踪元素绑定事件 */
     trackedElements.forEach(function (el) {
+      /* 跳过已绑定事件的元素，防止重复监听 */
+      if (trackedWithListeners.has(el)) return;
+      trackedWithListeners.add(el);
+
       /* 提示浏览器为变换层创建独立合成层，提升动画流畅度 */
       el.style.willChange = 'transform';
 
@@ -182,7 +203,12 @@
 
     if (!('IntersectionObserver' in window)) return;
 
-    var observer = new IntersectionObserver(function (entries) {
+    /* 断开旧 observer，防止重复创建 */
+    if (scrollParallaxObserver) {
+      scrollParallaxObserver.disconnect();
+    }
+
+    scrollParallaxObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         var el = entry.target;
         /* intersectionRatio < 0.5 视为远离视口中心，减弱模糊 */
@@ -197,7 +223,7 @@
     });
 
     glassElements.forEach(function (el) {
-      observer.observe(el);
+      scrollParallaxObserver.observe(el);
     });
   }
 
@@ -291,23 +317,27 @@
      监听 DOM 变化，对新插入的卡片注入玻璃类
      ================================================================ */
   if ('MutationObserver' in window) {
+    var moTimer = null;
     var mo = new MutationObserver(function (mutations) {
       var needsReinit = false;
-      mutations.forEach(function (m) {
-        m.addedNodes.forEach(function (node) {
+      for (var i = 0; i < mutations.length && !needsReinit; i++) {
+        var m = mutations[i];
+        for (var j = 0; j < m.addedNodes.length && !needsReinit; j++) {
+          var node = m.addedNodes[j];
           if (node.nodeType === 1) {
-            /* 检查新节点是否包含目标卡片 */
             var hasCard = LG_CARD_SELECTORS.some(function (sel) {
-              return node.matches && node.matches(sel) ||
-                node.querySelector && node.querySelector(sel);
+              return (node.matches && node.matches(sel)) ||
+                (node.querySelector && node.querySelector(sel));
             });
             if (hasCard) needsReinit = true;
           }
-        });
-      });
+        }
+      }
       if (needsReinit) {
-        /* 延迟执行，确保渲染完成 */
-        setTimeout(function () {
+        /* 防抖：合并多次 DOM 变化为一次重初始化 */
+        if (moTimer) clearTimeout(moTimer);
+        moTimer = setTimeout(function () {
+          moTimer = null;
           injectGlassClasses();
           if (supportsBackdropFilter && !prefersReducedMotion && !isTouchDevice) {
             initMouseTracking();
@@ -315,7 +345,7 @@
           if (supportsBackdropFilter && !prefersReducedMotion) {
             initScrollParallax();
           }
-        }, 100);
+        }, 150);
       }
     });
     mo.observe(document.body, { childList: true, subtree: true });
