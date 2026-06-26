@@ -106,16 +106,18 @@ document.addEventListener('DOMContentLoaded', function() {
   initNav();
   initHeroCarousel();
   initDarkMode();
-  initScrollReveal();
   initCampusTour();
   initDanmaku();
   initPostsToggle();
   initModal();
   initSmoothScroll();
   initCampusMap();
-  initCollegeTour();
   initEasterEgg();
   initImageLazyLoading();
+  /* 初始滚动动画（观察 DOMContentLoaded 时已存在的元素） */
+  initScrollReveal();
+  /* 学院巡礼是异步的，完成后需要补观察新元素 */
+  initCollegeTour();
 });
 
 /* ===== 导航栏 ===== */
@@ -214,32 +216,16 @@ function initScrollReveal() {
   }, { threshold: threshold, rootMargin: rootMargin });
   els.forEach(function(el) { obs.observe(el); });
 
-  /* 监听动态添加的 reveal 元素（校区巡礼、学院巡礼等异步生成的内容） */
-  if ('MutationObserver' in window) {
-    var revealMO = new MutationObserver(function(mutations) {
-      var newRevealEls = [];
-      mutations.forEach(function(m) {
-        m.addedNodes.forEach(function(node) {
-          if (node.nodeType !== 1) return;
-          if (node.classList && (node.classList.contains('reveal') || node.classList.contains('reveal-left') || node.classList.contains('reveal-right'))) {
-            newRevealEls.push(node);
-          }
-          if (node.querySelectorAll) {
-            node.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(function(el) {
-              newRevealEls.push(el);
-            });
-          }
-        });
-      });
-      newRevealEls.forEach(function(el) {
-        if (!el.classList.contains('visible') && !indexMap.has(el)) {
-          indexMap.set(el, indexMap.size);
-          obs.observe(el);
-        }
-      });
+  /* 暴露全局函数：供异步生成的内容调用来补观察 reveal 元素 */
+  window._observeRevealElements = function(container) {
+    var newEls = container.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+    newEls.forEach(function(el) {
+      if (!el.classList.contains('visible') && !indexMap.has(el)) {
+        indexMap.set(el, indexMap.size);
+        obs.observe(el);
+      }
     });
-    revealMO.observe(document.body, { childList: true, subtree: true });
-  }
+  };
 }
 
 /* ===== 校区巡礼 ===== */
@@ -263,6 +249,8 @@ function initCampusTour() {
       var card = e.target.closest('.bld-card');
       if (card) openModal(card.dataset.img, card.dataset.name + ' — ' + card.dataset.story);
     });
+    /* 补观察动态生成的 reveal 元素 */
+    if (window._observeRevealElements) window._observeRevealElements(container);
   } catch(err) { console.error('initCampusTour:', err); }
 }
 
@@ -417,6 +405,8 @@ function renderMajorCards(majors) {
   grid.innerHTML = majors.map(function(m) {
     return '<a href="colleges/major-detail.html?college='+m.collegeId+'&major='+encodeURIComponent(m.name)+'" class="major-card" data-college="'+m.collegeId+'"><div class="major-card-name">'+m.name+'</div><div class="major-card-college">'+m.collegeName.replace(/（.*?）/g,'')+'</div></a>';
   }).join('');
+  /* 补观察动态生成的 reveal 元素 */
+  if (window._observeRevealElements) window._observeRevealElements(grid);
 }
 
 /* ===== 彩蛋 ===== */
