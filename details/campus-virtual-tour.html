@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>一镜到底逛校园 - 南通大学</title>
+  <meta name="description" content="通过视频一镜到底逛南通大学校园，感受通大之美。">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/liquid-glass.css">
+  <style>
+    /* 一镜到底逛校园详情页 — Apple 风格 */
+    .virtual-tour-page {
+      padding-top: 48px;
+      min-height: 100vh;
+      background: var(--apple-bg,#f5f5f7);
+    }
+    .virtual-tour-header {
+      background: #000;
+      color: #fff;
+      padding: 6rem 2rem 5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .virtual-tour-header::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(circle, rgba(0,113,227,0.12) 0%, transparent 60%);
+      animation: rotate 30s linear infinite;
+    }
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .virtual-tour-header-content {
+      position: relative; z-index: 2;
+      max-width: 800px; margin: 0 auto;
+    }
+    .virtual-tour-icon {
+      width: 80px; height: 80px;
+      margin: 0 auto 1.5rem;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    .virtual-tour-icon svg { width: 36px; height: 36px; fill: #fff; }
+    .virtual-tour-title {
+      font-size: clamp(2rem,5vw,3rem);
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+    }
+    .virtual-tour-subtitle {
+      font-size: 1.25rem; opacity: 0.9;
+      margin-bottom: 1rem; font-weight: 400;
+    }
+    .virtual-tour-motto {
+      font-style: italic; opacity: 0.7; font-size: 1.0625rem;
+    }
+    .virtual-tour-content {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+    .video-section { margin-bottom: 4rem; }
+    .section-title {
+      font-size: clamp(1.75rem,4vw,2.5rem);
+      font-weight: 700;
+      color: var(--apple-text,#1d1d1f);
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+    }
+    .section-desc {
+      color: var(--apple-text2,#86868b);
+      margin-bottom: 2rem;
+      font-size: 1.0625rem;
+      line-height: 1.5;
+    }
+    .video-container {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 24px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+      background: #000;
+    }
+    .video-container iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: none;
+    }
+    .video-info {
+      margin-top: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+    }
+    .video-title {
+      font-size: 1.375rem;
+      font-weight: 600;
+      color: var(--apple-text,#1d1d1f);
+      flex: 1;
+      letter-spacing: -0.016em;
+    }
+    .video-meta {
+      color: var(--apple-text2,#86868b);
+      font-size: 0.875rem;
+    }
+    .action-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.875rem 2rem;
+      border-radius: 980px;
+      font-weight: 400;
+      font-size: 1rem;
+      transition: all 0.3s cubic-bezier(0.25,0.1,0.25,1);
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--apple-blue,#0071e3);
+      color: #fff;
+    }
+    .btn-primary:hover {
+      background: var(--apple-blue-hover,#0077ed);
+      transform: translateY(-1px);
+    }
+    .btn-secondary {
+      background: transparent;
+      color: var(--apple-blue,#0071e3);
+      border: 1px solid var(--apple-blue,#0071e3);
+    }
+    .btn-secondary:hover {
+      background: var(--apple-blue,#0071e3);
+      color: #fff;
+    }
+    .btn svg { width: 18px; height: 18px; fill: currentColor; }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .feature-card {
+      background: var(--apple-card,#fff);
+      border-radius: 24px;
+      padding: 2rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+      transition: all 0.4s cubic-bezier(0.25,0.1,0.25,1);
+    }
+    .feature-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+    }
+    .feature-icon {
+      width: 48px; height: 48px;
+      background: var(--apple-blue,#0071e3);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .feature-icon svg { width: 24px; height: 24px; fill: #fff; }
+    .feature-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--apple-text,#1d1d1f);
+      letter-spacing: -0.016em;
+    }
+    .feature-desc {
+      color: var(--apple-text2,#86868b);
+      font-size: 0.9375rem;
+      line-height: 1.5;
+    }
+    .back-to-home {
+      position: fixed;
+      bottom: 2rem; right: 2rem;
+      background: var(--apple-blue,#0071e3);
+      color: #fff;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(0,113,227,0.3);
+      transition: all 0.3s cubic-bezier(0.25,0.1,0.25,1);
+      z-index: 1000;
+    }
+    .back-to-home:hover {
+      background: var(--apple-blue-hover,#0077ed);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0,113,227,0.4);
+    }
+    .back-to-home svg { width: 22px; height: 22px; fill: #fff; }
+    @media (max-width: 734px) {
+      .virtual-tour-header { padding: 4rem 1rem 3rem; }
+      .virtual-tour-content { padding: 3rem 1rem; }
+      .action-buttons { flex-direction: column; }
+      .btn { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body class="virtual-tour-page">
+
+  <!-- 导航栏 -->
+  <nav class="navbar">
+    <a href="../index.html" class="nav-logo">
+      <img src="../images/qiyuan-gate.jpg" alt="南通大学校徽" style="border-radius:50%;height:32px;width:32px;object-fit:cover">
+      <span>南通大学</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="../index.html">首页</a></li>
+      <li><a href="../index.html#welcome">欢迎</a></li>
+      <li><a href="../index.html#campus-life">住在通大</a></li>
+      <li><a href="../index.html#campus-tour">校区巡礼</a></li>
+      <li><a href="../index.html#testimonials">学长学姐说</a></li>
+      <li><a href="../index.html#student-life">活力校园</a></li>
+      <li><a href="../index.html#guide">入学指南</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="icon-btn dark-mode-toggle" aria-label="切换深色模式">
+        <svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
+      </button>
+      <button class="mobile-menu-btn" aria-label="菜单">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- 头部 -->
+  <header class="virtual-tour-header">
+    <div class="virtual-tour-header-content">
+      <div class="virtual-tour-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+      </div>
+      <h1 class="virtual-tour-title">一镜到底逛校园</h1>
+      <p class="virtual-tour-subtitle">沉浸式体验南通大学校园之美</p>
+      <p class="virtual-tour-motto">"祈通中西，力求精进"</p>
+    </div>
+  </header>
+
+  <!-- 主要内容 -->
+  <main class="virtual-tour-content">
+    <!-- 视频 -->
+    <section class="video-section">
+      <h2 class="section-title">南通大学校园巡礼</h2>
+      <p class="section-desc">通过这个视频，你可以一镜到底地逛遍南通大学校园，感受通大的美丽风景、现代化建筑和浓厚的学术氛围。</p>
+      
+      <div class="video-container">
+        <iframe src="https://player.bilibili.com/player.html?bvid=BV1k8LX6tE36" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+      </div>
+      
+      <div class="video-info">
+        <h3 class="video-title">南通大学一镜到底逛校园</h3>
+        <span class="video-meta">来源：哔哩哔哩</span>
+      </div>
+      
+      <div class="action-buttons">
+        <a href="https://www.bilibili.com/video/BV1k8LX6tE36/" target="_blank" class="btn btn-primary">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+          在B站观看视频
+        </a>
+        <a href="https://space.bilibili.com/607851602" target="_blank" class="btn btn-secondary">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+          访问B站账号主页
+        </a>
+      </div>
+    </section>
+
+    <!-- 校区特色 -->
+    <section class="features-section">
+      <h2 class="section-title">校区亮点</h2>
+      <p class="section-desc">通过视频，你将看到南通大学各个校区的独特魅力。</p>
+      
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"/></svg>
+          </div>
+          <h3 class="feature-title">啬园校区</h3>
+          <p class="feature-desc">主校区，绿树成荫，湖泊点缀，现代化教学楼与图书馆交相辉映。</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+          </div>
+          <h3 class="feature-title">启秀校区</h3>
+          <p class="feature-desc">位于市中心濠河畔，历史悠久，人文底蕴深厚，医学教育重镇。</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+          </div>
+          <h3 class="feature-title">校园生活</h3>
+          <p class="feature-desc">食堂美食、宿舍环境、体育设施、社团活动，丰富多彩的校园生活。</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z"/></svg>
+          </div>
+          <h3 class="feature-title">学术氛围</h3>
+          <p class="feature-desc">图书馆、实验室、教学楼，浓厚的学术氛围，助力学子成长。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 返回首页 -->
+    <section class="back-section" style="text-align:center;margin-top:4rem;">
+      <a href="../index.html#campus-tour" class="btn btn-primary" style="background:#11998e;">
+        <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+        返回校区巡礼
+      </a>
+    </section>
+  </main>
+
+  <!-- 页脚 -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo"><img src="../images/qiyuan-gate.jpg" alt="南通大学校徽"><span>南通大学</span></div>
+        <p>南通大学是江苏省人民政府和交通运输部共建的综合性大学，是江苏高水平大学建设高峰计划建设B类高校。</p>
+      </div>
+      <div class="footer-links"><h4>快速链接</h4><ul><li><a href="https://www.ntu.edu.cn/" target="_blank">南通大学官网</a></li><li><a href="https://zs.ntu.edu.cn/" target="_blank">招生信息网</a></li></ul></div>
+      <div class="footer-links"><h4>联系我们</h4><ul><li>地址：南通市啬园路9号</li><li>电话：0513-85012170</li><li>邮箱：zsb@ntu.edu.cn</li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>&copy; 2026 南通大学招生办公室</span><span>祈通中西，力求精进</span></div>
+  </footer>
+
+  <!-- 返回首页按钮 -->
+  <a href="../index.html" class="back-to-home" aria-label="返回首页">
+    <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+  </a>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/liquid-glass.js"></script>
+</body>
+</html>

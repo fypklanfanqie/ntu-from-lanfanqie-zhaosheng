@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>常见问题 - 南通大学入学指南</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/liquid-glass.css">
+  <style>
+    .detail-page { max-width: 980px; margin: 0 auto; padding: 6rem 1.5rem 4rem; }
+    .detail-header {
+      text-align: center; margin-bottom: 4rem; padding: 4rem 2.5rem;
+      background: linear-gradient(135deg, #5856d6 0%, #af52de 100%);
+      border-radius: 28px; color: #fff; position: relative; overflow: hidden;
+    }
+    .detail-header::before {
+      content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+      animation: float 6s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(5deg); }
+    }
+    .detail-header h1 { font-size: clamp(2rem,5vw,3rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.5rem; position: relative; z-index: 1; }
+    .detail-header p { font-size: 1.125rem; opacity: 0.9; position: relative; z-index: 1; }
+    .back-btn { display: inline-flex; align-items: center; gap: 0.3rem; color: #5856d6; text-decoration: none; margin-bottom: 2rem; padding: 0.5rem 1.25rem; border: 1px solid #5856d6; border-radius: 980px; transition: all 0.3s; font-size: 0.875rem; }
+    .back-btn:hover { background: #5856d6; color: white; }
+    .content-section { margin-bottom: 3rem; background: var(--apple-card,#fff); border-radius: 18px; padding: 2rem; box-shadow: 0 4px 20px rgba(0,0,0,0.04); }
+    .content-section h2 { font-size: clamp(1.5rem,3vw,2rem); font-weight: 600; color: var(--apple-text,#1d1d1f); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
+    .content-section h2 .icon { width: 40px; height: 40px; background: linear-gradient(135deg, #5856d6, #af52de); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.25rem; }
+    .faq-item { background: var(--apple-card,#fff); border-radius: 18px; margin-bottom: 1rem; box-shadow: 0 4px 20px rgba(0,0,0,0.04); overflow: hidden; transition: all 0.3s; }
+    .faq-item:hover { box-shadow: 0 8px 30px rgba(0,0,0,0.08); }
+    .faq-question { padding: 1.5rem; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .faq-question:hover { background: rgba(88,86,214,0.05); }
+    .faq-question h3 { font-size: 1.0625rem; font-weight: 600; color: var(--apple-text,#1d1d1f); margin: 0; flex: 1; }
+    .faq-question .faq-icon { width: 24px; height: 24px; background: linear-gradient(135deg, #5856d6, #af52de); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1rem; flex-shrink: 0; transition: transform 0.3s; }
+    .faq-item.active .faq-question .faq-icon { transform: rotate(45deg); }
+    .faq-answer { padding: 0 1.5rem 1.5rem; color: var(--apple-text2,#86868b); font-size: 0.9375rem; line-height: 1.7; display: none; }
+    .faq-item.active .faq-answer { display: block; }
+    .faq-answer ul { padding-left: 1.2rem; margin-bottom: 1rem; }
+    .faq-answer li { margin-bottom: 0.5rem; }
+    .faq-answer a { color: #5856d6; }
+    .category-tabs { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 2rem; }
+    .category-tab { padding: 0.625rem 1.25rem; background: #f5f5f7; border-radius: 980px; font-size: 0.875rem; color: var(--apple-text2,#86868b); cursor: pointer; transition: all 0.3s; border: 1px solid rgba(0,0,0,0.05); text-decoration: none; }
+    .category-tab:hover, .category-tab.active { background: linear-gradient(135deg, #5856d6, #af52de); color: white; }
+    .contact-info { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+    .contact-item { display: flex; align-items: center; gap: 0.75rem; padding: 1rem; background: var(--apple-card,#fff); border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+    .contact-item .contact-icon { width: 40px; height: 40px; background: linear-gradient(135deg, #5856d6, #af52de); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.125rem; }
+    .contact-item .contact-text h4 { font-size: 0.875rem; font-weight: 600; color: var(--apple-text,#1d1d1f); margin-bottom: 0.25rem; }
+    .contact-item .contact-text p { font-size: 0.8125rem; color: var(--apple-text2,#86868b); margin: 0; }
+    @media (max-width: 734px) { .detail-header h1 { font-size: 1.75rem; } .detail-header { padding: 3rem 1.5rem; } .content-section { padding: 1.5rem; } .contact-info { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <a href="../index.html" class="nav-logo">
+      <img src="../images/qiyuan-gate.jpg" alt="南通大学校徽" style="border-radius:50%;height:32px;width:32px;object-fit:cover">
+      <span>南通大学</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="../index.html">首页</a></li>
+      <li><a href="../index.html#campus-life">住在通大</a></li>
+      <li><a href="../index.html#campus-tour">校区巡礼</a></li>
+      <li><a href="../index.html#college-tour">学院巡礼</a></li>
+      <li><a href="../index.html#testimonials">学长学姐说</a></li>
+      <li><a href="../index.html#student-life">活力校园</a></li>
+      <li><a href="../index.html#guide">入学指南</a></li>
+    </ul>
+  </nav>
+
+  <div class="detail-page">
+    <a href="../index.html#guide" class="back-btn">
+      <svg viewBox="0 0 24 24" width="16" height="16"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6z" fill="currentColor"/></svg>
+      返回入学指南
+    </a>
+
+    <div class="detail-header">
+      <h1>常见问题</h1>
+      <p>新生常见问题解答，帮助你快速了解通大生活</p>
+    </div>
+
+    <div class="content-section">
+      <h2><span class="icon">❓</span> 问题分类</h2>
+      <div class="category-tabs">
+        <span class="category-tab active" data-cat="all">全部问题</span>
+        <span class="category-tab" data-cat="academic">学业相关</span>
+        <span class="category-tab" data-cat="campus-life">校园生活</span>
+        <span class="category-tab" data-cat="accommodation">住宿相关</span>
+        <span class="category-tab" data-cat="military">军训相关</span>
+      </div>
+    </div>
+
+    <div class="content-section" data-category="academic">
+      <h2><span class="icon">📚</span> 学业相关</h2>
+      <div class="faq-item"><div class="faq-question"><h3>可以转专业吗？什么时候可以转？条件是什么？</h3><div class="faq-icon">+</div></div><div class="faq-answer"><p><strong>可以转专业。</strong>南通大学允许学生在入学后申请转专业：</p><ul><li><strong>申请时间：</strong>一般在第一学期末（11-12月）</li><li><strong>申请条件：</strong>身体条件符合转入专业要求；在校期间修读课程无不合格或缓考记录；未受过记过及以上处分；原专业学费已交清</li><li><strong>申请流程：</strong>登录南通大学教学综合信息服务平台（tdjw.ntu.edu.cn）进行网上报名，每人最多填报两个专业志愿</li><li><strong>考核方式：</strong>学校统一组织英语笔试（成绩占比≥50%）+ 转入学院笔试或面试</li></ul><p>详情请关注<a href="https://jwc.ntu.edu.cn/" target="_blank">教务处通知</a></p></div></div>
+      <div class="faq-item"><div class="faq-question"><h3>可以辅修或修读双学位吗？</h3><div class="faq-icon">+</div></div><div class="faq-answer"><p><strong>可以。</strong>南通大学提供辅修和双学位教育：</p><ul><li><strong>辅修：</strong>学有余力的学生可申请辅修其他专业，完成规定课程可获得辅修证书</li><li><strong>双学位：</strong>完成主修和辅修专业全部课程，符合学位授予条件，可获得两个学士学位</li><li><strong>申请时间：</strong>一般在大二上学期</li><li><strong>申请条件：</strong>主修专业成绩优良，无不及格课程</li></ul></div></div>
+      <div class="faq-item"><div class="faq-question"><h3>课程怎么选？选课系统怎么用？</h3><div class="faq-icon">+</div></div><div class="faq-answer"><p>南通大学采用学分制，学生需在规定时间内完成选课：</p><ul><li><strong>选课系统：</strong><a href="http://tdjw.ntu.edu.cn/" target="_blank">南通大学教学综合信息服务平台</a></li><li><strong>选课时间：</strong>每学期开学前1-2周进行选课</li><li><strong>课程类型：</strong>必修课（专业规定必修）、选修课（专业选修+通识选修）、体育课（单独选择项目）</li><li><strong>选课建议：</strong>先选必修课再选选修课，注意课程时间冲突，热门课程尽早选</li></ul></div></div>
+      <div class="faq-item"><div class="faq-question"><h3>考试不及格怎么办？有补考吗？</h3><div class="faq-icon">+</div></div><div class="faq-answer"><p>南通大学实行学分绩点制，考试不及格处理方式：</p><ul><li><strong>补考：</strong>每学期开学初组织补考，补考成绩最高记60分</li><li><strong>重修：</strong>补考仍不及格或对成绩不满意，可申请重修</li><li><strong>学业预警：</strong>累计不及格学分达到一定数量会收到预警</li><li><strong>毕业要求：</strong>必须修满培养方案规定的全部学分才能毕业</li></ul></div></div>
+    </div>
+
+    <div class="content-section" data-category="campus-life">
+      <h2><span class="icon">🏫</span> 校园生活</h2>
+      <div class="faq-item"><div class="faq-question"><h3>校园卡怎么使用？怎么充值？</h3><div class="faq-icon">+</div></div><div class="faq-answer"><p>校园卡是学生在校期间的重要身份凭证和消费工具：</p><ul><li><strong>功能：</strong>食堂就餐、图书馆借阅、超市购物、门禁识别等</li><li><strong>领取：</strong>报到时在学院迎新点领取</li><li><strong>充值方式：</strong>通过"今日校园"APP线上充值，或各校区食堂充值窗口线下充值</li><li><strong>挂失补办：</strong>丢失后立即在"今日校园"APP挂失，到信息中心补办</li><li><strong>初始密码：</strong>身份证号后6位（末尾字母大写）</li></ul></div></div>
+      <div class="faq-item"><div class="faq-question"><h3>校园网怎么连接？网速怎么样？</h3><div class="faq-icon">+</div></div><div class="faq-answer"><p>南通大学校园网覆盖全校：</p><ul><li><strong>无线网络：</strong>SSID为"NTU"或"eduroam"</li><li><strong>有线网络：</strong>宿舍有网络接口，需办理宽带套餐</li><li><strong>办理方式：</strong>到信息中心或营业厅办理，需携带学生证</li><li><strong>套餐选择：</strong>校园网基础套餐30元/月，也可选择运营商宽带套餐</li></ul></div></div>
+      <div class="faq-item"><div class="faq-question"><h3>食堂怎么样？饭菜好吃吗？</h3><div class="faq-icon">+</div></div><div class="faq-answer"><p>南通大学各校区均有多个食堂，菜品丰富：</p><ul><li><strong>啬园校区：</strong>第一食堂、第二食堂、风味食堂等</li><li><strong>启秀校区：</strong>学生食堂、教工食堂</li><li><strong>菜品特色：</strong>淮扬菜为主，兼顾各地口味</li><li><strong>价格范围：</strong>早餐5-10元，午餐/晚餐10-20元</li><li><strong>营业时间：</strong>早餐6:30-9:00，午餐11:00-13:00，晚餐17:00-19:00</li></ul></div></div>
+      <div class="faq-item"><div class="faq-question"><h3>可以带电脑吗？宿舍有网络吗？</h3><div class="faq-icon">+</div></div><div class="faq-answer"><p><strong>可以带电脑。</strong>宿舍提供网络接口，可办理校园网或运营商宽带。</p><ul><li><strong>网络接口：</strong>每个床位有一个网络接口</li><li><strong>办理方式：</strong>到信息中心或营业厅办理</li><li><strong>建议：</strong>开学后再办理，可先了解各运营商套餐</li><li><strong>注意：</strong>晚上11点后宿舍断电，电脑需使用电池</li></ul></div></div>
+    </div>
+
+    <div class="content-section" data-category="accommodation">
+      <h2><span class="icon">🏠</span> 住宿相关</h2>
+      <div class="faq-item"><div class="faq-question"><h3>宿舍条件怎么样？有空调吗？</h3><div class="faq-icon">+</div></div><div class="faq-answer"><p>南通大学宿舍条件良好：</p><ul><li><strong>宿舍类型：</strong>4人间或6人间，上床下桌</li><li><strong>基本设施：</strong>独立卫生间、淋浴间、洗脸池、衣柜、书桌、网络接口</li><li><strong>空调：</strong>部分宿舍有空调，可申请安装</li><li><strong>热水：</strong>一般下午和晚上提供热水，部分宿舍24小时热水</li><li><strong>电费：</strong>每月有免费额度，超出部分需自行充值</li></ul></div></div>
+      <div class="faq-item"><div class="faq-question"><h3>宿舍可以自己选择吗？可以换宿舍吗？</h3><div class="faq-icon">+</div></div><div class="faq-answer"><p><strong>宿舍由学校统一分配，一般按学院和班级安排。</strong></p><ul><li><strong>分配方式：</strong>学院根据专业和班级统一分配</li><li><strong>调换宿舍：</strong>原则上不允许随意调换，特殊情况可向辅导员申请</li><li><strong>室友关系：</strong>建议与室友多沟通，互相尊重，和谐相处</li></ul></div></div>
+      <div class="faq-item"><div class="faq-question"><h3>宿舍有门禁吗？晚上几点关门？</h3><div class="faq-icon">+</div></div><div class="faq-answer"><p>南通大学宿舍实行门禁管理：</p><ul><li><strong>门禁时间：</strong>晚上11:00</li><li><strong>熄灯时间：</strong>晚上11:00（部分宿舍楼11:30）</li><li><strong>晚归处理：</strong>超过门禁时间需登记，多次晚归可能影响评优</li><li><strong>请假外出：</strong>需向辅导员请假，并在宿舍管理系统报备</li></ul></div></div>
+    </div>
+
+    <div class="content-section" data-category="military">
+      <h2><span class="icon">🎖️</span> 军训相关</h2>
+      <div class="faq-item"><div class="faq-question"><h3>军训时间多长？什么时候开始？</h3><div class="faq-icon">+</div></div><div class="faq-answer"><p>南通大学新生军训安排如下：</p><ul><li><strong>军训时间：</strong>一般为2周左右</li><li><strong>开始时间：</strong>入学教育结束后，一般在9月中旬</li><li><strong>训练内容：</strong>队列训练、内务整理、军体拳、战术基础、紧急集合等</li><li><strong>训练地点：</strong>校内操场和训练场</li></ul></div></div>
+      <div class="faq-item"><div class="faq-question"><h3>军训需要准备什么？</h3><div class="faq-icon">+</div></div><div class="faq-answer"><p>军训前需准备以下物品：</p><ul><li><strong>服装：</strong>学校统一发放军训服（帽子、上衣、裤子、腰带、鞋子）</li><li><strong>防晒用品：</strong>防晒霜（SPF50+）、防晒喷雾</li><li><strong>防暑用品：</strong>藿香正气水、清凉油、湿巾</li><li><strong>生活用品：</strong>水壶、毛巾、换洗衣物</li><li><strong>药品：</strong>创可贴、感冒药、肠胃药</li></ul></div></div>
+      <div class="faq-item"><div class="faq-question"><h3>军训可以请假吗？什么情况可以免训？</h3><div class="faq-icon">+</div></div><div class="faq-answer"><p>军训是必修课程，原则上不允许请假：</p><ul><li><strong>身体原因：</strong>需提供医院证明，可申请免训或见习</li><li><strong>免训：</strong>因身体原因无法参加训练，可申请免训但需在场见习</li><li><strong>请假：</strong>因特殊情况需请假，需辅导员批准</li><li><strong>成绩：</strong>军训成绩计入体育成绩，无故缺席影响毕业</li></ul></div></div>
+    </div>
+
+    <div class="content-section">
+      <h2><span class="icon">💡</span> 其他问题</h2>
+      <div class="faq-item"><div class="faq-question"><h3>怎么加入学生组织或社团？</h3><div class="faq-icon">+</div></div><div class="faq-answer"><p>南通大学有丰富的学生组织和社团：</p><ul><li><strong>学生组织：</strong>学生会、社团联合会、青年志愿者协会等</li><li><strong>学生社团：</strong>学术科技类、文化艺术类、体育健身类、公益服务类等100多个社团</li><li><strong>招新时间：</strong>一般在军训结束后（9月底-10月初）</li><li><strong>招新方式：</strong>"百团大战"社团招新活动，现场报名</li><li><strong>建议：</strong>选择1-2个感兴趣的社团即可，不宜过多</li></ul></div></div>
+      <div class="faq-item"><div class="faq-question"><h3>学校周边有什么好吃的、好玩的？</h3><div class="faq-icon">+</div></div><div class="faq-answer"><p>南通大学位于南通市中心，周边设施齐全：</p><ul><li><strong>购物：</strong>南大街、八佰伴、圆融广场、金鹰国际等</li><li><strong>美食：</strong>段家坝美食街、各商圈美食广场</li><li><strong>景点：</strong>濠河风景区、狼山风景区、南通博物苑</li><li><strong>交通：</strong>公交线路众多，出行便利</li></ul></div></div>
+      <div class="faq-item"><div class="faq-question"><h3>遇到问题可以找谁帮忙？</h3><div class="faq-icon">+</div></div><div class="faq-answer"><p>遇到问题可以寻求以下帮助：</p><ul><li><strong>辅导员：</strong>学习、生活、心理等问题的首要联系人</li><li><strong>班主任：</strong>学业指导和班级事务</li><li><strong>学长学姐：</strong>生活经验和学习建议</li><li><strong>心理咨询中心：</strong>心理困扰和情绪问题</li><li><strong>学生事务中心：</strong>综合事务咨询和办理</li></ul></div></div>
+    </div>
+
+    <div class="content-section">
+      <h2><span class="icon">📞</span> 重要联系方式</h2>
+      <div class="contact-info">
+        <div class="contact-item"><div class="contact-icon">🎓</div><div class="contact-text"><h4>招生办公室</h4><p>0513-85012170</p></div></div>
+        <div class="contact-item"><div class="contact-icon">📚</div><div class="contact-text"><h4>教务处</h4><p>0513-85012075</p></div></div>
+        <div class="contact-item"><div class="contact-icon">💰</div><div class="contact-text"><h4>财务处</h4><p>0513-85012098</p></div></div>
+        <div class="contact-item"><div class="contact-icon">🏠</div><div class="contact-text"><h4>后勤保障部</h4><p>0513-85012110</p></div></div>
+        <div class="contact-item"><div class="contact-icon">💻</div><div class="contact-text"><h4>信息中心</h4><p>0513-85012120</p></div></div>
+        <div class="contact-item"><div class="contact-icon">❤️</div><div class="contact-text"><h4>心理咨询中心</h4><p>0513-85012125</p></div></div>
+      </div>
+    </div>
+
+    <div class="content-section" style="background:#f5f5f7;border:1px solid rgba(0,0,0,0.05);">
+      <h2><span class="icon">📌</span> 数据来源</h2>
+      <ul>
+        <li>南通大学教务处 - <a href="https://jwc.ntu.edu.cn/" target="_blank" style="color:#5856d6;">https://jwc.ntu.edu.cn/</a></li>
+        <li>南通大学新生网 - <a href="https://welcome.ntu.edu.cn/" target="_blank" style="color:#5856d6;">https://welcome.ntu.edu.cn/</a></li>
+        <li>南通大学学生手册</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand"><div class="footer-logo"><img src="../images/qiyuan-gate.jpg" alt="南通大学校徽"><span>南通大学</span></div><p>南通大学是江苏省人民政府和交通运输部共建的综合性大学，是江苏高水平大学建设高峰计划建设B类高校。</p></div>
+      <div class="footer-links"><h4>快速链接</h4><ul><li><a href="https://www.ntu.edu.cn/" target="_blank">南通大学官网</a></li><li><a href="https://zs.ntu.edu.cn/" target="_blank">招生信息网</a></li></ul></div>
+      <div class="footer-links"><h4>联系我们</h4><ul><li>地址：南通市啬园路9号</li><li>电话：0513-85012170</li><li>邮箱：zsb@ntu.edu.cn</li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>&copy; 2026 南通大学招生办公室</span><span>祈通中西，力求精进</span></div>
+  </footer>
+  <script src="../js/liquid-glass.js"></script>
+  <script>
+    document.querySelectorAll('.faq-question').forEach(q => {
+      q.addEventListener('click', () => {
+        const item = q.parentElement;
+        item.classList.toggle('active');
+      });
+    });
+    document.querySelectorAll('.category-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const cat = tab.dataset.cat;
+        document.querySelectorAll('.content-section[data-category]').forEach(s => {
+          s.style.display = (cat === 'all' || s.dataset.category === cat) ? '' : 'none';
+        });
+      });
+    });
+  </script>
+</body>
+</html>

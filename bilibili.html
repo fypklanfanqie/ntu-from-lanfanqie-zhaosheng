@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>南通大学招生办B站账号 — 南通大学本科招生</title>
+  <meta name="description" content="南通大学招生办公室官方哔哩哔哩账号，发布招生宣传片、校园风光、专业介绍等视频内容。">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/liquid-glass.css">
+  <style>
+    /* B站页面 — Apple 风格内联样式 */
+    .bilibili-page {
+      padding-top: 48px;
+      min-height: 100vh;
+      background: var(--apple-bg,#f5f5f7);
+    }
+    .bilibili-header {
+      background: #000;
+      color: #fff;
+      padding: 6rem 2rem 5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .bilibili-header::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(circle, rgba(0,113,227,0.12) 0%, transparent 60%);
+      animation: rotate 30s linear infinite;
+    }
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .bilibili-header-content {
+      position: relative; z-index: 2;
+      max-width: 800px; margin: 0 auto;
+    }
+    .bilibili-avatar {
+      width: 120px; height: 120px;
+      border-radius: 50%;
+      border: 3px solid rgba(255,255,255,0.2);
+      margin: 0 auto 1.5rem;
+      object-fit: cover;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+    }
+    .bilibili-title {
+      font-size: clamp(2rem,5vw,3rem);
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+    }
+    .bilibili-subtitle {
+      font-size: 1.25rem;
+      opacity: 0.9;
+      margin-bottom: 1rem;
+      font-weight: 400;
+    }
+    .bilibili-motto {
+      font-style: italic;
+      opacity: 0.7;
+      font-size: 1.0625rem;
+    }
+    .bilibili-content {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+    .video-section { margin-bottom: 4rem; }
+    .section-title {
+      font-size: clamp(1.75rem,4vw,2.5rem);
+      font-weight: 700;
+      color: var(--apple-text,#1d1d1f);
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+    }
+    .section-desc {
+      color: var(--apple-text2,#86868b);
+      margin-bottom: 2rem;
+      font-size: 1.0625rem;
+      line-height: 1.5;
+    }
+    .video-container {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 24px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+      background: #000;
+    }
+    .video-container iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: none;
+    }
+    .video-info {
+      margin-top: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+    }
+    .video-title {
+      font-size: 1.375rem;
+      font-weight: 600;
+      color: var(--apple-text,#1d1d1f);
+      flex: 1;
+      letter-spacing: -0.016em;
+    }
+    .video-meta {
+      color: var(--apple-text2,#86868b);
+      font-size: 0.875rem;
+    }
+    .action-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.875rem 2rem;
+      border-radius: 980px;
+      font-weight: 400;
+      font-size: 1rem;
+      transition: all 0.3s cubic-bezier(0.25,0.1,0.25,1);
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--apple-blue,#0071e3);
+      color: #fff;
+    }
+    .btn-primary:hover {
+      background: var(--apple-blue-hover,#0077ed);
+      transform: translateY(-1px);
+    }
+    .btn-secondary {
+      background: transparent;
+      color: var(--apple-blue,#0071e3);
+      border: 1px solid var(--apple-blue,#0071e3);
+    }
+    .btn-secondary:hover {
+      background: var(--apple-blue,#0071e3);
+      color: #fff;
+    }
+    .btn svg {
+      width: 18px; height: 18px;
+      fill: currentColor;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .feature-card {
+      background: var(--apple-card,#fff);
+      border-radius: 24px;
+      padding: 2rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+      transition: all 0.4s cubic-bezier(0.25,0.1,0.25,1);
+    }
+    .feature-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+    }
+    .feature-icon {
+      width: 48px; height: 48px;
+      background: var(--apple-blue,#0071e3);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .feature-icon svg {
+      width: 24px; height: 24px;
+      fill: #fff;
+    }
+    .feature-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--apple-text,#1d1d1f);
+      letter-spacing: -0.016em;
+    }
+    .feature-desc {
+      color: var(--apple-text2,#86868b);
+      font-size: 0.9375rem;
+      line-height: 1.5;
+    }
+    .back-to-home {
+      position: fixed;
+      bottom: 2rem; right: 2rem;
+      background: var(--apple-blue,#0071e3);
+      color: #fff;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(0,113,227,0.3);
+      transition: all 0.3s cubic-bezier(0.25,0.1,0.25,1);
+      z-index: 1000;
+    }
+    .back-to-home:hover {
+      background: var(--apple-blue-hover,#0077ed);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0,113,227,0.4);
+    }
+    .back-to-home svg {
+      width: 22px; height: 22px;
+      fill: #fff;
+    }
+    @media (max-width: 734px) {
+      .bilibili-header { padding: 4rem 1rem 3rem; }
+      .bilibili-content { padding: 3rem 1rem; }
+      .action-buttons { flex-direction: column; }
+      .btn { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body class="bilibili-page">
+
+  <!-- 导航栏 -->
+  <nav class="navbar">
+    <a href="index.html" class="nav-logo">
+      <img src="images/qiyuan-gate.jpg" alt="南通大学校徽" style="border-radius:50%;height:32px;width:32px;object-fit:cover">
+      <span>南通大学</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">首页</a></li>
+      <li><a href="index.html#welcome">欢迎</a></li>
+
+      <li><a href="index.html#campus-life">住在通大</a></li>
+      <li><a href="index.html#campus-tour">校区巡礼</a></li>
+      <li><a href="index.html#testimonials">学长学姐说</a></li>
+      <li><a href="index.html#student-life">活力校园</a></li>
+      <li><a href="index.html#guide">入学指南</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="icon-btn dark-mode-toggle" aria-label="切换深色模式">
+        <svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
+      </button>
+      <button class="mobile-menu-btn" aria-label="菜单">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- B站账号头部 -->
+  <header class="bilibili-header">
+    <div class="bilibili-header-content">
+      <img src="https://i0.hdslb.com/bfs/face/member/noface.jpg" alt="南通大学本科招生头像" class="bilibili-avatar" id="bilibili-avatar">
+      <h1 class="bilibili-title">南通大学本科招生</h1>
+      <p class="bilibili-subtitle">官方哔哩哔哩账号</p>
+      <p class="bilibili-motto">"祈通中西，力求精进"</p>
+    </div>
+  </header>
+
+  <!-- 主要内容 -->
+  <main class="bilibili-content">
+    <!-- 宣传片视频 -->
+    <section class="video-section">
+      <h2 class="section-title">2026年招生宣传片《通达》</h2>
+      <p class="section-desc">金秋九月，让我们相聚通大，祝同学们前程通达！</p>
+      
+      <div class="video-container">
+        <iframe src="https://player.bilibili.com/player.html?bvid=BV1Xcjo6dEMH" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+      </div>
+      
+      <div class="video-info">
+        <h3 class="video-title">通大·通达 | 南通大学2026年招生宣传片《通达》上线</h3>
+        <span class="video-meta">发布时间：2026-06-25</span>
+      </div>
+      
+      <div class="action-buttons">
+        <a href="https://www.bilibili.com/video/BV1Xcjo6dEMH/" target="_blank" class="btn btn-primary">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+          在B站观看视频
+        </a>
+        <a href="https://space.bilibili.com/607851602" target="_blank" class="btn btn-secondary">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+          访问B站账号主页
+        </a>
+      </div>
+    </section>
+
+    <!-- 账号特色 -->
+    <section class="features-section">
+      <h2 class="section-title">关注我们，获取最新资讯</h2>
+      <p class="section-desc">南通大学招生办官方账号，定期发布招生政策、校园风光、专业介绍、学长学姐经验分享等内容。</p>
+      
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"/></svg>
+          </div>
+          <h3 class="feature-title">招生宣传片</h3>
+          <p class="feature-desc">年度招生宣传片，全方位展示通大校园风貌、学科实力和校园生活。</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+          </div>
+          <h3 class="feature-title">专业介绍</h3>
+          <p class="feature-desc">各学院专业详细介绍，帮助考生了解学科特色和发展前景。</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+          </div>
+          <h3 class="feature-title">学长学姐说</h3>
+          <p class="feature-desc">在校生和毕业生的真实经验分享，解答考生常见问题。</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z"/></svg>
+          </div>
+          <h3 class="feature-title">校园生活</h3>
+          <p class="feature-desc">食堂美食、宿舍环境、社团活动、校园风景等精彩内容。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 联系方式 -->
+    <section class="contact-section">
+      <h2 class="section-title">联系我们</h2>
+      <p class="section-desc">如有招生相关问题，可通过以下方式联系我们：</p>
+      
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          </div>
+          <h3 class="feature-title">招生办公室</h3>
+          <p class="feature-desc">地址：江苏省南通市啬园路9号<br>电话：0513-85012170</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+          </div>
+          <h3 class="feature-title">招生网站</h3>
+          <p class="feature-desc">访问南通大学招生信息网获取最新招生政策、招生计划、录取查询等信息。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 页脚 -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <img src="images/qiyuan-gate.jpg" alt="南通大学校徽">
+        <span>南通大学</span>
+      </div>
+      <p class="footer-text">祈通中西，力求精进</p>
+      <div class="footer-links">
+        <a href="index.html">学校首页</a>
+        <a href="https://zs.ntu.edu.cn/" target="_blank">招生信息网</a>
+        <a href="https://space.bilibili.com/607851602" target="_blank">B站官方账号</a>
+        <a href="https://www.bilibili.com/video/BV1Xcjo6dEMH/" target="_blank">招生宣传片</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 返回首页按钮 -->
+  <a href="index.html" class="back-to-home" aria-label="返回首页">
+    <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+  </a>
+
+  <script src="js/main.js"></script>
+  <script src="js/liquid-glass.js"></script>
+  <script>
+    // 尝试获取B站账号头像（由于跨域限制，可能无法获取）
+    // 这里使用一个默认的占位图
+    document.addEventListener('DOMContentLoaded', function() {
+      const avatar = document.getElementById('bilibili-avatar');
+      // 如果无法获取真实头像，使用默认图片
+      avatar.onerror = function() {
+        this.src = 'images/qiyuan-gate.jpg';
+      };
+    });
+  </script>
+</body>
+</html>

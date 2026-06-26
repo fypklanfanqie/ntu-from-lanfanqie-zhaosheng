@@ -1,0 +1,1213 @@
+/* ================================================================
+   南通大学本科招生网 — Apple 风格视觉升级
+   ----------------------------------------------------------------
+   设计基调：
+   - 浅色背景 #f5f5f7 / 纯白 #ffffff，深灰文字 #1d1d1f
+   - 强调色 Apple 蓝 #0071e3，深色区段用 #000 渐变
+   - 系统原生字体栈，标题字重 600-700，行高紧凑 1.1
+   - 大圆角 18-28px，极柔弥散阴影
+   - 间距通透，区块上下 ≥ 80px
+   ================================================================ */
+
+/* ---------- 全局变量 ---------- */
+:root{
+  --apple-blue:#0071e3;          /* Apple 官方蓝 */
+  --apple-blue-hover:#0077ed;    /* 蓝 hover 加深 */
+  --apple-blue-dark:#0058b0;     /* 深蓝 */
+  --apple-bg:#f5f5f7;            /* Apple 浅灰背景 */
+  --apple-white:#ffffff;
+  --apple-black:#1d1d1f;         /* Apple 深灰文字 */
+  --apple-text:#1d1d1f;
+  --apple-text2:#86868b;         /* 次级灰 */
+  --apple-text3:#6e6e73;
+  --apple-border:#d2d2d7;        /* 极浅边框 */
+  --apple-card:#ffffff;
+  --apple-radius:18px;           /* 标准圆角 */
+  --apple-radius-lg:24px;        /* 大圆角 */
+  --apple-radius-xl:28px;        /* 超大圆角 */
+  --apple-shadow:0 4px 20px rgba(0,0,0,0.04);          /* 极柔弥散阴影 */
+  --apple-shadow-hover:0 12px 40px rgba(0,0,0,0.08);   /* hover 阴影 */
+  --apple-shadow-strong:0 20px 60px rgba(0,0,0,0.12);  /* 强阴影 */
+  --apple-ease:cubic-bezier(0.25,0.1,0.25,1);          /* Apple 弹性缓出 */
+  --apple-ease-out:cubic-bezier(0.4,0,0.2,1);
+  --apple-duration:0.8s;
+  --ff:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue","PingFang SC","Microsoft YaHei",sans-serif;
+  --max-width:1200px;
+  /* 兼容旧变量名 */
+  --ntu-blue:var(--apple-blue);
+  --ntu-blue-light:#4a9eff;
+  --ntu-blue-dark:var(--apple-blue-dark);
+  --bg:var(--apple-bg);
+  --text:var(--apple-text);
+  --text2:var(--apple-text2);
+  --border:var(--apple-border);
+  --card:var(--apple-card);
+  --ease:0.3s ease;
+}
+
+/* ---------- Reset ---------- */
+*{margin:0;padding:0;box-sizing:border-box}
+html{
+  scroll-behavior:smooth;
+  font-size:16px;
+  -webkit-text-size-adjust:100%;
+}
+body{
+  font-family:var(--ff);
+  background:var(--apple-bg);
+  color:var(--apple-text);
+  line-height:1.5;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  letter-spacing:-0.022em;
+}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+
+/* ================================================================
+   导航栏 — Apple 风格全宽半透明毛玻璃导航
+   ================================================================ */
+.navbar{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  padding:0 2rem;
+  height:48px;
+  display:flex;justify-content:space-between;align-items:center;
+  background:rgba(255,255,255,0.72);
+  backdrop-filter:saturate(180%) blur(20px);
+  -webkit-backdrop-filter:saturate(180%) blur(20px);
+  transition:background 0.3s var(--apple-ease),border-color 0.3s;
+  border-bottom:1px solid transparent;
+}
+.navbar.scrolled{
+  background:rgba(255,255,255,0.8);
+  backdrop-filter:saturate(180%) blur(20px);
+  -webkit-backdrop-filter:saturate(180%) blur(20px);
+  border-bottom-color:rgba(0,0,0,0.08);
+}
+.nav-logo{
+  display:flex;align-items:center;gap:0.625rem;
+  font-size:1.0625rem;font-weight:600;
+  letter-spacing:-0.022em;
+  color:var(--apple-text);
+}
+.nav-logo img{height:28px;width:28px;border-radius:50%;object-fit:cover}
+.nav-links{
+  display:flex;gap:2.25rem;list-style:none;
+  align-items:center;
+}
+.nav-links a{
+  font-size:0.8125rem;font-weight:400;
+  color:var(--apple-text);
+  transition:color 0.2s var(--apple-ease);
+  opacity:0.88;
+}
+.nav-links a:hover{
+  color:var(--apple-blue);
+  opacity:1;
+}
+.nav-links a.active{
+  color:var(--apple-blue);
+  font-weight:500;
+  opacity:1;
+}
+.nav-actions{display:flex;align-items:center;gap:0.5rem}
+.icon-btn{
+  background:none;border:none;cursor:pointer;
+  padding:0.5rem;border-radius:50%;
+  transition:background 0.2s;
+  display:flex;align-items:center;justify-content:center;
+}
+.icon-btn:hover{background:rgba(0,0,0,0.05)}
+.icon-btn svg{width:18px;height:18px;fill:var(--apple-text)}
+.mobile-menu-btn{
+  display:none;background:none;border:none;cursor:pointer;padding:0.5rem;
+}
+.mobile-menu-btn span{
+  display:block;width:18px;height:1.5px;background:var(--apple-text);
+  margin:4px 0;transition:0.3s var(--apple-ease);
+  border-radius:2px;
+}
+.mobile-menu-btn.active span:nth-child(1){transform:rotate(45deg) translate(4px,4px)}
+.mobile-menu-btn.active span:nth-child(2){opacity:0}
+.mobile-menu-btn.active span:nth-child(3){transform:rotate(-45deg) translate(4px,-4px)}
+
+/* ================================================================
+   Hero 区 — 全屏轮播 + 渐变遮罩 + Apple 风格 CTA
+   ================================================================ */
+.hero{
+  height:100vh;min-height:600px;
+  position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+}
+.hero-carousel{position:absolute;inset:0}
+.hero-slide{
+  position:absolute;inset:0;opacity:0;
+  transition:opacity 1.2s var(--apple-ease);
+}
+.hero-slide.active{opacity:1}
+.hero-slide img{
+  width:100%;height:100%;object-fit:cover;
+  object-position:center;
+  transform:none;
+  transition:transform 6s var(--apple-ease-out);
+  background-color:#000;
+  box-shadow:0 0 0 0.5px rgba(0,0,0,0.1);
+  border:0.5px solid rgba(0,0,0,0.1);
+}
+.hero-slide.active img{transform:none}
+.hero-overlay{
+  position:absolute;inset:0;z-index:1;
+  background:linear-gradient(to bottom,
+    rgba(0,0,0,0.3) 0%,
+    rgba(0,0,0,0.05) 40%,
+    rgba(0,0,0,0.1) 60%,
+    rgba(0,0,0,0.5) 100%);
+}
+.hero-content{
+  position:relative;z-index:2;
+  text-align:center;color:#fff;
+  max-width:980px;padding:0 2rem;
+}
+.hero-title{
+  font-size:clamp(2.5rem,7vw,5.5rem);
+  font-weight:700;
+  letter-spacing:-0.04em;
+  line-height:1.05;
+  margin-bottom:1rem;
+  text-shadow:0 2px 30px rgba(0,0,0,0.25);
+}
+.hero-subtitle{
+  font-size:clamp(1.125rem,2.5vw,1.5rem);
+  font-weight:400;
+  letter-spacing:-0.01em;
+  opacity:0.92;
+  margin-bottom:2.5rem;
+}
+.hero-cta{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  background:rgba(255,255,255,0.15);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,0.3);
+  color:#fff;
+  padding:0.875rem 2rem;
+  border-radius:980px;
+  font-weight:400;font-size:1.0625rem;
+  transition:all 0.3s var(--apple-ease);
+  cursor:pointer;
+}
+.hero-cta:hover{
+  background:rgba(255,255,255,0.25);
+  transform:translateY(-1px);
+}
+.hero-cta svg{width:16px;height:16px;fill:currentColor}
+.hero-scroll{
+  position:absolute;bottom:2rem;left:50%;
+  transform:translateX(-50%);z-index:2;
+  animation:scrollBounce 2s infinite var(--apple-ease);
+  will-change:transform;
+}
+.hero-scroll svg{width:24px;height:24px;fill:#fff;opacity:0.6}
+@keyframes scrollBounce{
+  0%,100%{transform:translateX(-50%) translateY(0)}
+  50%{transform:translateX(-50%) translateY(-8px)}
+}
+
+/* ================================================================
+   通用区块
+   ================================================================ */
+section{scroll-margin-top:48px}
+.section{padding:6rem 2rem;max-width:var(--max-width);margin:0 auto}
+.section-header{
+  text-align:center;margin-bottom:4rem;
+  padding:0 1rem;
+}
+.section-label{
+  display:inline-block;
+  font-size:0.8125rem;font-weight:600;
+  color:var(--apple-blue);
+  text-transform:uppercase;letter-spacing:0.08em;
+  margin-bottom:0.75rem;
+}
+.section-title{
+  font-size:clamp(2rem,5vw,3.5rem);
+  font-weight:700;
+  letter-spacing:-0.03em;
+  line-height:1.1;
+  margin-bottom:1rem;
+  color:var(--apple-text);
+}
+.section-desc{
+  font-size:1.125rem;
+  color:var(--apple-text2);
+  max-width:680px;margin:0 auto;
+  line-height:1.5;
+  font-weight:400;
+}
+
+/* ================================================================
+   欢迎区 — 浅灰背景 + 大圆角图片
+   ================================================================ */
+.welcome{
+  background:var(--apple-bg);
+  padding:6rem 0;
+}
+.welcome-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:4rem;align-items:center;
+  max-width:var(--max-width);margin:0 auto;padding:0 2rem;
+}
+.welcome-text h2{
+  font-size:clamp(2rem,4vw,3rem);
+  font-weight:700;
+  letter-spacing:-0.03em;
+  line-height:1.1;
+  margin-bottom:1.5rem;
+  color:var(--apple-text);
+}
+.welcome-text p{
+  font-size:1.0625rem;
+  line-height:1.6;
+  color:var(--apple-text2);
+  margin-bottom:1.25rem;
+  letter-spacing:-0.016em;
+}
+.welcome-img{
+  border-radius:var(--apple-radius-xl);
+  overflow:hidden;
+  box-shadow:var(--apple-shadow-strong);
+  position:relative;
+}
+.welcome-img img{
+  width:100%;height:420px;object-fit:cover;
+  transition:transform 0.6s var(--apple-ease);
+}
+.welcome-img:hover img{transform:scale(1.03)}
+
+/* ================================================================
+   住在通大 — 深色背景区段
+   ================================================================ */
+.campus-life{
+  background:var(--apple-bg);
+  color:var(--apple-text);
+  padding:6rem 0;
+}
+.cl-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:4rem;align-items:center;
+  max-width:var(--max-width);margin:0 auto;padding:0 2rem;
+}
+.cl-text h2{
+  font-size:clamp(2rem,4vw,3rem);
+  font-weight:700;
+  letter-spacing:-0.03em;
+  line-height:1.1;
+  margin-bottom:1.5rem;
+}
+.cl-text>p{
+  font-size:1.0625rem;
+  line-height:1.6;
+  color:var(--apple-text2);
+  margin-bottom:2rem;
+}
+.cl-features{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:1.5rem;
+}
+.cl-feat{display:flex;gap:0.875rem;align-items:flex-start}
+.cl-feat-icon{
+  width:36px;height:36px;
+  background:rgba(0,0,0,0.06);
+  border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.cl-feat-icon svg{width:18px;height:18px;fill:#1d1d1f}
+.cl-feat h4{
+  font-size:0.9375rem;font-weight:600;
+  margin-bottom:0.25rem;
+  letter-spacing:-0.016em;
+}
+.cl-feat p{
+  font-size:0.8125rem;color:var(--apple-text2);line-height:1.5;
+}
+.cl-images{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:0.75rem;
+}
+.cl-images img{
+  width:100%;height:200px;object-fit:cover;
+  border-radius:var(--apple-radius);
+  transition:transform 0.4s var(--apple-ease);
+}
+.cl-images img:hover{transform:scale(1.03)}
+
+/* ================================================================
+   校区巡礼 — 浅色背景 + 大圆角 Banner
+   ================================================================ */
+.campus-tour{
+  padding:6rem 0;
+  background:var(--apple-bg);
+}
+.campus-section{margin-bottom:6rem}
+.campus-banner{
+  height:55vh;min-height:380px;
+  position:relative;overflow:hidden;
+  border-radius:var(--apple-radius-xl);
+  margin:0 2rem;
+  box-shadow:var(--apple-shadow-strong);
+}
+.campus-banner img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform 0.8s var(--apple-ease);
+}
+.campus-banner:hover img{transform:scale(1.03)}
+.campus-banner-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,0.75) 0%,rgba(0,0,0,0.15) 60%,transparent 100%);
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:3rem;
+}
+.campus-banner-title{
+  font-size:clamp(2.25rem,5vw,3.5rem);
+  font-weight:700;color:#fff;
+  letter-spacing:-0.03em;line-height:1.1;
+  margin-bottom:0.5rem;
+}
+.campus-banner-subtitle{
+  font-size:1.125rem;color:rgba(255,255,255,0.85);
+  line-height:1.5;max-width:700px;
+}
+.buildings-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:1.5rem;
+  max-width:var(--max-width);
+  margin:2.5rem auto 0;
+  padding:0 2rem;
+}
+.bld-card{
+  background:var(--apple-card);
+  border-radius:var(--apple-radius-lg);
+  overflow:hidden;
+  box-shadow:var(--apple-shadow);
+  transition:transform 0.4s var(--apple-ease),box-shadow 0.4s var(--apple-ease);
+  cursor:pointer;
+  will-change:transform;
+}
+.bld-card:hover{
+  transform:translateY(-4px);
+  box-shadow:var(--apple-shadow-hover);
+}
+.bld-img{height:200px;overflow:hidden}
+.bld-img img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform 0.6s var(--apple-ease);
+}
+.bld-card:hover .bld-img img{transform:scale(1.04)}
+.bld-body{padding:1.5rem}
+.bld-body h3{
+  font-size:1.125rem;font-weight:600;
+  margin-bottom:0.625rem;
+  letter-spacing:-0.016em;
+}
+.bld-body p{
+  font-size:0.875rem;line-height:1.5;
+  color:var(--apple-text2);margin-bottom:1rem;
+}
+.bld-link{
+  display:inline-flex;align-items:center;gap:0.375rem;
+  color:var(--apple-blue);
+  font-weight:400;font-size:0.875rem;
+  transition:gap 0.2s var(--apple-ease);
+}
+.bld-link:hover{gap:0.625rem}
+.bld-link svg{width:14px;height:14px;fill:currentColor}
+
+/* ================================================================
+   学院巡礼 — 白色卡片网格
+   ================================================================ */
+.college-tour{
+  padding:6rem 0;
+  background:var(--apple-bg);
+}
+.college-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
+  gap:1.5rem;
+  max-width:var(--max-width);margin:0 auto;padding:0 2rem;
+}
+.college-card{
+  background:var(--apple-card);
+  border-radius:var(--apple-radius-lg);
+  padding:2rem;
+  box-shadow:var(--apple-shadow);
+  transition:transform 0.4s var(--apple-ease),box-shadow 0.4s var(--apple-ease);
+  position:relative;overflow:hidden;
+  display:flex;flex-direction:column;
+  will-change:transform;
+}
+.college-card:hover{
+  transform:translateY(-4px);
+  box-shadow:var(--apple-shadow-hover);
+}
+.college-card-icon{
+  width:48px;height:48px;
+  background:var(--apple-blue);
+  border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:1.25rem;
+}
+.college-card-icon svg{width:24px;height:24px;fill:#fff}
+.college-card h3{
+  font-size:1.25rem;font-weight:600;
+  margin-bottom:0.5rem;
+  letter-spacing:-0.016em;
+  color:var(--apple-text);
+}
+.college-card .college-subtitle{
+  font-size:0.8125rem;color:var(--apple-blue);
+  margin-bottom:0.75rem;font-weight:500;
+}
+.college-card .college-desc{
+  font-size:0.9375rem;line-height:1.5;
+  color:var(--apple-text2);margin-bottom:1rem;
+  flex:1;
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
+}
+.college-card .college-programs{
+  display:flex;flex-wrap:wrap;gap:0.5rem;
+  margin-bottom:1.25rem;
+}
+.college-card .college-program-tag{
+  display:inline-block;
+  background:rgba(0,113,227,0.08);
+  color:var(--apple-blue);
+  padding:0.25rem 0.75rem;
+  border-radius:980px;
+  font-size:0.75rem;font-weight:500;
+}
+.college-card-btn{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  background:var(--apple-blue);color:#fff;
+  padding:0.625rem 1.25rem;
+  border-radius:980px;
+  font-weight:400;font-size:0.875rem;
+  transition:all 0.3s var(--apple-ease);
+  text-decoration:none;align-self:flex-start;
+}
+.college-card-btn:hover{
+  background:var(--apple-blue-hover);
+  transform:translateY(-1px);
+}
+.college-card-btn svg{width:14px;height:14px;fill:currentColor}
+.loading-spinner{
+  text-align:center;padding:4rem 2rem;
+  color:var(--apple-text2);
+}
+
+/* ========== 专业筛选标签 ========== */
+.college-filter{
+  display:flex;flex-wrap:wrap;gap:0.5rem;
+  justify-content:center;
+  max-width:var(--max-width);margin:0 auto 2rem;padding:0 2rem;
+}
+.college-filter-btn{
+  padding:0.5rem 1.25rem;
+  border:1px solid var(--apple-border);
+  background:var(--apple-card);
+  color:var(--apple-text);
+  border-radius:980px;
+  cursor:pointer;
+  font-size:0.8125rem;font-weight:500;
+  transition:all 0.3s var(--apple-ease);
+  white-space:nowrap;
+}
+.college-filter-btn:hover{
+  border-color:var(--apple-blue);
+  color:var(--apple-blue);
+}
+.college-filter-btn.active{
+  background:var(--apple-blue);
+  color:#fff;
+  border-color:var(--apple-blue);
+}
+
+/* ========== 专业网格 ========== */
+.major-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+  gap:0.75rem;
+  max-width:var(--max-width);margin:0 auto;padding:0 2rem;
+}
+.major-card{
+  background:var(--apple-card);
+  border-radius:var(--apple-radius);
+  padding:1.25rem 1rem;
+  box-shadow:var(--apple-shadow);
+  transition:all 0.3s var(--apple-ease);
+  text-decoration:none;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;
+  min-height:100px;
+  cursor:pointer;
+  border:1px solid transparent;
+}
+.major-card:hover{
+  transform:translateY(-2px);
+  box-shadow:var(--apple-shadow-hover);
+  border-color:var(--apple-blue);
+}
+.major-card-name{
+  font-size:0.9375rem;font-weight:600;
+  color:var(--apple-text);
+  letter-spacing:-0.016em;
+  line-height:1.3;
+  margin-bottom:0.375rem;
+}
+.major-card-college{
+  font-size:0.6875rem;
+  color:var(--apple-text2);
+  line-height:1.2;
+}
+
+/* ================================================================
+   学长学姐说 — 深色渐变背景 + 弹幕
+   ================================================================ */
+.testimonials{
+  background:var(--apple-bg);
+  padding:6rem 0;overflow:hidden;
+  position:relative;
+}
+.testimonials .section-label{color:var(--apple-blue)}
+.testimonials .section-title{color:var(--apple-text)}
+.testimonials .section-desc{color:var(--apple-text2)}
+.danmaku-container{
+  position:relative;width:100%;height:420px;
+  overflow:hidden;margin:0 auto;
+}
+.danmaku-track{position:relative;width:100%;height:100%}
+.danmaku-item{
+  position:absolute;white-space:nowrap;
+  padding:8px 18px;
+  border-radius:980px;
+  background:rgba(0,0,0,0.06);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  border:1px solid rgba(0,0,0,0.08);
+  color:var(--apple-text);cursor:default;user-select:none;
+  will-change:transform;
+  animation:danmaku-scroll linear forwards;
+  contain:layout style;
+  transition:background 0.3s,border-color 0.3s,transform 0.3s;
+}
+.danmaku-item:hover{
+  background:rgba(0,0,0,0.1);
+  border-color:rgba(0,0,0,0.15);
+  transform:scale(1.04);
+}
+@keyframes danmaku-scroll{
+  0%{transform:translateX(100vw)}
+  100%{transform:translateX(-100%)}
+}
+.testimonials-source{
+  text-align:center;margin-top:2.5rem;padding:0 2rem;
+}
+.testimonials-source p{
+  font-size:0.875rem;
+  color:rgba(0,0,0,0.5);
+  margin-bottom:0.75rem;
+}
+.testimonials-posts{
+  text-align:center;margin-top:2rem;padding:0 2rem;
+}
+.posts-toggle-btn{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  padding:0.75rem 1.75rem;
+  background:rgba(0,0,0,0.06);
+  color:#1d1d1f;
+  border:1px solid rgba(0,0,0,0.1);
+  border-radius:980px;
+  font-size:0.9375rem;font-weight:400;
+  cursor:pointer;
+  transition:all 0.3s var(--apple-ease);
+}
+.posts-toggle-btn:hover{
+  background:rgba(0,0,0,0.1);
+  border-color:rgba(0,0,0,0.15);
+}
+.posts-toggle-btn svg{transition:transform 0.3s var(--apple-ease)}
+.posts-toggle-btn.active svg{transform:rotate(180deg)}
+.posts-list{
+  overflow:hidden;
+  display:grid;
+  grid-template-rows:0fr;
+  transition:grid-template-rows 0.5s var(--apple-ease);
+  margin-top:1.5rem;
+}
+.posts-list>.post-item-wrap{min-height:0}
+.posts-list.show{grid-template-rows:1fr}
+.post-item{margin-bottom:0.75rem}
+.post-link{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1rem 1.5rem;
+  background:rgba(0,0,0,0.04);
+  border:1px solid rgba(0,0,0,0.08);
+  border-radius:var(--apple-radius);
+  text-decoration:none;
+  transition:all 0.3s var(--apple-ease);
+}
+.post-link:hover{
+  background:rgba(0,0,0,0.08);
+  border-color:rgba(0,0,0,0.15);
+  transform:translateX(4px);
+}
+.post-title{
+  color:#1d1d1f;font-size:0.9375rem;font-weight:400;
+  flex:1;text-align:left;
+}
+.post-platform{
+  color:var(--apple-blue);font-size:0.8125rem;font-weight:500;
+  padding:0.25rem 0.75rem;
+  background:rgba(0,113,227,0.1);
+  border-radius:980px;
+  margin-left:1rem;
+}
+
+/* ================================================================
+   活力校园 — 深色背景 + 玻璃卡片
+   ================================================================ */
+.student-life{
+  background:var(--apple-bg);
+  color:var(--apple-text);
+  padding:6rem 0;
+}
+.sl-header{text-align:center;margin-bottom:4rem;padding:0 1rem}
+.sl-header h2{
+  font-size:clamp(2rem,5vw,3.5rem);
+  font-weight:700;
+  letter-spacing:-0.03em;line-height:1.1;
+  margin-bottom:1rem;
+}
+.sl-header p{
+  font-size:1.125rem;color:var(--apple-text2);
+  max-width:680px;margin:0 auto;
+  line-height:1.5;
+}
+.sl-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:1.5rem;
+  max-width:var(--max-width);margin:0 auto;padding:0 2rem;
+}
+.sl-card{
+  display:block;
+  background:rgba(0,0,0,0.04);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  border-radius:var(--apple-radius-lg);
+  padding:2rem;
+  border:1px solid rgba(0,0,0,0.08);
+  transition:all 0.4s var(--apple-ease);
+  color:inherit;text-decoration:none;
+  cursor:pointer;
+}
+.sl-card:hover{
+  background:rgba(0,0,0,0.08);
+  transform:translateY(-3px);
+}
+.sl-card-icon{
+  width:48px;height:48px;
+  background:rgba(0,0,0,0.08);
+  border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:1.25rem;
+}
+.sl-card-icon svg{width:22px;height:22px;fill:#1d1d1f}
+.sl-card h3{
+  font-size:1.125rem;font-weight:600;
+  margin-bottom:0.75rem;
+  letter-spacing:-0.016em;
+  color:var(--apple-text);
+}
+.sl-card p{
+  font-size:0.875rem;line-height:1.5;color:var(--apple-text2);
+}
+
+/* ================================================================
+   入学指南 — 白色卡片 + 步骤标记
+   ================================================================ */
+.guide{
+  padding:6rem 0;
+  background:var(--apple-bg);
+}
+.guide-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:1.5rem;
+  max-width:var(--max-width);margin:0 auto;padding:0 2rem;
+}
+.guide-card{
+  background:var(--apple-card);
+  border-radius:var(--apple-radius-lg);
+  padding:2.5rem 2rem 2rem;
+  text-align:center;
+  box-shadow:var(--apple-shadow);
+  transition:transform 0.4s var(--apple-ease),box-shadow 0.4s var(--apple-ease);
+  position:relative;
+  will-change:transform;
+}
+.guide-card::before{
+  content:attr(data-step);
+  position:absolute;top:-14px;left:50%;
+  transform:translateX(-50%);
+  width:28px;height:28px;
+  background:var(--apple-blue);color:#fff;
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.8125rem;font-weight:600;
+}
+.guide-card:hover{
+  transform:translateY(-3px);
+  box-shadow:var(--apple-shadow-hover);
+}
+.guide-icon{
+  width:56px;height:56px;
+  background:var(--apple-blue);
+  border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 1.25rem;
+}
+.guide-icon svg{width:28px;height:28px;fill:#fff}
+.guide-card h3{
+  font-size:1.125rem;font-weight:600;
+  margin-bottom:0.75rem;
+  letter-spacing:-0.016em;
+}
+.guide-card p{
+  font-size:0.875rem;line-height:1.5;
+  color:var(--apple-text2);
+  margin-bottom:1rem;
+}
+.guide-link{
+  display:inline-flex;align-items:center;gap:0.25rem;
+  font-size:0.8125rem;font-weight:500;
+  color:var(--apple-blue);
+  transition:all 0.3s var(--apple-ease);
+  padding:0.375rem 0.75rem;
+  border-radius:980px;
+  background:rgba(0,113,227,0.08);
+}
+.guide-link:hover{
+  background:var(--apple-blue);
+  color:#fff;
+  transform:translateY(-1px);
+}
+.guide-link svg{
+  transition:transform 0.3s var(--apple-ease);
+}
+.guide-link:hover svg{
+  transform:translateX(2px);
+}
+
+/* ================================================================
+   预估分数线区段 — 深色渐变背景 + 白色表格卡片
+   ================================================================ */
+.estimated-scores{
+  padding:6rem 2rem;
+  background:var(--apple-bg);
+  color:var(--apple-text);
+}
+.estimated-scores .section-label{color:var(--apple-blue)}
+.estimated-scores h2{color:var(--apple-text)}
+
+/* ================================================================
+   页脚 — Apple 风格浅灰背景 + 多列链接
+   ================================================================ */
+.footer{
+  background:var(--apple-bg);
+  color:var(--apple-text3);
+  padding:4rem 0 2rem;
+}
+.footer-grid{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr 1fr;
+  gap:3rem;
+  max-width:var(--max-width);margin:0 auto;padding:0 2rem;
+}
+.footer-brand{margin-bottom:2rem}
+.footer-logo{
+  display:flex;align-items:center;gap:0.75rem;
+  margin-bottom:1.25rem;
+  font-size:1.125rem;font-weight:600;
+  color:var(--apple-text);
+}
+.footer-logo img{height:32px;border-radius:50%;object-fit:cover}
+.footer-brand p{
+  font-size:0.8125rem;line-height:1.6;
+  color:var(--apple-text3);margin-bottom:1.25rem;
+  max-width:360px;
+}
+.footer-social{display:flex;gap:0.625rem}
+.footer-social a{
+  width:32px;height:32px;border-radius:50%;
+  background:rgba(0,0,0,0.05);
+  display:flex;align-items:center;justify-content:center;
+  transition:all 0.2s var(--apple-ease);
+}
+.footer-social a:hover{
+  background:var(--apple-blue);
+  transform:translateY(-1px);
+}
+.footer-social svg{width:15px;height:15px;fill:var(--apple-text3)}
+.footer-social a:hover svg{fill:#fff}
+.footer-links h4{
+  font-size:0.8125rem;font-weight:600;
+  margin-bottom:1rem;
+  color:var(--apple-text);
+  letter-spacing:-0.016em;
+}
+.footer-links ul{list-style:none}
+.footer-links li{margin-bottom:0.625rem}
+.footer-links a{
+  font-size:0.75rem;
+  color:var(--apple-text3);
+  transition:color 0.2s;
+}
+.footer-links a:hover{color:var(--apple-text)}
+.footer-bottom{
+  max-width:var(--max-width);margin:3rem auto 0;
+  padding:1.5rem 2rem 0;
+  border-top:1px solid var(--apple-border);
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:0.75rem;color:var(--apple-text3);
+}
+
+/* ================================================================
+   深色模式
+   ================================================================ */
+body.dark{
+  --apple-bg:#000;
+  --apple-white:#1c1c1e;
+  --apple-text:#f5f5f7;
+  --apple-text2:#a1a1a6;
+  --apple-text3:#86868b;
+  --apple-border:#38383a;
+  --apple-card:#1c1c1e;
+}
+body.dark .navbar{
+  background:rgba(0,0,0,0.72);
+  backdrop-filter:saturate(180%) blur(20px);
+  -webkit-backdrop-filter:saturate(180%) blur(20px);
+}
+body.dark .navbar.scrolled{
+  background:rgba(0,0,0,0.85);
+  border-bottom-color:var(--apple-border);
+}
+body.dark .welcome{background:var(--apple-bg)}
+body.dark .campus-tour{background:var(--apple-bg)}
+body.dark .college-tour{background:var(--apple-bg)}
+body.dark .guide{background:var(--apple-bg)}
+body.dark .footer{background:var(--apple-bg)}
+body.dark .icon-btn:hover{background:rgba(255,255,255,0.1)}
+body.dark .nav-logo{color:var(--apple-text)}
+body.dark .nav-links a{color:var(--apple-text)}
+body.dark .footer-social a{background:rgba(255,255,255,0.08)}
+body.dark .footer-social svg{fill:var(--apple-text3)}
+
+/* ================================================================
+   滚动渐显动画 — Apple 风格淡入上移
+   ================================================================ */
+.reveal{
+  opacity:0;
+  transform:translateY(24px);
+  transition:opacity 1s var(--apple-ease),transform 1s var(--apple-ease);
+  will-change:opacity,transform;
+}
+.reveal.visible{
+  opacity:1;
+  transform:translateY(0);
+  will-change:auto;
+}
+.reveal-left{
+  opacity:0;
+  transform:translateX(-30px);
+  transition:opacity 1s var(--apple-ease),transform 1s var(--apple-ease);
+  will-change:opacity,transform;
+}
+.reveal-left.visible{
+  opacity:1;
+  transform:translateX(0);
+  will-change:auto;
+}
+.reveal-right{
+  opacity:0;
+  transform:translateX(30px);
+  transition:opacity 1s var(--apple-ease),transform 1s var(--apple-ease);
+  will-change:opacity,transform;
+}
+.reveal-right.visible{
+  opacity:1;
+  transform:translateX(0);
+  will-change:auto;
+}
+
+/* ================================================================
+   图片模态框
+   ================================================================ */
+.modal-overlay{
+  position:fixed;inset:0;
+  background:rgba(0,0,0,0.85);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  z-index:2000;
+  display:none;align-items:center;justify-content:center;
+  opacity:0;
+  transition:opacity 0.4s var(--apple-ease);
+  will-change:opacity;
+}
+.modal-overlay.active{display:flex;opacity:1}
+.modal-content{
+  max-width:900px;max-height:90vh;
+  position:relative;
+}
+.modal-content img{
+  max-width:100%;max-height:85vh;
+  border-radius:var(--apple-radius-lg);
+  object-fit:contain;
+}
+.modal-close{
+  position:absolute;top:-44px;right:0;
+  background:none;border:none;cursor:pointer;
+}
+.modal-close svg{width:28px;height:28px;fill:#fff;opacity:0.8;transition:opacity 0.2s}
+.modal-close:hover svg{opacity:1}
+.modal-caption{
+  text-align:center;color:#fff;
+  margin-top:1rem;font-size:0.9375rem;
+  opacity:0.8;
+}
+
+/* ================================================================
+   响应式 — Apple 官网断点习惯
+   ================================================================ */
+@media(max-width:1068px){
+  .nav-links{gap:1.75rem}
+  .section-title,.hero-title{letter-spacing:-0.025em}
+}
+@media(max-width:1024px){
+  .welcome-grid,.cl-grid{grid-template-columns:1fr;gap:3rem}
+  .welcome-img{order:-1}
+  .welcome-img img{height:340px}
+  .cl-images{grid-template-columns:1fr 1fr}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:2rem}
+}
+@media(max-width:734px){
+  .navbar{padding:0 1rem;height:44px}
+  .nav-links{
+    display:none;position:fixed;inset:0;
+    background:rgba(255,255,255,0.97);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+    flex-direction:column;align-items:center;justify-content:center;
+    gap:2rem;z-index:999;
+  }
+  body.dark .nav-links{background:rgba(0,0,0,0.97)}
+  .nav-links.active{display:flex}
+  .nav-links a{font-size:1.25rem;font-weight:600}
+  .mobile-menu-btn{display:block;z-index:1001}
+  .section{padding:4rem 1.25rem}
+  .section-header{margin-bottom:3rem}
+  .welcome{padding:4rem 0}
+  .welcome-grid{padding:0 1.25rem;gap:2rem}
+  .campus-life{padding:4rem 0}
+  .cl-grid{padding:0 1.25rem;gap:2rem}
+  .cl-features{grid-template-columns:1fr}
+  .campus-tour{padding:4rem 0}
+  .campus-banner{
+    height:40vh;min-height:280px;
+    margin:0 1rem;border-radius:var(--apple-radius);
+  }
+  .campus-banner-overlay{padding:2rem}
+  .buildings-grid{padding:0 1rem}
+  .college-tour{padding:4rem 0}
+  .college-grid{padding:0 1rem;grid-template-columns:1fr}
+  .college-filter{padding:0 1rem}
+  .college-filter-btn{padding:0.375rem 0.875rem;font-size:0.75rem}
+  .major-grid{padding:0 1rem;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:0.5rem}
+  .major-card{padding:1rem 0.75rem;min-height:80px}
+  .major-card-name{font-size:0.8125rem}
+  .major-card-college{font-size:0.625rem}
+  .testimonials{padding:4rem 0}
+  .student-life{padding:4rem 0}
+  .sl-grid{padding:0 1rem}
+  .guide{padding:4rem 0}
+  .guide-grid{padding:0 1rem;grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr;gap:2rem;padding:0 1.25rem}
+  .footer-bottom{flex-direction:column;gap:0.75rem;text-align:center;padding:1.5rem 1.25rem 0}
+}
+@media(max-width:480px){
+  .hero-title{font-size:2.25rem}
+  .hero-subtitle{font-size:1rem}
+  .hero-cta{padding:0.75rem 1.5rem;font-size:0.9375rem}
+  .welcome-img img{height:260px}
+  .cl-images img{height:160px}
+}
+
+/* ================================================================
+   兼容旧类名（college-card / map 等已在上方定义，此处补充）
+   ================================================================ */
+.colleges{
+  background:var(--apple-bg);
+  padding:6rem 2rem;
+}
+
+/* CAMPUS MAP */
+.map-selector{
+  display:flex;justify-content:center;gap:0.75rem;
+  margin-bottom:2rem;flex-wrap:wrap;
+}
+.map-tab{
+  background:var(--apple-card);
+  border:1px solid var(--apple-border);
+  border-radius:980px;
+  padding:0.625rem 1.5rem;
+  font-size:0.9375rem;font-weight:400;
+  color:var(--apple-text);cursor:pointer;
+  transition:all 0.3s var(--apple-ease);
+}
+.map-tab:hover{
+  border-color:var(--apple-blue);
+  color:var(--apple-blue);
+}
+.map-tab.active{
+  background:var(--apple-blue);
+  border-color:var(--apple-blue);
+  color:#fff;
+}
+.map-campus-info{max-width:600px;margin:0 auto 2rem}
+.map-info-card{
+  display:none;text-align:center;
+  padding:1.5rem;
+  background:var(--apple-card);
+  border-radius:var(--apple-radius);
+  border:1px solid var(--apple-border);
+}
+.map-info-card.active{display:block}
+.map-info-card h3{
+  font-size:1.375rem;font-weight:600;
+  margin-bottom:0.5rem;color:var(--apple-blue);
+}
+.map-info-card p{
+  font-size:0.9375rem;color:var(--apple-text2);
+  margin-bottom:0.75rem;
+}
+.map-info-tag{
+  display:inline-block;
+  background:rgba(0,113,227,0.1);
+  color:var(--apple-blue);
+  padding:0.375rem 1rem;
+  border-radius:980px;
+  font-size:0.8125rem;font-weight:500;
+}
+.map-container{
+  position:relative;max-width:1000px;margin:0 auto;
+  border-radius:var(--apple-radius-lg);
+  overflow:hidden;
+  box-shadow:var(--apple-shadow-strong);
+}
+.map-iframe{
+  display:none;width:100%;height:500px;border:0;
+  border-radius:var(--apple-radius-lg);
+}
+.map-iframe.active{display:block}
+.map-downloads{max-width:600px;margin:2rem auto 0;text-align:center}
+.map-downloads h4{
+  font-size:1.125rem;font-weight:600;
+  margin-bottom:1rem;color:var(--apple-text);
+}
+.map-download-links{
+  display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;
+}
+.map-download-btn{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  background:var(--apple-blue);color:#fff;
+  padding:0.75rem 1.5rem;
+  border-radius:980px;
+  font-size:0.9375rem;font-weight:400;
+  transition:all 0.3s var(--apple-ease);
+  text-decoration:none;
+}
+.map-download-btn:hover{
+  background:var(--apple-blue-hover);
+  transform:translateY(-1px);
+}
+.map-download-btn svg{fill:currentColor}
+
+@media(max-width:734px){
+  .map-selector{gap:0.5rem}
+  .map-tab{padding:0.5rem 1.25rem;font-size:0.875rem}
+  .map-iframe{height:350px}
+  .map-info-card{padding:1rem}
+  .map-info-card h3{font-size:1.25rem}
+}
+
+/* ================================================================
+   通用 Apple 风格按钮类（供内联样式替换使用）
+   ================================================================ */
+.apple-btn{
+  display:inline-flex;align-items:center;gap:0.4rem;
+  padding:0.75rem 1.75rem;
+  background:var(--apple-blue);
+  color:#fff;
+  border-radius:980px;
+  font-weight:400;font-size:0.9375rem;
+  text-decoration:none;
+  border:none;cursor:pointer;
+  transition:all 0.3s var(--apple-ease);
+}
+.apple-btn:hover{
+  background:var(--apple-blue-hover);
+  transform:translateY(-1px);
+}
+.apple-btn svg{width:16px;height:16px;fill:currentColor}
+
+.apple-btn-secondary{
+  display:inline-flex;align-items:center;gap:0.4rem;
+  padding:0.75rem 1.75rem;
+  background:transparent;
+  color:var(--apple-blue);
+  border:1px solid var(--apple-blue);
+  border-radius:980px;
+  font-weight:400;font-size:0.9375rem;
+  text-decoration:none;cursor:pointer;
+  transition:all 0.3s var(--apple-ease);
+}
+.apple-btn-secondary:hover{
+  background:var(--apple-blue);
+  color:#fff;
+}
+
+/* 通用 section-more-btn Apple 风格覆盖（清除旧内联样式残留） */
+.section-more-btn{
+  display:inline-flex !important;
+  align-items:center !important;
+  gap:0.4rem !important;
+  margin-top:1.5rem !important;
+  padding:0.75rem 1.75rem !important;
+  background:var(--apple-blue) !important;
+  color:#fff !important;
+  border-radius:980px !important;
+  text-decoration:none !important;
+  font-weight:400 !important;
+  font-size:0.9375rem !important;
+  transition:all 0.3s var(--apple-ease) !important;
+  border:none !important;
+}
+.section-more-btn:hover{
+  background:var(--apple-blue-hover) !important;
+  transform:translateY(-1px) !important;
+  box-shadow:0 4px 20px rgba(0,113,227,0.2) !important;
+}
+.section-more-btn svg{width:16px;height:16px;fill:currentColor}

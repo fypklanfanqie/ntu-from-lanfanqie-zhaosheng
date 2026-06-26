@@ -1,0 +1,638 @@
+/* ================================================================
+   南通大学本科招生网 — 液态玻璃（Liquid Glass）质感层
+   ----------------------------------------------------------------
+   基于 iOS / visionOS 控制中心玻璃材质，叠加在已有 Apple 风格之上。
+   特征：
+   1. 多层半透明 + backdrop-filter blur(24px) saturate(180%)
+   2. 高光内发光边缘 border + inset box-shadow
+   3. 对角线折射光泽 linear-gradient 叠加
+   4. 鼠标驱动的动态径向高光（--x / --y 变量）
+   5. 轻微 3D 透视倾斜（perspective + rotateX/Y）
+   6. 亮/暗模式自适应
+   7. prefers-reduced-motion 降级
+   ================================================================ */
+
+/* ---------- 降级检测：不支持 backdrop-filter 的浏览器 ---------- */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .lg-surface,
+  .lg-card,
+  .lg-nav,
+  .lg-panel {
+    background: rgba(255, 255, 255, 0.92) !important;
+  }
+  body.dark .lg-surface,
+  body.dark .lg-card,
+  body.dark .lg-nav,
+  body.dark .lg-panel {
+    background: rgba(28, 28, 30, 0.92) !important;
+  }
+  .lg-surface::before,
+  .lg-card::before,
+  .lg-nav::before,
+  .lg-panel::before {
+    display: none !important;
+  }
+}
+
+/* ================================================================
+   全局液态玻璃变量
+   ================================================================ */
+:root {
+  /* 亮色模式玻璃基底 */
+  --lg-bg: rgba(255, 255, 255, 0.12);
+  --lg-bg-hover: rgba(255, 255, 255, 0.18);
+  --lg-bg-strong: rgba(255, 255, 255, 0.22);
+  --lg-border: rgba(255, 255, 255, 0.25);
+  --lg-border-inset: rgba(255, 255, 255, 0.15);
+  --lg-highlight: rgba(255, 255, 255, 0.4);
+  --lg-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+  --lg-shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.10);
+  /* 鼠标高光初始位置（居中） */
+  --lg-x: 50;
+  --lg-y: 50;
+  /* 模糊参数 */
+  --lg-blur: blur(24px) saturate(180%);
+  --lg-blur-idle: blur(20px) saturate(160%);
+}
+
+body.dark {
+  /* 暗色模式玻璃基底 */
+  --lg-bg: rgba(0, 0, 0, 0.22);
+  --lg-bg-hover: rgba(0, 0, 0, 0.30);
+  --lg-bg-strong: rgba(0, 0, 0, 0.35);
+  --lg-border: rgba(255, 255, 255, 0.10);
+  --lg-border-inset: rgba(255, 255, 255, 0.06);
+  --lg-highlight: rgba(255, 255, 255, 0.12);
+  --lg-shadow: 0 8px 32px rgba(0, 0, 0, 0.30);
+  --lg-shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.45);
+}
+
+/* ================================================================
+   玻璃表面基础类 .lg-surface
+   适用于需要玻璃质感的容器（卡片、面板、弹窗）
+   ================================================================ */
+.lg-surface {
+  position: relative;
+  background: var(--lg-bg);
+  -webkit-backdrop-filter: var(--lg-blur);
+  backdrop-filter: var(--lg-blur);
+  border: 0.5px solid var(--lg-border);
+  box-shadow:
+    inset 0 0 0 1px var(--lg-border-inset),
+    var(--lg-shadow);
+  /* 鼠标驱动的 3D 倾斜（默认无旋转） */
+  transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+  transition: transform 0.15s ease-out, background 0.2s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  /* 确保伪元素不遮挡内容 */
+  isolation: isolate;
+}
+
+/* 折射光泽层（对角线高光） + 鼠标跟随径向高光 */
+.lg-surface::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  /* 对角线折射光泽 */
+  background-image:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0) 60%),
+    /* 鼠标跟随径向高光 */
+    radial-gradient(
+      circle at calc(var(--lg-x) * 1%) calc(var(--lg-y) * 1%),
+      var(--lg-highlight) 0%,
+      rgba(255, 255, 255, 0) 45%
+    );
+  transition: opacity 0.3s ease;
+  border-radius: inherit;
+}
+
+body.dark .lg-surface::before {
+  background-image:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 60%),
+    radial-gradient(
+      circle at calc(var(--lg-x) * 1%) calc(var(--lg-y) * 1%),
+      rgba(255, 255, 255, 0.10) 0%,
+      rgba(255, 255, 255, 0) 45%
+    );
+}
+
+/* 鼠标悬浮：增强玻璃亮度 + 阴影加深 + 轻微倾斜 */
+.lg-surface:hover {
+  background: var(--lg-bg-hover);
+  box-shadow:
+    inset 0 0 0 1px var(--lg-border-inset),
+    var(--lg-shadow-hover);
+}
+
+/* 当容器被 JS 激活鼠标追踪时，启用 3D 倾斜 */
+.lg-surface.lg-tracking {
+  transform: perspective(1000px)
+    rotateX(calc((var(--lg-y) - 50) * -0.05deg))
+    rotateY(calc((var(--lg-x) - 50) * 0.1deg));
+}
+
+/* ================================================================
+   导航栏玻璃 .lg-nav
+   ================================================================ */
+.lg-nav {
+  background: rgba(255, 255, 255, 0.65) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.25);
+  box-shadow: inset 0 -1px 0 0 rgba(255, 255, 255, 0.15);
+}
+
+body.dark .lg-nav {
+  background: rgba(0, 0, 0, 0.55) !important;
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 -1px 0 0 rgba(255, 255, 255, 0.05);
+}
+
+.navbar.scrolled.lg-nav {
+  background: rgba(255, 255, 255, 0.72) !important;
+}
+
+body.dark .navbar.scrolled.lg-nav {
+  background: rgba(0, 0, 0, 0.68) !important;
+}
+
+/* ================================================================
+   玻璃卡片 .lg-card
+   适用于 college-card / bld-card / sl-card / guide-card / info-card 等
+   ================================================================ */
+.lg-card {
+  position: relative;
+  background: var(--lg-bg);
+  -webkit-backdrop-filter: var(--lg-blur);
+  backdrop-filter: var(--lg-blur);
+  border: 0.5px solid var(--lg-border);
+  box-shadow:
+    inset 0 0 0 1px var(--lg-border-inset),
+    var(--lg-shadow);
+  transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+  transition: transform 0.15s ease-out, background 0.2s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.lg-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0) 60%),
+    radial-gradient(
+      circle at calc(var(--lg-x) * 1%) calc(var(--lg-y) * 1%),
+      var(--lg-highlight) 0%,
+      rgba(255, 255, 255, 0) 45%
+    );
+  transition: opacity 0.3s ease;
+  border-radius: inherit;
+}
+
+body.dark .lg-card::before {
+  background-image:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 60%),
+    radial-gradient(
+      circle at calc(var(--lg-x) * 1%) calc(var(--lg-y) * 1%),
+      rgba(255, 255, 255, 0.10) 0%,
+      rgba(255, 255, 255, 0) 45%
+    );
+}
+
+.lg-card:hover {
+  background: var(--lg-bg-hover);
+  box-shadow:
+    inset 0 0 0 1px var(--lg-border-inset),
+    var(--lg-shadow-hover);
+}
+
+.lg-card.lg-tracking {
+  transform: perspective(1000px)
+    rotateX(calc((var(--lg-y) - 50) * -0.05deg))
+    rotateY(calc((var(--lg-x) - 50) * 0.1deg));
+}
+
+/* ================================================================
+   玻璃面板 .lg-panel（较大区块背景，如弹窗、表格容器）
+   ================================================================ */
+.lg-panel {
+  position: relative;
+  background: var(--lg-bg-strong);
+  -webkit-backdrop-filter: var(--lg-blur);
+  backdrop-filter: var(--lg-blur);
+  border: 0.5px solid var(--lg-border);
+  box-shadow:
+    inset 0 0 0 1px var(--lg-border-inset),
+    var(--lg-shadow);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.lg-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 60%);
+  border-radius: inherit;
+}
+
+body.dark .lg-panel::before {
+  background-image:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 60%);
+}
+
+/* 面板内容确保在光泽层之上 */
+.lg-panel > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ================================================================
+   深色区段上的玻璃（住在通大 / 活力校园 / 学长学姐说）
+   这些区域背景已经是深色，玻璃需偏白透明以产生层次
+   ================================================================ */
+.campus-life .lg-card,
+.student-life .lg-card,
+.testimonials .lg-card,
+.campus-life .lg-surface,
+.student-life .lg-surface,
+.testimonials .lg-surface {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.campus-life .lg-card:hover,
+.student-life .lg-card:hover,
+.testimonials .lg-card:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+/* ================================================================
+   弹幕项玻璃化
+   ================================================================ */
+.danmaku-item {
+  background: rgba(255, 255, 255, 0.10) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(160%) !important;
+  backdrop-filter: blur(12px) saturate(160%) !important;
+  border: 0.5px solid rgba(255, 255, 255, 0.15) !important;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08), 0 4px 16px rgba(0, 0, 0, 0.10) !important;
+}
+
+.danmaku-item:hover {
+  background: rgba(255, 255, 255, 0.18) !important;
+  border-color: rgba(255, 255, 255, 0.25) !important;
+}
+
+/* ================================================================
+   帖子链接玻璃化
+   ================================================================ */
+.post-link.lg-surface {
+  background: rgba(0, 113, 227, 0.85) !important;
+  border: 0.5px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.post-link.lg-surface:hover {
+  background: rgba(0, 119, 237, 0.9) !important;
+}
+
+/* ================================================================
+   模态框玻璃化
+   ================================================================ */
+.modal-overlay {
+  background: rgba(0, 0, 0, 0.6) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+}
+
+.modal-content {
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+}
+
+/* ================================================================
+   筛选按钮玻璃化（预估分数线区段）
+   ================================================================ */
+.es-filter-btn {
+  background: rgba(255, 255, 255, 0.10) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  backdrop-filter: blur(16px) saturate(160%);
+  border: 0.5px solid rgba(255, 255, 255, 0.20) !important;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.es-filter-btn:hover {
+  background: rgba(255, 255, 255, 0.16) !important;
+  border-color: rgba(255, 255, 255, 0.30) !important;
+}
+
+.es-filter-btn.active {
+  background: rgba(255, 255, 255, 0.22) !important;
+  border-color: rgba(255, 255, 255, 0.35) !important;
+}
+
+/* ================================================================
+   返回首页浮动按钮玻璃化
+   ================================================================ */
+.back-to-home {
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  backdrop-filter: blur(16px) saturate(160%);
+  box-shadow: 0 4px 20px rgba(0, 113, 227, 0.3), inset 0 0 0 1px rgba(255, 255, 255, 0.2) !important;
+}
+
+/* ================================================================
+   滚动时模糊渐变（Intersection Observer 控制）
+   当玻璃块远离视口中心时，模糊减弱
+   ================================================================ */
+.lg-surface.lg-idle,
+.lg-card.lg-idle {
+  -webkit-backdrop-filter: var(--lg-blur-idle);
+  backdrop-filter: var(--lg-blur-idle);
+}
+
+/* ================================================================
+   高级色彩流动（hue-rotate）— 仅在悬浮状态下极慢速循环
+   ----------------------------------------------------------------
+   设计原则：
+   - 仅限悬浮触发，避免常态抢眼
+   - 12 秒一圈，极慢速，营造液体表面色相微变
+   - 通过 ::after 伪元素叠加极低饱和度色相层，不污染文字
+   - 饱和度保持低彩（saturate(120%) + hue-rotate），不刺眼
+   - prefers-reduced-motion 下移除
+   ================================================================ */
+.lg-card::after,
+.lg-surface::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  border-radius: inherit;
+  /* 极低不透明度的彩色渐变层，作为色相流转载体 */
+  background: conic-gradient(
+    from 0deg at 50% 50%,
+    rgba(255, 90, 200, 0.04),
+    rgba(90, 180, 255, 0.04),
+    rgba(120, 255, 180, 0.04),
+    rgba(255, 200, 90, 0.04),
+    rgba(180, 120, 255, 0.04),
+    rgba(255, 90, 200, 0.04)
+  );
+  /* 默认隐藏，悬浮时显现并旋转 */
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  will-change: transform, opacity;
+}
+
+body.dark .lg-card::after,
+body.dark .lg-surface::after {
+  background: conic-gradient(
+    from 0deg at 50% 50%,
+    rgba(255, 90, 200, 0.06),
+    rgba(90, 180, 255, 0.06),
+    rgba(120, 255, 180, 0.06),
+    rgba(255, 200, 90, 0.06),
+    rgba(180, 120, 255, 0.06),
+    rgba(255, 90, 200, 0.06)
+  );
+}
+
+/* 悬浮时激活色相流转：显现 + 12 秒慢速旋转 */
+.lg-card:hover::after,
+.lg-surface:hover::after {
+  opacity: 1;
+  animation: lg-hue-flow 12s linear infinite;
+  will-change: transform;
+}
+
+@keyframes lg-hue-flow {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* prefers-reduced-motion 降级：移除色相流转动画 */
+@media (prefers-reduced-motion: reduce) {
+  .lg-card::after,
+  .lg-surface::after {
+    display: none !important;
+  }
+}
+
+/* ================================================================
+   prefers-reduced-motion 降级
+   用户开启减弱动效时，移除所有动态位移和旋转
+   ================================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .lg-surface,
+  .lg-card,
+  .lg-surface.lg-tracking,
+  .lg-card.lg-tracking {
+    transform: none !important;
+    transition: background 0.2s ease, box-shadow 0.3s ease !important;
+  }
+  .lg-surface::before,
+  .lg-card::before {
+    background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0) 60%) !important;
+  }
+  body.dark .lg-surface::before,
+  body.dark .lg-card::before {
+    background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 60%) !important;
+  }
+}
+
+/* ================================================================
+   响应式：移动端减弱 3D 倾斜（触屏无需鼠标追踪）
+   ================================================================ */
+@media (hover: none) and (pointer: coarse) {
+  .lg-surface.lg-tracking,
+  .lg-card.lg-tracking {
+    transform: none !important;
+  }
+  .lg-surface::before,
+  .lg-card::before {
+    background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0) 60%) !important;
+  }
+  .lg-surface::after,
+  .lg-card::after {
+    display: none !important;
+  }
+}
+
+/* ================================================================
+   文字对比度保障
+   玻璃层上的文字需保持足够对比度，在玻璃层内部叠加极薄加深/减淡
+   ================================================================ */
+
+/* 亮色模式：玻璃卡片内文字确保深色可读 */
+.lg-card > :not(::before):not(::after),
+.lg-surface > :not(::before):not(::after) {
+  position: relative;
+  z-index: 1;
+}
+
+/* 深色区段上的玻璃卡片，文字偏白以确保可读 */
+.campus-life .lg-card *,
+.student-life .lg-card *,
+.testimonials .lg-card * {
+  position: relative;
+  z-index: 1;
+}
+
+/* 暗色模式下玻璃面板内容层级保障 */
+body.dark .lg-panel > *,
+body.dark .lg-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ================================================================
+   返回顶部按钮 — 加号形状 + 液态玻璃风格
+   ================================================================ */
+.back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 2px solid transparent;
+  box-shadow: 
+    0 0 0 2px rgba(255,255,255,0.6),
+    0 16px 32px rgba(0,0,0,0.12);
+  cursor: pointer;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  outline: 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-50%) translateY(20px);
+  transition: 
+    opacity 0.3s ease,
+    visibility 0.3s ease,
+    transform 0.3s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease,
+    backdrop-filter 0.3s ease;
+  will-change: transform, opacity;
+}
+
+/* 向上箭头形状 */
+.back-to-top::before,
+.back-to-top::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+/* 三角形箭头 */
+.back-to-top::after {
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 12px solid #fff;
+  transform: translate(-50%, -6px);
+}
+
+/* 箭头竖线 */
+.back-to-top::before {
+  width: 4px;
+  height: 18px;
+  background: #fff;
+  border-radius: 2px;
+  transform: translate(-50%, 6px);
+}
+
+/* 悬浮状态 */
+.back-to-top:hover {
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 
+    0 0 0 2px rgba(255,255,255,0.8),
+    0 20px 40px rgba(0,0,0,0.16);
+  transform: translateX(-50%) translateY(-2px);
+}
+
+.back-to-top:active {
+  transform: translateX(-50%) translateY(0);
+}
+
+/* 滚动一定距离后显示 */
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* 暗色模式适配 */
+body.dark .back-to-top {
+  background: rgba(0, 0, 0, 0.18);
+  border: 2px solid transparent;
+  box-shadow: 
+    0 0 0 2px rgba(255,255,255,0.2),
+    0 16px 32px rgba(0,0,0,0.3);
+}
+
+body.dark .back-to-top:hover {
+  background: rgba(0, 0, 0, 0.25);
+  box-shadow: 
+    0 0 0 2px rgba(255,255,255,0.3),
+    0 20px 40px rgba(0,0,0,0.4);
+}
+
+body.dark .back-to-top::before,
+body.dark .back-to-top::after {
+  background: #f5f5f7;
+}
+
+body.dark .back-to-top::after {
+  border-bottom-color: #f5f5f7;
+}
+
+/* prefers-reduced-motion 降级 */
+@media (prefers-reduced-motion: reduce) {
+  .back-to-top {
+    transition: opacity 0.3s ease, visibility 0.3s ease, background 0.2s ease;
+    transform: translateX(-50%) !important;
+  }
+  .back-to-top.visible {
+    transform: translateX(-50%);
+  }
+  .back-to-top:hover {
+    transform: translateX(-50%);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+  }
+}
+
+/* 移动端调整 */
+@media (max-width: 734px) {
+  .back-to-top {
+    bottom: 1.5rem;
+    left: 50%;
+    width: 48px;
+    height: 48px;
+    transform: translateX(-50%) translateY(20px);
+  }
+  .back-to-top.visible {
+    transform: translateX(-50%) translateY(0);
+  }
+  .back-to-top:hover {
+    transform: translateX(-50%) translateY(-2px);
+  }
+}

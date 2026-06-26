@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>校区巡礼 - 南通大学</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/liquid-glass.css">
+  <style>
+    /* 校区巡礼详情页 — Apple 风格 */
+    .detail-page { max-width: 980px; margin: 0 auto; padding: 6rem 1.5rem 4rem; }
+    .detail-header {
+      text-align: center;
+      margin-bottom: 4rem;
+      padding: 4rem 2.5rem;
+      background: #000;
+      border-radius: 28px;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+    .detail-header h1 {
+      font-size: clamp(2rem,5vw,3rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
+    }
+    .detail-header p { font-size: 1.125rem; opacity: 0.8; font-weight: 400; }
+    .back-btn {
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      color: var(--apple-blue,#0071e3);
+      text-decoration: none; font-weight: 400;
+      margin-bottom: 2rem; padding: 0.5rem 1.25rem;
+      border: 1px solid var(--apple-blue,#0071e3);
+      border-radius: 980px;
+      transition: all 0.3s cubic-bezier(0.25,0.1,0.25,1);
+      font-size: 0.875rem;
+    }
+    .back-btn:hover { background: var(--apple-blue,#0071e3); color: white; }
+    .content-section { margin-bottom: 4rem; }
+    .content-section h2 {
+      font-size: clamp(1.5rem,3vw,2rem);
+      font-weight: 600;
+      color: var(--apple-text,#1d1d1f);
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+    }
+    .content-section p {
+      line-height: 1.6; color: var(--apple-text2,#86868b);
+      margin-bottom: 1rem; font-size: 1.0625rem;
+    }
+    .campus-card {
+      background: var(--apple-card,#fff);
+      border-radius: 24px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+      transition: all 0.3s cubic-bezier(0.25,0.1,0.25,1);
+    }
+    .campus-card:hover { box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+    .campus-card h3 {
+      font-size: 1.25rem; color: var(--apple-text,#1d1d1f);
+      margin-bottom: 1rem; font-weight: 600; letter-spacing: -0.016em;
+    }
+    .campus-card p { line-height: 1.6; color: var(--apple-text2,#86868b); font-size: 0.9375rem; }
+    .campus-card .campus-stats {
+      display: flex; gap: 0.75rem; margin-top: 1.5rem; flex-wrap: wrap;
+    }
+    .campus-card .stat {
+      background: var(--apple-bg,#f5f5f7);
+      padding: 0.625rem 1.25rem;
+      border-radius: 980px;
+      font-size: 0.8125rem; color: var(--apple-text2,#86868b);
+    }
+    .campus-card .stat strong { color: var(--apple-text,#1d1d1f); font-weight: 600; }
+    .post-card {
+      background: var(--apple-card,#fff);
+      border-radius: 18px;
+      padding: 1.75rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+      transition: all 0.3s cubic-bezier(0.25,0.1,0.25,1);
+    }
+    .post-card:hover { box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+    .post-card h3 {
+      font-size: 1.125rem; font-weight: 600;
+      color: var(--apple-text,#1d1d1f);
+      margin-bottom: 0.75rem; letter-spacing: -0.016em;
+    }
+    .post-meta {
+      font-size: 0.8125rem; color: var(--apple-text2,#86868b);
+      margin-bottom: 0.75rem;
+      display: flex; gap: 1rem; flex-wrap: wrap;
+    }
+    .post-card .post-content {
+      color: var(--apple-text2,#86868b);
+      line-height: 1.6; margin-bottom: 1.25rem; font-size: 0.9375rem;
+    }
+    .post-link {
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      background: var(--apple-blue,#0071e3); color: white;
+      padding: 0.5rem 1.25rem;
+      border-radius: 980px; text-decoration: none;
+      font-size: 0.875rem; font-weight: 400;
+      transition: all 0.3s cubic-bezier(0.25,0.1,0.25,1);
+    }
+    .post-link:hover { background: var(--apple-blue-hover,#0077ed); transform: translateY(-1px); }
+    .source-section {
+      background: var(--apple-card,#fff);
+      border-radius: 18px;
+      padding: 1.75rem;
+      margin-top: 2rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+    }
+    .source-section h3 {
+      color: var(--apple-text,#1d1d1f);
+      margin-bottom: 1rem;
+      font-size: 1.0625rem; font-weight: 600;
+    }
+    .source-section ul { list-style: none; padding: 0; }
+    .source-section li { margin-bottom: 0.625rem; }
+    .source-section a {
+      color: var(--apple-blue,#0071e3);
+      text-decoration: none; font-size: 0.875rem;
+      transition: opacity 0.2s;
+    }
+    .source-section a:hover { opacity: 0.7; text-decoration: underline; }
+    @media (max-width: 734px) { .detail-header h1 { font-size: 1.75rem; } .detail-header { padding: 3rem 1.5rem; } }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <a href="../index.html" class="nav-logo">
+      <img src="../images/qiyuan-gate.jpg" alt="南通大学校徽" style="border-radius:50%;height:32px;width:32px;object-fit:cover">
+      <span>南通大学</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="../index.html">首页</a></li>
+      <li><a href="../index.html#campus-life">住在通大</a></li>
+      <li><a href="../index.html#campus-tour">校区巡礼</a></li>
+      <li><a href="../index.html#college-tour">学院巡礼</a></li>
+      <li><a href="../index.html#testimonials">学长学姐说</a></li>
+      <li><a href="../index.html#student-life">活力校园</a></li>
+      <li><a href="../index.html#guide">入学指南</a></li>
+    </ul>
+  </nav>
+
+  <div class="detail-page">
+    <a href="../index.html" class="back-btn">
+      <svg viewBox="0 0 24 24" width="16" height="16"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6z" fill="currentColor"/></svg>
+      返回首页
+    </a>
+
+    <div class="detail-header">
+      <h1>校区巡礼</h1>
+      <p>啬园、启秀、启东三个校区，各具特色，总面积3300余亩</p>
+    </div>
+
+    <div class="content-section">
+      <h2>三大校区概览</h2>
+      <p>南通大学现有啬园校区、启秀校区、启东校区3个校区，占地面积3300余亩，建筑面积120余万平方米。三个校区各有特色，承担不同的教学和科研功能。</p>
+    </div>
+
+    <div class="content-section">
+      <h2>校区详情</h2>
+
+      <div class="campus-card">
+        <h3>啬园校区（主校区）</h3>
+        <p>啬园校区是南通大学的主校区，位于南通市啬园路9号，是大部分本科生和研究生学习生活的地方。校区内绿树成荫，湖泊点缀，环境优美。主要建筑包括逸夫楼、图书馆、体育馆、各学院教学楼等。校区内设施完善，有标准田径场、篮球场、网球场、游泳池等体育设施，以及多个食堂、超市、快递站等生活配套设施。</p>
+        <p>啬园校区的图书馆是学校的标志性建筑，馆藏纸质图书300余万册，电子图书丰富。校区内的范曾艺术馆收藏了大量艺术作品，是校园文化的重要组成部分。</p>
+        <div class="campus-stats">
+          <div class="stat">主要功能：<strong>本科教学、研究生教育</strong></div>
+          <div class="stat">校区面积：<strong>最大校区</strong></div>
+          <div class="stat">设施水平：<strong>现代化</strong></div>
+        </div>
+      </div>
+
+      <div class="campus-card">
+        <h3>启秀校区</h3>
+        <p>启秀校区位于南通市中心风景秀丽的濠河之畔，东倚文峰公园，北邻南通博物苑。校园内绿树成荫，鸟语花香，6.6公顷的水面波光粼粼，碧波荡漾，长达1000余米的林荫小道环绕校园。启秀校区历史悠久，是南通大学医学教育的重要基地，主要承担医学相关专业的教学任务。</p>
+        <p>校区虽面积较小，但地理位置优越，周边生活配套成熟，距离南大街商业区仅几分钟路程。校区内的建筑保留了较多历史风貌，与濠河美景相得益彰。</p>
+        <div class="campus-stats">
+          <div class="stat">主要功能：<strong>医学教育</strong></div>
+          <div class="stat">位置特点：<strong>市中心濠河畔</strong></div>
+          <div class="stat">环境特色：<strong>历史风貌、人文底蕴</strong></div>
+        </div>
+      </div>
+
+      <div class="campus-card">
+        <h3>启东校区</h3>
+        <p>启东校区位于南通市启东市，是南通大学杏林学院的主校区。校区占地1200余亩，于2014年8月正式启用，是校地合作办学的新模式典范。校区设施现代化，教学楼、实验楼、图书馆、体育馆等一应俱全。</p>
+        <p>启东校区主要承担杏林学院本科生的教学任务，校区内环境优美，建筑风格现代，是学校发展的重要增长点。</p>
+        <div class="campus-stats">
+          <div class="stat">主要功能：<strong>杏林学院本科教育</strong></div>
+          <div class="stat">启用时间：<strong>2014年</strong></div>
+          <div class="stat">校区面积：<strong>1200余亩</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-section">
+      <h2>网友真实分享</h2>
+
+      <div class="post-card">
+        <h3>南通大学新生攻略——《校园篇》</h3>
+        <div class="post-meta">
+          <span>来源：知乎专栏</span>
+          <span>作者：通大毕业学长</span>
+        </div>
+        <div class="post-content">作为一名刚刚毕业的南通大学学长，走过了艰难曲折而又充实的大学道路后，希望给后来的小萌新们提出一些自己的个人想法来让大家少走一点弯路。啬园校区是最大的校区，环境优美，设施完善。启秀校区虽然较小，但位于市中心，生活便利。</div>
+        <a href="https://zhuanlan.zhihu.com/p/543759795" target="_blank" class="post-link">查看原帖</a>
+      </div>
+
+      <div class="post-card">
+        <h3>南通大学校园攻略(一)校园篇</h3>
+        <div class="post-meta">
+          <span>来源：知乎专栏</span>
+          <span>日期：2021年7月24日</span>
+        </div>
+        <div class="post-content">南通大学，简称"通大"，是江苏省人民政府和国家交通运输部共建的综合性大学。学校有啬园、启秀、启东三个校区，各具特色。啬园校区面积最大、设施最新，启秀校区最具历史底蕴，启东校区东临黄海环境优美。</div>
+        <a href="https://zhuanlan.zhihu.com/p/392860637" target="_blank" class="post-link">查看原帖</a>
+      </div>
+
+      <div class="post-card">
+        <h3>南通大学进一步面向社会开放</h3>
+        <div class="post-meta">
+          <span>来源：搜狐新闻</span>
+          <span>日期：2024年5月21日</span>
+        </div>
+        <div class="post-content">社会公众可通过关注微信公众号"南通大学"进行实名预约，预约实行按校区限额、适时动态调整管理。确认预约成功后，即可携带身份证直接在非机动车通道机核验证件进入校园参观。</div>
+        <a href="https://www.sohu.com/a/780376224_121124027" target="_blank" class="post-link">查看原帖</a>
+      </div>
+    </div>
+
+    <div class="source-section">
+      <h3>数据来源</h3>
+      <ul>
+        <li>1. 知乎专栏 - <a href="https://zhuanlan.zhihu.com/p/543759795" target="_blank">南通大学新生攻略——校园篇</a></li>
+        <li>2. 知乎专栏 - <a href="https://zhuanlan.zhihu.com/p/392860637" target="_blank">南通大学校园攻略</a></li>
+        <li>3. 南通大学官网 - <a href="https://qdxqjsb.ntu.edu.cn/3394/list.htm" target="_blank">校区介绍</a></li>
+        <li>4. 南通大学官网 - <a href="https://www.ntu.edu.cn/xxjj/" target="_blank">学校简介</a></li>
+        <li>5. 搜狐新闻 - <a href="https://www.sohu.com/a/780376224_121124027" target="_blank">南通大学面向社会开放</a></li>
+        <li>6. 南通大学校友会 - <a href="https://alumni.ntu.edu.cn/xyh/xyh/item/?id=141" target="_blank">校园风光</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo"><img src="../images/qiyuan-gate.jpg" alt="南通大学校徽"><span>南通大学</span></div>
+        <p>南通大学是江苏省人民政府和交通运输部共建的综合性大学，是江苏高水平大学建设高峰计划建设B类高校。</p>
+      </div>
+      <div class="footer-links"><h4>快速链接</h4><ul><li><a href="https://www.ntu.edu.cn/" target="_blank">南通大学官网</a></li><li><a href="https://zs.ntu.edu.cn/" target="_blank">招生信息网</a></li></ul></div>
+      <div class="footer-links"><h4>联系我们</h4><ul><li>地址：南通市啬园路9号</li><li>电话：0513-85012170</li><li>邮箱：zsb@ntu.edu.cn</li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>&copy; 2026 南通大学招生办公室</span><span>祈通中西，力求精进</span></div>
+  </footer>
+  <script src="../js/liquid-glass.js"></script>
+</body>
+</html>

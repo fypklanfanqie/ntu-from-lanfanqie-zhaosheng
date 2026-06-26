@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>活力校园 - 南通大学</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/liquid-glass.css">
+  <style>
+    /* 活力校园详情页 — Apple 风格 */
+    .detail-page { max-width: 980px; margin: 0 auto; padding: 6rem 1.5rem 4rem; }
+    .detail-header {
+      text-align: center;
+      margin-bottom: 4rem;
+      padding: 4rem 2.5rem;
+      background: #000;
+      border-radius: 28px;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+    .detail-header h1 {
+      font-size: clamp(2rem,5vw,3rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
+    }
+    .detail-header p { font-size: 1.125rem; opacity: 0.8; font-weight: 400; }
+    .back-btn {
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      color: var(--apple-blue,#0071e3);
+      text-decoration: none; font-weight: 400;
+      margin-bottom: 2rem; padding: 0.5rem 1.25rem;
+      border: 1px solid var(--apple-blue,#0071e3);
+      border-radius: 980px;
+      transition: all 0.3s cubic-bezier(0.25,0.1,0.25,1);
+      font-size: 0.875rem;
+    }
+    .back-btn:hover { background: var(--apple-blue,#0071e3); color: white; }
+    .content-section { margin-bottom: 4rem; }
+    .content-section h2 {
+      font-size: clamp(1.5rem,3vw,2rem);
+      font-weight: 600;
+      color: var(--apple-text,#1d1d1f);
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+    }
+    .content-section p {
+      line-height: 1.6; color: var(--apple-text2,#86868b);
+      margin-bottom: 1rem; font-size: 1.0625rem;
+    }
+    .activity-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem; margin-top: 2rem;
+    }
+    .activity-card {
+      background: var(--apple-card,#fff);
+      border-radius: 18px;
+      padding: 1.75rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+      transition: all 0.4s cubic-bezier(0.25,0.1,0.25,1);
+    }
+    .activity-card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+    .activity-card h4 {
+      color: var(--apple-blue,#0071e3);
+      margin-bottom: 0.75rem;
+      font-size: 1.0625rem;
+      font-weight: 600;
+      letter-spacing: -0.016em;
+    }
+    .activity-card p { color: var(--apple-text2,#86868b); line-height: 1.5; font-size: 0.9375rem; }
+    .post-card {
+      background: var(--apple-card,#fff);
+      border-radius: 18px;
+      padding: 1.75rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+      transition: all 0.3s cubic-bezier(0.25,0.1,0.25,1);
+    }
+    .post-card:hover { box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+    .post-card h3 {
+      font-size: 1.125rem; font-weight: 600;
+      color: var(--apple-text,#1d1d1f);
+      margin-bottom: 0.75rem; letter-spacing: -0.016em;
+    }
+    .post-meta {
+      font-size: 0.8125rem; color: var(--apple-text2,#86868b);
+      margin-bottom: 0.75rem;
+      display: flex; gap: 1rem; flex-wrap: wrap;
+    }
+    .post-card .post-content {
+      color: var(--apple-text2,#86868b);
+      line-height: 1.6; margin-bottom: 1.25rem; font-size: 0.9375rem;
+    }
+    .post-link {
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      background: var(--apple-blue,#0071e3); color: white;
+      padding: 0.5rem 1.25rem;
+      border-radius: 980px; text-decoration: none;
+      font-size: 0.875rem; font-weight: 400;
+      transition: all 0.3s cubic-bezier(0.25,0.1,0.25,1);
+    }
+    .post-link:hover { background: var(--apple-blue-hover,#0077ed); transform: translateY(-1px); }
+    .source-section {
+      background: var(--apple-card,#fff);
+      border-radius: 18px;
+      padding: 1.75rem;
+      margin-top: 2rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+    }
+    .source-section h3 {
+      color: var(--apple-text,#1d1d1f);
+      margin-bottom: 1rem;
+      font-size: 1.0625rem; font-weight: 600;
+    }
+    .source-section ul { list-style: none; padding: 0; }
+    .source-section li { margin-bottom: 0.625rem; }
+    .source-section a {
+      color: var(--apple-blue,#0071e3);
+      text-decoration: none; font-size: 0.875rem;
+      transition: opacity 0.2s;
+    }
+    .source-section a:hover { opacity: 0.7; text-decoration: underline; }
+    @media (max-width: 734px) { .detail-header h1 { font-size: 1.75rem; } .detail-header { padding: 3rem 1.5rem; } }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <a href="../index.html" class="nav-logo">
+      <img src="../images/qiyuan-gate.jpg" alt="南通大学校徽" style="border-radius:50%;height:32px;width:32px;object-fit:cover">
+      <span>南通大学</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="../index.html">首页</a></li>
+      <li><a href="../index.html#campus-life">住在通大</a></li>
+      <li><a href="../index.html#campus-tour">校区巡礼</a></li>
+      <li><a href="../index.html#college-tour">学院巡礼</a></li>
+      <li><a href="../index.html#testimonials">学长学姐说</a></li>
+      <li><a href="../index.html#student-life">活力校园</a></li>
+      <li><a href="../index.html#guide">入学指南</a></li>
+    </ul>
+  </nav>
+
+  <div class="detail-page">
+    <a href="../index.html" class="back-btn">
+      <svg viewBox="0 0 24 24" width="16" height="16"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6z" fill="currentColor"/></svg>
+      返回首页
+    </a>
+
+    <div class="detail-header">
+      <h1>活力校园</h1>
+      <p>200余个学生社团，丰富多彩的校园文化生活</p>
+    </div>
+
+    <div class="content-section">
+      <h2>校园文化概览</h2>
+      <p>南通大学校园文化生活丰富多彩，拥有200余个学生社团，涵盖学术科技、文化艺术、体育竞技、公益服务等多个领域。学校定期举办校园歌手大赛、迎新晚会、毕业典礼、校运会、篮球联赛、足球比赛等大型活动，为学生提供展示才华的舞台。</p>
+    </div>
+
+    <div class="content-section">
+      <h2>特色活动</h2>
+      <div class="activity-grid">
+        <a href="https://www.bilibili.com/video/BV15ZSdYLE3E/" target="_blank" class="activity-card" style="text-decoration:none;color:inherit;">
+          <h4>社团活动</h4>
+          <p>200余个学生社团，涵盖学术、文艺、体育、公益等领域。新生入学后可参加"百团大战"社团招新活动，选择感兴趣的社团加入。热门社团包括辩论社、摄影协会、街舞社、志愿者协会等。</p>
+        </a>
+        <a href="https://www.bilibili.com/video/BV18a4y137KF/" target="_blank" class="activity-card" style="text-decoration:none;color:inherit;">
+          <h4>文艺演出</h4>
+          <p>校园歌手大赛是每年最受欢迎的活动之一，吸引众多学生参与。迎新晚会、毕业典礼、元旦晚会等大型文艺演出精彩纷呈，展现了通大学子的青春风采。</p>
+        </a>
+        <a href="https://show.bilibili.com/platform/home.html" target="_blank" class="activity-card" style="text-decoration:none;color:inherit;">
+          <h4>体育竞赛</h4>
+          <p>校运会是全校师生共同参与的体育盛事。此外还有篮球联赛、足球比赛、排球比赛、游泳比赛等各类体育赛事，以及太极拳、瑜伽等健身活动。</p>
+        </a>
+        <a href="https://www.bilibili.com/video/BV1FM4y1A7Mw/" target="_blank" class="activity-card" style="text-decoration:none;color:inherit;">
+          <h4>志愿服务</h4>
+          <p>学校鼓励学生参与志愿服务活动，包括支教、环保、社区服务、敬老爱幼等。志愿者协会定期组织各类公益活动，培养学生的社会责任感。</p>
+        </a>
+        <div class="activity-card">
+          <h4>科技创新</h4>
+          <p>学校设有大学生创新创业中心，支持学生参加"挑战杯"、"互联网+"等创新创业竞赛。各学院定期举办学术讲座、科技沙龙等活动，营造浓厚的学术氛围。</p>
+        </div>
+        <div class="activity-card">
+          <h4>校园媒体</h4>
+          <p>南通大学校园媒体中心运营学校官方微信、微博、抖音、B站等新媒体平台，记录校园生活点滴。"通大「早」知道"等栏目深受学生喜爱。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-section">
+      <h2>网友真实分享</h2>
+
+      <div class="post-card">
+        <h3>南通大学就读体验：宿舍、设施及校区详解</h3>
+        <div class="post-meta">
+          <span>来源：百度贴吧</span>
+          <span>日期：2024年</span>
+        </div>
+        <div class="post-content">学姐分享南通大学就读体验，包括志愿者服务、食堂美食、社团活动及校园风景。学校社团活动丰富多彩，志愿者服务机会很多，校园生活充实有趣。</div>
+        <a href="https://tieba.baidu.com/p/7922668536" target="_blank" class="post-link">查看原帖</a>
+      </div>
+
+      <div class="post-card">
+        <h3>通大「早」知道！正式入驻小红书</h3>
+        <div class="post-meta">
+          <span>来源：南通大学官方微信公众号</span>
+          <span>日期：2026年</span>
+        </div>
+        <div class="post-content">南通大学校园媒体中心运营的新媒体栏目"通大「早」知道"正式入驻小红书，为师生提供校园资讯、活动预告、学习生活指南等内容，展现了通大学子丰富多彩的校园生活。</div>
+        <a href="https://mp.weixin.qq.com/s?__biz=MzIwNTM2NTg0MQ==&mid=2247543500&idx=1&sn=2d6f58d87720a69b8cccd7a6633d5b0f&chksm=96a02bc1caa57ceae62267b3cfdf73da22b7f6e43b55214b6ce811337c61654f37a1c85e8747" target="_blank" class="post-link">查看原帖</a>
+      </div>
+
+      <div class="post-card">
+        <h3>南通大学校园通｜NTUer专属校园生活指南</h3>
+        <div class="post-meta">
+          <span>来源：QQ公众号</span>
+          <span>日期：2026年3月29日</span>
+        </div>
+        <div class="post-content">聚焦师生核心需求，打通校园生活全场景：实时推送校园公告、学术讲座、考试安排，让重要资讯精准直达；整合办事指南、失物招领、二手互助等实用功能。啬园、启秀、启东全校区覆盖，学习生活、通知资讯、吃喝玩乐一手掌握。</div>
+        <a href="https://pd.qq.com/g/pd94826668/post/B_0640c969998806001441152190799928960X60" target="_blank" class="post-link">查看原帖</a>
+      </div>
+    </div>
+
+    <div class="source-section">
+      <h3>数据来源</h3>
+      <ul>
+        <li>1. 百度贴吧 - <a href="https://tieba.baidu.com/p/7922668536" target="_blank">南通大学就读体验</a></li>
+        <li>2. 南通大学官方微信 - <a href="https://mp.weixin.qq.com/s?__biz=MzIwNTM2NTg0MQ==&mid=2247543500&idx=1&sn=2d6f58d87720a69b8cccd7a6633d5b0f" target="_blank">通大「早」知道入驻小红书</a></li>
+        <li>3. QQ公众号 - <a href="https://pd.qq.com/g/pd94826668/post/B_0640c969998806001441152190799928960X60" target="_blank">NTUer专属校园生活指南</a></li>
+        <li>4. 南通大学校友会 - <a href="https://alumni.ntu.edu.cn/xyh/xyh/item/?id=141" target="_blank">校园风光</a></li>
+        <li>5. 南通大学新闻 - <a href="https://news.ntu.edu.cn/16/list.htm" target="_blank">光影通大</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo"><img src="../images/qiyuan-gate.jpg" alt="南通大学校徽"><span>南通大学</span></div>
+        <p>南通大学是江苏省人民政府和交通运输部共建的综合性大学，是江苏高水平大学建设高峰计划建设B类高校。</p>
+      </div>
+      <div class="footer-links"><h4>快速链接</h4><ul><li><a href="https://www.ntu.edu.cn/" target="_blank">南通大学官网</a></li><li><a href="https://zs.ntu.edu.cn/" target="_blank">招生信息网</a></li></ul></div>
+      <div class="footer-links"><h4>联系我们</h4><ul><li>地址：南通市啬园路9号</li><li>电话：0513-85012170</li><li>邮箱：zsb@ntu.edu.cn</li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>&copy; 2026 南通大学招生办公室</span><span>祈通中西，力求精进</span></div>
+  </footer>
+  <script src="../js/liquid-glass.js"></script>
+</body>
+</html>

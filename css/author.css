@@ -1,0 +1,177 @@
+/* ================================================================
+   作者介绍页面 — Apple 风格
+   ================================================================ */
+
+/* Hero 区 */
+.author-hero{
+  position:relative;height:60vh;min-height:400px;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+}
+.author-hero-bg{
+  position:absolute;inset:0;
+}
+.author-hero-bg img{
+  width:100%;height:100%;object-fit:cover;
+}
+.author-hero-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to bottom,rgba(0,0,0,0.45),rgba(0,0,0,0.7));
+}
+.author-hero-content{
+  position:relative;z-index:2;text-align:center;color:#fff;
+}
+.author-avatar{
+  width:140px;height:140px;border-radius:50%;object-fit:cover;
+  border:4px solid rgba(255,255,255,0.35);
+  box-shadow:0 12px 40px rgba(0,0,0,0.25);
+  margin-bottom:1.5rem;
+  transition:transform 0.4s var(--apple-ease);
+}
+.author-avatar:hover{transform:scale(1.06)}
+.author-name{
+  font-size:clamp(2rem,5vw,3rem);font-weight:700;
+  letter-spacing:-0.03em;line-height:1.1;
+  margin-bottom:0.5rem;text-shadow:0 2px 20px rgba(0,0,0,0.3);
+}
+.author-major{
+  font-size:1.125rem;opacity:0.9;
+}
+
+/* 通用区段 */
+.author-section{
+  padding:4rem 2rem;max-width:900px;margin:0 auto;
+}
+
+/* 联系方式 */
+.contact-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:1.5rem;
+}
+.contact-card{
+  background:var(--apple-card);
+  border-radius:var(--apple-radius-lg);
+  padding:2rem;text-align:center;
+  box-shadow:var(--apple-shadow);
+  transition:all 0.4s var(--apple-ease);
+}
+.contact-card:hover{
+  transform:translateY(-4px);
+  box-shadow:var(--apple-shadow-hover);
+}
+.contact-icon{
+  width:56px;height:56px;
+  background:var(--apple-blue);border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 1rem;
+}
+.contact-icon svg{width:28px;height:28px;fill:#fff}
+.contact-card h4{
+  font-size:1rem;font-weight:600;margin-bottom:0.5rem;
+  color:var(--apple-text);
+}
+.contact-card p{
+  font-size:1.0625rem;color:var(--apple-blue);
+  font-weight:500;user-select:all;
+}
+
+/* B站 */
+.bilibili-card{
+  text-align:center;
+}
+.bilibili-img{
+  max-width:320px;border-radius:var(--apple-radius-lg);
+  box-shadow:var(--apple-shadow-strong);
+  margin:0 auto;transition:transform 0.4s var(--apple-ease);
+}
+.bilibili-img:hover{transform:scale(1.03)}
+.bilibili-hint{
+  margin-top:1rem;color:var(--apple-text2);
+  font-size:0.9375rem;
+}
+
+/* Steam */
+.steam-card{
+  position:relative;border-radius:var(--apple-radius-xl);
+  overflow:hidden;box-shadow:var(--apple-shadow-strong);
+}
+.steam-img{
+  width:100%;display:block;
+}
+.steam-overlay{
+  position:absolute;bottom:0;left:0;right:0;
+  background:linear-gradient(transparent,rgba(0,0,0,0.85));
+  padding:2.5rem 2rem 2rem;
+}
+.steam-overlay p{
+  color:#fff;font-size:1.125rem;font-weight:500;
+  text-shadow:0 1px 8px rgba(0,0,0,0.5);
+}
+
+/* 照片墙 */
+.photo-wall{
+  display:flex;flex-direction:column;gap:1.5rem;
+}
+.photo-item{
+  border-radius:var(--apple-radius-xl);
+  overflow:hidden;box-shadow:var(--apple-shadow);
+  transition:all 0.4s var(--apple-ease);
+}
+.photo-item:hover{
+  transform:translateY(-4px);
+  box-shadow:var(--apple-shadow-hover);
+}
+.photo-item img{
+  width:100%;height:auto;display:block;
+  transition:transform 0.6s var(--apple-ease);
+}
+.photo-item:hover img{transform:scale(1.02)}
+
+/* 欢迎信息 */
+.author-welcome{
+  max-width:900px;margin:0 auto 4rem;
+  padding:0 2rem;
+}
+.author-welcome-inner{
+  background:linear-gradient(135deg,var(--apple-blue) 0%,#5856d6 100%);
+  border-radius:var(--apple-radius-xl);
+  padding:3rem;text-align:center;color:#fff;
+}
+.author-welcome h3{
+  font-size:clamp(1.5rem,4vw,2rem);
+  font-weight:700;margin-bottom:0.75rem;
+}
+.author-welcome p{
+  font-size:1.125rem;opacity:0.92;
+  margin-bottom:1.5rem;
+}
+.back-btn{
+  display:inline-flex;align-items:center;gap:0.4rem;
+  background:rgba(255,255,255,0.2);
+  backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,0.3);
+  color:#fff;padding:0.75rem 1.75rem;
+  border-radius:980px;font-size:0.9375rem;
+  transition:all 0.3s var(--apple-ease);
+}
+.back-btn:hover{
+  background:rgba(255,255,255,0.3);
+  transform:translateY(-1px);
+}
+
+/* 深色模式 */
+body.dark .contact-card{
+  background:var(--apple-card);
+}
+body.dark .author-welcome-inner{
+  background:linear-gradient(135deg,#0a84ff 0%,#5e5ce6 100%);
+}
+
+/* 响应式 */
+@media(max-width:734px){
+  .author-hero{height:50vh;min-height:320px}
+  .author-avatar{width:110px;height:110px}
+  .contact-grid{grid-template-columns:1fr}
+  .steam-overlay{padding:1.5rem 1rem}
+  .steam-overlay p{font-size:1rem}
+}

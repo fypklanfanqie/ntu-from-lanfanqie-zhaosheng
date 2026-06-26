@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="PingFang SC, sans-serif">
+  <defs>
+    <linearGradient id="water" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#B3D9FF"/>
+      <stop offset="100%" stop-color="#80BFFF"/>
+    </linearGradient>
+    <linearGradient id="green" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#90C695"/>
+      <stop offset="100%" stop-color="#6DAF72"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="#F0F4F0" rx="20"/>
+  
+  <!-- 道路 -->
+  <path d="M100,250 L700,250" stroke="#D4D4D4" stroke-width="12" fill="none" stroke-linecap="round"/>
+  <path d="M400,80 L400,420" stroke="#D4D4D4" stroke-width="10" fill="none" stroke-linecap="round"/>
+  <path d="M200,120 L600,120" stroke="#E8E8E8" stroke-width="6" fill="none"/>
+  <path d="M200,380 L600,380" stroke="#E8E8E8" stroke-width="6" fill="none"/>
+  
+  <!-- 湖泊 -->
+  <ellipse cx="520" cy="290" rx="80" ry="50" fill="url(#water)" opacity="0.7"/>
+  <text x="520" y="295" text-anchor="middle" fill="#4A90D9" font-size="12" font-weight="500">莲花池</text>
+  
+  <!-- 绿地 -->
+  <rect x="120" y="140" width="100" height="70" rx="10" fill="url(#green)" opacity="0.5"/>
+  <rect x="580" y="140" width="100" height="70" rx="10" fill="url(#green)" opacity="0.5"/>
+  
+  <!-- 校门 -->
+  <rect x="370" y="430" width="60" height="20" rx="5" fill="#005BAC"/>
+  <text x="400" y="445" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">南大门</text>
+  
+  <!-- 建筑标记 -->
+  <!-- 图书馆 -->
+  <g class="building" data-name="图书馆" style="cursor:pointer">
+    <rect x="340" y="200" width="70" height="45" rx="8" fill="#005BAC" opacity="0.9"/>
+    <text x="375" y="227" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">图书馆</text>
+  </g>
+  
+  <!-- 教学楼群 -->
+  <g class="building" data-name="教学楼群" style="cursor:pointer">
+    <rect x="220" y="200" width="80" height="40" rx="6" fill="#4A8FD4" opacity="0.85"/>
+    <text x="260" y="224" text-anchor="middle" fill="#fff" font-size="10" font-weight="500">教学楼群</text>
+  </g>
+  
+  <!-- 逸夫楼 -->
+  <g class="building" data-name="逸夫楼" style="cursor:pointer">
+    <rect x="450" y="200" width="65" height="38" rx="6" fill="#4A8FD4" opacity="0.85"/>
+    <text x="482" y="223" text-anchor="middle" fill="#fff" font-size="10" font-weight="500">逸夫楼</text>
+  </g>
+  
+  <!-- 张謇园 -->
+  <g class="building" data-name="张謇纪念园" style="cursor:pointer">
+    <rect x="550" y="200" width="70" height="38" rx="6" fill="#6DAF72" opacity="0.85"/>
+    <text x="585" y="223" text-anchor="middle" fill="#fff" font-size="10" font-weight="500">张謇园</text>
+  </g>
+  
+  <!-- 食堂 -->
+  <g class="building" data-name="食堂" style="cursor:pointer">
+    <rect x="150" y="300" width="60" height="35" rx="6" fill="#E8963E" opacity="0.85"/>
+    <text x="180" y="322" text-anchor="middle" fill="#fff" font-size="10" font-weight="500">一食堂</text>
+  </g>
+  <g class="building" data-name="二食堂" style="cursor:pointer">
+    <rect x="230" y="300" width="60" height="35" rx="6" fill="#E8963E" opacity="0.85"/>
+    <text x="260" y="322" text-anchor="middle" fill="#fff" font-size="10" font-weight="500">二食堂</text>
+  </g>
+  
+  <!-- 体育馆 -->
+  <g class="building" data-name="体育馆" style="cursor:pointer">
+    <rect x="600" y="300" width="75" height="40" rx="6" fill="#8B5CF6" opacity="0.85"/>
+    <text x="637" y="324" text-anchor="middle" fill="#fff" font-size="10" font-weight="500">体育馆</text>
+  </g>
+  
+  <!-- 宿舍区 -->
+  <g class="building" data-name="学生宿舍" style="cursor:pointer">
+    <rect x="130" y="400" width="90" height="35" rx="6" fill="#6B7280" opacity="0.7"/>
+    <text x="175" y="422" text-anchor="middle" fill="#fff" font-size="10" font-weight="500">宿舍园区</text>
+  </g>
+  <g class="building" data-name="学生宿舍" style="cursor:pointer">
+    <rect x="560" y="400" width="90" height="35" rx="6" fill="#6B7280" opacity="0.7"/>
+    <text x="605" y="422" text-anchor="middle" fill="#fff" font-size="10" font-weight="500">宿舍园区</text>
+  </g>
+  
+  <!-- 行政楼 -->
+  <g class="building" data-name="行政楼" style="cursor:pointer">
+    <rect x="330" y="100" width="70" height="35" rx="6" fill="#D97706" opacity="0.8"/>
+    <text x="365" y="122" text-anchor="middle" fill="#fff" font-size="10" font-weight="500">行政楼</text>
+  </g>
+  
+  <!-- 标题 -->
+  <text x="400" y="45" text-anchor="middle" fill="#1D1D1F" font-size="18" font-weight="700" letter-spacing="2">南通大学啬园校区平面图</text>
+  <line x1="310" y1="55" x2="490" y2="55" stroke="#005BAC" stroke-width="2" opacity="0.5"/>
+  
+  <!-- 图例 -->
+  <rect x="20" y="450" width="12" height="12" rx="3" fill="#005BAC"/>
+  <text x="36" y="461" fill="#555" font-size="10">教学建筑</text>
+  <rect x="100" y="450" width="12" height="12" rx="3" fill="#E8963E"/>
+  <text x="116" y="461" fill="#555" font-size="10">餐饮服务</text>
+  <rect x="180" y="450" width="12" height="12" rx="3" fill="#6B7280"/>
+  <text x="196" y="461" fill="#555" font-size="10">宿舍区域</text>
+  <rect x="260" y="450" width="12" height="12" rx="3" fill="#8B5CF6"/>
+  <text x="276" y="461" fill="#555" font-size="10">运动场馆</text>
+  <rect x="340" y="450" width="12" height="12" rx="3" fill="#6DAF72"/>
+  <text x="356" y="461" fill="#555" font-size="10">景观绿地</text>
+  <rect x="420" y="450" width="12" height="12" rx="3" fill="url(#water)"/>
+  <text x="436" y="461" fill="#555" font-size="10">水景湖泊</text>
+</svg>

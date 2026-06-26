@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>录取查询 - 南通大学入学指南</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/liquid-glass.css">
+  <style>
+    /* 详情页通用样式 */
+    .detail-page { max-width: 980px; margin: 0 auto; padding: 6rem 1.5rem 4rem; }
+    .detail-header {
+      text-align: center;
+      margin-bottom: 4rem;
+      padding: 4rem 2.5rem;
+      background: linear-gradient(135deg, #0071e3 0%, #0077ed 100%);
+      border-radius: 28px;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+    .detail-header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+      animation: float 6s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(5deg); }
+    }
+    .detail-header h1 {
+      font-size: clamp(2rem,5vw,3rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
+      position: relative;
+      z-index: 1;
+    }
+    .detail-header p { font-size: 1.125rem; opacity: 0.9; font-weight: 400; position: relative; z-index: 1; }
+    .back-btn {
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      color: var(--apple-blue,#0071e3);
+      text-decoration: none; font-weight: 400;
+      margin-bottom: 2rem; padding: 0.5rem 1.25rem;
+      border: 1px solid var(--apple-blue,#0071e3);
+      border-radius: 980px;
+      transition: all 0.3s cubic-bezier(0.25,0.1,0.25,1);
+      font-size: 0.875rem;
+    }
+    .back-btn:hover { background: var(--apple-blue,#0071e3); color: white; }
+    
+    /* 内容区域样式 */
+    .content-section { 
+      margin-bottom: 3rem; 
+      background: var(--apple-card,#fff);
+      border-radius: 18px;
+      padding: 2rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+    }
+    .content-section h2 {
+      font-size: clamp(1.5rem,3vw,2rem);
+      font-weight: 600;
+      color: var(--apple-text,#1d1d1f);
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .content-section h2 .icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #0071e3 0%, #0077ed 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.25rem;
+    }
+    .content-section p {
+      line-height: 1.8; 
+      color: var(--apple-text2,#86868b);
+      margin-bottom: 1rem; 
+      font-size: 1.0625rem;
+    }
+    .content-section ul {
+      color: var(--apple-text2,#86868b);
+      line-height: 1.8;
+      padding-left: 1.5rem;
+      font-size: 1.0625rem;
+      margin-bottom: 1rem;
+    }
+    .content-section li { margin-bottom: 0.75rem; }
+    .content-section li strong { color: var(--apple-text,#1d1d1f); }
+    
+    /* 步骤卡片 */
+    .step-card {
+      background: var(--apple-card,#fff);
+      border-radius: 18px;
+      padding: 1.75rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+      display: flex; gap: 1.5rem; align-items: flex-start;
+      transition: all 0.3s cubic-bezier(0.25,0.1,0.25,1);
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+    .step-card:hover { 
+      box-shadow: 0 12px 40px rgba(0,0,0,0.08); 
+      transform: translateY(-2px);
+    }
+    .step-number {
+      background: linear-gradient(135deg, #0071e3 0%, #0077ed 100%);
+      color: white;
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.25rem; font-weight: 600;
+      flex-shrink: 0;
+    }
+    .step-content h3 {
+      font-size: 1.125rem; color: var(--apple-text,#1d1d1f);
+      margin-bottom: 0.75rem; font-weight: 600; letter-spacing: -0.016em;
+    }
+    .step-content p { color: var(--apple-text2,#86868b); line-height: 1.6; font-size: 0.9375rem; margin-bottom: 0.5rem; }
+    .step-content ul { color: var(--apple-text2,#86868b); line-height: 1.7; padding-left: 1.2rem; font-size: 0.9375rem; margin-bottom: 0; }
+    .step-content li { margin-bottom: 0.375rem; }
+    
+    /* 链接卡片 */
+    .link-card {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.25rem;
+      background: linear-gradient(135deg, #f5f5f7 0%, #fafafa 100%);
+      border-radius: 12px;
+      margin-bottom: 1rem;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      color: var(--apple-text,#1d1d1f);
+    }
+    .link-card:hover {
+      transform: translateX(4px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    .link-card .link-icon {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, #0071e3 0%, #0077ed 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+    .link-card .link-content h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+      color: var(--apple-text,#1d1d1f);
+    }
+    .link-card .link-content p {
+      font-size: 0.875rem;
+      color: var(--apple-text2,#86868b);
+      margin: 0;
+      line-height: 1.4;
+    }
+    
+    /* 提示框 */
+    .tip-box {
+      background: linear-gradient(135deg, #e8f4fd 0%, #f0f8ff 100%);
+      border-left: 4px solid #0071e3;
+      border-radius: 0 12px 12px 0;
+      padding: 1.25rem;
+      margin: 1.5rem 0;
+    }
+    .tip-box h4 {
+      color: #0071e3;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .tip-box p {
+      color: var(--apple-text2,#86868b);
+      font-size: 0.9375rem;
+      margin: 0;
+      line-height: 1.6;
+    }
+    
+    /* 联系方式 */
+    .contact-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem;
+      background: var(--apple-card,#fff);
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .contact-item .contact-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #34c759 0%, #30d158 100%);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.125rem;
+    }
+    .contact-item .contact-text h4 {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--apple-text,#1d1d1f);
+      margin-bottom: 0.25rem;
+    }
+    .contact-item .contact-text p {
+      font-size: 0.8125rem;
+      color: var(--apple-text2,#86868b);
+      margin: 0;
+    }
+    
+    @media (max-width: 734px) {
+      .step-card { flex-direction: column; }
+      .detail-header h1 { font-size: 1.75rem; }
+      .detail-header { padding: 3rem 1.5rem; }
+      .content-section { padding: 1.5rem; }
+      .contact-info { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <a href="../index.html" class="nav-logo">
+      <img src="../images/qiyuan-gate.jpg" alt="南通大学校徽" style="border-radius:50%;height:32px;width:32px;object-fit:cover">
+      <span>南通大学</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="../index.html">首页</a></li>
+      <li><a href="../index.html#campus-life">住在通大</a></li>
+      <li><a href="../index.html#campus-tour">校区巡礼</a></li>
+      <li><a href="../index.html#college-tour">学院巡礼</a></li>
+      <li><a href="../index.html#testimonials">学长学姐说</a></li>
+      <li><a href="../index.html#student-life">活力校园</a></li>
+      <li><a href="../index.html#guide">入学指南</a></li>
+    </ul>
+  </nav>
+
+  <div class="detail-page">
+    <a href="../index.html#guide" class="back-btn">
+      <svg viewBox="0 0 24 24" width="16" height="16"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6z" fill="currentColor"/></svg>
+      返回入学指南
+    </a>
+
+    <div class="detail-header">
+      <h1>录取查询</h1>
+      <p>查询录取结果、通知书邮寄状态，了解录取流程</p>
+    </div>
+
+    <div class="content-section">
+      <h2><span class="icon">📋</span> 查询方式</h2>
+      <p>考生可通过以下官方渠道查询南通大学录取结果：</p>
+      
+      <div class="step-card">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h3>南通大学招生信息网</h3>
+          <p>登录南通大学本科招生信息网，进入"录取查询"栏目，输入考生号和身份证号即可查询。</p>
+          <ul>
+            <li><strong>网址：</strong><a href="https://zs.ntu.edu.cn/zscx1/list.htm" target="_blank" style="color: #0071e3;">https://zs.ntu.edu.cn/zscx1/list.htm</a></li>
+            <li><strong>查询时间：</strong>一般在各省录取结束后1-2天内开放查询</li>
+            <li><strong>所需信息：</strong>考生号、身份证号</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="step-card">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h3>微信公众号查询</h3>
+          <p>关注"南通大学招生办"官方微信公众号，通过底部菜单栏"录取查询"功能进行查询。</p>
+          <ul>
+            <li><strong>公众号名称：</strong>南通大学招生办</li>
+            <li><strong>查询路径：</strong>底部菜单 → 录取查询 → 输入信息</li>
+            <li><strong>优势：</strong>可接收录取结果推送通知</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="step-card">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <h3>各省教育考试院官网</h3>
+          <p>通过考生所在省份的教育考试院官方网站查询录取状态。</p>
+          <ul>
+            <li><strong>江苏省：</strong>江苏省教育考试院（www.jseea.cn）</li>
+            <li><strong>其他省份：</strong>各省招生考试院官方网站</li>
+            <li><strong>特点：</strong>数据更新及时，可查看投档状态</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-section">
+      <h2><span class="icon">📦</span> 录取通知书</h2>
+      <p>录取通知书是新生入学的重要凭证，请妥善保管。</p>
+      
+      <div class="tip-box">
+        <h4>💡 重要提示</h4>
+        <p>录取通知书一般在7-8月通过EMS快递寄送，请保持手机畅通，注意查收。通知书内包含新生报到须知、银行卡、校园卡等重要材料。</p>
+      </div>
+      
+      <ul>
+        <li><strong>寄送时间：</strong>各省录取结束后5-10个工作日内寄出</li>
+        <li><strong>快递方式：</strong>中国邮政EMS特快专递</li>
+        <li><strong>物流查询：</strong>可通过EMS官网或微信公众号查询物流状态</li>
+        <li><strong>内含材料：</strong>录取通知书、新生报到须知、银行卡、校园卡、家庭经济困难学生认定表等</li>
+      </ul>
+    </div>
+
+    <div class="content-section">
+      <h2><span class="icon">❓</span> 常见问题</h2>
+      
+      <div class="step-card">
+        <div class="step-number">Q</div>
+        <div class="step-content">
+          <h3>查询显示"未查询到相关信息"怎么办？</h3>
+          <p>可能原因：</p>
+          <ul>
+            <li>所在省份录取工作尚未结束，请耐心等待</li>
+            <li>输入的考生号或身份证号有误，请仔细核对</li>
+            <li>查询系统繁忙，建议错峰查询</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="step-card">
+        <div class="step-number">Q</div>
+        <div class="step-content">
+          <h3>录取通知书多久能收到？</h3>
+          <p>一般在录取结果公布后5-10个工作日内寄出，具体时间因省份而异。可通过EMS单号查询物流状态。如超过15天仍未收到，请联系招生办公室。</p>
+        </div>
+      </div>
+      
+      <div class="step-card">
+        <div class="step-number">Q</div>
+        <div class="step-content">
+          <h3>通知书内的银行卡需要激活吗？</h3>
+          <p>是的，通知书内附带的建设银行卡需要本人携带身份证到就近建设银行网点办理激活和签约手续，该卡将用于学费代扣、奖助学金发放等。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-section">
+      <h2><span class="icon">🔗</span> 相关链接</h2>
+      
+      <a href="https://zs.ntu.edu.cn/" target="_blank" class="link-card">
+        <div class="link-icon">🎓</div>
+        <div class="link-content">
+          <h4>南通大学招生信息网</h4>
+          <p>查看招生政策、招生计划、录取查询等官方信息</p>
+        </div>
+      </a>
+      
+      <a href="https://zs.ntu.edu.cn/zszc1/list.htm" target="_blank" class="link-card">
+        <div class="link-icon">📜</div>
+        <div class="link-content">
+          <h4>招生政策</h4>
+          <p>查看南通大学招生章程、综合评价招生简章等</p>
+        </div>
+      </a>
+      
+      <a href="https://zs.ntu.edu.cn/8202/list.htm" target="_blank" class="link-card">
+        <div class="link-icon">📊</div>
+        <div class="link-content">
+          <h4>招生计划</h4>
+          <p>查询各年度、各专业招生人数和计划</p>
+        </div>
+      </a>
+      
+      <a href="https://zs.ntu.edu.cn/wnzs1/list.htm" target="_blank" class="link-card">
+        <div class="link-icon">📚</div>
+        <div class="link-content">
+          <h4>往年招生</h4>
+          <p>查阅历年录取数据和分数线</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="content-section">
+      <h2><span class="icon">📞</span> 联系我们</h2>
+      <p>如有疑问，可通过以下方式联系南通大学招生办公室：</p>
+      
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div class="contact-text">
+            <h4>办公地址</h4>
+            <p>南通市啬园路9号 南通大学本科招生工作办公室</p>
+          </div>
+        </div>
+        
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div class="contact-text">
+            <h4>咨询电话</h4>
+            <p>0513-85012170</p>
+          </div>
+        </div>
+        
+        <div class="contact-item">
+          <div class="contact-icon">📧</div>
+          <div class="contact-text">
+            <h4>电子邮箱</h4>
+            <p>zsb@ntu.edu.cn</p>
+          </div>
+        </div>
+        
+        <div class="contact-item">
+          <div class="contact-icon">📮</div>
+          <div class="contact-text">
+            <h4>邮政编码</h4>
+            <p>226019</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-section" style="background: linear-gradient(135deg, #f5f5f7 0%, #fafafa 100%); border: 1px solid rgba(0,0,0,0.05);">
+      <h2><span class="icon">📌</span> 数据来源</h2>
+      <ul>
+        <li>南通大学招生信息网 - <a href="https://zs.ntu.edu.cn/" target="_blank" style="color: #0071e3;">https://zs.ntu.edu.cn/</a></li>
+        <li>南通大学2026年全日制普通本科招生章程</li>
+        <li>南通大学招生办公室官方发布信息</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo"><img src="../images/qiyuan-gate.jpg" alt="南通大学校徽"><span>南通大学</span></div>
+        <p>南通大学是江苏省人民政府和交通运输部共建的综合性大学，是江苏高水平大学建设高峰计划建设B类高校。</p>
+      </div>
+      <div class="footer-links"><h4>快速链接</h4><ul><li><a href="https://www.ntu.edu.cn/" target="_blank">南通大学官网</a></li><li><a href="https://zs.ntu.edu.cn/" target="_blank">招生信息网</a></li></ul></div>
+      <div class="footer-links"><h4>联系我们</h4><ul><li>地址：南通市啬园路9号</li><li>电话：0513-85012170</li><li>邮箱：zsb@ntu.edu.cn</li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>&copy; 2026 南通大学招生办公室</span><span>祈通中西，力求精进</span></div>
+  </footer>
+  <script src="../js/liquid-glass.js"></script>
+</body>
+</html>
