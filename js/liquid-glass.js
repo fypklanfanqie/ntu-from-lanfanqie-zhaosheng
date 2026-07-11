@@ -115,15 +115,8 @@
       });
     });
 
-    /* 弹幕项已有玻璃样式（CSS 直接覆盖），无需加类 */
     /* 筛选按钮已有 .es-filter-btn 类（CSS 直接覆盖） */
-    /* 帖子链接加 lg-surface */
-    document.querySelectorAll('.post-link').forEach(function (el) {
-      if (!processedGlassElements.has(el)) {
-        el.classList.add('lg-surface');
-        processedGlassElements.add(el);
-      }
-    });
+    /* 帖子卡片由 testimonials 区域独立样式控制 */
   }
 
   /* ================================================================
@@ -236,8 +229,9 @@
     button.className = 'back-to-top';
     button.setAttribute('aria-label', '返回顶部');
     button.setAttribute('title', '返回顶部');
-    // 使用CSS伪元素创建加号形状，无需内联HTML
-    
+    // 内联 SVG 箭头（伪元素已用于玻璃高光层）
+    button.innerHTML = '<svg class="bt-arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 4 L10 16 M10 4 L5 9 M10 4 L15 9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
     // 添加到body
     document.body.appendChild(button);
     

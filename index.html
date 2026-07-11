@@ -147,83 +147,118 @@
     </div>
   </section>
 
-  <!-- 学长学姐说 - 弹幕 -->
-  <section class="testimonials reveal" id="testimonials">
+  <!-- 学长学姐说 — Apple 风格引用卡片 + 帖子网格 -->
+  <section class="testimonials reveal" id="testimonials" data-od-id="testimonials">
     <div class="section-header">
       <span class="section-label">TESTIMONIALS</span>
       <h2 class="section-title">学长学姐说</h2>
       <p class="section-desc">听听通大学子的真实声音，看看学长学姐们怎么说。</p>
     </div>
-    <div class="danmaku-container" id="danmaku-container">
-      <div class="danmaku-track" id="danmaku-track"></div>
+
+    <!-- 精选引用轮播 -->
+    <div class="t-quote-stage" data-od-id="testimonials-quote-stage">
+      <div class="t-quote-card active" data-index="0">
+        <svg class="t-quote-mark" viewBox="0 0 48 36" aria-hidden="true"><path d="M0 36V20.5C0 14.7 1.3 9.9 3.8 6.1 6.3 2.3 10.2 0 15.5 0L18 3.7c-3 0.3-5.6 1.6-7.9 3.8-2.2 2.2-3.4 5.3-3.6 9.4h9.5V36H0zm28 0V20.5c0-5.8 1.3-10.6 3.8-14.4 2.6-3.8 6.5-5.8 11.7-6.1L46 3.7c-3 0.3-5.6 1.6-7.9 3.8-2.2 2.2-3.4 5.3-3.6 9.4H44V36H28z"/></svg>
+        <p class="t-quote-text">通大图书馆真的太棒了，每次去都有满满的幸福感。濠河边散步太治愈了，南通这座城市真的很宜居。</p>
+        <div class="t-quote-author">
+          <span class="t-quote-avatar" aria-hidden="true">文</span>
+          <div>
+            <span class="t-quote-name">文学院学姐</span>
+            <span class="t-quote-tag">校园生活 · 小红书</span>
+          </div>
+        </div>
+      </div>
+      <div class="t-quote-card" data-index="1">
+        <svg class="t-quote-mark" viewBox="0 0 48 36" aria-hidden="true"><path d="M0 36V20.5C0 14.7 1.3 9.9 3.8 6.1 6.3 2.3 10.2 0 15.5 0L18 3.7c-3 0.3-5.6 1.6-7.9 3.8-2.2 2.2-3.4 5.3-3.6 9.4h9.5V36H0zm28 0V20.5c0-5.8 1.3-10.6 3.8-14.4 2.6-3.8 6.5-5.8 11.7-6.1L46 3.7c-3 0.3-5.6 1.6-7.9 3.8-2.2 2.2-3.4 5.3-3.6 9.4H44V36H28z"/></svg>
+        <p class="t-quote-text">作为通大医学生，虽然辛苦但老师们真的很负责。医学专业是真的强，附属医院也很厉害。</p>
+        <div class="t-quote-author">
+          <span class="t-quote-avatar" aria-hidden="true">医</span>
+          <div>
+            <span class="t-quote-name">医学院学长</span>
+            <span class="t-quote-tag">专业评价 · 小红书</span>
+          </div>
+        </div>
+      </div>
+      <div class="t-quote-card" data-index="2">
+        <svg class="t-quote-mark" viewBox="0 0 48 36" aria-hidden="true"><path d="M0 36V20.5C0 14.7 1.3 9.9 3.8 6.1 6.3 2.3 10.2 0 15.5 0L18 3.7c-3 0.3-5.6 1.6-7.9 3.8-2.2 2.2-3.4 5.3-3.6 9.4h9.5V36H0zm28 0V20.5c0-5.8 1.3-10.6 3.8-14.4 2.6-3.8 6.5-5.8 11.7-6.1L46 3.7c-3 0.3-5.6 1.6-7.9 3.8-2.2 2.2-3.4 5.3-3.6 9.4H44V36H28z"/></svg>
+        <p class="t-quote-text">啬园校区的宿舍条件真的不错，上床下桌有空调！一食堂的小火锅绝了，冬天必吃。</p>
+        <div class="t-quote-author">
+          <span class="t-quote-avatar" aria-hidden="true">工</span>
+          <div>
+            <span class="t-quote-name">工科院学长</span>
+            <span class="t-quote-tag">住在通大 · 小红书</span>
+          </div>
+        </div>
+      </div>
+      <!-- 轮播指示器 -->
+      <div class="t-quote-dots" data-od-id="testimonials-quote-dots">
+        <button class="t-dot active" data-dot="0" aria-label="第 1 条评价"></button>
+        <button class="t-dot" data-dot="1" aria-label="第 2 条评价"></button>
+        <button class="t-dot" data-dot="2" aria-label="第 3 条评价"></button>
+      </div>
     </div>
+
     <div class="testimonials-source">
       <p>以上评价均来自小红书平台用户对南通大学的真实分享</p>
     </div>
-    <div class="testimonials-posts">
+
+    <!-- 帖子卡片网格 -->
+    <div class="testimonials-posts" data-od-id="testimonials-posts">
       <button class="posts-toggle-btn" id="posts-toggle-btn">
-        <span>看看各个学长学姐真实的帖子</span>
+        <span>浏览更多真实帖子</span>
         <svg viewBox="0 0 24 24" width="16" height="16"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z" fill="currentColor"/></svg>
       </button>
       <div class="posts-list" id="posts-list">
-        <div class="post-item">
-          <a href="https://www.xiaohongshu.com/search_result?keyword=%E5%8D%97%E9%80%9A%E5%A4%A7%E5%AD%A6+%E5%AE%BF%E8%88%8D" target="_blank" class="post-link">
-            <span class="post-title">南通大学宿舍深度剖析：从新楼到旧楼，总有一款适合你！</span>
-            <span class="post-platform">小红书</span>
+        <div class="posts-grid">
+          <a href="https://www.xiaohongshu.com/search_result?keyword=%E5%8D%97%E9%80%9A%E5%A4%A7%E5%AD%A6+%E5%AE%BF%E8%88%8D" target="_blank" class="t-post-card" data-od-id="testimonial-post-dorm">
+            <span class="t-post-tag">宿舍</span>
+            <h4 class="t-post-title">南通大学宿舍深度剖析：从新楼到旧楼，总有一款适合你！</h4>
+            <span class="t-post-meta">小红书 · 学长学姐真实分享</span>
           </a>
-        </div>
-        <div class="post-item">
-          <a href="https://www.xiaohongshu.com/search_result?keyword=%E5%8D%97%E9%80%9A%E5%A4%A7%E5%AD%A6+%E9%A3%9F%E5%A0%82" target="_blank" class="post-link">
-            <span class="post-title">南通大学食堂美食测评：一食堂的小火锅绝了！</span>
-            <span class="post-platform">小红书</span>
+          <a href="https://www.xiaohongshu.com/search_result?keyword=%E5%8D%97%E9%80%9A%E5%A4%A7%E5%AD%A6+%E9%A3%9F%E5%A0%82" target="_blank" class="t-post-card" data-od-id="testimonial-post-food">
+            <span class="t-post-tag">美食</span>
+            <h4 class="t-post-title">南通大学食堂美食测评：一食堂的小火锅绝了！</h4>
+            <span class="t-post-meta">小红书 · 学长学姐真实分享</span>
           </a>
-        </div>
-        <div class="post-item">
-          <a href="https://www.xiaohongshu.com/search_result?keyword=%E5%8D%97%E9%80%9A%E5%A4%A7%E5%AD%A6+%E6%A0%A1%E5%9B%AD" target="_blank" class="post-link">
-            <span class="post-title">南通大学校园打卡攻略：啬园校区莲花池太美了</span>
-            <span class="post-platform">小红书</span>
+          <a href="https://www.xiaohongshu.com/search_result?keyword=%E5%8D%97%E9%80%9A%E5%A4%A7%E5%AD%A6+%E6%A0%A1%E5%9B%AD" target="_blank" class="t-post-card" data-od-id="testimonial-post-campus">
+            <span class="t-post-tag">校园</span>
+            <h4 class="t-post-title">南通大学校园打卡攻略：啬园校区莲花池太美了</h4>
+            <span class="t-post-meta">小红书 · 学长学姐真实分享</span>
           </a>
-        </div>
-        <div class="post-item">
-          <a href="https://www.xiaohongshu.com/search_result?keyword=%E5%8D%97%E9%80%9A%E5%A4%A7%E5%AD%A6+%E5%AD%A6%E4%B9%A0" target="_blank" class="post-link">
-            <span class="post-title">南通大学学习氛围分享：图书馆总是满满的人</span>
-            <span class="post-platform">小红书</span>
+          <a href="https://www.xiaohongshu.com/search_result?keyword=%E5%8D%97%E9%80%9A%E5%A4%A7%E5%AD%A6+%E5%AD%A6%E4%B9%A0" target="_blank" class="t-post-card" data-od-id="testimonial-post-study">
+            <span class="t-post-tag">学习</span>
+            <h4 class="t-post-title">南通大学学习氛围分享：图书馆总是满满的人</h4>
+            <span class="t-post-meta">小红书 · 学长学姐真实分享</span>
           </a>
-        </div>
-        <div class="post-item">
-          <a href="https://www.xiaohongshu.com/search_result?keyword=%E5%8D%97%E9%80%9A%E5%A4%A7%E5%AD%A6+%E8%80%83%E7%A0%94" target="_blank" class="post-link">
-            <span class="post-title">南通大学考研自习室体验：安静又舒适，考研上岸啦！</span>
-            <span class="post-platform">小红书</span>
+          <a href="https://www.xiaohongshu.com/search_result?keyword=%E5%8D%97%E9%80%9A%E5%A4%A7%E5%AD%A6+%E8%80%83%E7%A0%94" target="_blank" class="t-post-card" data-od-id="testimonial-post-kaoyan">
+            <span class="t-post-tag">考研</span>
+            <h4 class="t-post-title">南通大学考研自习室体验：安静又舒适，考研上岸啦！</h4>
+            <span class="t-post-meta">小红书 · 学长学姐真实分享</span>
           </a>
-        </div>
-        <div class="post-item">
-          <a href="https://www.xiaohongshu.com/search_result?keyword=%E5%8D%97%E9%80%9A%E5%A4%A7%E5%AD%A6+%E5%B0%B1%E4%B8%9A" target="_blank" class="post-link">
-            <span class="post-title">南通大学就业率分享：身边的同学都找到了好工作</span>
-            <span class="post-platform">小红书</span>
+          <a href="https://www.xiaohongshu.com/search_result?keyword=%E5%8D%97%E9%80%9A%E5%A4%A7%E5%AD%A6+%E5%B0%B1%E4%B8%9A" target="_blank" class="t-post-card" data-od-id="testimonial-post-job">
+            <span class="t-post-tag">就业</span>
+            <h4 class="t-post-title">身边的同学都找到了好工作，通大就业前景分享</h4>
+            <span class="t-post-meta">小红书 · 学长学姐真实分享</span>
           </a>
-        </div>
-        <div class="post-item">
-          <a href="https://www.xiaohongshu.com/search_result?keyword=%E5%8D%97%E9%80%9A%E5%A4%A7%E5%AD%A6+%E7%A4%BE%E5%9B%A2" target="_blank" class="post-link">
-            <span class="post-title">南通大学社团活动：加入摄影社认识了好多朋友</span>
-            <span class="post-platform">小红书</span>
+          <a href="https://www.xiaohongshu.com/search_result?keyword=%E5%8D%97%E9%80%9A%E5%A4%A7%E5%AD%A6+%E7%A4%BE%E5%9B%A2" target="_blank" class="t-post-card" data-od-id="testimonial-post-club">
+            <span class="t-post-tag">社团</span>
+            <h4 class="t-post-title">南通大学社团活动：加入摄影社认识了好多朋友</h4>
+            <span class="t-post-meta">小红书 · 学长学姐真实分享</span>
           </a>
-        </div>
-        <div class="post-item">
-          <a href="https://www.xiaohongshu.com/search_result?keyword=%E5%8D%97%E9%80%9A%E5%A4%A7%E5%AD%A6+%E5%8C%BB%E5%AD%A6" target="_blank" class="post-link">
-            <span class="post-title">南通大学医学生分享：虽然辛苦但老师们真的很负责</span>
-            <span class="post-platform">小红书</span>
+          <a href="https://www.xiaohongshu.com/search_result?keyword=%E5%8D%97%E9%80%9A%E5%A4%A7%E5%AD%A6+%E5%8C%BB%E5%AD%A6" target="_blank" class="t-post-card" data-od-id="testimonial-post-medicine">
+            <span class="t-post-tag">医学</span>
+            <h4 class="t-post-title">南通大学医学生分享：虽然辛苦但老师们真的很负责</h4>
+            <span class="t-post-meta">小红书 · 学长学姐真实分享</span>
           </a>
-        </div>
-        <div class="post-item">
-          <a href="https://www.xiaohongshu.com/search_result?keyword=%E5%8D%97%E9%80%9A%E5%A4%A7%E5%AD%A6+%E6%80%A7%E4%BB%B7%E6%AF%94" target="_blank" class="post-link">
-            <span class="post-title">南通大学性价比分析：推荐学弟学妹报考！</span>
-            <span class="post-platform">小红书</span>
+          <a href="https://www.xiaohongshu.com/search_result?keyword=%E5%8D%97%E9%80%9A%E5%A4%A7%E5%AD%A6+%E6%80%A7%E4%BB%B7%E6%AF%94" target="_blank" class="t-post-card" data-od-id="testimonial-post-value">
+            <span class="t-post-tag">性价比</span>
+            <h4 class="t-post-title">南通大学性价比分析：推荐学弟学妹报考！</h4>
+            <span class="t-post-meta">小红书 · 学长学姐真实分享</span>
           </a>
-        </div>
-        <div class="post-item">
-          <a href="https://www.xiaohongshu.com/search_result?keyword=%E5%8D%97%E9%80%9A%E5%A4%A7%E5%AD%A6+%E4%BA%A4%E9%80%9A" target="_blank" class="post-link">
-            <span class="post-title">南通大学交通指南：啬园校区地铁直达，出行特别方便</span>
-            <span class="post-platform">小红书</span>
+          <a href="https://www.xiaohongshu.com/search_result?keyword=%E5%8D%97%E9%80%9A%E5%A4%A7%E5%AD%A6+%E4%BA%A4%E9%80%9A" target="_blank" class="t-post-card" data-od-id="testimonial-post-transport">
+            <span class="t-post-tag">交通</span>
+            <h4 class="t-post-title">南通大学交通指南：啬园校区地铁直达，出行特别方便</h4>
+            <span class="t-post-meta">小红书 · 学长学姐真实分享</span>
           </a>
         </div>
       </div>
@@ -264,38 +299,101 @@
     </div>
   </section>
 
-  <!-- 入学指南 -->
-  <section class="guide reveal" id="guide">
+  <!-- 入学指南 — Apple 时间线步骤 -->
+  <section class="guide reveal" id="guide" data-od-id="guide">
     <div class="section-header">
-      <span class="section-label">GUIDE</span>
+      <span class="section-label">ADMISSION GUIDE</span>
       <h2 class="section-title">入学指南</h2>
-      <p class="section-desc">新生入学必读，帮助你快速融入通大生活。</p>
-
+      <p class="section-desc">四步完成入学准备，轻松开启通大之旅。</p>
     </div>
-    <div class="guide-grid">
-      <div class="guide-card" data-step="1">
-        <div class="guide-icon"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg></div>
-        <h3>录取查询</h3>
-        <p>查询录取结果和通知书邮寄状态。</p>
-        <a href="details/admission-query.html" class="guide-link">了解更多 <svg viewBox="0 0 24 24" width="14" height="14"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z" fill="currentColor"/></svg></a>
+
+    <div class="guide-timeline">
+      <!-- 步骤 1 -->
+      <div class="g-step" data-od-id="guide-step-admission">
+        <div class="g-step-marker">
+          <span class="g-step-num">01</span>
+          <div class="g-step-line"></div>
+        </div>
+        <div class="g-step-card">
+          <div class="g-step-icon">
+            <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+          </div>
+          <div class="g-step-body">
+            <span class="g-step-tag">第 1 步</span>
+            <h3>录取查询</h3>
+            <p>查询录取结果，跟踪通知书邮寄状态。确认录取信息无误后即可开始准备入学材料。</p>
+            <a href="details/admission-query.html" class="g-step-link">
+              查看详情
+              <svg viewBox="0 0 24 24" width="14" height="14"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z" fill="currentColor"/></svg>
+            </a>
+          </div>
+        </div>
       </div>
-      <div class="guide-card" data-step="2">
-        <div class="guide-icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V6h16v12zM6 10h2v2H6zm0 4h8v2H6zm10-4h2v2h-2zm-6 0h6v2h-6zm6 4h2v2h-2z"/></svg></div>
-        <h3>报到流程</h3>
-        <p>了解报到时间和所需材料。</p>
-        <a href="details/registration-process.html" class="guide-link">了解更多 <svg viewBox="0 0 24 24" width="14" height="14"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z" fill="currentColor"/></svg></a>
+
+      <!-- 步骤 2 -->
+      <div class="g-step" data-od-id="guide-step-register">
+        <div class="g-step-marker">
+          <span class="g-step-num">02</span>
+          <div class="g-step-line"></div>
+        </div>
+        <div class="g-step-card">
+          <div class="g-step-icon">
+            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V6h16v12zM6 10h2v2H6zm0 4h8v2H6zm10-4h2v2h-2zm-6 0h6v2h-6zm6 4h2v2h-2z"/></svg>
+          </div>
+          <div class="g-step-body">
+            <span class="g-step-tag">第 2 步</span>
+            <h3>报到流程</h3>
+            <p>了解报到时间、地点和所需携带的证件材料，提前规划到校路线，确保顺利入学。</p>
+            <a href="details/registration-process.html" class="g-step-link">
+              查看详情
+              <svg viewBox="0 0 24 24" width="14" height="14"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z" fill="currentColor"/></svg>
+            </a>
+          </div>
+        </div>
       </div>
-      <div class="guide-card" data-step="3">
-        <div class="guide-icon"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg></div>
-        <h3>缴费指南</h3>
-        <p>学费、住宿费缴纳方式说明。</p>
-        <a href="details/payment-guide.html" class="guide-link">了解更多 <svg viewBox="0 0 24 24" width="14" height="14"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z" fill="currentColor"/></svg></a>
+
+      <!-- 步骤 3 -->
+      <div class="g-step" data-od-id="guide-step-payment">
+        <div class="g-step-marker">
+          <span class="g-step-num">03</span>
+          <div class="g-step-line"></div>
+        </div>
+        <div class="g-step-card">
+          <div class="g-step-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+          </div>
+          <div class="g-step-body">
+            <span class="g-step-tag">第 3 步</span>
+            <h3>缴费指南</h3>
+            <p>了解学费、住宿费的缴纳方式和时间节点，支持多种支付渠道，方便快捷完成缴费。</p>
+            <a href="details/payment-guide.html" class="g-step-link">
+              查看详情
+              <svg viewBox="0 0 24 24" width="14" height="14"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z" fill="currentColor"/></svg>
+            </a>
+          </div>
+        </div>
       </div>
-      <div class="guide-card" data-step="4">
-        <div class="guide-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/></svg></div>
-        <h3>常见问题</h3>
-        <p>新生常见问题解答。</p>
-        <a href="details/faq.html" class="guide-link">了解更多 <svg viewBox="0 0 24 24" width="14" height="14"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z" fill="currentColor"/></svg></a>
+
+      <!-- 步骤 4 -->
+      <div class="g-step" data-od-id="guide-step-faq">
+        <div class="g-step-marker">
+          <span class="g-step-num">04</span>
+          <!-- 最后一步无线条 -->
+        </div>
+        <div class="g-step-card">
+          <div class="g-step-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/></svg>
+          </div>
+          <div class="g-step-body">
+            <span class="g-step-tag">第 4 步</span>
+            <h3>常见问题</h3>
+            <p>新生入学后可能遇到的各类问题解答：校园卡办理、选课指南、宿舍网络、军训安排等。</p>
+            <a href="details/faq.html" class="g-step-link">
+              查看详情
+              <svg viewBox="0 0 24 24" width="14" height="14"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z" fill="currentColor"/></svg>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </section>

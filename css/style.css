@@ -9,40 +9,125 @@
    - 间距通透，区块上下 ≥ 80px
    ================================================================ */
 
-/* ---------- 全局变量 ---------- */
+/* ================================================================
+   Apple Design System — 完整 token 合约
+   基于 Apple DS tokens.css，标准化所有色彩/字体/间距/圆角/动效
+   ================================================================ */
 :root{
-  --apple-blue:#0071e3;          /* Apple 官方蓝 */
-  --apple-blue-hover:#0077ed;    /* 蓝 hover 加深 */
-  --apple-blue-dark:#0058b0;     /* 深蓝 */
-  --apple-bg:#f5f5f7;            /* Apple 浅灰背景 */
-  --apple-white:#ffffff;
-  --apple-black:#1d1d1f;         /* Apple 深灰文字 */
-  --apple-text:#1d1d1f;
-  --apple-text2:#86868b;         /* 次级灰 */
-  --apple-text3:#6e6e73;
-  --apple-border:#d2d2d7;        /* 极浅边框 */
-  --apple-card:#ffffff;
-  --apple-radius:18px;           /* 标准圆角 */
-  --apple-radius-lg:24px;        /* 大圆角 */
-  --apple-radius-xl:28px;        /* 超大圆角 */
-  --apple-shadow:0 4px 20px rgba(0,0,0,0.04);          /* 极柔弥散阴影 */
-  --apple-shadow-hover:0 12px 40px rgba(0,0,0,0.08);   /* hover 阴影 */
-  --apple-shadow-strong:0 20px 60px rgba(0,0,0,0.12);  /* 强阴影 */
-  --apple-ease:cubic-bezier(0.25,0.1,0.25,1);          /* Apple 弹性缓出 */
-  --apple-ease-out:cubic-bezier(0.4,0,0.2,1);
-  --apple-duration:0.8s;
-  --ff:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue","PingFang SC","Microsoft YaHei",sans-serif;
-  --max-width:1200px;
-  /* 兼容旧变量名 */
-  --ntu-blue:var(--apple-blue);
-  --ntu-blue-light:#4a9eff;
-  --ntu-blue-dark:var(--apple-blue-dark);
-  --bg:var(--apple-bg);
-  --text:var(--apple-text);
-  --text2:var(--apple-text2);
-  --border:var(--apple-border);
-  --card:var(--apple-card);
-  --ease:0.3s ease;
+  /* ─── Surface (3 levels) ──────────────────────────────────────── */
+  --bg: #ffffff;
+  --surface: #f5f5f7;
+  --surface-warm: #fbfbfd;
+
+  /* ─── Foreground ramp (4 levels) ─────────────────────────────── */
+  --fg: #1d1d1f;
+  --fg-2: #424245;
+  --muted: #6e6e73;
+  --meta: #86868b;
+
+  /* ─── Border (2 levels) ──────────────────────────────────────── */
+  --border: #d2d2d7;
+  --border-soft: #e8e8ed;
+
+  /* ─── Accent — Apple Action Blue ─────────────────────────────── */
+  --accent: #0071e3;
+  --accent-on: #ffffff;
+  --accent-hover: #0077ed;
+  --accent-active: #0066cc;
+
+  /* ─── Semantic ───────────────────────────────────────────────── */
+  --success: #16a34a;
+  --warn:    #eab308;
+  --danger:  #dc2626;
+
+  /* ─── Typography ──────────────────────────────────────────────── */
+  --font-display: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-body:    "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-mono:    "SF Mono", ui-monospace, "JetBrains Mono", Menlo, Monaco, Consolas, monospace;
+  --text-xs:   12px;
+  --text-sm:   14px;
+  --text-base: 17px;
+  --text-lg:   21px;
+  --text-xl:   28px;
+  --text-2xl:  40px;
+  --text-3xl:  56px;
+  --text-4xl:  80px;
+  --leading-body:  1.47;
+  --leading-tight: 1.05;
+  --tracking-display: -0.015em;
+
+  /* ─── Spacing ─────────────────────────────────────────────────── */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-12: 48px;
+  --section-y-desktop: 100px;
+  --section-y-tablet:  64px;
+  --section-y-phone:   40px;
+
+  /* ─── Radius — Apple 分层圆角体系 ────────────────────────────── */
+  --radius-sm:   8px;
+  --radius-md:   12px;
+  --radius-lg:   18px;
+  --radius-pill: 980px;
+
+  /* ─── Elevation ───────────────────────────────────────────────── */
+  --elev-flat:   none;
+  --elev-ring:   0 0 0 1px var(--border);
+  --elev-raised: 0 12px 32px rgba(0,0,0,0.08);
+  --elev-strong: 0 20px 60px rgba(0,0,0,0.12);
+
+  /* ─── Focus ring ──────────────────────────────────────────────── */
+  --focus-ring: 0 0 0 4px color-mix(in oklab, var(--accent), transparent 65%);
+
+  /* ─── Motion — Apple 减速缓出，绝不回弹 ──────────────────────── */
+  --motion-fast:   150ms;
+  --motion-base:   220ms;
+  --ease-standard: cubic-bezier(0.28, 0, 0.22, 1);
+  --ease-out:      cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ─── Layout ──────────────────────────────────────────────────── */
+  --container-max:            1024px;
+  --container-gutter-desktop: 22px;
+  --container-gutter-tablet:  18px;
+  --container-gutter-phone:   16px;
+
+  /* ─── 兼容旧变量名（保持已有代码不崩） ────────────────────────── */
+  --apple-blue:       var(--accent);
+  --apple-blue-hover: var(--accent-hover);
+  --apple-blue-dark:  var(--accent-active);
+  --apple-bg:         var(--surface);
+  --apple-white:      var(--bg);
+  --apple-black:      var(--fg);
+  --apple-text:       var(--fg);
+  --apple-text2:      var(--meta);
+  --apple-text3:      var(--muted);
+  --apple-border:     var(--border);
+  --apple-card:       var(--bg);
+  --apple-radius:     var(--radius-lg);
+  --apple-radius-lg:  24px;
+  --apple-radius-xl:  28px;
+  --apple-shadow:       0 4px 20px rgba(0,0,0,0.04);
+  --apple-shadow-hover: var(--elev-raised);
+  --apple-shadow-strong:var(--elev-strong);
+  --apple-ease:      var(--ease-standard);
+  --apple-ease-out:  var(--ease-out);
+  --apple-duration:  0.6s;
+  --ff: var(--font-body), "PingFang SC", "Microsoft YaHei", sans-serif;
+  --max-width: 1200px;
+  /* 更深层兼容 */
+  --ntu-blue:       var(--accent);
+  --ntu-blue-light: #4a9eff;
+  --ntu-blue-dark:  var(--accent-active);
+  --text:           var(--fg);
+  --text2:          var(--meta);
+  --border-old:     var(--border);
+  --card:           var(--bg);
+  --ease:           0.3s var(--ease-standard);
 }
 
 /* ---------- Reset ---------- */
@@ -54,13 +139,14 @@ html{
 }
 body{
   font-family:var(--ff);
-  background:var(--apple-bg);
-  color:var(--apple-text);
+  background:var(--surface);
+  color:var(--fg);
   line-height:1.5;
   overflow-x:hidden;
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
   letter-spacing:-0.022em;
+  transition:background var(--motion-base) var(--ease-standard),color var(--motion-base) var(--ease-standard);
 }
 img{max-width:100%;display:block}
 a{text-decoration:none;color:inherit}
@@ -149,20 +235,23 @@ a{text-decoration:none;color:inherit}
 .hero-slide img{
   width:100%;height:100%;object-fit:cover;
   object-position:center;
-  transform:none;
-  transition:transform 6s var(--apple-ease-out);
+  transform:scale(1); /* 初始不缩放 */
+  transition:transform 7s var(--ease-out);
   background-color:#000;
   box-shadow:0 0 0 0.5px rgba(0,0,0,0.1);
   border:0.5px solid rgba(0,0,0,0.1);
 }
-.hero-slide.active img{transform:none}
+.hero-slide.active img{
+  transform:scale(1.08); /* Ken Burns 微缩放，7 秒慢速推进 */
+}
 .hero-overlay{
   position:absolute;inset:0;z-index:1;
+  /* Apple 风格渐变遮罩：顶部微暗保护文字 + 底部深黑引导滚动 */
   background:linear-gradient(to bottom,
-    rgba(0,0,0,0.3) 0%,
-    rgba(0,0,0,0.05) 40%,
-    rgba(0,0,0,0.1) 60%,
-    rgba(0,0,0,0.5) 100%);
+    rgba(0,0,0,0.35) 0%,
+    rgba(0,0,0,0.04) 35%,
+    rgba(0,0,0,0.08) 55%,
+    rgba(0,0,0,0.55) 100%);
 }
 .hero-content{
   position:relative;z-index:2;
@@ -192,16 +281,29 @@ a{text-decoration:none;color:inherit}
   border:1px solid rgba(255,255,255,0.3);
   color:#fff;
   padding:0.875rem 2rem;
-  border-radius:980px;
-  font-weight:400;font-size:1.0625rem;
-  transition:all 0.3s var(--apple-ease);
+  border-radius:var(--radius-pill);
+  font-weight:500;font-size:1.0625rem;
+  letter-spacing:-0.01em;
+  transition:all var(--motion-base) var(--ease-standard);
   cursor:pointer;
+  position:relative;overflow:hidden;
 }
 .hero-cta:hover{
   background:rgba(255,255,255,0.25);
+  border-color:rgba(255,255,255,0.45);
   transform:translateY(-1px);
+  box-shadow:0 8px 32px rgba(0,0,0,0.15);
 }
-.hero-cta svg{width:16px;height:16px;fill:currentColor}
+.hero-cta:active{
+  transform:scale(0.97);
+  transition:transform var(--motion-fast) var(--ease-standard);
+}
+.hero-cta:focus-visible{
+  outline:none;
+  box-shadow:var(--focus-ring),0 8px 32px rgba(0,0,0,0.15);
+}
+.hero-cta svg{width:16px;height:16px;fill:currentColor;transition:transform var(--motion-fast) var(--ease-standard)}
+.hero-cta:hover svg{transform:translateX(2px)}
 .hero-scroll{
   position:absolute;bottom:2rem;left:50%;
   transform:translateX(-50%);z-index:2;
@@ -251,8 +353,8 @@ section{scroll-margin-top:48px}
    欢迎区 — 浅灰背景 + 大圆角图片
    ================================================================ */
 .welcome{
-  background:var(--apple-bg);
-  padding:6rem 0;
+  background:var(--surface);
+  padding:var(--section-y-desktop) 0;
 }
 .welcome-grid{
   display:grid;grid-template-columns:1fr 1fr;
@@ -290,9 +392,9 @@ section{scroll-margin-top:48px}
    住在通大 — 深色背景区段
    ================================================================ */
 .campus-life{
-  background:var(--apple-bg);
-  color:var(--apple-text);
-  padding:6rem 0;
+  background:var(--surface);
+  color:var(--fg);
+  padding:var(--section-y-desktop) 0;
 }
 .cl-grid{
   display:grid;grid-template-columns:1fr 1fr;
@@ -348,8 +450,8 @@ section{scroll-margin-top:48px}
    校区巡礼 — 浅色背景 + 大圆角 Banner
    ================================================================ */
 .campus-tour{
-  padding:6rem 0;
-  background:var(--apple-bg);
+  padding:var(--section-y-desktop) 0;
+  background:var(--surface);
 }
 .campus-section{margin-bottom:6rem}
 .campus-banner{
@@ -389,22 +491,30 @@ section{scroll-margin-top:48px}
   padding:0 2rem;
 }
 .bld-card{
-  background:var(--apple-card);
+  background:var(--bg);
   border-radius:var(--apple-radius-lg);
   overflow:hidden;
   box-shadow:var(--apple-shadow);
-  transition:transform 0.4s var(--apple-ease),box-shadow 0.4s var(--apple-ease);
+  transition:transform var(--motion-base) var(--ease-standard),box-shadow var(--motion-base) var(--ease-standard);
   cursor:pointer;
   will-change:transform;
 }
 .bld-card:hover{
   transform:translateY(-4px);
-  box-shadow:var(--apple-shadow-hover);
+  box-shadow:var(--elev-raised);
+}
+.bld-card:active{
+  transform:scale(0.98);
+  transition:transform var(--motion-fast) var(--ease-standard);
+}
+.bld-card:focus-visible{
+  outline:none;
+  box-shadow:var(--focus-ring);
 }
 .bld-img{height:200px;overflow:hidden}
 .bld-img img{
   width:100%;height:100%;object-fit:cover;
-  transition:transform 0.6s var(--apple-ease);
+  transition:transform 0.6s var(--ease-standard);
 }
 .bld-card:hover .bld-img img{transform:scale(1.04)}
 .bld-body{padding:1.5rem}
@@ -430,8 +540,8 @@ section{scroll-margin-top:48px}
    学院巡礼 — 白色卡片网格
    ================================================================ */
 .college-tour{
-  padding:6rem 0;
-  background:var(--apple-bg);
+  padding:var(--section-y-desktop) 0;
+  background:var(--surface);
 }
 .college-grid{
   display:grid;
@@ -440,18 +550,22 @@ section{scroll-margin-top:48px}
   max-width:var(--max-width);margin:0 auto;padding:0 2rem;
 }
 .college-card{
-  background:var(--apple-card);
+  background:var(--bg);
   border-radius:var(--apple-radius-lg);
   padding:2rem;
   box-shadow:var(--apple-shadow);
-  transition:transform 0.4s var(--apple-ease),box-shadow 0.4s var(--apple-ease);
+  transition:transform var(--motion-base) var(--ease-standard),box-shadow var(--motion-base) var(--ease-standard);
   position:relative;overflow:hidden;
   display:flex;flex-direction:column;
   will-change:transform;
 }
 .college-card:hover{
   transform:translateY(-4px);
-  box-shadow:var(--apple-shadow-hover);
+  box-shadow:var(--elev-raised);
+}
+.college-card:active{
+  transform:scale(0.98);
+  transition:transform var(--motion-fast) var(--ease-standard);
 }
 .college-card-icon{
   width:48px;height:48px;
@@ -491,18 +605,30 @@ section{scroll-margin-top:48px}
 }
 .college-card-btn{
   display:inline-flex;align-items:center;gap:0.5rem;
-  background:var(--apple-blue);color:#fff;
+  background:var(--accent);color:var(--accent-on);
   padding:0.625rem 1.25rem;
-  border-radius:980px;
-  font-weight:400;font-size:0.875rem;
-  transition:all 0.3s var(--apple-ease);
+  border-radius:var(--radius-pill);
+  font-weight:500;font-size:0.875rem;
+  letter-spacing:-0.01em;
+  transition:all var(--motion-base) var(--ease-standard);
   text-decoration:none;align-self:flex-start;
+  border:none;cursor:pointer;
 }
 .college-card-btn:hover{
-  background:var(--apple-blue-hover);
+  background:var(--accent-hover);
   transform:translateY(-1px);
+  box-shadow:0 8px 24px rgba(0,113,227,0.25);
 }
-.college-card-btn svg{width:14px;height:14px;fill:currentColor}
+.college-card-btn:active{
+  transform:scale(0.96);
+  transition:transform var(--motion-fast) var(--ease-standard);
+}
+.college-card-btn:focus-visible{
+  outline:none;
+  box-shadow:var(--focus-ring);
+}
+.college-card-btn svg{width:14px;height:14px;fill:currentColor;transition:transform var(--motion-fast) var(--ease-standard)}
+.college-card-btn:hover svg{transform:translateX(2px)}
 .loading-spinner{
   text-align:center;padding:4rem 2rem;
   color:var(--apple-text2);
@@ -516,23 +642,33 @@ section{scroll-margin-top:48px}
 }
 .college-filter-btn{
   padding:0.5rem 1.25rem;
-  border:1px solid var(--apple-border);
-  background:var(--apple-card);
-  color:var(--apple-text);
-  border-radius:980px;
+  border:1px solid var(--border);
+  background:var(--bg);
+  color:var(--fg);
+  border-radius:var(--radius-pill);
   cursor:pointer;
   font-size:0.8125rem;font-weight:500;
-  transition:all 0.3s var(--apple-ease);
+  letter-spacing:-0.01em;
+  transition:all var(--motion-base) var(--ease-standard);
   white-space:nowrap;
 }
 .college-filter-btn:hover{
-  border-color:var(--apple-blue);
-  color:var(--apple-blue);
+  border-color:var(--accent);
+  color:var(--accent);
+  background:rgba(0,113,227,0.04);
+}
+.college-filter-btn:active{
+  transform:scale(0.96);
+  transition:transform var(--motion-fast) var(--ease-standard);
+}
+.college-filter-btn:focus-visible{
+  outline:none;
+  box-shadow:var(--focus-ring);
 }
 .college-filter-btn.active{
-  background:var(--apple-blue);
-  color:#fff;
-  border-color:var(--apple-blue);
+  background:var(--accent);
+  color:var(--accent-on);
+  border-color:var(--accent);
 }
 
 /* ========== 专业网格 ========== */
@@ -543,11 +679,11 @@ section{scroll-margin-top:48px}
   max-width:var(--max-width);margin:0 auto;padding:0 2rem;
 }
 .major-card{
-  background:var(--apple-card);
-  border-radius:var(--apple-radius);
+  background:var(--bg);
+  border-radius:var(--radius-lg);
   padding:1.25rem 1rem;
   box-shadow:var(--apple-shadow);
-  transition:all 0.3s var(--apple-ease);
+  transition:all var(--motion-base) var(--ease-standard);
   text-decoration:none;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   text-align:center;
@@ -557,8 +693,16 @@ section{scroll-margin-top:48px}
 }
 .major-card:hover{
   transform:translateY(-2px);
-  box-shadow:var(--apple-shadow-hover);
-  border-color:var(--apple-blue);
+  box-shadow:var(--elev-raised);
+  border-color:var(--accent);
+}
+.major-card:active{
+  transform:scale(0.97);
+  transition:transform var(--motion-fast) var(--ease-standard);
+}
+.major-card:focus-visible{
+  outline:none;
+  box-shadow:var(--focus-ring);
 }
 .major-card-name{
   font-size:0.9375rem;font-weight:600;
@@ -574,193 +718,184 @@ section{scroll-margin-top:48px}
 }
 
 /* ================================================================
-   学长学姐说 — 深色渐变背景 + 弹幕
+   学长学姐说 — Apple 风格引用轮播 + 帖子卡片网格
    ================================================================ */
 .testimonials{
-  background:var(--apple-bg);
-  padding:6rem 0;overflow:hidden;
+  background:var(--surface);
+  padding:var(--section-y-desktop) 0;overflow:hidden;
   position:relative;
 }
-.testimonials .section-label{color:var(--apple-blue)}
-.testimonials .section-title{color:var(--apple-text)}
-.testimonials .section-desc{color:var(--apple-text2)}
-.danmaku-container{
-  position:relative;width:100%;height:420px;
-  overflow:hidden;margin:0 auto;
-  max-width:var(--max-width);padding:0 2rem;
-  contain:layout style;
+.testimonials .section-label{color:var(--accent)}
+.testimonials .section-title{color:var(--fg)}
+.testimonials .section-desc{color:var(--meta)}
+
+/* ─── 精选引用轮播 ──────────────────────────────────────────────── */
+.t-quote-stage{
+  position:relative;max-width:820px;margin:0 auto;padding:0 2rem;
+  min-height:260px;
 }
-.danmaku-track{position:relative;width:100%;height:100%}
-.danmaku-item{
-  position:absolute;white-space:nowrap;
-  padding:8px 18px;
-  border-radius:980px;
-  background:rgba(0,0,0,0.06);
-  backdrop-filter:blur(8px);
-  -webkit-backdrop-filter:blur(8px);
-  border:1px solid rgba(0,0,0,0.08);
-  color:var(--apple-text);cursor:default;user-select:none;
-  will-change:transform;
-  animation:danmaku-scroll linear forwards;
-  contain:layout style;
-  transition:background 0.3s,border-color 0.3s,transform 0.3s;
+.t-quote-card{
+  position:absolute;inset:0;padding:0 2rem;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;
+  opacity:0;transform:translateY(12px);
+  pointer-events:none;
+  transition:opacity 0.5s var(--ease-standard),transform 0.5s var(--ease-standard);
 }
-.danmaku-item:hover{
-  background:rgba(0,0,0,0.1);
-  border-color:rgba(0,0,0,0.15);
-  transform:scale(1.04);
+.t-quote-card.active{
+  opacity:1;transform:translateY(0);
+  pointer-events:auto;
 }
-@keyframes danmaku-scroll{
-  0%{transform:translateX(100vw)}
-  100%{transform:translateX(-100%)}
+.t-quote-mark{
+  width:40px;height:30px;fill:var(--accent);opacity:0.18;
+  margin-bottom:1.25rem;flex-shrink:0;
 }
+.t-quote-text{
+  font-size:1.375rem;font-weight:500;line-height:1.6;
+  color:var(--fg);letter-spacing:-0.01em;
+  max-width:640px;margin-bottom:1.5rem;
+}
+.t-quote-author{
+  display:flex;align-items:center;gap:0.75rem;
+}
+.t-quote-avatar{
+  width:36px;height:36px;border-radius:50%;
+  background:var(--accent);color:var(--accent-on);
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.875rem;font-weight:600;flex-shrink:0;
+}
+.t-quote-name{
+  display:block;font-size:0.9375rem;font-weight:600;
+  color:var(--fg);text-align:left;letter-spacing:-0.01em;
+}
+.t-quote-tag{
+  display:block;font-size:0.75rem;color:var(--meta);
+  text-align:left;margin-top:1px;
+}
+
+/* 轮播指示器圆点 */
+.t-quote-dots{
+  display:flex;justify-content:center;gap:0.5rem;
+  margin-top:1.75rem;position:relative;z-index:1;
+}
+.t-dot{
+  width:8px;height:8px;border-radius:50%;border:none;
+  background:var(--border);cursor:pointer;padding:0;
+  transition:all var(--motion-base) var(--ease-standard);
+}
+.t-dot:hover{background:var(--meta)}
+.t-dot.active{background:var(--accent);width:24px;border-radius:4px;}
+
+/* ─── 来源标注 ───────────────────────────────────────────────── */
 .testimonials-source{
-  text-align:center;margin-top:2.5rem;padding:0 2rem;
+  text-align:center;margin-top:1.5rem;padding:0 2rem;
   max-width:var(--max-width);margin-left:auto;margin-right:auto;
 }
 .testimonials-source p{
-  font-size:0.875rem;
-  color:rgba(0,0,0,0.5);
-  margin-bottom:0.75rem;
+  font-size:0.8125rem;color:var(--muted);
 }
+
+/* ─── 帖子区 ──────────────────────────────────────────────────── */
 .testimonials-posts{
-  text-align:center;margin-top:2rem;padding:0 2rem;
+  text-align:center;margin-top:2.5rem;padding:0 2rem;
   max-width:var(--max-width);margin-left:auto;margin-right:auto;
 }
 .posts-toggle-btn{
   display:inline-flex;align-items:center;gap:0.5rem;
   padding:0.75rem 1.75rem;
-  background:rgba(255,255,255,0.45);
-  backdrop-filter:blur(20px) saturate(180%);
-  -webkit-backdrop-filter:blur(20px) saturate(180%);
-  color:#4a4a4f;
-  border:0.5px solid rgba(255,255,255,0.6);
-  box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,0.4),
-    0 2px 12px rgba(0,0,0,0.04);
-  border-radius:980px;
-  font-size:0.9375rem;font-weight:400;
+  background:var(--bg);
+  color:var(--accent);
+  border:1px solid var(--accent);
+  border-radius:var(--radius-pill);
+  font-size:0.9375rem;font-weight:500;letter-spacing:-0.01em;
   cursor:pointer;
-  transition:all 0.3s var(--apple-ease);
+  transition:all var(--motion-base) var(--ease-standard);
 }
 .posts-toggle-btn:hover{
-  background:rgba(255,255,255,0.65);
-  border-color:rgba(255,255,255,0.8);
-  box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,0.5),
-    0 6px 20px rgba(0,0,0,0.08);
+  background:var(--accent);
+  color:var(--accent-on);
+  box-shadow:0 8px 24px rgba(0,113,227,0.2);
 }
-.posts-toggle-btn svg{transition:transform 0.3s var(--apple-ease)}
+.posts-toggle-btn:active{transform:scale(0.96)}
+.posts-toggle-btn svg{transition:transform var(--motion-fast) var(--ease-standard)}
 .posts-toggle-btn.active svg{transform:rotate(180deg)}
+
+/* 帖子网格容器 */
 .posts-list{
   overflow:hidden;
   display:grid;
   grid-template-rows:0fr;
-  transition:grid-template-rows 0.5s var(--apple-ease);
+  transition:grid-template-rows 0.5s var(--ease-standard);
   margin-top:1.5rem;
 }
-.posts-list>.post-item-wrap{min-height:0}
 .posts-list.show{grid-template-rows:1fr}
-.post-item{margin-bottom:0.75rem}
-.post-link{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:1rem 1.5rem;
-  background:linear-gradient(135deg,rgba(245,245,247,0.7),rgba(235,235,237,0.5));
-  backdrop-filter:blur(24px) saturate(200%);
-  -webkit-backdrop-filter:blur(24px) saturate(200%);
-  border:0.5px solid rgba(255,255,255,0.8);
-  box-shadow:
-    inset 0 1px 0 0 rgba(255,255,255,0.6),
-    inset 0 0 0 1px rgba(255,255,255,0.3),
-    0 1px 3px rgba(0,0,0,0.04),
-    0 4px 12px rgba(0,0,0,0.03);
-  border-radius:var(--apple-radius);
-  text-decoration:none;
-  transition:all 0.3s var(--apple-ease);
+.posts-list>.posts-grid{min-height:0}
+
+/* 帖子卡片 */
+.posts-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+  gap:1rem;padding-bottom:0.5rem;
 }
-.post-link:hover{
-  background:linear-gradient(135deg,rgba(250,250,252,0.85),rgba(242,242,244,0.65));
-  border-color:rgba(255,255,255,0.9);
-  box-shadow:
-    inset 0 1px 0 0 rgba(255,255,255,0.7),
-    inset 0 0 0 1px rgba(255,255,255,0.4),
-    0 2px 8px rgba(0,0,0,0.05),
-    0 8px 24px rgba(0,0,0,0.06);
-  transform:translateX(4px);
+.t-post-card{
+  display:flex;flex-direction:column;gap:0.625rem;
+  background:var(--surface);
+  border-radius:var(--radius-lg);
+  padding:1.5rem;
+  text-decoration:none;text-align:left;
+  border:1px solid transparent;
+  box-shadow:var(--apple-shadow);
+  transition:all var(--motion-base) var(--ease-standard);
+  cursor:pointer;
 }
-.post-title{
-  color:#4a4a4f;font-size:0.9375rem;font-weight:400;
-  flex:1;text-align:left;
+.t-post-card:hover{
+  border-color:var(--accent);
+  box-shadow:var(--elev-raised);
+  transform:translateY(-2px);
 }
-.post-platform{
-  color:#86868b;font-size:0.75rem;font-weight:500;
-  padding:0.2rem 0.625rem;
-  background:linear-gradient(135deg,rgba(245,245,247,0.65),rgba(238,238,240,0.45));
-  backdrop-filter:blur(20px) saturate(200%);
-  -webkit-backdrop-filter:blur(20px) saturate(200%);
-  border:0.5px solid rgba(255,255,255,0.75);
-  box-shadow:
-    inset 0 1px 0 0 rgba(255,255,255,0.5),
-    0 1px 4px rgba(0,0,0,0.03);
-  border-radius:6px;
-  margin-left:1rem;
-  letter-spacing:0.02em;
-  flex-shrink:0;
+.t-post-card:active{transform:scale(0.98)}
+.t-post-tag{
+  display:inline-block;align-self:flex-start;
+  padding:0.2rem 0.75rem;
+  background:rgba(0,113,227,0.08);
+  color:var(--accent);border-radius:var(--radius-pill);
+  font-size:0.6875rem;font-weight:600;letter-spacing:0.02em;
+  text-transform:uppercase;
 }
-.post-platform:hover{
-  background:linear-gradient(135deg,rgba(250,250,252,0.8),rgba(245,245,247,0.6));
-  box-shadow:
-    inset 0 1px 0 0 rgba(255,255,255,0.6),
-    0 2px 8px rgba(0,0,0,0.06);
+.t-post-title{
+  font-size:0.9375rem;font-weight:600;color:var(--fg);
+  line-height:1.45;letter-spacing:-0.01em;
+  flex:1;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;
+  overflow:hidden;
 }
-body.dark .post-platform{
-  color:#98989d;
-  background:linear-gradient(135deg,rgba(50,50,52,0.6),rgba(40,40,42,0.4));
-  border-color:rgba(255,255,255,0.1);
-  box-shadow:
-    inset 0 1px 0 0 rgba(255,255,255,0.08),
-    0 1px 4px rgba(0,0,0,0.2);
+.t-post-meta{
+  font-size:0.75rem;color:var(--meta);
+  display:flex;align-items:center;gap:0.375rem;
 }
-body.dark .post-platform:hover{
-  background:linear-gradient(135deg,rgba(60,60,62,0.7),rgba(50,50,52,0.5));
-  border-color:rgba(255,255,255,0.16);
+.t-post-meta::before{
+  content:'';display:inline-block;width:6px;height:6px;
+  background:var(--accent);border-radius:50%;opacity:0.5;
 }
-body.dark .post-link{
-  background:linear-gradient(135deg,rgba(44,44,46,0.7),rgba(36,36,38,0.5));
-  border-color:rgba(255,255,255,0.08);
-  box-shadow:
-    inset 0 1px 0 0 rgba(255,255,255,0.06),
-    inset 0 0 0 1px rgba(255,255,255,0.04),
-    0 2px 12px rgba(0,0,0,0.25);
-}
-body.dark .post-link:hover{
-  background:linear-gradient(135deg,rgba(54,54,56,0.8),rgba(44,44,46,0.6));
-  border-color:rgba(255,255,255,0.14);
-  box-shadow:
-    inset 0 1px 0 0 rgba(255,255,255,0.08),
-    inset 0 0 0 1px rgba(255,255,255,0.06),
-    0 8px 24px rgba(0,0,0,0.35);
-}
-body.dark .posts-toggle-btn{
-  color:#a1a1a6;
-  background:rgba(255,255,255,0.06);
-  border-color:rgba(255,255,255,0.1);
-  box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,0.05),
-    0 2px 12px rgba(0,0,0,0.2);
-}
-body.dark .posts-toggle-btn:hover{
-  background:rgba(255,255,255,0.1);
-  border-color:rgba(255,255,255,0.16);
-}
+
+/* ─── 深色模式 ──────────────────────────────────────────────────── */
+body.dark .testimonials{background:var(--surface)}
+body.dark .t-quote-text{color:var(--fg)}
+body.dark .t-quote-name{color:var(--fg)}
+body.dark .t-quote-tag{color:var(--meta)}
+body.dark .t-quote-mark{fill:var(--accent);opacity:0.25}
+body.dark .t-post-card{background:var(--surface);border-color:var(--border-soft)}
+body.dark .t-post-card:hover{border-color:var(--accent)}
+body.dark .posts-toggle-btn{background:var(--bg);border-color:var(--accent);color:var(--accent)}
+body.dark .posts-toggle-btn:hover{background:var(--accent);color:var(--accent-on)}
 
 /* ================================================================
    活力校园 — 深色背景 + 玻璃卡片
    ================================================================ */
 .student-life{
-  background:var(--apple-bg);
-  color:var(--apple-text);
-  padding:6rem 0;
+  background:var(--surface);
+  color:var(--fg);
+  padding:var(--section-y-desktop) 0;
 }
 .sl-header{text-align:center;margin-bottom:4rem;padding:0 1rem}
 .sl-header h2{
@@ -788,13 +923,22 @@ body.dark .posts-toggle-btn:hover{
   border-radius:var(--apple-radius-lg);
   padding:2rem;
   border:1px solid rgba(0,0,0,0.08);
-  transition:all 0.4s var(--apple-ease);
+  transition:all var(--motion-base) var(--ease-standard);
   color:inherit;text-decoration:none;
   cursor:pointer;
 }
 .sl-card:hover{
   background:rgba(0,0,0,0.08);
   transform:translateY(-3px);
+  box-shadow:var(--elev-raised);
+}
+.sl-card:active{
+  transform:scale(0.97);
+  transition:transform var(--motion-fast) var(--ease-standard);
+}
+.sl-card:focus-visible{
+  outline:none;
+  box-shadow:var(--focus-ring);
 }
 .sl-card-icon{
   width:48px;height:48px;
@@ -815,88 +959,131 @@ body.dark .posts-toggle-btn:hover{
 }
 
 /* ================================================================
-   入学指南 — 白色卡片 + 步骤标记
+   入学指南 — Apple 时间线步骤
    ================================================================ */
 .guide{
-  padding:6rem 0;
-  background:var(--apple-bg);
+  padding:var(--section-y-desktop) 0;
+  background:var(--surface);
 }
-.guide-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:1.5rem;
-  max-width:var(--max-width);margin:0 auto;padding:0 2rem;
-}
-.guide-card{
-  background:var(--apple-card);
-  border-radius:var(--apple-radius-lg);
-  padding:2.5rem 2rem 2rem;
-  text-align:center;
-  box-shadow:var(--apple-shadow);
-  transition:transform 0.4s var(--apple-ease),box-shadow 0.4s var(--apple-ease);
+/* 时间线容器 */
+.guide-timeline{
+  max-width:820px;margin:0 auto;padding:0 2rem;
   position:relative;
-  will-change:transform;
 }
-.guide-card::before{
-  content:attr(data-step);
-  position:absolute;top:-14px;left:50%;
-  transform:translateX(-50%);
-  width:28px;height:28px;
-  background:var(--apple-blue);color:#fff;
-  border-radius:50%;
+/* 每一步 */
+.g-step{
+  display:flex;gap:2rem;position:relative;
+  padding-bottom:3rem;
+}
+.g-step:last-child{padding-bottom:0}
+
+/* 左侧：步骤编号 + 连接线 */
+.g-step-marker{
+  display:flex;flex-direction:column;align-items:center;
+  flex-shrink:0;width:48px;
+}
+.g-step-num{
+  width:44px;height:44px;border-radius:50%;
+  background:var(--accent);color:var(--accent-on);
   display:flex;align-items:center;justify-content:center;
-  font-size:0.8125rem;font-weight:600;
+  font-size:0.8125rem;font-weight:700;
+  font-family:var(--font-mono);letter-spacing:0.04em;
+  flex-shrink:0;z-index:1;
+  box-shadow:0 4px 16px rgba(0,113,227,0.25);
 }
-.guide-card:hover{
-  transform:translateY(-3px);
-  box-shadow:var(--apple-shadow-hover);
+.g-step-line{
+  width:2px;flex:1;min-height:3rem;
+  background:linear-gradient(to bottom,var(--accent),var(--border));
+  margin-top:0.5rem;border-radius:1px;
 }
-.guide-icon{
-  width:56px;height:56px;
-  background:var(--apple-blue);
-  border-radius:14px;
-  display:flex;align-items:center;justify-content:center;
-  margin:0 auto 1.25rem;
+
+/* 右侧：卡片 */
+.g-step-card{
+  flex:1;display:flex;gap:1.25rem;
+  background:var(--surface);
+  border-radius:var(--apple-radius-lg);
+  padding:1.75rem 2rem 1.75rem 1.75rem;
+  box-shadow:var(--apple-shadow);
+  border:1px solid var(--border-soft);
+  transition:all var(--motion-base) var(--ease-standard);
 }
-.guide-icon svg{width:28px;height:28px;fill:#fff}
-.guide-card h3{
-  font-size:1.125rem;font-weight:600;
-  margin-bottom:0.75rem;
-  letter-spacing:-0.016em;
+.g-step-card:hover{
+  box-shadow:var(--elev-raised);
+  border-color:var(--border);
+  transform:translateY(-2px);
 }
-.guide-card p{
-  font-size:0.875rem;line-height:1.5;
-  color:var(--apple-text2);
-  margin-bottom:1rem;
-}
-.guide-link{
-  display:inline-flex;align-items:center;gap:0.25rem;
-  font-size:0.8125rem;font-weight:500;
-  color:var(--apple-blue);
-  transition:all 0.3s var(--apple-ease);
-  padding:0.375rem 0.75rem;
-  border-radius:980px;
+
+/* 图标圆形容器 */
+.g-step-icon{
+  width:52px;height:52px;border-radius:14px;
   background:rgba(0,113,227,0.08);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
 }
-.guide-link:hover{
-  background:var(--apple-blue);
-  color:#fff;
-  transform:translateY(-1px);
+.g-step-icon svg{width:24px;height:24px;fill:var(--accent)}
+
+/* 卡片正文 */
+.g-step-body{flex:1}
+.g-step-tag{
+  display:inline-block;font-size:0.6875rem;font-weight:600;
+  color:var(--accent);text-transform:uppercase;letter-spacing:0.06em;
+  margin-bottom:0.375rem;
 }
-.guide-link svg{
-  transition:transform 0.3s var(--apple-ease);
+.g-step-body h3{
+  font-size:1.25rem;font-weight:600;color:var(--fg);
+  margin-bottom:0.5rem;letter-spacing:-0.016em;line-height:1.2;
 }
-.guide-link:hover svg{
-  transform:translateX(2px);
+.g-step-body p{
+  font-size:0.9375rem;line-height:1.55;color:var(--meta);
+  margin-bottom:1rem;max-width:52ch;
+}
+
+/* 步骤 CTA 链接 */
+.g-step-link{
+  display:inline-flex;align-items:center;gap:0.375rem;
+  font-size:0.875rem;font-weight:500;color:var(--accent);
+  transition:all var(--motion-base) var(--ease-standard);
+  padding:0.375rem 0;
+}
+.g-step-link:hover{color:var(--accent-hover)}
+.g-step-link:hover svg{transform:translateX(2px)}
+.g-step-link svg{
+  width:14px;height:14px;fill:currentColor;
+  transition:transform var(--motion-fast) var(--ease-standard);
+}
+.g-step-link:active{transform:scale(0.97)}
+
+/* ─── 深色模式 ───────────────────────────────────── */
+body.dark .guide{background:var(--bg)}
+body.dark .g-step-card{
+  background:var(--surface);
+  border-color:var(--border-soft);
+}
+body.dark .g-step-card:hover{border-color:var(--border)}
+body.dark .g-step-icon{background:rgba(41,151,255,0.12)}
+body.dark .g-step-icon svg{fill:var(--accent)}
+body.dark .g-step-body h3{color:var(--fg)}
+body.dark .g-step-body p{color:var(--meta)}
+body.dark .g-step-line{background:linear-gradient(to bottom,var(--accent),var(--border))}
+
+/* ─── 移动端 ─────────────────────────────────────── */
+@media(max-width:734px){
+  .g-step{gap:1rem;padding-bottom:2rem}
+  .g-step-marker{width:36px}
+  .g-step-num{width:36px;height:36px;font-size:0.75rem}
+  .g-step-card{flex-direction:column;gap:1rem;padding:1.5rem}
+  .g-step-icon{width:44px;height:44px;border-radius:12px}
+  .g-step-icon svg{width:20px;height:20px}
+  .g-step-body h3{font-size:1.125rem}
 }
 
 /* ================================================================
    预估分数线区段 — 深色渐变背景 + 白色表格卡片
    ================================================================ */
 .estimated-scores{
-  padding:6rem 0;
-  background:var(--apple-bg);
-  color:var(--apple-text);
+  padding:var(--section-y-desktop) 0;
+  background:var(--surface);
+  color:var(--fg);
 }
 .estimated-scores .section-label{color:var(--apple-blue)}
 .estimated-scores h2{color:var(--apple-text)}
@@ -905,8 +1092,8 @@ body.dark .posts-toggle-btn:hover{
    页脚 — Apple 风格浅灰背景 + 多列链接
    ================================================================ */
 .footer{
-  background:var(--apple-bg);
-  color:var(--apple-text3);
+  background:var(--surface);
+  color:var(--muted);
   padding:4rem 0 2rem;
 }
 .footer-grid{
@@ -964,16 +1151,32 @@ body.dark .posts-toggle-btn:hover{
 }
 
 /* ================================================================
-   深色模式
+   深色模式 — 基于 Apple 深色表面体系
    ================================================================ */
 body.dark{
-  --apple-bg:#000;
-  --apple-white:#1c1c1e;
-  --apple-text:#f5f5f7;
-  --apple-text2:#a1a1a6;
-  --apple-text3:#86868b;
-  --apple-border:#38383a;
-  --apple-card:#1c1c1e;
+  --bg: #000000;
+  --surface: #1c1c1e;
+  --surface-warm: #1c1c1e;
+  --fg: #f5f5f7;
+  --fg-2: #a1a1a6;
+  --muted: #98989d;
+  --meta: #86868b;
+  --border: #38383a;
+  --border-soft: #2c2c2e;
+  --accent: #2997ff; /* 深色模式用高亮蓝 */
+  --accent-hover: #40a9ff;
+  --accent-active: #0071e3;
+  /* 兼容旧变量 */
+  --apple-bg: #000000;
+  --apple-white: #1c1c1e;
+  --apple-text: #f5f5f7;
+  --apple-text2: #a1a1a6;
+  --apple-text3: #86868b;
+  --apple-border: #38383a;
+  --apple-card: #1c1c1e;
+  --apple-shadow: 0 4px 20px rgba(0,0,0,0.25);
+  --apple-shadow-hover: 0 12px 40px rgba(0,0,0,0.4);
+  --apple-shadow-strong: 0 20px 60px rgba(0,0,0,0.5);
 }
 body.dark .navbar{
   background:rgba(0,0,0,0.72);
@@ -982,26 +1185,47 @@ body.dark .navbar{
 }
 body.dark .navbar.scrolled{
   background:rgba(0,0,0,0.85);
-  border-bottom-color:var(--apple-border);
+  border-bottom-color:var(--border);
 }
-body.dark .welcome{background:var(--apple-bg)}
-body.dark .campus-tour{background:var(--apple-bg)}
-body.dark .college-tour{background:var(--apple-bg)}
-body.dark .guide{background:var(--apple-bg)}
-body.dark .footer{background:var(--apple-bg)}
+body.dark .welcome{background:var(--surface)}
+body.dark .campus-tour{background:var(--surface)}
+body.dark .college-tour{background:var(--surface)}
+body.dark .guide{background:var(--surface)}
+body.dark .student-life{background:var(--surface);color:var(--fg)}
+body.dark .testimonials{background:var(--surface)}
+body.dark .estimated-scores{background:var(--surface);color:var(--fg)}
+body.dark .footer{background:var(--surface)}
 body.dark .icon-btn:hover{background:rgba(255,255,255,0.1)}
-body.dark .nav-logo{color:var(--apple-text)}
-body.dark .nav-links a{color:var(--apple-text)}
+body.dark .nav-logo{color:var(--fg)}
+body.dark .nav-links a{color:var(--fg)}
 body.dark .footer-social a{background:rgba(255,255,255,0.08)}
-body.dark .footer-social svg{fill:var(--apple-text3)}
+body.dark .footer-social svg{fill:var(--muted)}
+body.dark .section-title{color:var(--fg)}
+body.dark .section-desc{color:var(--meta)}
+body.dark .welcome-text h2{color:var(--fg)}
+body.dark .welcome-text p{color:var(--meta)}
+body.dark .cl-text h2{color:var(--fg)}
+body.dark .cl-text>p{color:var(--meta)}
+body.dark .cl-feat-icon{background:rgba(255,255,255,0.1)}
+body.dark .cl-feat-icon svg{fill:var(--fg)}
+body.dark .cl-feat p{color:var(--meta)}
+body.dark .sl-header h2{color:var(--fg)}
+body.dark .sl-header p{color:var(--meta)}
+body.dark .sl-card{background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.08)}
+body.dark .sl-card:hover{background:rgba(255,255,255,0.1)}
+body.dark .sl-card-icon{background:rgba(255,255,255,0.1)}
+body.dark .sl-card-icon svg{fill:var(--fg)}
+body.dark .sl-card h3{color:var(--fg)}
+body.dark .sl-card p{color:var(--meta)}
+body.dark .hero-overlay{background:linear-gradient(to bottom,rgba(0,0,0,0.5) 0%,rgba(0,0,0,0.08) 35%,rgba(0,0,0,0.12) 55%,rgba(0,0,0,0.7) 100%)}
 
 /* ================================================================
-   滚动渐显动画 — Apple 风格淡入上移
+   滚动渐显动画 — Apple 风格淡入上移（提速 + 交错）
    ================================================================ */
 .reveal{
   opacity:0;
-  transform:translateY(24px);
-  transition:opacity 1s var(--apple-ease),transform 1s var(--apple-ease);
+  transform:translateY(30px);
+  transition:opacity 0.6s var(--ease-standard),transform 0.6s var(--ease-standard);
   will-change:opacity,transform;
 }
 .reveal.visible{
@@ -1012,7 +1236,7 @@ body.dark .footer-social svg{fill:var(--apple-text3)}
 .reveal-left{
   opacity:0;
   transform:translateX(-30px);
-  transition:opacity 1s var(--apple-ease),transform 1s var(--apple-ease);
+  transition:opacity 0.6s var(--ease-standard),transform 0.6s var(--ease-standard);
   will-change:opacity,transform;
 }
 .reveal-left.visible{
@@ -1023,7 +1247,7 @@ body.dark .footer-social svg{fill:var(--apple-text3)}
 .reveal-right{
   opacity:0;
   transform:translateX(30px);
-  transition:opacity 1s var(--apple-ease),transform 1s var(--apple-ease);
+  transition:opacity 0.6s var(--ease-standard),transform 0.6s var(--ease-standard);
   will-change:opacity,transform;
 }
 .reveal-right.visible{
@@ -1031,6 +1255,46 @@ body.dark .footer-social svg{fill:var(--apple-text3)}
   transform:translateX(0);
   will-change:auto;
 }
+
+/* ─── 网格子元素交错渐显 ────────────────────────────────────────── */
+.college-grid .college-card:nth-child(1),
+.buildings-grid .bld-card:nth-child(1),
+.guide-grid .guide-card:nth-child(1),
+.sl-grid .sl-card:nth-child(1),
+.major-grid .major-card:nth-child(1) { transition-delay: 0s; }
+.college-grid .college-card:nth-child(2),
+.buildings-grid .bld-card:nth-child(2),
+.guide-grid .guide-card:nth-child(2),
+.sl-grid .sl-card:nth-child(2),
+.major-grid .major-card:nth-child(2) { transition-delay: 0.06s; }
+.college-grid .college-card:nth-child(3),
+.buildings-grid .bld-card:nth-child(3),
+.guide-grid .guide-card:nth-child(3),
+.sl-grid .sl-card:nth-child(3),
+.major-grid .major-card:nth-child(3) { transition-delay: 0.12s; }
+.college-grid .college-card:nth-child(4),
+.buildings-grid .bld-card:nth-child(4),
+.guide-grid .guide-card:nth-child(4),
+.sl-grid .sl-card:nth-child(4),
+.major-grid .major-card:nth-child(4) { transition-delay: 0.18s; }
+.college-grid .college-card:nth-child(5),
+.buildings-grid .bld-card:nth-child(5),
+.guide-grid .guide-card:nth-child(5),
+.sl-grid .sl-card:nth-child(5),
+.major-grid .major-card:nth-child(5) { transition-delay: 0.24s; }
+.college-grid .college-card:nth-child(6),
+.buildings-grid .bld-card:nth-child(6),
+.guide-grid .guide-card:nth-child(6),
+.sl-grid .sl-card:nth-child(6),
+.major-grid .major-card:nth-child(6) { transition-delay: 0.30s; }
+.college-grid .college-card:nth-child(7),
+.buildings-grid .bld-card:nth-child(7),
+.guide-grid .guide-card:nth-child(7),
+.major-grid .major-card:nth-child(7) { transition-delay: 0.36s; }
+.college-grid .college-card:nth-child(8),
+.buildings-grid .bld-card:nth-child(8),
+.guide-grid .guide-card:nth-child(8),
+.major-grid .major-card:nth-child(8) { transition-delay: 0.42s; }
 
 /* ================================================================
    图片模态框
@@ -1096,21 +1360,21 @@ body.dark .footer-social svg{fill:var(--apple-text3)}
   .nav-links.active{display:flex}
   .nav-links a{font-size:1.25rem;font-weight:600}
   .mobile-menu-btn{display:block;z-index:1001}
-  .section{padding:4rem 1.25rem}
+  .section{padding:var(--section-y-phone) 1.25rem}
   .section-header{margin-bottom:3rem}
-  .welcome{padding:4rem 0}
+  .welcome{padding:var(--section-y-phone) 0}
   .welcome-grid{padding:0 1.25rem;gap:2rem}
-  .campus-life{padding:4rem 0}
+  .campus-life{padding:var(--section-y-phone) 0}
   .cl-grid{padding:0 1.25rem;gap:2rem}
   .cl-features{grid-template-columns:1fr}
-  .campus-tour{padding:4rem 0}
+  .campus-tour{padding:var(--section-y-phone) 0}
   .campus-banner{
     height:40vh;min-height:280px;
     border-radius:var(--apple-radius);
   }
   .campus-banner-overlay{padding:2rem}
   .buildings-grid{padding:0 1rem}
-  .college-tour{padding:4rem 0}
+  .college-tour{padding:var(--section-y-phone) 0}
   .college-grid{padding:0 1rem;grid-template-columns:1fr}
   .college-filter{padding:0 1rem}
   .college-filter-btn{padding:0.375rem 0.875rem;font-size:0.75rem}
@@ -1118,33 +1382,17 @@ body.dark .footer-social svg{fill:var(--apple-text3)}
   .major-card{padding:1rem 0.75rem;min-height:80px}
   .major-card-name{font-size:0.8125rem}
   .major-card-college{font-size:0.625rem}
-  .testimonials{padding:4rem 0}
-  .danmaku-container{height:280px;contain:layout style}
-  .danmaku-item{font-size:12px;padding:6px 14px}
-  .student-life{padding:4rem 0}
+  .testimonials{padding:var(--section-y-phone) 0}
+  .t-quote-text{font-size:1.125rem}
+  .t-quote-stage{min-height:220px}
+  .student-life{padding:var(--section-y-phone) 0}
   .sl-grid{padding:0 1rem}
-  .guide{padding:4rem 0}
-  .guide-grid{padding:0 1rem;grid-template-columns:1fr}
+  .guide{padding:var(--section-y-phone) 0}
   .footer-grid{grid-template-columns:1fr;gap:2rem;padding:0 1.25rem}
   .footer-bottom{flex-direction:column;gap:0.75rem;text-align:center;padding:1.5rem 1.25rem 0}
 
   /* ===== 移动端性能优化：禁用高耗GPU效果 ===== */
 
-  /* 移除弹幕容器和项目的 contain 属性，避免渲染隔离问题 */
-  .danmaku-container{contain:unset}
-  .danmaku-item{
-    contain:unset;
-    /* 用半透明背景替代 backdrop-filter，大幅降低GPU负载 */
-    backdrop-filter:none !important;
-    -webkit-backdrop-filter:none !important;
-    background:rgba(255,255,255,0.85) !important;
-    border:1px solid rgba(0,0,0,0.1) !important;
-    box-shadow:0 2px 8px rgba(0,0,0,0.06) !important;
-  }
-  body.dark .danmaku-item{
-    background:rgba(40,40,42,0.9) !important;
-    border-color:rgba(255,255,255,0.1) !important;
-  }
 
   /* 降低 will-change 开销：仅在需要时使用 */
   .reveal,.reveal-left,.reveal-right{
@@ -1173,12 +1421,8 @@ body.dark .footer-social svg{fill:var(--apple-text3)}
     min-height:220px;
   }
 
-  /* 学长学姐说帖子链接简化 */
-  .post-link{
-    backdrop-filter:none;
-    -webkit-backdrop-filter:none;
-    background:rgba(255,255,255,0.85) !important;
-  }
+  /* 帖子卡片移动端单列 */
+  .posts-grid{grid-template-columns:1fr}
 
   /* 活力校园卡片禁用 backdrop-filter */
   .sl-card{
@@ -1221,22 +1465,32 @@ body.dark .footer-social svg{fill:var(--apple-text3)}
   margin-bottom:2rem;flex-wrap:wrap;
 }
 .map-tab{
-  background:var(--apple-card);
-  border:1px solid var(--apple-border);
-  border-radius:980px;
+  background:var(--bg);
+  border:1px solid var(--border);
+  border-radius:var(--radius-pill);
   padding:0.625rem 1.5rem;
-  font-size:0.9375rem;font-weight:400;
-  color:var(--apple-text);cursor:pointer;
-  transition:all 0.3s var(--apple-ease);
+  font-size:0.9375rem;font-weight:500;
+  color:var(--fg);cursor:pointer;
+  letter-spacing:-0.01em;
+  transition:all var(--motion-base) var(--ease-standard);
 }
 .map-tab:hover{
-  border-color:var(--apple-blue);
-  color:var(--apple-blue);
+  border-color:var(--accent);
+  color:var(--accent);
+  background:rgba(0,113,227,0.04);
+}
+.map-tab:active{
+  transform:scale(0.96);
+  transition:transform var(--motion-fast) var(--ease-standard);
+}
+.map-tab:focus-visible{
+  outline:none;
+  box-shadow:var(--focus-ring);
 }
 .map-tab.active{
-  background:var(--apple-blue);
-  border-color:var(--apple-blue);
-  color:#fff;
+  background:var(--accent);
+  border-color:var(--accent);
+  color:var(--accent-on);
 }
 .map-campus-info{max-width:600px;margin:0 auto 2rem}
 .map-info-card{
@@ -1311,34 +1565,55 @@ body.dark .footer-social svg{fill:var(--apple-text3)}
 .apple-btn{
   display:inline-flex;align-items:center;gap:0.4rem;
   padding:0.75rem 1.75rem;
-  background:var(--apple-blue);
-  color:#fff;
-  border-radius:980px;
-  font-weight:400;font-size:0.9375rem;
+  background:var(--accent);
+  color:var(--accent-on);
+  border-radius:var(--radius-pill);
+  font-weight:500;font-size:0.9375rem;
+  letter-spacing:-0.01em;
   text-decoration:none;
   border:none;cursor:pointer;
-  transition:all 0.3s var(--apple-ease);
+  transition:all var(--motion-base) var(--ease-standard);
 }
 .apple-btn:hover{
-  background:var(--apple-blue-hover);
+  background:var(--accent-hover);
   transform:translateY(-1px);
+  box-shadow:0 8px 24px rgba(0,113,227,0.25);
 }
-.apple-btn svg{width:16px;height:16px;fill:currentColor}
+.apple-btn:active{
+  transform:scale(0.96);
+  transition:transform var(--motion-fast) var(--ease-standard);
+}
+.apple-btn:focus-visible{
+  outline:none;
+  box-shadow:var(--focus-ring);
+}
+.apple-btn svg{width:16px;height:16px;fill:currentColor;transition:transform var(--motion-fast) var(--ease-standard)}
+.apple-btn:hover svg{transform:translateX(2px)}
 
 .apple-btn-secondary{
   display:inline-flex;align-items:center;gap:0.4rem;
   padding:0.75rem 1.75rem;
   background:transparent;
-  color:var(--apple-blue);
-  border:1px solid var(--apple-blue);
-  border-radius:980px;
-  font-weight:400;font-size:0.9375rem;
+  color:var(--accent);
+  border:1px solid var(--accent);
+  border-radius:var(--radius-pill);
+  font-weight:500;font-size:0.9375rem;
+  letter-spacing:-0.01em;
   text-decoration:none;cursor:pointer;
-  transition:all 0.3s var(--apple-ease);
+  transition:all var(--motion-base) var(--ease-standard);
 }
 .apple-btn-secondary:hover{
-  background:var(--apple-blue);
-  color:#fff;
+  background:var(--accent);
+  color:var(--accent-on);
+  box-shadow:0 8px 24px rgba(0,113,227,0.2);
+}
+.apple-btn-secondary:active{
+  transform:scale(0.96);
+  transition:transform var(--motion-fast) var(--ease-standard);
+}
+.apple-btn-secondary:focus-visible{
+  outline:none;
+  box-shadow:var(--focus-ring);
 }
 
 /* 通用 section-more-btn Apple 风格覆盖（清除旧内联样式残留） */
@@ -1348,18 +1623,29 @@ body.dark .footer-social svg{fill:var(--apple-text3)}
   gap:0.4rem !important;
   margin-top:1.5rem !important;
   padding:0.75rem 1.75rem !important;
-  background:var(--apple-blue) !important;
-  color:#fff !important;
-  border-radius:980px !important;
+  background:var(--accent) !important;
+  color:var(--accent-on) !important;
+  border-radius:var(--radius-pill) !important;
   text-decoration:none !important;
-  font-weight:400 !important;
+  font-weight:500 !important;
   font-size:0.9375rem !important;
-  transition:all 0.3s var(--apple-ease) !important;
+  letter-spacing:-0.01em !important;
+  transition:all var(--motion-base) var(--ease-standard) !important;
   border:none !important;
+  cursor:pointer;
 }
 .section-more-btn:hover{
-  background:var(--apple-blue-hover) !important;
+  background:var(--accent-hover) !important;
   transform:translateY(-1px) !important;
-  box-shadow:0 4px 20px rgba(0,113,227,0.2) !important;
+  box-shadow:0 8px 24px rgba(0,113,227,0.3) !important;
 }
-.section-more-btn svg{width:16px;height:16px;fill:currentColor}
+.section-more-btn:active{
+  transform:scale(0.96) !important;
+  transition:transform var(--motion-fast) var(--ease-standard) !important;
+}
+.section-more-btn:focus-visible{
+  outline:none !important;
+  box-shadow:var(--focus-ring) !important;
+}
+.section-more-btn svg{width:16px;height:16px;fill:currentColor;transition:transform var(--motion-fast) var(--ease-standard)}
+.section-more-btn:hover svg{transform:translateX(2px)}

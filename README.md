@@ -1,314 +1,280 @@
-# 南通大学本科招生网
+<!--
+  🎓 南通大学本科招生网 - Welcome to Nantong University
+  一个由通大学子打造的 Apple 风格招生宣传网站
+  作者：五元一斤的烂番茄 @ GitHub
+-->
 
-一个现代化的南通大学本科招生官方网站，采用 Apple 风格设计，提供沉浸式的校园浏览体验。
+<p align="center">
+  <img src="images/wechat-avatar.jpg" alt="NTU Logo" width="80" height="80" style="border-radius: 50%;" />
+</p>
 
-## ✨ 功能特性
+<h1 align="center">南通大学本科招生网 🎓</h1>
+<h3 align="center">Welcome to Nantong University — Admissions Portal</h3>
 
-### 🏠 首页展示
-- **英雄轮播图**：展示校园风光的精美轮播
-- **欢迎区域**：招生信息概览和快速导航
-- **弹幕互动**：实时弹幕展示学长学姐寄语
+<p align="center">
+  <a href="LICENSE"><img src="https://img.shields.io/github/license/fypklanfanqie/welcome-to-ntu?style=flat-square" alt="License"></a>
+  <a href="#"><img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white" alt="HTML5"></a>
+  <a href="#"><img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white" alt="CSS3"></a>
+  <a href="#"><img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black" alt="JavaScript"></a>
+  <a href="#"><img src="https://img.shields.io/badge/Design-Apple%20Style-999999?style=flat-square&logo=apple&logoColor=white" alt="Design"></a>
+</p>
 
-### 🏛️ 校区巡礼
-- **啬园校区**：主校区全景展示，包含图书馆、校门、张謇纪念园等标志性建筑
-- **启秀校区**：历史校区，展示濠河风光和近代建筑
-- **启东校区**：海滨校区，现代化教学设施展示
+<p align="center">
+  <strong>🏫 一个由南通大学学生自主打造的现代化招生宣传网站</strong><br>
+  采用 Apple 设计风格，融合液态玻璃效果，为高考考生提供沉浸式的校园浏览体验
+</p>
 
-### 🎓 学院介绍
-- **学院详情页**：各学院详细介绍，包含师资力量、教学成果
-- **专业介绍**：专业详情和就业前景分析
-- **学科评估**：学科实力展示
+<p align="center">
+  <img src="https://img.shields.io/badge/Status-Active-brightgreen?style=for-the-badge" alt="Status">
+  <img src="https://img.shields.io/badge/School-南通大学-0071e3?style=for-the-badge" alt="NTU">
+  <img src="https://img.shields.io/badge/Class-智能制造252-orange?style=for-the-badge" alt="Class">
+</p>
 
-### 🏠 校园生活
-- **宿舍环境**：各校区宿舍条件展示
-- **食堂美食**：校园餐饮介绍
-- **校园设施**：图书馆、运动场等设施展示
+---
 
-### 📚 入学指南
-- **报到流程**：新生报到详细步骤
-- **常见问题**：入学常见问题解答
-- **缴费指南**：学费缴纳说明
-- **注册流程**：学籍注册指导
+## 📸 项目预览
 
-### 📊 预估分数线
-- **分数查询**：各专业组预估分数线
-- **位次参考**：对应位次信息
-- **专业组详情**：包含专业列表
+> *南通大学啬园、启秀、启东三大校区全景展示，包含校园风光、学院巡礼、住宿餐饮、入学指南、预估分数线等全方位招生信息。*
 
-### 🎬 多媒体展示
-- **B站账号**：招生办官方B站账号展示
-- **校园视频**：招生宣传片和校园风光视频
+---
 
-### 👨‍💻 作者介绍
-- **个人主页**：项目作者介绍
-- **社交媒体**：B站、Steam等社交链接
+## ✨ 核心亮点
+
+| 模块 | 说明 |
+|------|------|
+| 🏛️ **校区巡礼** | 啬园、启秀、启东三校区全景展示，含一镜到底虚拟导览 |
+| 🎓 **学院巡礼** | 26个学院全覆盖，专业详情 + 学科评估，可筛选浏览 |
+| 🏠 **住在通大** | 宿舍环境、食堂美食、图书馆、体育设施全面介绍 |
+| 💬 **学长学姐说** | 弹幕互动 + 小红书真实评价汇总 |
+| 🎬 **活力校园** | 社团/演出/竞赛/志愿活动，链接B站视频 |
+| 📚 **入学指南** | 录取查询、报到流程、缴费指南、常见问题 |
+| 📊 **预估分数线** | 2026年高考专业组预估线 + 预估位次，支持历史/物理类筛选 |
+| 👨‍💻 **作者介绍** | 个人主页、B站/Steam社交链接、照片墙 |
+
+---
 
 ## 🎨 设计特色
 
-### Apple 风格设计
-- **色彩系统**：采用 Apple 官方色彩规范
-- **字体栈**：系统原生字体，确保最佳显示效果
-- **圆角设计**：18-28px 大圆角，柔和视觉体验
-- **阴影效果**：极柔弥散阴影，增强层次感
+### Apple 设计语言
+- **色彩系统**：基于 Apple Human Interface Guidelines 色彩规范
+- **字体栈**：`-apple-system, BlinkMacSystemFont, "SF Pro Display"` 系统原生字体
+- **大圆角**：18-28px 设计，柔和视觉体验
+- **弥散阴影**：极柔阴影增强层次感
 
-### 液态玻璃效果（Liquid Glass）
-- **毛玻璃材质**：iOS/visionOS 风格的毛玻璃效果
-- **动态高光**：鼠标追踪的动态高光效果
-- **3D 透视**：轻微的 3D 透视倾斜
-- **响应式适配**：支持亮/暗模式自适应
+### 🌊 液态玻璃效果（Liquid Glass）
+- **毛玻璃材质**：iOS/visionOS 风格，`backdrop-filter` 实现
+- **动态高光**：鼠标追踪的动态高光反射效果
+- **3D 透视**：轻微 3D 透视倾斜，增强空间感
+- **亮/暗模式**：自动适配系统主题
 
-### 性能优化
-- **动画优化**：使用 `requestAnimationFrame` 替代 `setInterval`
-- **滚动优化**：`IntersectionObserver` 实现懒加载和滚动渐显
-- **事件节流**：高频事件使用 `rAF` 节流
-- **图片优化**：懒加载和预加载策略
+### ⚡ 性能优化
+- `requestAnimationFrame` 驱动动画，稳定 60fps
+- `IntersectionObserver` 实现懒加载 + 滚动渐显
+- 高频事件 `rAF` 节流
+- 关键图片预加载策略
+
+---
 
 ## 🛠️ 技术栈
 
-### 前端技术
-- **HTML5**：语义化标签，无障碍访问
-- **CSS3**：
-  - CSS 变量（Custom Properties）
-  - Flexbox 和 Grid 布局
-  - `backdrop-filter` 毛玻璃效果
-  - CSS 动画和过渡
-  - 响应式设计（媒体查询）
-- **JavaScript**：
-  - ES6+ 语法
-  - `IntersectionObserver` API
-  - `requestAnimationFrame` 动画
-  - 事件委托和节流
+```
+HTML5  ▸  语义化标签 · 无障碍访问
+CSS3   ▸  CSS 变量 · Flexbox/Grid · backdrop-filter · 动画/过渡 · 媒体查询
+JS     ▸  ES6+ · IntersectionObserver · requestAnimationFrame · 事件委托
+```
 
-### 设计工具
-- **Apple 设计规范**：遵循 Apple Human Interface Guidelines
-- **系统字体栈**：`-apple-system, BlinkMacSystemFont, "SF Pro Display"`
-- **色彩变量**：统一的色彩管理系统
+> **零依赖纯原生开发**，无需 npm、无需构建工具，开箱即用。
+
+---
 
 ## 📁 项目结构
 
 ```
 ntu-campus/
-├── index.html                 # 首页
-├── author.html                # 作者介绍页
-├── bilibili.html              # B站账号页
-├── colleges/                  # 学院相关页面
-│   ├── college-data.js        # 学院数据
-│   ├── college-data.json      # 学院JSON数据
-│   ├── college-detail.html    # 学院详情页
-│   └── major-detail.html      # 专业详情页
-├── css/                       # 样式文件
-│   ├── author.css             # 作者页样式
-│   ├── liquid-glass.css       # 液态玻璃效果样式
-│   └── style.css              # 主样式文件
-├── details/                   # 详情页面
-│   ├── admission-query.html   # 录取查询
-│   ├── campus-life.html       # 校园生活
-│   ├── campus-tour.html       # 校区巡礼
-│   ├── campus-virtual-tour.html # 虚拟导览
-│   ├── faq.html               # 常见问题
-│   ├── guide.html             # 入学指南
-│   ├── payment-guide.html     # 缴费指南
-│   ├── registration-process.html # 注册流程
-│   └── student-life.html      # 学生生活
-├── images/                    # 图片资源
-│   ├── author/                # 作者相关图片
-│   ├── hero-*.jpg             # 轮播图图片
-│   ├── ntu-*.jpg              # 校园图片
-│   ├── qiyuan-*.jpg           # 啬园校区图片
-│   ├── qixiu-*.jpg            # 启秀校区图片
-│   └── qidong-*.jpg           # 启东校区图片
-├── js/                        # JavaScript 文件
-│   ├── estimated-scores.js    # 预估分数线数据
-│   ├── liquid-glass.js        # 液态玻璃效果脚本
-│   └── main.js                # 主脚本文件
-└── assets/                    # 其他资源
-    └── map-qiyuan.svg         # 校区地图
+├── index.html                    # 🏠 首页（Hero轮播 + 全部模块）
+├── author.html                   # 👨‍💻 作者介绍页
+├── bilibili.html                 # 📺 B站账号展示页
+├── LICENSE                       # 📄 MIT 许可证
+│
+├── colleges/                     # 🎓 学院模块
+│   ├── college-data.js           #    学院 & 专业数据集
+│   ├── college-data.json         #    学院 JSON 数据
+│   ├── college-detail.html       #    单学院详情页
+│   └── major-detail.html         #    单专业详情页
+│
+├── details/                      # 📚 详情子页面
+│   ├── admission-query.html      #    录取查询
+│   ├── registration-process.html #    报到流程
+│   ├── payment-guide.html        #    缴费指南
+│   ├── faq.html                  #    常见问题
+│   ├── campus-life.html          #    校园生活
+│   ├── campus-tour.html          #    校区巡礼
+│   ├── campus-virtual-tour.html  #    一镜到底虚拟导览
+│   ├── guide.html                #    入学指南汇总
+│   └── student-life.html         #    学生活力
+│
+├── css/                          # 🎨 样式表
+│   ├── style.css                 #    主样式（Apple Design System）
+│   ├── liquid-glass.css          #    液态玻璃效果
+│   └── author.css                #    作者页专属样式
+│
+├── js/                           # ⚙️ JavaScript
+│   ├── main.js                   #    主逻辑（导航/轮播/弹幕/懒加载）
+│   ├── liquid-glass.js           #    液态玻璃交互脚本
+│   └── estimated-scores.js       #    2026 预估分数线数据
+│
+├── images/                       # 🖼️ 图片资源（253 张）
+│   ├── hero-*.jpg                #    Hero 轮播图（7张）
+│   ├── author/                   #    作者相关图片（8张）
+│   └── ...                       #    校园/建筑/食堂/宿舍等照片
+│
+└── assets/
+    └── map-qiyuan.svg            # 🗺️ 啬园校区示意图
 ```
-
-## 🚀 快速开始
-
-### 本地运行
-
-1. **克隆仓库**
-   ```bash
-   git clone https://gitee.com/lan-fanqie/welcome-to-ntu-from-lanfanqie.git
-   cd welcome-to-ntu-from-lanfanqie
-   ```
-
-2. **启动本地服务器**
-   
-   **方法一：使用 Python**
-   ```bash
-   # Python 3
-   python -m http.server 8000
-   
-   # Python 2
-   python -m SimpleHTTPServer 8000
-   ```
-   
-   **方法二：使用 Node.js**
-   ```bash
-   # 安装 http-server
-   npm install -g http-server
-   
-   # 启动服务器
-   http-server -p 8000
-   ```
-   
-   **方法三：使用 VS Code**
-   - 安装 Live Server 扩展
-   - 右键点击 `index.html`，选择 "Open with Live Server"
-
-3. **访问网站**
-   打开浏览器访问：`http://localhost:8000`
-
-### 部署到 Gitee Pages
-
-1. **推送代码到 Gitee**
-   ```bash
-   git add .
-   git commit -m "Initial commit"
-   git push origin main
-   ```
-
-2. **启用 Gitee Pages**
-   - 访问仓库页面：`https://gitee.com/lan-fanqie/welcome-to-ntu-from-lanfanqie`
-   - 点击顶部 "服务" 菜单，选择 "Gitee Pages"
-   - 配置部署分支：`main`
-   - 部署目录留空（根目录）
-   - 点击 "启动" 按钮
-
-3. **访问网站**
-   部署成功后访问：`https://lan-fanqie.gitee.io/welcome-to-ntu-from-lanfanqie`
-
-## 🎯 性能优化
-
-### 动画优化
-- 使用 `requestAnimationFrame` 替代 `setInterval`，确保 60fps 流畅动画
-- 滚动事件使用 `rAF` 节流，避免频繁触发
-- 弹幕效果使用时间驱动动画，而非定时器
-
-### 图片优化
-- 实现图片懒加载，使用 `IntersectionObserver` 监听
-- 关键图片预加载，提升首屏加载速度
-- 响应式图片，根据设备加载合适尺寸
-
-### 渲染优化
-- 使用 `will-change` 属性优化动画性能
-- 避免强制同步布局，批量处理 DOM 操作
-- 使用 `contain` 属性限制重绘范围
-
-### 网络优化
-- CSS/JS 文件压缩（生产环境）
-- 图片压缩和格式优化
-- 关键资源预加载
-
-## 📱 响应式设计
-
-### 断点设置
-- **移动端**：< 768px
-- **平板端**：768px - 1024px
-- **桌面端**：> 1024px
-
-### 适配策略
-- 移动优先设计原则
-- 灵活的网格布局
-- 自适应图片和媒体
-- 触摸友好的交互设计
-
-## 🔧 浏览器支持
-
-### 现代浏览器
-- Chrome 80+
-- Firefox 75+
-- Safari 13+
-- Edge 80+
-
-### 特性支持
-- `backdrop-filter`：毛玻璃效果
-- `IntersectionObserver`：懒加载和滚动渐显
-- `requestAnimationFrame`：流畅动画
-- CSS 变量：主题切换
-
-### 降级方案
-- 不支持 `backdrop-filter` 的浏览器显示纯色背景
-- 不支持 `IntersectionObserver` 的浏览器使用滚动事件监听
-- 减弱动效模式：尊重用户系统设置
-
-## 🤝 贡献指南
-
-### 如何贡献
-
-1. **Fork 项目**
-   点击仓库右上角的 "Fork" 按钮
-
-2. **创建分支**
-   ```bash
-   git checkout -b feature/your-feature
-   ```
-
-3. **提交更改**
-   ```bash
-   git add .
-   git commit -m "Add your feature"
-   git push origin feature/your-feature
-   ```
-
-4. **创建 Pull Request**
-   在 Gitee 上创建 Pull Request，描述你的更改
-
-### 贡献类型
-
-- **功能增强**：添加新功能或改进现有功能
-- **Bug 修复**：修复已知问题
-- **文档完善**：改进文档或添加示例
-- **性能优化**：提升网站性能
-- **设计改进**：优化用户界面和用户体验
-
-### 代码规范
-
-- **HTML**：使用语义化标签，添加无障碍属性
-- **CSS**：遵循 BEM 命名规范，使用 CSS 变量
-- **JavaScript**：使用 ES6+ 语法，添加注释
-- **图片**：优化图片大小，添加 alt 属性
-
-## 📄 许可证
-
-本项目采用 [MIT 许可证](LICENSE)。
-
-## 🙏 致谢
-
-### 设计灵感
-- **Apple 设计规范**：Human Interface Guidelines
-- **iOS/visionOS**：液态玻璃效果灵感来源
-
-### 技术参考
-- **MDN Web Docs**：Web 技术文档
-- **CSS-Tricks**：CSS 技巧和最佳实践
-- **JavaScript.info**：JavaScript 现代教程
-
-### 图片资源
-- **南通大学官方**：校园风光图片
-- **Unsplash**：部分免费图片资源
-- **Pexels**：高质量免费图片
-
-### 特别感谢
-- **南通大学招生办**：提供招生信息和数据支持
-- **五元一斤的烂番茄**：项目作者和主要开发者
-- **开源社区**：提供技术支持和灵感
-
-## 📞 联系方式
-
-- **作者**：五元一斤的烂番茄
-- **B站**：https://space.bilibili.com/478982550?spm_id_from=333.1391.0.0
-- **邮箱**：Lfq061218@163.com
-
-## 🔗 相关链接
-
-- **项目地址**：[https://gitee.com/lan-fanqie/welcome-to-ntu-from-lanfanqie](https://gitee.com/lan-fanqie/welcome-to-ntu-from-lanfanqie)
-- **在线预览**：[https://lan-fanqie.gitee.io/welcome-to-ntu-from-lanfanqie](https://lan-fanqie.gitee.io/welcome-to-ntu-from-lanfanqie)
-- **南通大学官网**：[https://www.ntu.edu.cn](https://www.ntu.edu.cn)
 
 ---
 
-**欢迎 Star ⭐ 和 Fork 🍴 支持本项目！**
+## 🚀 快速开始
+
+### 1️⃣ 克隆仓库
+
+```bash
+git clone https://github.com/fypklanfanqie/welcome-to-ntu.git
+cd welcome-to-ntu
+```
+
+### 2️⃣ 本地预览
+
+**Python（推荐，最简单）：**
+```bash
+python -m http.server 8000
+```
+
+**Node.js：**
+```bash
+npx http-server -p 8000
+```
+
+**VS Code：**
+安装 Live Server 插件 → 右键 `index.html` → "Open with Live Server"
+
+### 3️⃣ 打开浏览器
+
+访问 **http://localhost:8000** 即可预览。
+
+---
+
+## 🌐 部署到 GitHub Pages
+
+本项目是纯静态网站，可以**零配置**部署到 GitHub Pages：
+
+1. Push 代码到 GitHub 仓库
+2. 进入仓库 **Settings → Pages**
+3. **Source** 选择 `Deploy from a branch`
+4. **Branch** 选择 `main`，目录选 `/ (root)`
+5. 点击 **Save**，等待 1-2 分钟
+6. 访问 `https://<你的用户名>.github.io/welcome-to-ntu/`
+
+> 💡 也可以一键部署到 **Vercel** / **Netlify** / **Cloudflare Pages**，将仓库导入即可自动部署。
+
+---
+
+## 📱 响应式设计
+
+| 设备 | 断点 | 适配策略 |
+|------|------|----------|
+| 📱 移动端 | < 768px | 单列布局，汉堡菜单，触摸友好 |
+| 📲 平板端 | 768-1024px | 双列网格，自适应间距 |
+| 🖥️ 桌面端 | > 1024px | 多列布局，完整液态玻璃效果 |
+
+---
+
+## 🔧 浏览器兼容性
+
+| 浏览器 | 最低版本 | 状态 |
+|--------|----------|------|
+| Chrome | 80+ | ✅ 完全支持 |
+| Edge | 80+ | ✅ 完全支持 |
+| Safari | 13+ | ✅ 完全支持 |
+| Firefox | 75+ | ✅ 完全支持 |
+
+> 📌 对不支持 `backdrop-filter` 的浏览器会自动降级为纯色背景。
+
+---
+
+## 🤝 贡献指南
+
+欢迎提 Issue 和 Pull Request！
+
+```bash
+# 1. Fork 本项目
+# 2. 创建你的功能分支
+git checkout -b feature/amazing-feature
+
+# 3. 提交更改
+git commit -m "✨ Add amazing feature"
+
+# 4. 推送到分支
+git push origin feature/amazing-feature
+
+# 5. 在 GitHub 上创建 Pull Request
+```
+
+### 贡献方向
+- 🆕 **内容更新**：更新学院/专业/分数数据
+- 🐛 **Bug 修复**：修复兼容性或显示问题
+- 🎨 **设计优化**：改进 UI/UX 体验
+- ⚡ **性能提升**：优化加载速度和动画性能
+- 📝 **文档完善**：改进 README 或添加注释
+
+---
+
+## 📄 许可证
+
+本项目基于 **MIT License** 开源，详见 [LICENSE](LICENSE) 文件。
+
+---
+
+## 🙏 致谢
+
+| 类别 | 来源 |
+|------|------|
+| 🎨 设计灵感 | Apple Human Interface Guidelines · iOS/visionOS |
+| 📖 技术文档 | MDN Web Docs · CSS-Tricks · JavaScript.info |
+| 🖼️ 图片素材 | 南通大学官方 · Unsplash · Pexels |
+| ❤️ 特别感谢 | 南通大学招生办 · 开源社区 |
+
+---
+
+## 📞 关于作者
+
+<p align="center">
+  <img src="images/author/avatar.jpg" alt="Author Avatar" width="100" height="100" style="border-radius: 50%;" />
+</p>
+
+<p align="center">
+  <strong>五元一斤的烂番茄</strong><br>
+  🏫 南通大学 · 智能制造252<br><br>
+  <a href="https://space.bilibili.com/478982550"><img src="https://img.shields.io/badge/Bilibili-00A1D6?style=for-the-badge&logo=bilibili&logoColor=white" alt="Bilibili"></a>
+  &nbsp;
+  <a href="mailto:Lfq061218@163.com"><img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"></a>
+  &nbsp;
+  <a href="https://steamcommunity.com/profiles/76561199170332841"><img src="https://img.shields.io/badge/Steam-000000?style=for-the-badge&logo=steam&logoColor=white" alt="Steam"></a>
+</p>
+
+<p align="center"><em>"欢迎学弟学妹来找我咨询，也可以办校园卡 嘻嘻 😊"</em></p>
+
+---
+
+## 🔗 相关链接
+
+- 🏫 [南通大学官网](https://www.ntu.edu.cn)
+- 📋 [南通大学招生信息网](https://zs.ntu.edu.cn)
+- 📺 [B站官方账号](https://space.bilibili.com/607851602)
+
+---
+
+<p align="center">
+  <strong>如果这个项目对你有帮助，请给个 ⭐ Star 支持一下！</strong><br>
+  <sub>Made with ❤️ by Nantong University Students</sub>
+</p>

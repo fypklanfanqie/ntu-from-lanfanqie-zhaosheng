@@ -105,9 +105,10 @@ function rafThrottle(fn) {
 document.addEventListener('DOMContentLoaded', function() {
   initNav();
   initHeroCarousel();
+  initHeroParallax();
   initDarkMode();
   initCampusTour();
-  initDanmaku();
+  initQuoteCarousel();
   initPostsToggle();
   initModal();
   initSmoothScroll();
@@ -118,6 +119,8 @@ document.addEventListener('DOMContentLoaded', function() {
   initScrollReveal();
   /* 学院巡礼是异步的，完成后需要补观察新元素 */
   initCollegeTour();
+  /* 滚动时高亮当前区域导航 */
+  initScrollSpy();
 });
 
 /* ===== 导航栏 ===== */
@@ -256,51 +259,68 @@ function initCampusTour() {
   } catch(err) { console.error('initCampusTour:', err); }
 }
 
-/* ===== 弹幕效果 — rAF 时间驱动替代 setInterval/setTimeout ===== */
-function initDanmaku() {
-  var container = document.getElementById('danmaku-track');
-  if (!container) return;
-  var colors = ['#FF6B6B','#FFA07A','#FFD700','#98FB98','#87CEEB','#DDA0DD','#F0E68C','#E6E6FA','#FFB6C1','#AFEEEE','#B0E0E6','#FFE4B5','#FFC0CB','#D8BFD8','#F5DEB3','#FF69B4','#00CED1','#FF7F50','#6A5ACD','#20B2AA'];
-  var sizes = [14,15,16,17,18,19,20,21,22];
-  
-  /* 检测是否为移动设备 */
-  var isMobile = window.innerWidth <= 734;
-  var maxDanmaku = isMobile ? 15 : 35;
-  var spawnInterval = isMobile ? 1200 : 800;
-  var initInterval = isMobile ? 600 : 400;
-  var initTotal = isMobile ? 10 : DANMAKU_DATA.length;
+/* ===== 精选引用轮播 — 5 秒自动切换 + 圆点导航 ===== */
+function initQuoteCarousel() {
+  var cards = document.querySelectorAll('.t-quote-card');
+  var dots = document.querySelectorAll('.t-dot');
+  if (cards.length < 2) return;
 
-  function createDanmaku() {
-    if (container.children.length >= maxDanmaku) return;
-    var el = document.createElement('div');
-    el.className = 'danmaku-item';
-    el.textContent = DANMAKU_DATA[Math.floor(Math.random() * DANMAKU_DATA.length)];
-    var size = isMobile ? sizes[Math.floor(Math.random() * 3)] : sizes[Math.floor(Math.random() * sizes.length)];
-    var color = colors[Math.floor(Math.random() * colors.length)];
-    el.style.cssText = 'font-size:'+size+'px;color:'+color+';top:'+(Math.random()*85)+'%;animation-duration:'+(12+Math.random()*10)+'s;text-shadow:0 1px 3px rgba(0,0,0,.3);';
-    container.appendChild(el);
-    el.addEventListener('animationend', function() { el.remove(); });
+  var current = 0;
+  var intervalId = null;
+  var INTERVAL = 5000;
+
+  function show(idx) {
+    cards.forEach(function(c) { c.classList.remove('active'); });
+    dots.forEach(function(d) { d.classList.remove('active'); });
+    cards[idx].classList.add('active');
+    if (dots[idx]) dots[idx].classList.add('active');
+    current = idx;
   }
 
-  /* 初始弹幕：rAF 分批创建 */
-  var initCreated = 0, initLast = 0;
-  function initTick(now) {
-    if (initCreated < initTotal) {
-      if (now - initLast >= initInterval) { createDanmaku(); initCreated++; initLast = now; }
-      requestAnimationFrame(initTick);
-    }
+  function next() {
+    show((current + 1) % cards.length);
   }
-  requestAnimationFrame(function(now) { initLast = now; requestAnimationFrame(initTick); });
 
-  /* 持续补充：rAF 时间驱动 */
-  var spawnLast = 0;
-  function spawnTick(now) {
-    if (container.children.length < maxDanmaku && now - spawnLast >= spawnInterval) {
-      createDanmaku(); spawnLast = now;
-    }
-    requestAnimationFrame(spawnTick);
+  /* 圆点点击 */
+  dots.forEach(function(dot) {
+    dot.addEventListener('click', function() {
+      var idx = parseInt(dot.dataset.dot, 10);
+      if (!isNaN(idx)) show(idx);
+      resetTimer();
+    });
+  });
+
+  /* 触摸滑动支持 */
+  var stage = document.querySelector('.t-quote-stage');
+  var touchStartX = 0;
+  if (stage) {
+    stage.addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; }, {passive:true});
+    stage.addEventListener('touchend', function(e) {
+      var diff = touchStartX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) show((current + 1) % cards.length);
+        else show((current - 1 + cards.length) % cards.length);
+        resetTimer();
+      }
+    });
   }
-  requestAnimationFrame(function(now) { spawnLast = now; requestAnimationFrame(spawnTick); });
+
+  function startTimer() {
+    stopTimer();
+    intervalId = setInterval(next, INTERVAL);
+  }
+  function stopTimer() {
+    if (intervalId) { clearInterval(intervalId); intervalId = null; }
+  }
+  function resetTimer() { stopTimer(); startTimer(); }
+
+  /* 鼠标悬停暂停 */
+  if (stage) {
+    stage.addEventListener('mouseenter', stopTimer);
+    stage.addEventListener('mouseleave', startTimer);
+  }
+
+  startTimer();
 }
 
 /* ===== 帖子列表切换 ===== */
@@ -460,6 +480,54 @@ function triggerEasterEgg(el) {
     card.querySelector('h3').style.color='#f5f5f7';
     card.querySelector('p').style.color='#a1a1a6';
   }
+}
+
+/* ===== Hero 视差滚动 — 内容随滚动缓慢上移 ===== */
+function initHeroParallax() {
+  var heroContent = document.querySelector('.hero-content');
+  var heroScroll = document.querySelector('.hero-scroll');
+  if (!heroContent) return;
+
+  window.addEventListener('scroll', rafThrottle(function() {
+    var scrollY = window.scrollY;
+    var heroHeight = window.innerHeight;
+    if (scrollY > heroHeight) return;
+    var progress = scrollY / heroHeight;
+    /* 内容上移 0 → 80px，透明度 1 → 0.4 */
+    heroContent.style.transform = 'translateY(' + (progress * -80) + 'px)';
+    heroContent.style.opacity = 1 - progress * 0.6;
+    if (heroScroll) {
+      heroScroll.style.opacity = 1 - progress * 2;
+    }
+  }), { passive: true });
+}
+
+/* ===== 滚动监听 — 高亮当前区域导航链接 ===== */
+function initScrollSpy() {
+  var sections = document.querySelectorAll('section[id]');
+  var navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+  if (sections.length === 0 || navLinks.length === 0) return;
+
+  /* 构建 section id → nav link 映射 */
+  var linkMap = {};
+  navLinks.forEach(function(a) {
+    var id = a.getAttribute('href').replace('#', '');
+    linkMap[id] = a;
+  });
+
+  window.addEventListener('scroll', rafThrottle(function() {
+    var scrollY = window.scrollY + 120; /* 偏移 120px 让高亮更早切换 */
+    var currentId = '';
+    sections.forEach(function(section) {
+      if (section.offsetTop <= scrollY) {
+        currentId = section.id;
+      }
+    });
+    navLinks.forEach(function(a) { a.classList.remove('active'); });
+    if (currentId && linkMap[currentId]) {
+      linkMap[currentId].classList.add('active');
+    }
+  }), { passive: true });
 }
 
 /* ===== 图片懒加载（非 hero 图片 + IntersectionObserver） ===== */

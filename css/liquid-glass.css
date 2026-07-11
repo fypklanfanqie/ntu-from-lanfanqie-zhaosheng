@@ -276,34 +276,6 @@ body.dark .lg-panel::before {
 }
 
 /* ================================================================
-   弹幕项玻璃化
-   ================================================================ */
-.danmaku-item {
-  background: rgba(255, 255, 255, 0.10) !important;
-  -webkit-backdrop-filter: blur(12px) saturate(160%) !important;
-  backdrop-filter: blur(12px) saturate(160%) !important;
-  border: 0.5px solid rgba(255, 255, 255, 0.15) !important;
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08), 0 4px 16px rgba(0, 0, 0, 0.10) !important;
-}
-
-.danmaku-item:hover {
-  background: rgba(255, 255, 255, 0.18) !important;
-  border-color: rgba(255, 255, 255, 0.25) !important;
-}
-
-/* ================================================================
-   帖子链接玻璃化
-   ================================================================ */
-.post-link.lg-surface {
-  background: rgba(0, 113, 227, 0.85) !important;
-  border: 0.5px solid rgba(255, 255, 255, 0.2) !important;
-}
-
-.post-link.lg-surface:hover {
-  background: rgba(0, 119, 237, 0.9) !important;
-}
-
-/* ================================================================
    模态框玻璃化
    ================================================================ */
 .modal-overlay {
@@ -497,7 +469,7 @@ body.dark .lg-card > * {
 }
 
 /* ================================================================
-   返回顶部按钮 — 加号形状 + 液态玻璃风格
+   返回顶部按钮 — 强化液态玻璃 + 内发光 + 折射高光
    ================================================================ */
 .back-to-top {
   position: fixed;
@@ -506,13 +478,18 @@ body.dark .lg-card > * {
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  border: 2px solid transparent;
-  box-shadow: 
-    0 0 0 2px rgba(255,255,255,0.6),
-    0 16px 32px rgba(0,0,0,0.12);
+  /* 多层玻璃基底：半透明 + 强模糊 + 高饱和 */
+  background: rgba(255, 255, 255, 0.10);
+  backdrop-filter: blur(28px) saturate(200%);
+  -webkit-backdrop-filter: blur(28px) saturate(200%);
+  /* 外环 + 内发光边缘 */
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.45),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.15),
+    0 0 0 1px rgba(0, 0, 0, 0.04),
+    0 8px 28px rgba(0, 0, 0, 0.10),
+    0 2px 8px rgba(0, 0, 0, 0.06);
   cursor: pointer;
   z-index: 1000;
   display: grid;
@@ -521,110 +498,157 @@ body.dark .lg-card > * {
   opacity: 0;
   visibility: hidden;
   transform: translateX(-50%) translateY(20px);
-  transition: 
-    opacity 0.3s ease,
-    visibility 0.3s ease,
-    transform 0.3s ease,
-    background 0.2s ease,
-    box-shadow 0.2s ease,
-    backdrop-filter 0.3s ease;
+  transition:
+    opacity 0.35s var(--ease-standard),
+    visibility 0.35s var(--ease-standard),
+    transform 0.35s var(--ease-standard),
+    background 0.25s var(--ease-standard),
+    box-shadow 0.25s var(--ease-standard),
+    backdrop-filter 0.35s var(--ease-standard);
   will-change: transform, opacity;
+  /* 建立层叠上下文供伪元素定位 */
+  isolation: isolate;
+  overflow: hidden;
 }
 
-/* 向上箭头形状 */
-.back-to-top::before,
+/* ─── 对角线折射高光（静态层） ──────────────────────────────── */
+.back-to-top::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.35) 0%,
+    rgba(255, 255, 255, 0.08) 35%,
+    rgba(255, 255, 255, 0) 55%
+  );
+  transition: opacity 0.35s var(--ease-standard);
+}
+
+/* ─── 动态径向高光（悬浮时激活） ───────────────────────────── */
 .back-to-top::after {
   content: "";
   position: absolute;
-  top: 50%;
-  left: 50%;
+  inset: -40%;
+  z-index: 1;
+  pointer-events: none;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle at 40% 35%,
+    rgba(255, 255, 255, 0.25) 0%,
+    rgba(255, 255, 255, 0.06) 30%,
+    rgba(255, 255, 255, 0) 55%
+  );
+  opacity: 0;
+  transition: opacity 0.4s var(--ease-standard);
 }
 
-/* 三角形箭头 */
-.back-to-top::after {
-  width: 0;
-  height: 0;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-bottom: 12px solid #fff;
-  transform: translate(-50%, -6px);
+/* ─── 箭头图标层（在玻璃高光之上） ──────────────────────────── */
+.back-to-top .bt-arrow {
+  position: relative;
+  z-index: 2;
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+  color: #fff;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.15));
+  transition: transform 0.25s var(--ease-standard);
+}
+.back-to-top:hover .bt-arrow {
+  transform: translateY(-2px);
+}
+body.dark .back-to-top .bt-arrow {
+  color: #f5f5f7;
+  filter: drop-shadow(0 1px 3px rgba(0,0,0,0.4));
 }
 
-/* 箭头竖线 */
-.back-to-top::before {
-  width: 4px;
-  height: 18px;
-  background: #fff;
-  border-radius: 2px;
-  transform: translate(-50%, 6px);
-}
-
-/* 悬浮状态 */
+/* ─── 悬浮状态：玻璃深化 + 高光显现 + 上浮 ─────────────────── */
 .back-to-top:hover {
-  background: rgba(255, 255, 255, 0.12);
-  box-shadow: 
-    0 0 0 2px rgba(255,255,255,0.8),
-    0 20px 40px rgba(0,0,0,0.16);
-  transform: translateX(-50%) translateY(-2px);
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(32px) saturate(220%);
+  -webkit-backdrop-filter: blur(32px) saturate(220%);
+  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.55),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.22),
+    0 0 0 1px rgba(0, 0, 0, 0.06),
+    0 12px 36px rgba(0, 0, 0, 0.14),
+    0 4px 12px rgba(0, 0, 0, 0.08);
+  transform: translateX(-50%) translateY(-3px);
+}
+.back-to-top:hover::after {
+  opacity: 1;
 }
 
+/* ─── 按下状态 ───────────────────────────────────────────────── */
 .back-to-top:active {
-  transform: translateX(-50%) translateY(0);
+  transform: translateX(-50%) translateY(0) scale(0.94);
+  transition: transform 0.12s var(--ease-standard);
 }
 
-/* 滚动一定距离后显示 */
+/* ─── 显示状态 ───────────────────────────────────────────────── */
 .back-to-top.visible {
   opacity: 1;
   visibility: visible;
   transform: translateX(-50%) translateY(0);
 }
 
-/* 暗色模式适配 */
+/* ─── 暗色模式 ───────────────────────────────────────────────── */
 body.dark .back-to-top {
-  background: rgba(0, 0, 0, 0.18);
-  border: 2px solid transparent;
-  box-shadow: 
-    0 0 0 2px rgba(255,255,255,0.2),
-    0 16px 32px rgba(0,0,0,0.3);
+  background: rgba(0, 0, 0, 0.22);
+  border-color: rgba(255, 255, 255, 0.10);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.10),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05),
+    0 0 0 1px rgba(255, 255, 255, 0.04),
+    0 8px 28px rgba(0, 0, 0, 0.35),
+    0 2px 8px rgba(0, 0, 0, 0.20);
 }
-
+body.dark .back-to-top::before {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.14) 0%,
+    rgba(255, 255, 255, 0.03) 35%,
+    rgba(255, 255, 255, 0) 55%
+  );
+}
+body.dark .back-to-top::after {
+  background: radial-gradient(
+    circle at 40% 35%,
+    rgba(255, 255, 255, 0.12) 0%,
+    rgba(255, 255, 255, 0.03) 30%,
+    rgba(255, 255, 255, 0) 55%
+  );
+}
 body.dark .back-to-top:hover {
-  background: rgba(0, 0, 0, 0.25);
-  box-shadow: 
-    0 0 0 2px rgba(255,255,255,0.3),
-    0 20px 40px rgba(0,0,0,0.4);
+  background: rgba(0, 0, 0, 0.30);
+  border-color: rgba(255, 255, 255, 0.18);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.14),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 12px 36px rgba(0, 0, 0, 0.45),
+    0 4px 12px rgba(0, 0, 0, 0.28);
 }
 
-body.dark .back-to-top::before,
-body.dark .back-to-top::after {
-  background: #f5f5f7;
-}
-
-body.dark .back-to-top::after {
-  border-bottom-color: #f5f5f7;
-}
-
-/* prefers-reduced-motion 降级 */
+/* ─── prefers-reduced-motion ──────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   .back-to-top {
     transition: opacity 0.3s ease, visibility 0.3s ease, background 0.2s ease;
     transform: translateX(-50%) !important;
   }
-  .back-to-top.visible {
-    transform: translateX(-50%);
-  }
-  .back-to-top:hover {
-    transform: translateX(-50%);
-    backdrop-filter: blur(24px) saturate(180%);
-    -webkit-backdrop-filter: blur(24px) saturate(180%);
-  }
+  .back-to-top.visible { transform: translateX(-50%) !important; }
+  .back-to-top:hover { transform: translateX(-50%) !important; }
+  .back-to-top:hover::after { opacity: 0; }
 }
 
-/* 移动端调整 */
+/* ─── 移动端 ─────────────────────────────────────────────────── */
 @media (max-width: 734px) {
   .back-to-top {
     bottom: 1.5rem;
-    left: 50%;
     width: 48px;
     height: 48px;
     transform: translateX(-50%) translateY(20px);
@@ -634,5 +658,8 @@ body.dark .back-to-top::after {
   }
   .back-to-top:hover {
     transform: translateX(-50%) translateY(-2px);
+  }
+  .back-to-top:active {
+    transform: translateX(-50%) translateY(0) scale(0.93);
   }
 }
