@@ -19,6 +19,8 @@
   <a href="#"><img src="https://img.shields.io/badge/Design-Apple%20Style-999999?style=flat-square&logo=apple&logoColor=white" alt="Design"></a>
 </p>
 
+<img width="2560" height="1440" alt="屏幕截图 2026-07-11 210145" src="https://github.com/user-attachments/assets/66e2237d-e02c-4342-a05c-215ebeb10c37" />
+
 <p align="center">
   <strong>🏫 一个由南通大学学生自主打造的现代化招生宣传网站</strong><br>
   采用 Apple 设计风格，融合液态玻璃效果，为高考考生提供沉浸式的校园浏览体验
@@ -33,6 +35,8 @@
 ---
 
 ## 📸 项目预览
+<img width="2543" height="1313" alt="image" src="https://github.com/user-attachments/assets/28566ddd-f734-46cc-b60b-d43ddcd0becd" />
+
 
 > *南通大学啬园、启秀、启东三大校区全景展示，包含校园风光、学院巡礼、住宿餐饮、入学指南、预估分数线等全方位招生信息。*
 
@@ -53,6 +57,8 @@
 
 ---
 
+
+
 ## 🎨 设计特色
 
 ### Apple 设计语言
@@ -60,18 +66,23 @@
 - **字体栈**：`-apple-system, BlinkMacSystemFont, "SF Pro Display"` 系统原生字体
 - **大圆角**：18-28px 设计，柔和视觉体验
 - **弥散阴影**：极柔阴影增强层次感
+- <img width="2532" height="1308" alt="屏幕截图 2026-07-11 210113" src="https://github.com/user-attachments/assets/60b6b53f-0cfa-4a59-b3a5-5f7b5fee91d4" />
+
 
 ### 🌊 液态玻璃效果（Liquid Glass）
 - **毛玻璃材质**：iOS/visionOS 风格，`backdrop-filter` 实现
 - **动态高光**：鼠标追踪的动态高光反射效果
 - **3D 透视**：轻微 3D 透视倾斜，增强空间感
 - **亮/暗模式**：自动适配系统主题
+- 
 
 ### ⚡ 性能优化
 - `requestAnimationFrame` 驱动动画，稳定 60fps
 - `IntersectionObserver` 实现懒加载 + 滚动渐显
 - 高频事件 `rAF` 节流
 - 关键图片预加载策略
+
+<img width="2545" height="1307" alt="屏幕截图 2026-07-11 210127" src="https://github.com/user-attachments/assets/8a009835-dc57-44f1-bea5-ba6135c0ae0d" />
 
 ---
 
