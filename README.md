@@ -269,9 +269,7 @@ git push origin feature/amazing-feature
   <a href="https://space.bilibili.com/478982550"><img src="https://img.shields.io/badge/Bilibili-00A1D6?style=for-the-badge&logo=bilibili&logoColor=white" alt="Bilibili"></a>
   &nbsp;
   <a href="mailto:Lfq061218@163.com"><img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"></a>
-  &nbsp;
-  <a href="https://steamcommunity.com/profiles/76561199170332841"><img src="https://img.shields.io/badge/Steam-000000?style=for-the-badge&logo=steam&logoColor=white" alt="Steam"></a>
-</p>
+ 
 
 <p align="center"><em>"欢迎学弟学妹来找我咨询，也可以办校园卡 嘻嘻 😊"</em></p>
 
