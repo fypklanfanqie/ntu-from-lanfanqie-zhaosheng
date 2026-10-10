@@ -17,16 +17,18 @@
  */
 
 const SOURCES = [
-  // { id, name, listUrl, college(对应目录承办学院关键词，null=校级) }
+  // 校级源（最重要，每次 cron 必抓前 3 个）
   { id: 'cxcyxy', name: '创新创业教育学院（校级竞赛通知）', listUrl: 'https://cxcyxy.ntu.edu.cn/10412/list.htm', college: null },
+  { id: 'cxcyxy2', name: '创新创业教育学院（通知公告 第2页）', listUrl: 'https://cxcyxy.ntu.edu.cn/10412/list2.htm', college: null },
+  { id: 'cxcyxy3', name: '创新创业教育学院（通知公告 第3页）', listUrl: 'https://cxcyxy.ntu.edu.cn/10412/list3.htm', college: null },
+  // 学院源（仅收录有静态通知列表页的；其余学院以校内通知为准）
   { id: 'jxgc', name: '机械工程学院', listUrl: 'https://sme.ntu.edu.cn/11619/list.htm', college: '机械工程学院' },
-  { id: 'xxjs', name: '信息科学技术学院', listUrl: 'https://sist.ntu.edu.cn/', college: '信息科学技术学院' },
-  { id: 'rgzn', name: '人工智能与计算机学院', listUrl: 'https://ai.ntu.edu.cn/', college: '人工智能与计算机学院' },
-  { id: 'dqzd', name: '电气与自动化学院', listUrl: 'https://dqxy.ntu.edu.cn/', college: '电气与自动化学院' },
+  { id: 'jxgc2', name: '机械工程学院（第2页）', listUrl: 'https://sme.ntu.edu.cn/11619/list2.htm', college: '机械工程学院' },
+  { id: 'hgxy', name: '化学化工学院', listUrl: 'https://hgxy.ntu.edu.cn/', college: '化学化工学院' },
   { id: 'sxtj', name: '数学与统计学院', listUrl: 'https://sms.ntu.edu.cn/', college: '数学与统计学院' },
-  { id: 'hghx', name: '化学化工学院', listUrl: 'https://hgxy.ntu.edu.cn/', college: '化学化工学院' },
   { id: 'yxy', name: '医学院', listUrl: 'https://yxy.ntu.edu.cn/', college: '医学院' },
-  // 剩余学院按 CRON_OFFSET 轮转抓取
+  { id: 'cgxy', name: '艺术学院', listUrl: 'https://ysxy.ntu.edu.cn/', college: '艺术学院（建筑学院）' },
+  { id: 'sgxy', name: '商学院', listUrl: 'https://sem.ntu.edu.cn/', college: '商学院（管理学院）' },
 ];
 
 // 通知标题过滤关键词：命中即收录
@@ -75,9 +77,10 @@ export default {
 /* ---------- 主流程 ---------- */
 async function runFetch(env) {
   const started = Date.now();
-  // 轮转：每次 cron 抓前 3 个校级+2个学院（控制 CPU 时间），记录游标
+  // 轮转：每次 cron 抓 3 个源（控制 CPU 时间），记录游标
   let cursor = parseInt(await env.ZC_KV.get('zc:cursor') || '0', 10);
-  const batch = SOURCES.slice(cursor, cursor + 3).concat(cursor + 3 >= SOURCES.length ? [] : []);
+  if (cursor >= SOURCES.length) cursor = 0;
+  const batch = SOURCES.slice(cursor, cursor + 3);
   const nextCursor = (cursor + 3) % SOURCES.length;
 
   const all = [];
@@ -124,17 +127,21 @@ async function fetchList(src) {
   const html = await res.text();
   const out = [];
 
-  // 通用的 <a href="...">标题</a> + 邻近日期 提取（兼容 webplus CMS 结构）
-  const linkRe = /<a[^>]+href="([^"]+?)"[^>]*>([^<]{6,120})<\/a>/g;
+  // 通用的 <a href='...'>标题</a> + 邻近日期 提取
+  // 兼容 webplus CMS 的单引号/双引号属性、标题内嵌标签
+  const linkRe = /<a[^>]+href=["']([^"']+?)["'][^>]*>([\s\S]{6,200}?)<\/a>/g;
   const dateRe = /(\d{4})-(\d{2})-(\d{2})/;
+  const tagRe = /<[^>]+>/g;
   let m;
   while ((m = linkRe.exec(html)) !== null) {
-    const href = m[1], title = m[2].trim();
+    const href = m[1];
+    const title = m[2].replace(tagRe, '').replace(/\s+/g, ' ').trim();
     if (!/^\/|https?:/.test(href)) continue;
+    if (title.length < 6 || title.length > 120) continue;
     if (!KEYWORDS.some((k) => title.includes(k))) continue;
     if (EXCLUDE.test(title)) continue;
-    // 在链接附近的 HTML 片段里找日期
-    const ctx = html.slice(Math.max(0, m.index - 200), m.index + 300);
+    // 在链接附近的 HTML 片段里找日期（发布日期通常在链接之后）
+    const ctx = html.slice(Math.max(0, m.index - 100), m.index + 400);
     const dm = ctx.match(dateRe);
     const date = dm ? dm[0] : '';
     const abs = href.startsWith('http') ? href : new URL(href, src.listUrl).href;

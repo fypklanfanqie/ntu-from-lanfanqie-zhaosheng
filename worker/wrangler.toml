@@ -11,7 +11,7 @@ crons = ["0 0 * * 1"]
 # 然后把返回的 id 填到下面）
 [[kv_namespaces]]
 binding = "ZC_KV"
-id = "REPLACE_WITH_YOUR_KV_ID"
+id = "d4feb169c75d41e390916b9415f7c1f6"
 
 # 可选：手动触发接口的密钥（wrangler secret put TRIGGER_SECRET）
 # [vars]

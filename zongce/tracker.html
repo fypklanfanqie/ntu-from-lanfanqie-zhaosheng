@@ -97,6 +97,9 @@
         </div>
       </div>
 
+      <!-- 官方通知区（Worker/快照填充） -->
+      <div id="notify-area"></div>
+
       <!-- 推荐说明条 -->
       <div id="recommend-note" style="display:none;margin-bottom:20px;">
         <div class="zc-scope-banner" style="background:rgba(0,113,227,0.06);border-color:rgba(0,113,227,0.2);">
@@ -189,11 +192,45 @@
     statusData: {}     // no -> {status, until, source}
   };
 
-  /* ---------- 报名状态数据（fetch-competitions 每周更新，静态快照兜底） ---------- */
-  fetch('data/competitions-status.json', { cache: 'no-cache' })
-    .then(function (r) { return r.ok ? r.json() : null; })
-    .then(function (d) { if (d && d.items) { state.statusData = d.items; render(); } })
-    .catch(function () {});
+  /* ---------- 官方通知数据（Worker 每周抓取 → 静态快照兜底） ---------- */
+  /* 部署 Worker 后可把 WORKER_API 填上实时地址，例如:
+     const WORKER_API = 'https://ntu-zongce-fetcher.lanfanqie.workers.dev/api/notifications'; */
+  const WORKER_API = 'https://ntu-zongce-fetcher.lanfanqie.workers.dev/api/notifications';
+  function esc2(s) {
+    return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+  function loadNotifications() {
+    var tryWorker = WORKER_API
+      ? fetch(WORKER_API, { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) { return j && j.data && j.data.items ? j.data.items : null; }).catch(function () { return null; })
+      : Promise.resolve(null);
+    tryWorker
+      .then(function (items) {
+        if (!items) {
+          return fetch('data/notifications-snapshot.json', { cache: 'no-cache' })
+            .then(function (r) { return r.ok ? r.json() : null; })
+            .then(function (d) { return d && d.notifications ? d.notifications : []; });
+        }
+        return items;
+      })
+      .then(function (items) {
+        if (!items || !items.length) return;
+        var updatedEl = document.getElementById('updated-time');
+        if (updatedEl) updatedEl.textContent = '最新通知 ' + (items[0].date || '近期') + ' · 数据每周自动核验';
+        var box = document.getElementById('notify-area');
+        if (!box) return;
+        box.innerHTML = '<div class="zc-card" style="padding:20px 24px;margin-bottom:24px;">'
+          + '<div class="zc-section-label" style="margin-bottom:10px;">📢 最新竞赛相关通知（官方来源 · 每周自动更新）</div>'
+          + items.slice(0, 6).map(function (n) {
+            return '<div style="display:flex;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:1px solid var(--border-soft);">'
+              + '<a href="' + esc2(n.url) + '" target="_blank" rel="noopener" style="font-size:0.875rem;color:var(--fg);line-height:1.5;">' + esc2(n.title) + '</a>'
+              + '<span style="font-size:0.75rem;color:var(--meta);white-space:nowrap;">' + esc2(n.college || '校级') + ' · ' + esc2(n.date || '') + '</span>'
+              + '</div>';
+          }).join('')
+          + '</div>';
+      })
+      .catch(function () {});
+  }
+  loadNotifications();
 
   function statusOf(no) {
     var s = state.statusData[no] || state.statusData[String(no)];
