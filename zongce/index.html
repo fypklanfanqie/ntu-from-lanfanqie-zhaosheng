@@ -115,17 +115,7 @@
       <span>祈通中西，力求精进</span>
     </div>
   </footer>
-
-  <script>
-  (function(){
-    var dm = document.querySelector('.dark-mode-toggle');
-    if (dm) dm.addEventListener('click', function () {
-      document.body.classList.toggle('dark');
-      localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
-    });
-    if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
-  })();
-  </script>
+  <script src="../js/theme.js"></script>
   <script src="../js/main.js"></script>
 </body>
 </html>

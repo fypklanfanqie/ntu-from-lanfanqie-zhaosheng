@@ -66,7 +66,7 @@
 
       <!-- 来源 -->
       <div class="zc-source-note">
-        <strong>数据来源：</strong>机械工程学院 2025-2026 学年综测加分统计实表（智能制造专业）与综测第一次审核疑问汇总（<a href="https://kdocs.cn/l/cp69xNrA3JIz" target="_blank" rel="noopener">金山文档</a>）。表中带删除线条目为审核未通过/需补充材料项目。<br>
+        <strong>数据来源：</strong>机械工程学院 2025-2026 学年综测加分统计实表（智能制造专业）与综测第一次审核疑问汇总（金山文档·校内资料，不对外跳转）。表中带删除线条目为审核未通过/需补充材料项目。<br>
         <strong>说明：</strong>本页为归类整理，同一条目不同同学的最终得分可能因团队折算、就高规则而不同；通用规则（四级+1、志愿时长公式等）见<a href="calculator.html">加分计算器</a>。
       </div>
 
@@ -165,16 +165,9 @@
   }
 
   render();
-
-  /* 深色模式 */
-  var dm = document.querySelector('.dark-mode-toggle');
-  if (dm) dm.addEventListener('click', function () {
-    document.body.classList.toggle('dark');
-    localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
-  });
-  if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
   })();
   </script>
+  <script src="../js/theme.js"></script>
   <script src="../js/main.js"></script>
 </body>
 </html>

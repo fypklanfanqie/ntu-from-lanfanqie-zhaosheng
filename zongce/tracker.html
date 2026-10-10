@@ -56,43 +56,53 @@
 
       <!-- 筛选栏 -->
       <div class="zc-filter-bar">
-        <div class="zc-filter-row">
-          <div class="zc-field" style="max-width:200px;">
-            <label class="zc-field-label">你是</label>
-            <div class="zc-pills" id="field-pills">
-              <button class="zc-pill active" data-field="all">全部</button>
-              <button class="zc-pill" data-field="理">理科生</button>
-              <button class="zc-pill" data-field="文">文科生</button>
+        <!-- 第一步：你是谁 -->
+        <div class="zc-filter-step">
+          <div class="zc-step-tag">① 你是谁</div>
+          <div class="zc-filter-row" style="margin-top:10px;">
+            <div class="zc-field" style="max-width:220px;">
+              <div class="zc-pills" id="field-pills">
+                <button class="zc-pill active" data-field="all">所有学生</button>
+                <button class="zc-pill" data-field="理">理科生</button>
+                <button class="zc-pill" data-field="文">文科生</button>
+              </div>
+            </div>
+            <div class="zc-field" id="college-field" style="flex:1;min-width:240px;display:none;">
+              <select id="college-select" class="zc-select"><option value="">加载中…</option></select>
             </div>
           </div>
-          <div class="zc-field" id="college-field" style="flex:1;display:none;">
-            <label class="zc-field-label" for="college-select">你的学院（理科）</label>
-            <select id="college-select" class="zc-select"><option value="">加载中…</option></select>
-          </div>
-          <div class="zc-field" style="flex:1;min-width:220px;">
-            <label class="zc-field-label" for="kw-input">按名称搜索</label>
-            <input type="text" id="kw-input" class="zc-input" placeholder="如：数学建模、机器人、成图…" autocomplete="off">
-          </div>
-          <div class="zc-field" style="max-width:200px;">
-            <label class="zc-field-label" for="status-select">报名状态</label>
-            <select id="status-select" class="zc-select">
-              <option value="all">全部状态</option>
-              <option value="open">🟢 可报名</option>
-              <option value="soon">🟡 即将开始</option>
-              <option value="watch">⚪ 持续关注</option>
-            </select>
+        </div>
+        <!-- 第二步：找什么 -->
+        <div class="zc-filter-step">
+          <div class="zc-step-tag">② 找什么</div>
+          <div class="zc-filter-row" style="margin-top:10px;">
+            <div class="zc-field" style="flex:1;min-width:220px;">
+              <input type="text" id="kw-input" class="zc-input" placeholder="按名称搜索：数学建模、机器人、成图…" autocomplete="off">
+            </div>
+            <div class="zc-field" style="max-width:220px;">
+              <div class="zc-pills" id="class-pills">
+                <button class="zc-pill active" data-class="all">全部类别</button>
+                <button class="zc-pill" data-class="Ⅰ">Ⅰ类</button>
+                <button class="zc-pill" data-class="Ⅱ">Ⅱ类</button>
+                <button class="zc-pill" data-class="Ⅲ">Ⅲ类</button>
+              </div>
+            </div>
           </div>
         </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px;flex-wrap:wrap;gap:12px;">
-          <div class="zc-pills" id="class-pills">
-            <button class="zc-pill active" data-class="all">全部类别</button>
-            <button class="zc-pill" data-class="Ⅰ">Ⅰ类</button>
-            <button class="zc-pill" data-class="Ⅱ">Ⅱ类</button>
-            <button class="zc-pill" data-class="Ⅲ">Ⅲ类</button>
-          </div>
-          <div class="zc-updated">
-            <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm6.93 6h-2.95c-.32-1.25-.78-2.45-1.38-3.56 1.84.63 3.37 1.91 4.33 3.56zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2 0 .68.06 1.34.14 2H4.26zm.82 2h2.95c.32 1.25.78 2.45 1.38 3.56-1.84-.63-3.37-1.9-4.33-3.56zm2.95-8H5.08c.96-1.66 2.49-2.93 4.33-3.56C8.81 5.55 8.35 6.75 8.03 8zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66c-.09-.66-.16-1.32-.16-2 0-.68.07-1.35.16-2h4.68c.09.65.16 1.32.16 2 0 .68-.07 1.34-.16 2zm.25 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95c-.96 1.65-2.49 2.93-4.33 3.56zM16.36 14c.08-.66.14-1.32.14-2 0-.68-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2h-3.38z"/></svg>
-            <span id="updated-time">数据每周自动更新 · 最近核验 2026-10</span>
+        <!-- 第三步：报名状态 -->
+        <div class="zc-filter-step">
+          <div class="zc-step-tag">③ 报名状态</div>
+          <div class="zc-filter-row" style="margin-top:10px;align-items:center;">
+            <div class="zc-pills" id="status-pills">
+              <button class="zc-pill active" data-status="all">全部</button>
+              <button class="zc-pill" data-status="open">🟢 可报名</button>
+              <button class="zc-pill" data-status="soon">🟡 即将开始</button>
+              <button class="zc-pill" data-status="watch">⚪ 持续关注</button>
+            </div>
+            <div class="zc-updated" style="margin-left:auto;">
+              <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm6.93 6h-2.95c-.32-1.25-.78-2.45-1.38-3.56 1.84.63 3.37 1.91 4.33 3.56zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2 0 .68.06 1.34.14 2H4.26zm.82 2h2.95c.32 1.25.78 2.45 1.38 3.56-1.84-.63-3.37-1.9-4.33-3.56zm2.95-8H5.08c.96-1.66 2.49-2.93 4.33-3.56C8.81 5.55 8.35 6.75 8.03 8zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66c-.09-.66-.16-1.32-.16-2 0-.68.07-1.35.16-2h4.68c.09.65.16 1.32.16 2 0 .68-.07 1.34-.16 2zm.25 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95c-.96 1.65-2.49 2.93-4.33 3.56zM16.36 14c.08-.66.14-1.32.14-2 0-.68-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2h-3.38z"/></svg>
+              <span id="updated-time">数据每周自动更新 · 最近核验 2026-10</span>
+            </div>
           </div>
         </div>
       </div>
@@ -199,6 +209,45 @@
   function esc2(s) {
     return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   }
+
+  /* ---------- 通知 → 竞赛状态映射 ----------
+     规则: 通知标题含"举办/启动/报名/选拔赛"且命中目录竞赛名关键词 → open
+           含"即将/预通知/预告" → soon；命中但为"获奖/公示" → 忽略
+     覆盖: 通知日期在 120 天内视为有效 */
+  function mapNotifications(items) {
+    var now = Date.now();
+    items.forEach(function (n) {
+      if (!n.title) return;
+      if (/获奖|公示|结果|喜报|获佳绩|斩获|评选结果|结题|名单/.test(n.title)) return;
+      var age = n.date ? (now - new Date(n.date).getTime()) : 0;
+      if (age > 120 * 86400e3) return;
+      var isSoon = /即将|预通知|预告|将举办|拟举办/.test(n.title);
+      var isOpen = /报名|启动|举办|选拔赛|开始|组织参加|组织学生/.test(n.title) && !isSoon;
+      if (!isSoon && !isOpen) return;
+      /* 与目录匹配：目录名去括号后 ≥4 字子串命中，或关键词命中 */
+      comps.forEach(function (c) {
+        if (state.statusData[c.no] && state.statusData[c.no].status === 'open') return; /* 已命中更高状态 */
+        var short = c.name.replace(/[（(].*?[)）]/g, '');
+        var core = short.length > 6 ? short.slice(0, 8) : short;
+        var hit = n.title.indexOf(core) >= 0;
+        if (!hit) {
+          /* 常用别名 */
+          var ALIAS = { '数学建模': '数学建模', '挑战杯': '挑战杯', '互联网': '中国国际大学生创新大赛', '创新大赛': '中国国际大学生创新大赛', '机器人': '机器人', '成图': '先进成图', '蓝桥杯': '蓝桥杯', '金相': '金相', '节能减排': '节能减排', '三创': '电子商务', '机械创新': '机械创新' };
+          for (var k in ALIAS) {
+            if (n.title.indexOf(k) >= 0 && (c.name.indexOf(ALIAS[k]) >= 0)) { hit = true; break; }
+          }
+        }
+        if (hit) {
+          state.statusData[c.no] = {
+            status: isSoon ? 'soon' : 'open',
+            until: n.date || '',
+            from: n.title,
+            url: n.url || ''
+          };
+        }
+      });
+    });
+  }
   function loadNotifications() {
     var tryWorker = WORKER_API
       ? fetch(WORKER_API, { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) { return j && j.data && j.data.items ? j.data.items : null; }).catch(function () { return null; })
@@ -216,6 +265,10 @@
         if (!items || !items.length) return;
         var updatedEl = document.getElementById('updated-time');
         if (updatedEl) updatedEl.textContent = '最新通知 ' + (items[0].date || '近期') + ' · 数据每周自动核验';
+        /* 关键：把通知标题映射到竞赛目录 → 设置报名状态 */
+        mapNotifications(items);
+        render();
+        /* 通知卡片 */
         var box = document.getElementById('notify-area');
         if (!box) return;
         box.innerHTML = '<div class="zc-card" style="padding:20px 24px;margin-bottom:24px;">'
@@ -274,7 +327,13 @@
   });
 
   collegeSel.addEventListener('change', function () { state.college = this.value; render(); });
-  $('#status-select').addEventListener('change', function () { state.status = this.value; render(); });
+  $('#status-pills').addEventListener('click', function (e) {
+    var btn = e.target.closest('.zc-pill'); if (!btn) return;
+    this.querySelectorAll('.zc-pill').forEach(function (b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+    state.status = btn.dataset.status;
+    render();
+  });
   $('#kw-input').addEventListener('input', function () { state.kw = this.value.trim(); render(); });
   $('#class-pills').addEventListener('click', function (e) {
     var btn = e.target.closest('.zc-pill'); if (!btn) return;
@@ -363,16 +422,20 @@
       var linkHtml = link
         ? '<a class="zc-comp-link" href="' + link + '" target="_blank" rel="noopener">官方入口<svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg></a>'
         : '<span class="zc-comp-nolink">入口见学院通知</span>';
-      return '<div class="zc-comp-card">'
+      var activeNote = (st.status === 'open' || st.status === 'soon') && st.from
+        ? '<div class="zc-comp-note">📢 <a href="' + (st.url || '#') + '" target="_blank" rel="noopener">' + esc(st.from.slice(0, 44)) + (st.from.length > 44 ? '…' : '') + '</a></div>'
+        : '';
+      return '<div class="zc-comp-card' + (st.status === 'open' ? ' zc-comp-active' : st.status === 'soon' ? ' zc-comp-soon' : '') + '">'
         + '<div class="zc-comp-top"><span class="zc-comp-name">' + esc(c.name) + '</span>'
         + '<span class="zc-status ' + sm.cls + '">' + sm.label + '</span></div>'
+        + activeNote
         + '<div class="zc-comp-host">主办：' + esc(c.host) + '</div>'
         + '<div class="zc-comp-orgs">'
         +   '<span class="zc-tag ' + TAG_CLASS[c.class] + '">' + c.class + '类' + c.tier + '</span>'
         +   c.orgs.map(function (o) { return '<span class="zc-comp-org' + (isMatch && o.indexOf((words[0]||'').slice(0,2)) >= 0 ? ' match' : '') + '">' + esc(o) + '</span>'; }).join('')
         + '</div>'
         + '<div class="zc-comp-foot">' + linkHtml
-        +   '<span class="zc-comp-host">#' + c.no + (st.until ? ' · ' + esc(st.until) : '') + '</span>'
+        +   '<span class="zc-comp-host">#' + c.no + '</span>'
         + '</div>'
         + '</div>';
     }).join('');
@@ -385,16 +448,9 @@
   /* init */
   fillColleges('all');
   render();
-
-  /* 深色模式 */
-  var dm = document.querySelector('.dark-mode-toggle');
-  if (dm) dm.addEventListener('click', function () {
-    document.body.classList.toggle('dark');
-    localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
-  });
-  if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
   })();
   </script>
+  <script src="../js/theme.js"></script>
   <script src="../js/main.js"></script>
 </body>
 </html>

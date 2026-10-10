@@ -511,6 +511,45 @@
 .zc-status.watch   { background: rgba(110, 110, 115, 0.10); color: var(--muted); }
 .zc-status.closed  { background: rgba(220, 38, 38, 0.08); color: var(--danger); }
 
+/* 活跃竞赛卡片高亮 */
+.zc-comp-card.zc-comp-active { border: 1.5px solid rgba(22, 163, 74, 0.45); }
+.zc-comp-card.zc-comp-soon   { border: 1.5px solid rgba(234, 179, 8, 0.5); }
+.zc-comp-note {
+  font-size: 12px;
+  line-height: 1.5;
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
+  background: rgba(22, 163, 74, 0.06);
+  border: 1px solid rgba(22, 163, 74, 0.14);
+}
+.zc-comp-note a { color: #16a34a; font-weight: 500; }
+.zc-comp-card.zc-comp-soon .zc-comp-note { background: rgba(234, 179, 8, 0.07); border-color: rgba(234, 179, 8, 0.2); }
+.zc-comp-card.zc-comp-soon .zc-comp-note a { color: #b45309; }
+body.dark .zc-comp-card.zc-comp-active { border-color: rgba(74, 222, 128, 0.4); }
+body.dark .zc-comp-card.zc-comp-soon { border-color: rgba(251, 191, 36, 0.45); }
+body.dark .zc-comp-note { background: rgba(74, 222, 128, 0.08); border-color: rgba(74, 222, 128, 0.18); }
+body.dark .zc-comp-note a { color: #4ade80; }
+body.dark .zc-comp-card.zc-comp-soon .zc-comp-note { background: rgba(251, 191, 36, 0.08); border-color: rgba(251, 191, 36, 0.2); }
+body.dark .zc-comp-card.zc-comp-soon .zc-comp-note a { color: #fbbf24; }
+
+/* 筛选栏分区（步骤式） */
+.zc-filter-step { padding: var(--space-4) 0; }
+.zc-filter-step + .zc-filter-step { border-top: 1px solid var(--border-soft); }
+.zc-filter-step:first-child { padding-top: 0; }
+.zc-filter-step:last-child { padding-bottom: 0; }
+.zc-step-tag {
+  display: inline-flex; align-items: center;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  background: rgba(0, 113, 227, 0.08);
+  padding: 3px 12px;
+  border-radius: var(--radius-pill);
+}
+body.dark .zc-step-tag { background: rgba(41, 151, 255, 0.15); color: #7cc0ff; }
+body.dark .zc-filter-step + .zc-filter-step { border-top-color: rgba(255,255,255,0.08); }
+
 /* 数据更新时间戳 */
 .zc-updated {
   display: flex; align-items: center; gap: 8px;

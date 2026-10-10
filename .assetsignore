@@ -1,0 +1,11 @@
+images/backup/
+tools/node_modules/
+.git/
+node_modules/
+.wrangler/
+.dev.vars
+*.xlsx
+*.pdf
+*.txt
+tools/shots/
+tools/__pycache__/

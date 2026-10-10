@@ -38,7 +38,7 @@ global.NTU_LINKS = {
   60: ["https://www.fwwb.org.cn/", "verified", "大赛官网"],
   61: ["https://jsjds.blcu.edu.cn/", "verified", "组委会官网；2026报名站 2026.jsjds.com.cn"],
   62: ["https://gplt.patest.cn/", "verified", "天梯赛官网；大数据挑战赛 nercbds.tsinghua.edu.cn"],
-  64: ["http://www.siemenscup-cimc.org.cn/", "verified", "大赛官网，含报名系统"],
+  64: ["https://www.siemenscup-cimc.org.cn/", "verified", "大赛官网，含报名系统"],
   77: ["https://www.raicom.com.cn/", "verified", "RAICOM组委会官网"],
   80: ["https://www.contest.comap.com/undergraduate/contests/", "verified", "COMAP官方报名站"],
   81: ["https://www.cms.org.cn/", "verified", "中国数学会官网（cmathc.org.cn为聚合站勿用）"],

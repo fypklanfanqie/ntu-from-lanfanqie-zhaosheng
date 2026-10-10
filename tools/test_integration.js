@@ -39,15 +39,16 @@ t('体育国家第1 +5', R.calculate({category:'sport',level:'national',rank:1})
 t('体育省第8 +1.5', R.calculate({category:'sport',level:'provincial',rank:8}).score === 1.5);
 t('体育校第4 +1.5', R.calculate({category:'sport',level:'school',rank:4}).score === 1.5);
 t('四级 +1', R.calculate({category:'cet'}).score === 1);
-t('志愿 30h = 10分上限', R.volunteerBonus(30) === 10);
-t('志愿 16h = 3分', R.volunteerBonus(16) === 3);
-t('志愿 11h = 0.5', R.volunteerBonus(11) === 0.5);
-t('PU 55 = 2 上限', R.puBonus(55) === 2);
-t('PU 20 = 1', R.puBonus(20) === 1);
-t('表彰国家级 +5', R.calculate({category:'award',level:'national'}).score === 5);
-t('团队折算 0.25 × 国赛三等 = 0.75', R.calculate({category:'contest',level:'national',prize:3,team:0.25}).score === 0.75);
-t('实测提示: 成图', R.calculate({category:'contest',level:'national',prize:2,compName:'先进成图'}).practical.length > 0);
-t('实测提示: 英语竞赛特等奖限制', R.calculate({category:'contest',level:'national',prize:3,compName:'全国大学生英语竞赛'}).practical.some(p => p.includes('特等奖')));
+t('志愿 30h = 10分上限', R.calculate({category:'volunteer', hours:30}).score === 10);
+t('志愿 16h = 3分', R.calculate({category:'volunteer', hours:16}).score === 3);
+t('志愿 11h = 0.5', R.calculate({category:'volunteer', hours:11}).score === 0.5);
+t('PU 55 = 2 上限', R.calculate({category:'pu', pu:55}).score === 2);
+t('PU 20 = 1', R.calculate({category:'pu', pu:20}).score === 1);
+t('表彰国家级 +5', R.calculate({category:'award', level:'national'}).score === 5);
+t('学校办法下团队不自动折算 = 3（由学院酌情）', R.calculate({category:'contest',level:'national',prize:3,authorRank:2}).score === 3);
+t('机械学院 1/2^(N-1): 第2人 = 1.5', R.calculate({category:'contest',college:'机械工程学院',compClass:'Ⅰ丙',prize:1,authorRank:2}).score === 3);
+t('实测提示: 成图', R.calculate({category:'contest',level:'national',prize:2,compName:'先进成图'}).warn.length > 0);
+t('实测提示: 英语竞赛特等奖限制', R.calculate({category:'contest',level:'national',prize:3,compName:'全国大学生英语竞赛'}).warn.some(p => p.includes('特等奖')));
 
 console.log('[competition-links]');
 const linkNos = Object.keys(L).map(Number);

@@ -1,0 +1,32 @@
+const { chromium } = require('playwright');
+(async () => {
+  const b = await chromium.launch();
+  const p = await (await b.newContext({ viewport: { width: 1440, height: 900 } })).newPage();
+  await p.goto('http://127.0.0.1:8931/zongce/calculator.html', { waitUntil: 'domcontentloaded', timeout: 20000 });
+  await p.waitForTimeout(1500);
+  await p.selectOption('#college-select', '商学院（管理学院）');
+  await p.waitForTimeout(300);
+  const opts = await p.$$eval('#class-select option', els => els.map(e => e.value).slice(0, 4));
+  console.log('商学院类别档:', opts.join(','));
+  await p.fill('#comp-input', '挑战杯');
+  await p.waitForTimeout(400);
+  await p.click('.zc-ac-item');
+  await p.waitForTimeout(200);
+  console.log('自动类别:', await p.inputValue('#class-select'));
+  await p.selectOption('#prize-select', '1');
+  await p.click('#calc-btn');
+  await p.waitForTimeout(400);
+  console.log('商学院 Ⅰ甲 一等（个人）→', (await p.textContent('.zc-result-score')).trim(), '(期望+5)');
+  const author = await p.inputValue('#author-select');
+  console.log('默认排名选项:', author, '(期望0=个人)');
+  const rows = await p.$$eval('#quick-tables table tr', els => els.length);
+  const ruleName = await p.textContent('#quick-rule-name');
+  console.log('速查表行数:', rows, '| 规则:', ruleName.slice(0, 22));
+  // 切回机械
+  await p.selectOption('#college-select', '机械工程学院');
+  await p.waitForTimeout(300);
+  const rows2 = await p.$$eval('#quick-tables table tr', els => els.length);
+  console.log('机械速查行数:', rows2, '| Ⅰ丙一等行存在:', await p.$$eval('#quick-tables td', els => els.some(e => e.textContent.trim() === 'Ⅰ丙')));
+  await b.close();
+  console.log('QUICK PASS');
+})().catch(e => console.log('ERR', e.message.slice(0, 120)));

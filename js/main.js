@@ -168,15 +168,9 @@ function initHeroCarousel() {
   requestAnimationFrame(tick);
 }
 
-/* ===== 深色模式 ===== */
+/* ===== 深色模式 — 统一由 js/theme.js 管理（此处仅做主站按钮兜底绑定） ===== */
 function initDarkMode() {
-  var btn = document.querySelector('.dark-mode-toggle');
-  if (!btn) return;
-  if (localStorage.getItem('ntu-dark') === 'true') document.body.classList.add('dark');
-  btn.addEventListener('click', function() {
-    document.body.classList.toggle('dark');
-    localStorage.setItem('ntu-dark', document.body.classList.contains('dark'));
-  });
+  /* theme.js 已处理初始化与绑定；保留函数避免调用点报错 */
 }
 
 /* ===== 滚动动画（优化：Map 缓存索引 + 批量 DOM 操作） ===== */
