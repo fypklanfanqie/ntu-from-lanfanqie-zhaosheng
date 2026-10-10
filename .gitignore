@@ -15,3 +15,18 @@ tools/debug_*.html
 tools/notifications.json
 tools/trigger_result.json
 
+ntu_pdfs/
+zongce_b/
+ys_extract/
+*.rar
+ntu_*.pdf
+sme_2026.pdf
+sem_2024j.docx
+sie_doc_2024.pdf
+jixie_rule.txt
+fzfz_rule*
+geo_rule*
+phys_rule*
+tky_rule*
+wxy_rule*
+
