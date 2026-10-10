@@ -8,3 +8,6 @@ node_modules/
 .wrangler/
 .dev.vars
 tools/dist/
+tools/shots/
+tools/node_modules/
+

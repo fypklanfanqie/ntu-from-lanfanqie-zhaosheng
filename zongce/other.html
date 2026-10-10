@@ -133,8 +133,9 @@
     /* 可加分：按出现次数分组展示 */
     var html = '<div class="zc-card"><div class="zc-section-label" style="margin-bottom:12px;">可加分 · ' + current + '（' + valid.length + ' 类）</div><div class="zc-bonus-list">';
     valid.forEach(function (it) {
-      var score = it.score ? '+' + String(it.score).replace('＋', '+') : '视情况';
-      var cls = it.score ? '' : ' na';
+      var raw = String(it.score || '').replace('＋', '+').replace(/^\+/, '');
+      var score = raw ? '+' + raw : '视情况';
+      var cls = raw ? '' : ' na';
       html += '<div class="zc-bonus-item">'
         + '<span class="zc-bonus-name">' + esc(it.name) + (it.count > 1 ? ' <span style="color:var(--meta);font-size:0.75rem;">×' + it.count + ' 例</span>' : '') + '</span>'
         + '<span class="zc-bonus-score' + cls + '">' + esc(score) + '</span>'
