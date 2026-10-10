@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>其他加分（机械工程学院） - 南通大学综测帮</title>
+  <meta name="description" content="机械工程学院综合测评其他加分项目分类汇总（仅代表2025-2026学年口径）：德育/智育/体育/美育/劳育五育分类，标注可加分项与不可加分项。">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/liquid-glass.css">
+  <link rel="stylesheet" href="../css/zongce.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="../index.html" class="nav-logo">
+      <img src="../images/wechat-avatar.jpg" alt="南通大学校徽" style="border-radius:50%;height:32px;width:32px;object-fit:cover">
+      <span>Prower by fypklanfanqie</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="../index.html">首页</a></li>
+      <li><a href="index.html">综测帮</a></li>
+      <li><a href="calculator.html">加分计算器</a></li>
+      <li><a href="tracker.html">竞赛追踪</a></li>
+      <li><a href="other.html" class="active">其他加分</a></li>
+      <li><a href="../author.html">作者介绍</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="icon-btn dark-mode-toggle" aria-label="切换深色模式">
+        <svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
+      </button>
+      <button class="mobile-menu-btn" aria-label="菜单">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <main class="zc-page">
+    <div class="zc-container">
+
+      <header class="zc-hero">
+        <span class="zc-hero-badge">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 2l2.4 4.8 5.3.8-3.85 3.75.9 5.3L12 14.1l-4.75 2.5.9-5.3L4.3 7.6l5.3-.8z"/></svg>
+          综测帮 · 子功能三
+        </span>
+        <h1>其他加分 · 机械工程学院</h1>
+        <p>机械工程学院综合测评「其他加分」项目分类汇总。数据来自学院综测第一次审核实表：被划掉的 = 审核未通过，不加分；未划掉的 = 已通过。</p>
+      </header>
+
+      <!-- 口径提示 -->
+      <div class="zc-scope-banner">
+        <svg viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+        <p><strong>重要：以下内容仅代表 2025-2026 学年机械工程学院综合测评口径。</strong>各学院实施细则不同，其他学院请以本院发布为准。分值为审核实表记录，同类加分就高不重复，最终解释权归学院综测小组。</p>
+      </div>
+
+      <!-- 统计 -->
+      <div class="zc-stats" id="stats"></div>
+
+      <!-- 五育 Tabs -->
+      <div class="zc-tabs" id="tabs"></div>
+
+      <!-- 可加分列表 -->
+      <div id="valid-area"></div>
+
+      <!-- 不可加分 -->
+      <div class="zc-invalid-block" id="invalid-area"></div>
+
+      <!-- 来源 -->
+      <div class="zc-source-note">
+        <strong>数据来源：</strong>机械工程学院 2025-2026 学年综测加分统计实表（智能制造专业）与综测第一次审核疑问汇总（<a href="https://kdocs.cn/l/cp69xNrA3JIz" target="_blank" rel="noopener">金山文档</a>）。表中带删除线条目为审核未通过/需补充材料项目。<br>
+        <strong>说明：</strong>本页为归类整理，同一条目不同同学的最终得分可能因团队折算、就高规则而不同；通用规则（四级+1、志愿时长公式等）见<a href="calculator.html">加分计算器</a>。
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-bottom">
+      <span>&copy; 2026 南通大学招生办公室</span>
+      <span>祈通中西，力求精进</span>
+    </div>
+  </footer>
+
+  <script src="../js/other-bonus.js"></script>
+  <script>
+  (function(){
+  'use strict';
+
+  var D = window.NTU_OTHER_BONUS || { valid: {}, invalid: {} };
+  var $ = function (s) { return document.querySelector(s); };
+  var CATS = ['德育', '智育', '体育', '美育', '劳育'];
+  var CAT_ICON = {
+    '德育': 'M12 2l2.4 4.8 5.3.8-3.85 3.75.9 5.3L12 14.1l-4.75 2.5.9-5.3L4.3 7.6l5.3-.8z',
+    '智育': 'M12 3L1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z',
+    '体育': 'M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H3V5h18v14zM5 15h14v3H5z',
+    '美育': 'M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z',
+    '劳育': 'M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z'
+  };
+  var current = '德育';
+
+  /* 统计 */
+  (function () {
+    var tv = 0, ti = 0;
+    CATS.forEach(function (c) {
+      tv += (D.valid[c] || []).length;
+      ti += (D.invalid[c] || []).length;
+    });
+    $('#stats').innerHTML =
+      '<div class="zc-stat"><div class="zc-stat-num"><em>' + tv + '</em></div><div class="zc-stat-label">可加分条目（已通过）</div></div>' +
+      '<div class="zc-stat"><div class="zc-stat-num">' + ti + '</div><div class="zc-stat-label">被划掉（不加分）</div></div>' +
+      '<div class="zc-stat"><div class="zc-stat-num">5</div><div class="zc-stat-label">五育分类</div></div>' +
+      '<div class="zc-stat"><div class="zc-stat-num" style="font-size:20px;line-height:38px;">2025-2026</div><div class="zc-stat-label">适用学年口径</div></div>';
+  })();
+
+  /* Tabs */
+  var tabsEl = $('#tabs');
+  tabsEl.innerHTML = CATS.map(function (c) {
+    var n = (D.valid[c] || []).length;
+    return '<button class="zc-tab' + (c === current ? ' active' : '') + '" data-cat="' + c + '">' + c + ' <span style="opacity:.55;font-size:0.8em;">' + n + '</span></button>';
+  }).join('');
+
+  tabsEl.addEventListener('click', function (e) {
+    var btn = e.target.closest('.zc-tab'); if (!btn) return;
+    tabsEl.querySelectorAll('.zc-tab').forEach(function (b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+    current = btn.dataset.cat;
+    render();
+  });
+
+  function render() {
+    var valid = D.valid[current] || [];
+    var invalid = D.invalid[current] || [];
+
+    /* 可加分：按出现次数分组展示 */
+    var html = '<div class="zc-card"><div class="zc-section-label" style="margin-bottom:12px;">可加分 · ' + current + '（' + valid.length + ' 类）</div><div class="zc-bonus-list">';
+    valid.forEach(function (it) {
+      var score = it.score ? '+' + String(it.score).replace('＋', '+') : '视情况';
+      var cls = it.score ? '' : ' na';
+      html += '<div class="zc-bonus-item">'
+        + '<span class="zc-bonus-name">' + esc(it.name) + (it.count > 1 ? ' <span style="color:var(--meta);font-size:0.75rem;">×' + it.count + ' 例</span>' : '') + '</span>'
+        + '<span class="zc-bonus-score' + cls + '">' + esc(score) + '</span>'
+        + '</div>';
+    });
+    if (!valid.length) html += '<div class="zc-basis-empty">暂无已通过条目</div>';
+    html += '</div></div>';
+    $('#valid-area').innerHTML = html;
+
+    /* 不可加分 */
+    var ih = '<div class="zc-invalid-title">'
+      + '<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>'
+      + '被划掉 · 不加分（' + current + '，' + invalid.length + ' 类）</div>'
+      + '<p style="font-size:0.8125rem;color:var(--meta);margin-bottom:16px;">以下条目在 2025-2026 学年综测第一次审核中被划掉（未通过或需改报），整理于此供避坑参考：</p>'
+      + '<div class="zc-invalid-list">';
+    invalid.slice(0, 60).forEach(function (it) {
+      var txt = it.name.replace(/^\d+[\.、．]\s*/, '');
+      ih += '<div class="zc-invalid-item"><span class="txt">' + esc(txt) + '</span></div>';
+    });
+    ih += '</div>';
+    if (invalid.length > 60) ih += '<p style="font-size:0.8125rem;color:var(--meta);margin-top:12px;">……等共 ' + invalid.length + ' 条，详见学院审核通报。</p>';
+    $('#invalid-area').innerHTML = ih;
+  }
+
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  render();
+
+  /* 深色模式 */
+  var dm = document.querySelector('.dark-mode-toggle');
+  if (dm) dm.addEventListener('click', function () {
+    document.body.classList.toggle('dark');
+    localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+  });
+  if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
+  })();
+  </script>
+</body>
+</html>

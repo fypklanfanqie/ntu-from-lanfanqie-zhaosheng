@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>综测加分计算器 - 南通大学综测帮</title>
+  <meta name="description" content="南通大学学生素质综合测评加分计算器：输入竞赛名称（模糊联想）、获奖级别、奖次/名次，实时计算综测可加分值。依据通大学〔2024〕33号文件。">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/liquid-glass.css">
+  <link rel="stylesheet" href="../css/zongce.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="../index.html" class="nav-logo">
+      <img src="../images/wechat-avatar.jpg" alt="南通大学校徽" style="border-radius:50%;height:32px;width:32px;object-fit:cover">
+      <span>Prower by fypklanfanqie</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="../index.html">首页</a></li>
+      <li><a href="index.html">综测帮</a></li>
+      <li><a href="calculator.html" class="active">加分计算器</a></li>
+      <li><a href="tracker.html">竞赛追踪</a></li>
+      <li><a href="other.html">其他加分</a></li>
+      <li><a href="../author.html">作者介绍</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="icon-btn dark-mode-toggle" aria-label="切换深色模式">
+        <svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
+      </button>
+      <button class="mobile-menu-btn" aria-label="菜单">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <main class="zc-page">
+    <div class="zc-container">
+
+      <header class="zc-hero">
+        <span class="zc-hero-badge">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+          综测帮 · 子功能一
+        </span>
+        <h1>综测加分计算器</h1>
+        <p>输入你的竞赛/证书信息，实时计算综测可加分值。依据《南通大学学生素质综合测评办法（修订）》（通大学〔2024〕33号）。</p>
+      </header>
+
+      <!-- 计算器主卡片 -->
+      <div class="zc-card">
+        <div class="zc-field">
+          <label class="zc-field-label" for="comp-input">竞赛 / 证书名称</label>
+          <div class="zc-ac">
+            <input type="text" id="comp-input" class="zc-input" placeholder="输入名称，支持模糊 / 拼音 / 首字母联想，如：机创、shuxuejianmo、sxjm"
+                   autocomplete="off" role="combobox" aria-expanded="false" aria-controls="comp-ac-list">
+            <div class="zc-ac-list" id="comp-ac-list" role="listbox"></div>
+          </div>
+          <p class="zc-field-hint">覆盖《南通大学大学生学科竞赛目录（2026年版）》全部 172 项。也可直接输入"英语四级""计算机二级"等。</p>
+        </div>
+
+        <div class="zc-filter-row" style="display:flex;gap:16px;flex-wrap:wrap;">
+          <div class="zc-field" style="flex:1;min-width:180px;">
+            <label class="zc-field-label" for="type-select">加分类型</label>
+            <select id="type-select" class="zc-select">
+              <option value="contest" selected>学科竞赛获奖</option>
+              <option value="sport">体育竞赛名次</option>
+              <option value="cet">英语四 / 六级</option>
+              <option value="ncre">计算机等级考试</option>
+              <option value="award">个人受表彰</option>
+              <option value="volunteer">志愿时长</option>
+              <option value="pu">PU 学时</option>
+            </select>
+          </div>
+          <div class="zc-field" style="flex:1;min-width:180px;" id="field-level">
+            <label class="zc-field-label" for="level-select">获奖级别</label>
+            <select id="level-select" class="zc-select">
+              <option value="national">国家级</option>
+              <option value="provincial">省级</option>
+              <option value="city">市级</option>
+              <option value="school" selected>校级</option>
+            </select>
+          </div>
+          <div class="zc-field" style="flex:1;min-width:180px;" id="field-prize">
+            <label class="zc-field-label" for="prize-select">奖次</label>
+            <select id="prize-select" class="zc-select">
+              <option value="1">一等奖（特等奖同档）</option>
+              <option value="2">二等奖</option>
+              <option value="3" selected>三等奖</option>
+            </select>
+          </div>
+          <div class="zc-field" style="flex:1;min-width:180px;display:none;" id="field-rank">
+            <label class="zc-field-label" for="rank-select">名次</label>
+            <select id="rank-select" class="zc-select">
+              <option value="1">第一名</option><option value="2">第二名</option>
+              <option value="3">第三名</option><option value="4">第四名</option>
+              <option value="5">第五名</option><option value="6">第六名</option>
+              <option value="7">第七名</option><option value="8">第八名</option>
+            </select>
+          </div>
+          <div class="zc-field" style="flex:1;min-width:180px;display:none;" id="field-hours">
+            <label class="zc-field-label" for="hours-input">志愿汇时长（小时）</label>
+            <input type="number" id="hours-input" class="zc-input" placeholder="如 56.76" min="0" step="0.01">
+          </div>
+          <div class="zc-field" style="flex:1;min-width:180px;display:none;" id="field-pu">
+            <label class="zc-field-label" for="pu-input">PU 学时分</label>
+            <input type="number" id="pu-input" class="zc-input" placeholder="如 55" min="0" step="0.1">
+          </div>
+          <div class="zc-field" style="flex:1;min-width:180px;" id="field-author">
+            <label class="zc-field-label" for="author-select">你的排名 / 作者位次</label>
+            <select id="author-select" class="zc-select">
+              <option value="1">第 1 作者（负责人 / 第 1 名）</option>
+              <option value="0.5">第 2 作者</option>
+              <option value="0.33">第 3 作者</option>
+              <option value="0.25">第 4 作者及以后</option>
+              <option value="1" selected>个人项目（不折算）</option>
+            </select>
+            <p class="zc-field-hint">团队奖项成员由学院酌情折算，此处提供参考折算，可按学院实际调整。</p>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px;">
+          <button class="zc-btn zc-btn-primary" id="calc-btn">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM7 7h2v2H7V7zm0 4h2v2H7v-2zm4-4h2v2h-2V7zm0 4h2v2h-2v-2zm4-4h2v2h-2V7zm0 8.5V15h-6v-2h6v2.5zM17 13h-2v-2h2v2z"/></svg>
+            计算加分
+          </button>
+          <button class="zc-btn zc-btn-secondary" id="add-btn">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+            加入清单
+          </button>
+        </div>
+      </div>
+
+      <!-- 结果区 -->
+      <div id="result-area"></div>
+
+      <!-- 已加入清单 -->
+      <div class="zc-records" id="records-area" style="display:none;">
+        <h3 style="font-size:1.25rem;font-weight:650;letter-spacing:-0.02em;color:var(--fg);margin-bottom:16px;">我的加分清单</h3>
+        <div id="records-list"></div>
+        <div class="zc-card" style="display:flex;justify-content:space-between;align-items:center;margin-top:16px;">
+          <span style="font-size:0.9375rem;color:var(--muted);">合计（各部分就高后仍需学院审核）</span>
+          <span style="font-size:1.75rem;font-weight:700;color:var(--accent);letter-spacing:-0.02em;" id="total-score">0</span>
+        </div>
+        <p style="font-size:0.8125rem;color:var(--meta);margin-top:8px;">提示：综测成绩 = 德育×10% + 智育×75% + 体育×5% + 美育×5% + 劳育×5%。同类加分就高不重复。</p>
+      </div>
+
+      <!-- 规则速查 -->
+      <div class="zc-card" style="margin-top:48px;">
+        <h3 style="font-size:1.25rem;font-weight:650;letter-spacing:-0.02em;color:var(--fg);margin-bottom:20px;">加分基准速查（通大学〔2024〕33号）</h3>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;">
+          <div>
+            <h4 style="font-size:0.9375rem;font-weight:600;color:var(--fg);margin-bottom:10px;">📚 学习竞赛（智育）</h4>
+            <table style="width:100%;border-collapse:collapse;font-size:0.8125rem;">
+              <tr style="background:var(--surface);"><th style="padding:8px 12px;text-align:left;">级别</th><th style="padding:8px 12px;text-align:left;">一等</th><th style="padding:8px 12px;text-align:left;">二等</th><th style="padding:8px 12px;text-align:left;">三等</th></tr>
+              <tr><td style="padding:8px 12px;border-bottom:1px solid var(--border-soft);">国家级</td><td style="padding:8px 12px;border-bottom:1px solid var(--border-soft);">+5</td><td style="padding:8px 12px;border-bottom:1px solid var(--border-soft);">+4</td><td style="padding:8px 12px;border-bottom:1px solid var(--border-soft);">+3</td></tr>
+              <tr><td style="padding:8px 12px;border-bottom:1px solid var(--border-soft);">省级</td><td style="padding:8px 12px;border-bottom:1px solid var(--border-soft);">+2</td><td style="padding:8px 12px;border-bottom:1px solid var(--border-soft);">+1.5</td><td style="padding:8px 12px;border-bottom:1px solid var(--border-soft);">+1</td></tr>
+              <tr><td style="padding:8px 12px;border-bottom:1px solid var(--border-soft);">市级</td><td style="padding:8px 12px;border-bottom:1px solid var(--border-soft);">+1.5</td><td style="padding:8px 12px;border-bottom:1px solid var(--border-soft);">+1</td><td style="padding:8px 12px;border-bottom:1px solid var(--border-soft);">+0.5</td></tr>
+              <tr><td style="padding:8px 12px;">校级</td><td style="padding:8px 12px;">+1</td><td style="padding:8px 12px;">+0.5</td><td style="padding:8px 12px;">+0.2</td></tr>
+            </table>
+          </div>
+          <div>
+            <h4 style="font-size:0.9375rem;font-weight:600;color:var(--fg);margin-bottom:10px;">🏃 体育竞赛名次</h4>
+            <table style="width:100%;border-collapse:collapse;font-size:0.8125rem;">
+              <tr style="background:var(--surface);"><th style="padding:8px 12px;text-align:left;">级别</th><th style="padding:8px 12px;text-align:left;">第1/2名</th><th style="padding:8px 12px;text-align:left;">第3名</th><th style="padding:8px 12px;text-align:left;">第4名</th><th style="padding:8px 12px;text-align:left;">第5-8名</th></tr>
+              <tr><td style="padding:8px 12px;border-bottom:1px solid var(--border-soft);">国家级</td><td style="padding:8px 12px;border-bottom:1px solid var(--border-soft);">+5</td><td style="padding:8px 12px;border-bottom:1px solid var(--border-soft);">+4.5</td><td style="padding:8px 12px;border-bottom:1px solid var(--border-soft);">+4</td><td style="padding:8px 12px;border-bottom:1px solid var(--border-soft);">+3.5~3</td></tr>
+              <tr><td style="padding:8px 12px;border-bottom:1px solid var(--border-soft);">省级</td><td style="padding:8px 12px;border-bottom:1px solid var(--border-soft);">+3.5</td><td style="padding:8px 12px;border-bottom:1px solid var(--border-soft);">+3</td><td style="padding:8px 12px;border-bottom:1px solid var(--border-soft);">+2.5</td><td style="padding:8px 12px;border-bottom:1px solid var(--border-soft);">+2~1.5</td></tr>
+              <tr><td style="padding:8px 12px;">校市级</td><td style="padding:8px 12px;">+2.5</td><td style="padding:8px 12px;">+2</td><td style="padding:8px 12px;">+1.5</td><td style="padding:8px 12px;">+1~0.5</td></tr>
+            </table>
+          </div>
+        </div>
+        <p style="font-size:0.8125rem;color:var(--meta);margin-top:16px;">证书类：四/六级首次通过 +1 · 一级运动员 +4 / 二级 +3 · 国家级裁判员 +4 / 一级 +3 / 二级 +2 / 三级 +1 · 校级表彰 +1.5 / 市级 +2.5 / 省级 +3.5 / 国家级 +5（德育）</p>
+      </div>
+
+      <!-- 来源说明 -->
+      <div class="zc-source-note">
+        <strong>信息来源：</strong>
+        《南通大学学生素质综合测评办法（修订）》（通大学〔2024〕33号，<a href="https://xxgk.ntu.edu.cn/2024/1111/c9157a253986/page.htm" target="_blank" rel="noopener">信息公开网</a>）·
+        《南通大学大学生学科竞赛目录（2026年版）》（<a href="https://cxcyxy.ntu.edu.cn/" target="_blank" rel="noopener">创新创业教育学院</a>）·
+        机械工程学院 2025-2026 学年综测审核实测口径。<br>
+        <strong>免责声明：</strong>计算结果仅供参考。集体项目折算、认定类别判定、同类就高由学院综测小组裁定，最终以学院审核公示为准。
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-bottom">
+      <span>&copy; 2026 南通大学招生办公室</span>
+      <span>祈通中西，力求精进</span>
+    </div>
+  </footer>
+
+  <script src="../js/competitions-data.js"></script>
+  <script src="../js/zongce-search.js"></script>
+  <script src="../js/zongce-rules.js"></script>
+  <script>
+  (function(){
+  'use strict';
+
+  var comps = window.NTU_COMPETITIONS || [];
+  var Search = window.ZC_SEARCH, Rules = window.ZONGCE_RULES;
+  Search.buildIndex(comps);
+
+  var $ = function (s) { return document.querySelector(s); };
+  var input = $('#comp-input'), list = $('#comp-ac-list');
+  var typeSel = $('#type-select'), levelSel = $('#level-select');
+  var prizeSel = $('#prize-select'), rankSel = $('#rank-select');
+  var hoursIn = $('#hours-input'), puIn = $('#pu-input');
+  var authorSel = $('#author-select');
+
+  /* ---------- 字段联动 ---------- */
+  function refreshFields() {
+    var t = typeSel.value;
+    $('#field-level').style.display = (t === 'contest' || t === 'sport' || t === 'award') ? '' : 'none';
+    $('#field-prize').style.display = t === 'contest' ? '' : 'none';
+    $('#field-rank').style.display = t === 'sport' ? '' : 'none';
+    $('#field-hours').style.display = t === 'volunteer' ? '' : 'none';
+    $('#field-pu').style.display = t === 'pu' ? '' : 'none';
+    $('#field-author').style.display = (t === 'contest' || t === 'sport' || t === 'award') ? '' : 'none';
+  }
+  typeSel.addEventListener('change', refreshFields);
+  refreshFields();
+
+  /* 选定竞赛后自动设置级别/类型的建议 */
+  var selectedComp = null;
+  function onPickComp(c) {
+    selectedComp = c;
+    /* 常见非竞赛关键词识别 */
+    if (/英语四级|CET-?4|四级/.test(c.name)) { typeSel.value = 'cet'; }
+    else if (/英语六级|CET-?6|六级/.test(c.name)) { typeSel.value = 'cet'; }
+    else if (/计算机(二级|等级|二级考试)|NCRE/.test(c.name)) { typeSel.value = 'ncre'; }
+    else if (c.sports) { typeSel.value = 'sport'; }
+    else { typeSel.value = 'contest'; }
+    refreshFields();
+    /* 体育类：名次选择；竞赛类：默认国家级 */
+    if (typeSel.value === 'sport') levelSel.value = 'national';
+  }
+
+  /* ---------- 联想搜索 UI ---------- */
+  var hoverIdx = -1, current = [];
+  function renderList(q) {
+    current = Search.search(q, 8);
+    if (!q.trim()) { list.classList.remove('open'); input.setAttribute('aria-expanded', 'false'); return; }
+    var html = '';
+    if (!current.length) {
+      html = '<div class="zc-ac-empty">未找到相关竞赛，可直接用下方"加分类型"选择类别</div>';
+    } else {
+      current.forEach(function (r, i) {
+        var cls = r.comp.class + '类' + r.comp.tier;
+        html += '<div class="zc-ac-item" data-i="' + i + '" role="option">'
+          + '<span class="zc-ac-name">' + Search.highlight(r.comp.name, q) + '</span>'
+          + '<span class="zc-ac-meta"><span class="zc-tag ' + (r.comp.class === 'Ⅰ' ? 'c1' : r.comp.class === 'Ⅱ' ? 'c2' : 'c3') + '">' + cls + '</span></span>'
+          + '</div>';
+      });
+    }
+    list.innerHTML = html;
+    list.classList.add('open');
+    input.setAttribute('aria-expanded', 'true');
+    hoverIdx = -1;
+  }
+
+  input.addEventListener('input', function () { renderList(input.value); });
+  input.addEventListener('focus', function () { if (input.value.trim()) renderList(input.value); });
+  input.addEventListener('blur', function () { setTimeout(function () { list.classList.remove('open'); }, 180); });
+
+  list.addEventListener('mousedown', function (e) {
+    var item = e.target.closest('.zc-ac-item');
+    if (!item) return;
+    var r = current[+item.dataset.i];
+    input.value = r.comp.name;
+    list.classList.remove('open');
+    onPickComp(r.comp);
+  });
+
+  input.addEventListener('keydown', function (e) {
+    if (!list.classList.contains('open')) return;
+    var items = list.querySelectorAll('.zc-ac-item');
+    if (e.key === 'ArrowDown') { e.preventDefault(); hoverIdx = Math.min(hoverIdx + 1, items.length - 1); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); hoverIdx = Math.max(hoverIdx - 1, 0); }
+    else if (e.key === 'Enter') {
+      e.preventDefault();
+      if (hoverIdx >= 0 && items[hoverIdx]) { items[hoverIdx].dispatchEvent(new Event('mousedown', { bubbles: true })); }
+      else if (current.length === 1) { input.value = current[0].comp.name; onPickComp(current[0].comp); list.classList.remove('open'); }
+      return;
+    }
+    else if (e.key === 'Escape') { list.classList.remove('open'); return; }
+    else return;
+    items.forEach(function (el, i) { el.classList.toggle('hover', i === hoverIdx); });
+  });
+
+  /* ---------- 计算 ---------- */
+  function gather() {
+    var t = typeSel.value;
+    var input_ = {
+      category: t,
+      compName: input.value,
+      team: (t === 'contest' || t === 'sport' || t === 'award') ? parseFloat(authorSel.value) : null
+    };
+    if (t === 'contest' || t === 'sport' || t === 'award') input_.level = levelSel.value;
+    if (t === 'contest') input_.prize = +prizeSel.value;
+    if (t === 'sport') input_.rank = +rankSel.value;
+    if (t === 'volunteer') input_.hours = parseFloat(hoursIn.value) || 0;
+    if (t === 'pu') input_.pu = parseFloat(puIn.value) || 0;
+    return input_;
+  }
+
+  function renderResult(res, silent) {
+    var html = '<div class="zc-card"><div class="zc-result">'
+      + '<div class="zc-result-label">预估可加综测分</div>'
+      + '<div class="zc-result-score">+' + res.score + '<small> 分</small></div>';
+    if (res.basis.length) {
+      html += '<div class="zc-basis">';
+      res.basis.forEach(function (b) {
+        html += '<div class="zc-basis-item"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span>' + b + '</span></div>';
+      });
+      res.practical.forEach(function (p) {
+        html += '<div class="zc-basis-item"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span>' + p + '</span></div>';
+      });
+      res.warn.forEach(function (w) {
+        html += '<div class="zc-warn-item"><svg viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg><span>' + w + '</span></div>';
+      });
+      html += '</div>';
+    }
+    html += '</div></div>';
+    $('#result-area').innerHTML = html;
+  }
+
+  var lastResult = null;
+  $('#calc-btn').addEventListener('click', function () {
+    lastResult = Rules.calculate(gather());
+    renderResult(lastResult);
+    $('#result-area').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  });
+
+  /* ---------- 清单 ---------- */
+  var records = [];
+  try { records = JSON.parse(localStorage.getItem('zc_records') || '[]'); } catch (e) {}
+  function saveRecords() { localStorage.setItem('zc_records', JSON.stringify(records)); }
+
+  function renderRecords() {
+    var area = $('#records-area');
+    if (!records.length) { area.style.display = 'none'; return; }
+    area.style.display = '';
+    var total = 0, html = '';
+    records.forEach(function (r, i) {
+      total += r.score;
+      html += '<div class="zc-record">'
+        + '<div><div class="zc-record-name">' + r.name + '</div>'
+        + '<div class="zc-record-meta">' + r.meta + '</div></div>'
+        + '<div style="display:flex;align-items:center;gap:12px;">'
+        + '<span class="zc-record-score">+' + r.score + '</span>'
+        + '<button class="zc-record-del" data-i="' + i + '" aria-label="删除"><svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg></button>'
+        + '</div></div>';
+    });
+    $('#records-list').innerHTML = html;
+    $('#total-score').textContent = '+' + Math.round(total * 100) / 100 + ' 分';
+  }
+
+  $('#add-btn').addEventListener('click', function () {
+    var res = lastResult || Rules.calculate(gather());
+    var t = typeSel.value;
+    var meta = {
+      contest: levelSel.options[levelSel.selectedIndex].text + ' · ' + prizeSel.options[prizeSel.selectedIndex].text,
+      sport: levelSel.options[levelSel.selectedIndex].text + ' · ' + rankSel.options[rankSel.selectedIndex].text,
+      award: levelSel.options[levelSel.selectedIndex].text + '表彰',
+      cet: '首次通过',
+      ncre: '首次通过',
+      volunteer: (hoursIn.value || 0) + ' 小时',
+      pu: (puIn.value || 0) + ' 分'
+    }[t] || '';
+    records.push({
+      name: input.value || { contest: '学科竞赛', sport: '体育竞赛', cet: '英语四/六级', ncre: '计算机二级', award: '个人表彰', volunteer: '志愿时长', pu: 'PU学时' }[t],
+      meta: meta,
+      score: res.score,
+      ts: Date.now()
+    });
+    saveRecords();
+    renderRecords();
+    $('#records-area').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  });
+
+  $('#records-list').addEventListener('click', function (e) {
+    var btn = e.target.closest('.zc-record-del');
+    if (!btn) return;
+    records.splice(+btn.dataset.i, 1);
+    saveRecords();
+    renderRecords();
+  });
+
+  renderRecords();
+
+  /* ---------- 深色模式（同步主站） ---------- */
+  var dm = document.querySelector('.dark-mode-toggle');
+  if (dm) dm.addEventListener('click', function () {
+    document.body.classList.toggle('dark');
+    localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+  });
+  if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
+
+  })();
+  </script>
+</body>
+</html>

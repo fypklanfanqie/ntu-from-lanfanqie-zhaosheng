@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>竞赛追踪 - 南通大学综测帮</title>
+  <meta name="description" content="南通大学可报名竞赛追踪：按文理科/学院智能推荐，覆盖《南通大学大学生学科竞赛目录（2026年版）》全部172项，附官方报名链接与每周更新时间戳。">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/liquid-glass.css">
+  <link rel="stylesheet" href="../css/zongce.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="../index.html" class="nav-logo">
+      <img src="../images/wechat-avatar.jpg" alt="南通大学校徽" style="border-radius:50%;height:32px;width:32px;object-fit:cover">
+      <span>Prower by fypklanfanqie</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="../index.html">首页</a></li>
+      <li><a href="index.html">综测帮</a></li>
+      <li><a href="calculator.html">加分计算器</a></li>
+      <li><a href="tracker.html" class="active">竞赛追踪</a></li>
+      <li><a href="other.html">其他加分</a></li>
+      <li><a href="../author.html">作者介绍</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="icon-btn dark-mode-toggle" aria-label="切换深色模式">
+        <svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
+      </button>
+      <button class="mobile-menu-btn" aria-label="菜单">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <main class="zc-page">
+    <div class="zc-container">
+
+      <header class="zc-hero">
+        <span class="zc-hero-badge">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+          综测帮 · 子功能二
+        </span>
+        <h1>竞赛追踪</h1>
+        <p>覆盖《南通大学大学生学科竞赛目录（2026年版）》全部 172 项。选择你的科类与学院，优先看到与你最相关的比赛；每项附官方入口与报名状态。</p>
+      </header>
+
+      <!-- 统计条 -->
+      <div class="zc-stats">
+        <div class="zc-stat"><div class="zc-stat-num"><em id="stat-total">172</em></div><div class="zc-stat-label">目录竞赛总数</div></div>
+        <div class="zc-stat"><div class="zc-stat-num" id="stat-open">–</div><div class="zc-stat-label">可报名 / 报名中</div></div>
+        <div class="zc-stat"><div class="zc-stat-num" id="stat-soon">–</div><div class="zc-stat-label">即将开始报名</div></div>
+        <div class="zc-stat"><div class="zc-stat-num" id="stat-match">–</div><div class="zc-stat-label">匹配你的学院</div></div>
+      </div>
+
+      <!-- 筛选栏 -->
+      <div class="zc-filter-bar">
+        <div class="zc-filter-row">
+          <div class="zc-field" style="max-width:200px;">
+            <label class="zc-field-label">你是</label>
+            <div class="zc-pills" id="field-pills">
+              <button class="zc-pill active" data-field="all">全部</button>
+              <button class="zc-pill" data-field="理">理科生</button>
+              <button class="zc-pill" data-field="文">文科生</button>
+            </div>
+          </div>
+          <div class="zc-field" id="college-field" style="flex:1;display:none;">
+            <label class="zc-field-label" for="college-select">你的学院（理科）</label>
+            <select id="college-select" class="zc-select"><option value="">加载中…</option></select>
+          </div>
+          <div class="zc-field" style="flex:1;min-width:220px;">
+            <label class="zc-field-label" for="kw-input">按名称搜索</label>
+            <input type="text" id="kw-input" class="zc-input" placeholder="如：数学建模、机器人、成图…" autocomplete="off">
+          </div>
+          <div class="zc-field" style="max-width:200px;">
+            <label class="zc-field-label" for="status-select">报名状态</label>
+            <select id="status-select" class="zc-select">
+              <option value="all">全部状态</option>
+              <option value="open">🟢 可报名</option>
+              <option value="soon">🟡 即将开始</option>
+              <option value="watch">⚪ 持续关注</option>
+            </select>
+          </div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px;flex-wrap:wrap;gap:12px;">
+          <div class="zc-pills" id="class-pills">
+            <button class="zc-pill active" data-class="all">全部类别</button>
+            <button class="zc-pill" data-class="Ⅰ">Ⅰ类</button>
+            <button class="zc-pill" data-class="Ⅱ">Ⅱ类</button>
+            <button class="zc-pill" data-class="Ⅲ">Ⅲ类</button>
+          </div>
+          <div class="zc-updated">
+            <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm6.93 6h-2.95c-.32-1.25-.78-2.45-1.38-3.56 1.84.63 3.37 1.91 4.33 3.56zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2 0 .68.06 1.34.14 2H4.26zm.82 2h2.95c.32 1.25.78 2.45 1.38 3.56-1.84-.63-3.37-1.9-4.33-3.56zm2.95-8H5.08c.96-1.66 2.49-2.93 4.33-3.56C8.81 5.55 8.35 6.75 8.03 8zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66c-.09-.66-.16-1.32-.16-2 0-.68.07-1.35.16-2h4.68c.09.65.16 1.32.16 2 0 .68-.07 1.34-.16 2zm.25 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95c-.96 1.65-2.49 2.93-4.33 3.56zM16.36 14c.08-.66.14-1.32.14-2 0-.68-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2h-3.38z"/></svg>
+            <span id="updated-time">数据每周自动更新 · 最近核验 2026-10</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 推荐说明条 -->
+      <div id="recommend-note" style="display:none;margin-bottom:20px;">
+        <div class="zc-scope-banner" style="background:rgba(0,113,227,0.06);border-color:rgba(0,113,227,0.2);">
+          <svg viewBox="0 0 24 24" fill="#0071e3"><path d="M12 2l2.4 4.8 5.3.8-3.85 3.75.9 5.3L12 14.1l-4.75 2.5.9-5.3L4.3 7.6l5.3-.8z"/></svg>
+          <p id="recommend-text" style="color:#0071e3;"></p>
+        </div>
+      </div>
+
+      <!-- 竞赛网格 -->
+      <div class="zc-comp-grid" id="comp-grid"></div>
+      <div class="zc-basis-empty" id="empty-tip" style="display:none;">没有符合条件的竞赛，试试放宽筛选</div>
+
+      <!-- 官方通知来源 -->
+      <div class="zc-source-note">
+        <strong>报名状态与信息来源：</strong>
+        本页报名状态基于南通大学创新创业教育学院<a href="https://cxcyxy.ntu.edu.cn/10412/list.htm" target="_blank" rel="noopener">通知公告</a>及各承办学院官网通知每周核验更新；竞赛归属与认定类别依据《南通大学大学生学科竞赛目录（2026年版）》。
+        各竞赛官方入口以主办方官网为准，报名前请以校内通知的具体安排（校级选拔/直报）为准。<br>
+        <strong>免责声明：</strong>报名时间、方式可能调整，请务必进入官方链接核实最新通知。
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-bottom">
+      <span>&copy; 2026 南通大学招生办公室</span>
+      <span>祈通中西，力求精进</span>
+    </div>
+  </footer>
+
+  <script src="../js/competitions-data.js"></script>
+  <script src="../js/competition-links.js"></script>
+  <script>
+  (function(){
+  'use strict';
+
+  var comps = window.NTU_COMPETITIONS || [];
+  var $ = function (s) { return document.querySelector(s); };
+
+  /* ---------- 26 学院（官网 yxsz 名录）→ 归属科类 ---------- */
+  var COLLEGES = [
+    '机械工程学院','信息科学技术学院（通科微电子学院）','微电子学院（集成电路学院）',
+    '人工智能与计算机学院（阿里云大数据学院）','电气与自动化学院','交通与土木工程学院（交通学院）',
+    '化学化工学院','纺织服装学院','生命科学学院（海洋学院）','地理科学学院',
+    '物理科学与技术学院','数学与统计学院','医学院','护理与康复学院','公共卫生学院',
+    '药学院','体育科学学院','张謇学院','锡耶纳未来生物技术学院',
+    '文学院','历史文化学院（法学院）','外国语学院','商学院（管理学院）',
+    '教育科学学院','教师教育学院','艺术学院（建筑学院）','马克思主义学院','国际教育学院'
+  ];
+
+  /* 学院 → 竞赛承办学院名匹配词（目录中的写法） */
+  var COLLEGE_MATCH = {
+    '机械工程学院': ['机械工程学院'],
+    '信息科学技术学院（通科微电子学院）': ['信息科学技术学院'],
+    '微电子学院（集成电路学院）': ['微电子学院'],
+    '人工智能与计算机学院（阿里云大数据学院）': ['人工智能与计算机学院'],
+    '电气与自动化学院': ['电气与自动化学院'],
+    '交通与土木工程学院（交通学院）': ['交通与土木工程学院'],
+    '化学化工学院': ['化学化工学院'],
+    '纺织服装学院': ['纺织服装学院'],
+    '生命科学学院（海洋学院）': ['生命科学学院'],
+    '地理科学学院': ['地理科学学院'],
+    '物理科学与技术学院': ['物理科学与技术学院'],
+    '数学与统计学院': ['数学与统计学院'],
+    '医学院': ['医学院'],
+    '护理与康复学院': ['护理与康复学院'],
+    '公共卫生学院': ['公共卫生学院'],
+    '药学院': ['药学院'],
+    '体育科学学院': ['体育科学学院'],
+    '张謇学院': ['张謇学院'],
+    '锡耶纳未来生物技术学院': ['锡耶纳未来生物技术学院'],
+    '文学院': ['文学院'],
+    '历史文化学院（法学院）': ['历史文化学院'],
+    '外国语学院': ['外国语学院'],
+    '商学院（管理学院）': ['商学院'],
+    '教育科学学院': ['教育科学学院'],
+    '教师教育学院': ['教师教育学院'],
+    '艺术学院（建筑学院）': ['艺术学院'],
+    '马克思主义学院': ['马克思主义学院'],
+    '国际教育学院': ['国际教育学院']
+  };
+
+  /* ---------- 状态 ---------- */
+  var state = {
+    field: 'all',      // all|理|文
+    college: '',
+    kw: '',
+    status: 'all',
+    klass: 'all',
+    statusData: {}     // no -> {status, until, source}
+  };
+
+  /* ---------- 报名状态数据（fetch-competitions 每周更新，静态快照兜底） ---------- */
+  fetch('data/competitions-status.json', { cache: 'no-cache' })
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (d) { if (d && d.items) { state.statusData = d.items; render(); } })
+    .catch(function () {});
+
+  function statusOf(no) {
+    var s = state.statusData[no] || state.statusData[String(no)];
+    if (s && s.status) return s;
+    return { status: 'watch' };
+  }
+
+  /* ---------- 学院下拉 ---------- */
+  var collegeSel = $('#college-select');
+  function fillColleges(field) {
+    var list = COLLEGES.filter(function (c) {
+      if (field === '理') return isLiCollege(c);
+      if (field === '文') return !isLiCollege(c);
+      return true;
+    });
+    collegeSel.innerHTML = '<option value="">全部学院</option>' +
+      list.map(function (c) { return '<option value="' + c + '">' + c + '</option>'; }).join('');
+  }
+  var LI_COLLEGES = ['机械工程学院','信息科学技术学院（通科微电子学院）','微电子学院（集成电路学院）','人工智能与计算机学院（阿里云大数据学院）','电气与自动化学院','交通与土木工程学院（交通学院）','化学化工学院','纺织服装学院','生命科学学院（海洋学院）','地理科学学院','物理科学与技术学院','数学与统计学院','医学院','护理与康复学院','公共卫生学院','药学院','体育科学学院','张謇学院','锡耶纳未来生物技术学院'];
+  function isLiCollege(c) { return LI_COLLEGES.indexOf(c) >= 0; }
+
+  /* ---------- 筛选事件 ---------- */
+  $('#field-pills').addEventListener('click', function (e) {
+    var btn = e.target.closest('.zc-pill'); if (!btn) return;
+    this.querySelectorAll('.zc-pill').forEach(function (b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+    state.field = btn.dataset.field;
+    if (state.field === '理') {
+      $('#college-field').style.display = '';
+      fillColleges('理');
+      state.college = collegeSel.value;
+    } else if (state.field === '文') {
+      $('#college-field').style.display = '';
+      fillColleges('文');
+      state.college = collegeSel.value;
+    } else {
+      $('#college-field').style.display = 'none';
+      state.college = '';
+    }
+    render();
+  });
+
+  collegeSel.addEventListener('change', function () { state.college = this.value; render(); });
+  $('#status-select').addEventListener('change', function () { state.status = this.value; render(); });
+  $('#kw-input').addEventListener('input', function () { state.kw = this.value.trim(); render(); });
+  $('#class-pills').addEventListener('click', function (e) {
+    var btn = e.target.closest('.zc-pill'); if (!btn) return;
+    this.querySelectorAll('.zc-pill').forEach(function (b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+    state.klass = btn.dataset.class;
+    render();
+  });
+
+  /* ---------- 过滤 ---------- */
+  function filtered() {
+    return comps.filter(function (c) {
+      if (state.field === '理' && c.field !== '理' && c.field !== '综') return false;
+      if (state.field === '文' && c.field !== '文' && c.field !== '综') return false;
+      if (state.college) {
+        var words = COLLEGE_MATCH[state.college] || [state.college.slice(0, 4)];
+        if (!c.orgs.some(function (o) { return words.some(function (w) { return o.indexOf(w) >= 0; }); })) return false;
+      }
+      if (state.klass !== 'all' && c.class !== state.klass) return false;
+      if (state.status !== 'all' && statusOf(c.no).status !== state.status) return false;
+      if (state.kw && c.name.toLowerCase().indexOf(state.kw.toLowerCase()) < 0) return false;
+      return true;
+    });
+  }
+
+  /* ---------- 排序：匹配学院优先 → 状态优先 → 类别高优先 ---------- */
+  var STATUS_ORDER = { open: 0, soon: 1, watch: 2, closed: 3 };
+  function sorted(list) {
+    var col = state.college;
+    var words = col ? (COLLEGE_MATCH[col] || [col.slice(0, 4)]) : null;
+    return list.slice().sort(function (a, b) {
+      if (words) {
+        var ma = a.orgs.some(function (o) { return words.some(function (w) { return o.indexOf(w) >= 0; }); }) ? 0 : 1;
+        var mb = b.orgs.some(function (o) { return words.some(function (w) { return o.indexOf(w) >= 0; }); }) ? 0 : 1;
+        if (ma !== mb) return ma - mb;
+      }
+      var sa = STATUS_ORDER[statusOf(a.no).status], sb = STATUS_ORDER[statusOf(b.no).status];
+      if (sa !== sb) return sa - sb;
+      var wa = (a.class === 'Ⅰ' ? 3 : a.class === 'Ⅱ' ? 2 : 1) * 10 + (a.tier === '甲' ? 3 : a.tier === '乙' ? 2 : 1);
+      var wb = (b.class === 'Ⅰ' ? 3 : b.class === 'Ⅱ' ? 2 : 1) * 10 + (b.tier === '甲' ? 3 : b.tier === '乙' ? 2 : 1);
+      return wb - wa;
+    });
+  }
+
+  /* ---------- 渲染 ---------- */
+  var TAG_CLASS = { 'Ⅰ': 'c1', 'Ⅱ': 'c2', 'Ⅲ': 'c3' };
+  var STATUS_META = {
+    open:  { cls: 'open',  label: '可报名' },
+    soon:  { cls: 'soon',  label: '即将开始' },
+    watch: { cls: 'watch', label: '持续关注' },
+    closed:{ cls: 'closed',label: '报名截止' }
+  };
+
+  function render() {
+    var list = sorted(filtered());
+    var grid = $('#comp-grid');
+    $('#empty-tip').style.display = list.length ? 'none' : '';
+    var openN = 0, soonN = 0, matchN = 0;
+    var words = state.college ? (COLLEGE_MATCH[state.college] || []) : null;
+    comps.forEach(function (c) {
+      var st = statusOf(c.no).status;
+      if (st === 'open') openN++;
+      if (st === 'soon') soonN++;
+      if (words && c.orgs.some(function (o) { return words.some(function (w) { return o.indexOf(w) >= 0; }); })) matchN++;
+    });
+    $('#stat-open').textContent = openN;
+    $('#stat-soon').textContent = soonN;
+    $('#stat-match').textContent = state.college ? matchN : '–';
+
+    /* 推荐说明 */
+    if (state.college) {
+      $('#recommend-note').style.display = '';
+      $('#recommend-text').textContent = '已按「' + state.college + '」承办/相关竞赛优先排序，匹配 ' + matchN + ' 项。同时也保留了面向全校的通用赛事。';
+    } else if (state.field !== 'all') {
+      $('#recommend-note').style.display = '';
+      $('#recommend-text').textContent = state.field === '理' ? '已为你筛除纯文科赛事；选择具体学院可进一步精准推荐。' : '已为你筛除纯理工科赛事；文科通用赛事仍会展示。';
+    } else {
+      $('#recommend-note').style.display = 'none';
+    }
+
+    grid.innerHTML = list.map(function (c) {
+      var st = statusOf(c.no);
+      var sm = STATUS_META[st.status] || STATUS_META.watch;
+      var isMatch = words && c.orgs.some(function (o) { return words.some(function (w) { return o.indexOf(w) >= 0; }); });
+      var link = (window.NTU_LINKS && window.NTU_LINKS[c.no]) || '';
+      var linkHtml = link
+        ? '<a class="zc-comp-link" href="' + link + '" target="_blank" rel="noopener">官方入口<svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg></a>'
+        : '<span class="zc-comp-nolink">入口见学院通知</span>';
+      return '<div class="zc-comp-card">'
+        + '<div class="zc-comp-top"><span class="zc-comp-name">' + esc(c.name) + '</span>'
+        + '<span class="zc-status ' + sm.cls + '">' + sm.label + '</span></div>'
+        + '<div class="zc-comp-host">主办：' + esc(c.host) + '</div>'
+        + '<div class="zc-comp-orgs">'
+        +   '<span class="zc-tag ' + TAG_CLASS[c.class] + '">' + c.class + '类' + c.tier + '</span>'
+        +   c.orgs.map(function (o) { return '<span class="zc-comp-org' + (isMatch && o.indexOf((words[0]||'').slice(0,2)) >= 0 ? ' match' : '') + '">' + esc(o) + '</span>'; }).join('')
+        + '</div>'
+        + '<div class="zc-comp-foot">' + linkHtml
+        +   '<span class="zc-comp-host">#' + c.no + (st.until ? ' · ' + esc(st.until) : '') + '</span>'
+        + '</div>'
+        + '</div>';
+    }).join('');
+  }
+
+  function esc(s) {
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  /* init */
+  fillColleges('all');
+  render();
+
+  /* 深色模式 */
+  var dm = document.querySelector('.dark-mode-toggle');
+  if (dm) dm.addEventListener('click', function () {
+    document.body.classList.toggle('dark');
+    localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+  });
+  if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
+  })();
+  </script>
+</body>
+</html>

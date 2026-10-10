@@ -26,6 +26,7 @@
       <li><a href="#testimonials">学长学姐说</a></li>
       <li><a href="#student-life">活力校园</a></li>
       <li><a href="#guide">入学指南</a></li>
+      <li><a href="zongce/index.html">综测帮</a></li>
       <li><a href="#estimated-scores">预估线</a></li>
       <li><a href="bilibili.html">B站账号</a></li>
       <li><a href="author.html">作者介绍</a></li>
@@ -398,6 +399,34 @@
     </div>
   </section>
 
+  <!-- 综测帮 -->
+  <section class="zongce-entry reveal" id="zongce">
+    <div style="max-width:1200px;margin:0 auto;padding:0 2rem;">
+      <div class="section-header">
+        <span class="section-label">ZONGCE HELPER</span>
+        <h2 class="section-title">综测帮</h2>
+        <p class="section-desc">算清每一分综测，抓住每一次机会 —— 加分计算、竞赛追踪、学院加分口径，一个入口全搞定。</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;">
+        <a href="zongce/calculator.html" class="zc-home-card" style="--gc:linear-gradient(135deg,#0071e3,#4a9eff);">
+          <div class="zc-home-icon"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM7 7h2v2H7V7zm0 4h2v2H7v-2zm4-4h2v2h-2V7zm0 4h2v2h-2v-2zm4-4h2v2h-2V7zm0 8.5V15h-6v-2h6v2.5zM17 13h-2v-2h2v2z"/></svg></div>
+          <h3>加分计算器</h3>
+          <p>输入竞赛名称（模糊/拼音联想）、级别与排名，实时算出可加综测分。</p>
+        </a>
+        <a href="zongce/tracker.html" class="zc-home-card" style="--gc:linear-gradient(135deg,#16a34a,#4ade80);">
+          <div class="zc-home-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></div>
+          <h3>竞赛追踪</h3>
+          <p>文理分流 + 学院推荐，可报名/即将报名的比赛一目了然，附官方入口。</p>
+        </a>
+        <a href="zongce/other.html" class="zc-home-card" style="--gc:linear-gradient(135deg,#ea580c,#fb923c);">
+          <div class="zc-home-icon"><svg viewBox="0 0 24 24"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/></svg></div>
+          <h3>其他加分</h3>
+          <p>机械工程学院五育加分分类汇总（2025-2026 口径），被划掉的不加分。</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <!-- 今年预估分数线 -->
   <section class="estimated-scores reveal" id="estimated-scores">
     <div style="max-width:1200px;margin:0 auto;padding:0 2rem;">
@@ -499,6 +528,7 @@
   </div>
 
   <script src="js/estimated-scores.js"></script>
+  <link rel="stylesheet" href="css/zongce.css">
   <script>
     function filterScores(type) {
       const tbody = document.getElementById('scores-tbody');
