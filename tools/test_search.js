@@ -1,0 +1,18 @@
+const d = require('../js/competitions-data.js');
+const S = require('../js/zongce-search.js');
+S.buildIndex(d);
+const t = (label, q, n) => console.log(label, '→', S.search(q, n).map(r => r.comp.no + ':' + r.comp.name).join(' | ') || '(无结果)');
+t('机创       ', '机创', 3);
+t('数模       ', '数模', 3);
+t('sxjm       ', 'sxjm', 3);
+t('chengtu    ', 'chengtu', 3);
+t('机器人     ', '机器人', 5);
+t('jichuangxin', 'jichuangxin', 3);
+t('meisai     ', 'meisai', 2);
+t('挑战杯     ', '挑战杯', 3);
+t('lanqiao    ', 'lanqiao', 2);
+t('电子设计   ', '电子设计', 3);
+t('高数       ', '高数', 3);
+t('金相       ', '金相', 2);
+t('节能       ', '节能', 3);
+console.log('高亮 →', S.highlight('全国大学生机械创新设计大赛', '机械创新'));
