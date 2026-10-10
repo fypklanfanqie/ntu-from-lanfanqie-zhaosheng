@@ -1,0 +1,522 @@
+{
+ "updated": "2026-10-10",
+ "source": "static-init",
+ "items": {
+  "1": {
+   "status": "watch"
+  },
+  "2": {
+   "status": "watch"
+  },
+  "3": {
+   "status": "watch"
+  },
+  "4": {
+   "status": "watch"
+  },
+  "5": {
+   "status": "watch"
+  },
+  "6": {
+   "status": "watch"
+  },
+  "7": {
+   "status": "watch"
+  },
+  "8": {
+   "status": "watch"
+  },
+  "9": {
+   "status": "watch"
+  },
+  "10": {
+   "status": "watch"
+  },
+  "11": {
+   "status": "watch"
+  },
+  "12": {
+   "status": "watch"
+  },
+  "13": {
+   "status": "watch"
+  },
+  "14": {
+   "status": "watch"
+  },
+  "15": {
+   "status": "watch"
+  },
+  "16": {
+   "status": "watch"
+  },
+  "17": {
+   "status": "watch"
+  },
+  "18": {
+   "status": "watch"
+  },
+  "19": {
+   "status": "watch"
+  },
+  "20": {
+   "status": "watch"
+  },
+  "21": {
+   "status": "watch"
+  },
+  "22": {
+   "status": "watch"
+  },
+  "23": {
+   "status": "watch"
+  },
+  "24": {
+   "status": "watch"
+  },
+  "25": {
+   "status": "watch"
+  },
+  "26": {
+   "status": "watch"
+  },
+  "27": {
+   "status": "watch"
+  },
+  "28": {
+   "status": "watch"
+  },
+  "29": {
+   "status": "watch"
+  },
+  "30": {
+   "status": "watch"
+  },
+  "31": {
+   "status": "watch"
+  },
+  "32": {
+   "status": "watch"
+  },
+  "33": {
+   "status": "watch"
+  },
+  "34": {
+   "status": "watch"
+  },
+  "35": {
+   "status": "watch"
+  },
+  "36": {
+   "status": "watch"
+  },
+  "37": {
+   "status": "watch"
+  },
+  "38": {
+   "status": "watch"
+  },
+  "39": {
+   "status": "watch"
+  },
+  "40": {
+   "status": "watch"
+  },
+  "41": {
+   "status": "watch"
+  },
+  "42": {
+   "status": "watch"
+  },
+  "43": {
+   "status": "watch"
+  },
+  "44": {
+   "status": "watch"
+  },
+  "45": {
+   "status": "watch"
+  },
+  "46": {
+   "status": "watch"
+  },
+  "47": {
+   "status": "watch"
+  },
+  "48": {
+   "status": "watch"
+  },
+  "49": {
+   "status": "watch"
+  },
+  "50": {
+   "status": "watch"
+  },
+  "51": {
+   "status": "watch"
+  },
+  "52": {
+   "status": "watch"
+  },
+  "53": {
+   "status": "watch"
+  },
+  "54": {
+   "status": "watch"
+  },
+  "55": {
+   "status": "watch"
+  },
+  "56": {
+   "status": "watch"
+  },
+  "57": {
+   "status": "watch"
+  },
+  "58": {
+   "status": "watch"
+  },
+  "59": {
+   "status": "watch"
+  },
+  "60": {
+   "status": "watch"
+  },
+  "61": {
+   "status": "watch"
+  },
+  "62": {
+   "status": "watch"
+  },
+  "63": {
+   "status": "watch"
+  },
+  "64": {
+   "status": "watch"
+  },
+  "65": {
+   "status": "watch"
+  },
+  "66": {
+   "status": "watch"
+  },
+  "67": {
+   "status": "watch"
+  },
+  "68": {
+   "status": "watch"
+  },
+  "69": {
+   "status": "watch"
+  },
+  "70": {
+   "status": "watch"
+  },
+  "71": {
+   "status": "watch"
+  },
+  "72": {
+   "status": "watch"
+  },
+  "73": {
+   "status": "watch"
+  },
+  "74": {
+   "status": "watch"
+  },
+  "75": {
+   "status": "watch"
+  },
+  "76": {
+   "status": "watch"
+  },
+  "77": {
+   "status": "watch"
+  },
+  "78": {
+   "status": "watch"
+  },
+  "79": {
+   "status": "watch"
+  },
+  "80": {
+   "status": "watch"
+  },
+  "81": {
+   "status": "watch"
+  },
+  "82": {
+   "status": "watch"
+  },
+  "83": {
+   "status": "watch"
+  },
+  "84": {
+   "status": "watch"
+  },
+  "85": {
+   "status": "watch"
+  },
+  "86": {
+   "status": "watch"
+  },
+  "87": {
+   "status": "watch"
+  },
+  "88": {
+   "status": "watch"
+  },
+  "89": {
+   "status": "watch"
+  },
+  "90": {
+   "status": "watch"
+  },
+  "91": {
+   "status": "watch"
+  },
+  "92": {
+   "status": "watch"
+  },
+  "93": {
+   "status": "watch"
+  },
+  "94": {
+   "status": "watch"
+  },
+  "95": {
+   "status": "watch"
+  },
+  "96": {
+   "status": "watch"
+  },
+  "97": {
+   "status": "watch"
+  },
+  "98": {
+   "status": "watch"
+  },
+  "99": {
+   "status": "watch"
+  },
+  "100": {
+   "status": "watch"
+  },
+  "101": {
+   "status": "watch"
+  },
+  "102": {
+   "status": "watch"
+  },
+  "103": {
+   "status": "watch"
+  },
+  "104": {
+   "status": "watch"
+  },
+  "105": {
+   "status": "watch"
+  },
+  "106": {
+   "status": "watch"
+  },
+  "107": {
+   "status": "watch"
+  },
+  "108": {
+   "status": "watch"
+  },
+  "109": {
+   "status": "watch"
+  },
+  "110": {
+   "status": "watch"
+  },
+  "111": {
+   "status": "watch"
+  },
+  "112": {
+   "status": "watch"
+  },
+  "113": {
+   "status": "watch"
+  },
+  "114": {
+   "status": "watch"
+  },
+  "115": {
+   "status": "watch"
+  },
+  "116": {
+   "status": "watch"
+  },
+  "117": {
+   "status": "watch"
+  },
+  "118": {
+   "status": "watch"
+  },
+  "119": {
+   "status": "watch"
+  },
+  "120": {
+   "status": "watch"
+  },
+  "121": {
+   "status": "watch"
+  },
+  "122": {
+   "status": "watch"
+  },
+  "123": {
+   "status": "watch"
+  },
+  "124": {
+   "status": "watch"
+  },
+  "125": {
+   "status": "watch"
+  },
+  "126": {
+   "status": "watch"
+  },
+  "127": {
+   "status": "watch"
+  },
+  "128": {
+   "status": "watch"
+  },
+  "129": {
+   "status": "watch"
+  },
+  "130": {
+   "status": "watch"
+  },
+  "131": {
+   "status": "watch"
+  },
+  "132": {
+   "status": "watch"
+  },
+  "133": {
+   "status": "watch"
+  },
+  "134": {
+   "status": "watch"
+  },
+  "135": {
+   "status": "watch"
+  },
+  "136": {
+   "status": "watch"
+  },
+  "137": {
+   "status": "watch"
+  },
+  "138": {
+   "status": "watch"
+  },
+  "139": {
+   "status": "watch"
+  },
+  "140": {
+   "status": "watch"
+  },
+  "141": {
+   "status": "watch"
+  },
+  "142": {
+   "status": "watch"
+  },
+  "143": {
+   "status": "watch"
+  },
+  "144": {
+   "status": "watch"
+  },
+  "145": {
+   "status": "watch"
+  },
+  "146": {
+   "status": "watch"
+  },
+  "147": {
+   "status": "watch"
+  },
+  "148": {
+   "status": "watch"
+  },
+  "149": {
+   "status": "watch"
+  },
+  "150": {
+   "status": "watch"
+  },
+  "151": {
+   "status": "watch"
+  },
+  "152": {
+   "status": "watch"
+  },
+  "153": {
+   "status": "watch"
+  },
+  "154": {
+   "status": "watch"
+  },
+  "155": {
+   "status": "watch"
+  },
+  "156": {
+   "status": "watch"
+  },
+  "157": {
+   "status": "watch"
+  },
+  "158": {
+   "status": "watch"
+  },
+  "159": {
+   "status": "watch"
+  },
+  "160": {
+   "status": "watch"
+  },
+  "161": {
+   "status": "watch"
+  },
+  "162": {
+   "status": "watch"
+  },
+  "163": {
+   "status": "watch"
+  },
+  "164": {
+   "status": "watch"
+  },
+  "165": {
+   "status": "watch"
+  },
+  "166": {
+   "status": "watch"
+  },
+  "167": {
+   "status": "watch"
+  },
+  "168": {
+   "status": "watch"
+  },
+  "169": {
+   "status": "watch"
+  },
+  "170": {
+   "status": "watch"
+  },
+  "171": {
+   "status": "watch"
+  },
+  "172": {
+   "status": "watch"
+  }
+ }
+}
