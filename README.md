@@ -53,7 +53,43 @@
 | 🎬 **活力校园** | 社团/演出/竞赛/志愿活动，链接B站视频 |
 | 📚 **入学指南** | 录取查询、报到流程、缴费指南、常见问题 |
 | 📊 **预估分数线** | 2026年高考专业组预估线 + 预估位次，支持历史/物理类筛选 |
+| 🧮 **综测帮** | 综测加分计算器（172项竞赛模糊联想）+ 竞赛追踪（文理学院推荐）+ 机械学院其他加分 |
 | 👨‍💻 **作者介绍** | 个人主页、B站/Steam社交链接、照片墙 |
+
+---
+
+## 🧮 综测帮（南通大学学生综合测评助手）
+
+为在校生打造的综测工具箱，入口：首页「综测帮」区块或 `zongce/index.html`。
+
+### ✨ 加分计算器 `zongce/calculator.html`
+- **模糊联想搜索**：支持汉字子串 / 全拼（`shuxuejianmo`）/ 拼音首字母（`sxjm`）/ 别名（"机创""美赛""数模"），覆盖《南通大学大学生学科竞赛目录（2026年版）》**全部 172 项**
+- 输入获奖级别（国家/省/市/校）与奖次/名次/作者位次，**实时计算**可加综测分
+- 依据《南通大学学生素质综合测评办法（修订）》（通大学〔2024〕33号）：智育竞赛基准表、体育名次表、四六级、志愿时长公式、表彰加分等
+- 内置机械学院 2025-2026 实测口径提示（如英语竞赛仅特等奖计分）
+- 支持多条记录累加清单（localStorage 本地保存）
+
+### 🏁 竞赛追踪 `zongce/tracker.html`
+- **文理分流**：选择文科生/理科生，理科生可再选 26 个学院精准推荐
+- 按"承办学院匹配 → 报名状态 → 认定类别"智能排序
+- **45 项重点竞赛附官方入口链接**（逐一人工核验官方域名，42 项 verified）
+- 报名状态（可报名/即将开始/持续关注）由 Cloudflare Worker **每周自动抓取**创新创业教育学院及各学院官方通知更新
+
+### 📋 其他加分（机械工程学院）`zongce/other.html`
+- 五育分类（德育/智育/体育/美育/劳育）汇总机械学院综测「其他加分」条目
+- 数据来自学院综测第一次审核实表：**被划掉的 = 不加分**（含避坑列表）
+- ⚠️ 仅代表 2025-2026 学年机械工程学院口径
+
+### 🔄 数据自动更新（Cloudflare Worker）
+`worker/` 目录包含竞赛通知抓取 Worker：Cron 每周一自动抓取官方通知 → 存 Cloudflare KV → 前端读取报名状态。部署方法见 [worker/README.md](worker/README.md)。
+
+### 🧪 开发与测试
+```bash
+python tools/build_competitions.py   # 重新生成竞赛数据（需 competition-catalog.pdf）
+python tools/build_other_bonus.py    # 重新生成机械学院加分数据（需原表 xlsx）
+node tools/test_integration.js       # 41 项集成测试
+python tools/check_html.py           # 页面引用完整性检查
+```
 
 ---
 
@@ -102,10 +138,21 @@ JS     ▸  ES6+ · IntersectionObserver · requestAnimationFrame · 事件委�
 
 ```
 ntu-campus/
-├── index.html                    # 🏠 首页（Hero轮播 + 全部模块）
+├── index.html                    # 🏠 首页（Hero轮播 + 全部模块 + 综测帮入口）
 ├── author.html                   # 👨‍💻 作者介绍页
 ├── bilibili.html                 # 📺 B站账号展示页
 ├── LICENSE                       # 📄 MIT 许可证
+│
+├── zongce/                       # 🧮 综测帮（综合测评助手）
+│   ├── index.html                #    门户（三大功能入口 + 综测小知识）
+│   ├── calculator.html           #    加分计算器（模糊联想 + 规则引擎）
+│   ├── tracker.html              #    竞赛追踪（文理学院推荐 + 官方链接）
+│   ├── other.html                #    其他加分（机械学院五育分类）
+│   └── data/                     #    报名状态快照（Worker 每周更新）
+│
+├── worker/                       # ☁️ Cloudflare Worker（竞赛通知每周抓取）
+│   ├── src/index.js              #    Worker 主逻辑（Cron + KV + API）
+│   └── wrangler.toml             #    部署配置
 │
 ├── colleges/                     # 🎓 学院模块
 │   ├── college-data.js           #    学院 & 专业数据集
@@ -127,12 +174,24 @@ ntu-campus/
 ├── css/                          # 🎨 样式表
 │   ├── style.css                 #    主样式（Apple Design System）
 │   ├── liquid-glass.css          #    液态玻璃效果
+│   ├── zongce.css                #    综测帮样式（沿用 Apple tokens）
 │   └── author.css                #    作者页专属样式
 │
 ├── js/                           # ⚙️ JavaScript
 │   ├── main.js                   #    主逻辑（导航/轮播/弹幕/懒加载）
 │   ├── liquid-glass.js           #    液态玻璃交互脚本
-│   └── estimated-scores.js       #    2026 预估分数线数据
+│   ├── estimated-scores.js       #    2026 预估分数线数据
+│   ├── competitions-data.js      #    172项竞赛名录（2026年版，自动生成）
+│   ├── competition-links.js      #    竞赛官方入口（45项人工核验）
+│   ├── zongce-rules.js           #    综测加分规则引擎
+│   ├── zongce-search.js          #    竞赛模糊/拼音联想搜索
+│   └── other-bonus.js            #    机械学院加分数据（划线解析）
+│
+├── tools/                        # 🔧 数据构建与测试脚本
+│   ├── build_competitions.py     #    竞赛 PDF → 结构化数据
+│   ├── build_other_bonus.py      #    综测细表 xlsx → 加分数据（识别划线）
+│   ├── test_integration.js       #    41 项集成测试
+│   └── check_html.py             #    页面引用完整性检查
 │
 ├── images/                       # 🖼️ 图片资源（253 张）
 │   ├── hero-*.jpg                #    Hero 轮播图（7张）
