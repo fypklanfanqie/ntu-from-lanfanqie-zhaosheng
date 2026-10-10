@@ -11,3 +11,7 @@ tools/dist/
 tools/shots/
 tools/node_modules/
 
+tools/debug_*.html
+tools/notifications.json
+tools/trigger_result.json
+
