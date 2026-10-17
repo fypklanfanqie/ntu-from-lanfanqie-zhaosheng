@@ -788,3 +788,85 @@ body.dark .zc-status.watch { background: rgba(110,110,115,0.18); color: #98989d;
 @media (prefers-reduced-motion: reduce) {
   .zc-entry, .zc-comp-card, .zc-result, .zc-record { animation: none !important; transition: none !important; }
 }
+
+/* ================================================================
+   竞赛追踪 v2 — 通知区 / 截止时间 / 报名入口
+   ================================================================ */
+.zc-notice-row{
+  display:flex;justify-content:space-between;gap:16px;
+  padding:11px 0;border-bottom:1px solid var(--border-soft);
+}
+.zc-notice-row:last-child{border-bottom:none;padding-bottom:2px;}
+.zc-notice-main{min-width:0;flex:1;}
+.zc-notice-title{
+  display:block;font-size:0.9375rem;color:var(--fg);line-height:1.5;
+  transition:color var(--motion-fast) var(--ease-standard);
+}
+.zc-notice-title:hover{color:var(--accent);}
+.zc-notice-meta{
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+  margin-top:5px;font-size:0.75rem;color:var(--meta);
+}
+.zc-notice-col{
+  padding:1px 8px;border-radius:var(--radius-pill);
+  background:var(--surface);color:var(--muted);font-weight:500;
+}
+.zc-notice-dl{color:var(--accent);font-weight:600;}
+.zc-notice-side{
+  display:flex;flex-direction:column;align-items:flex-end;gap:6px;
+  white-space:nowrap;flex-shrink:0;
+}
+.zc-notice-chip{font-size:11px;font-weight:600;padding:2px 8px;border-radius:var(--radius-pill);}
+.zc-notice-chip.open{background:rgba(22,163,74,0.12);color:#16a34a;}
+.zc-notice-chip.soon{background:rgba(234,179,8,0.15);color:#b45309;}
+.zc-notice-chip.closed{background:rgba(110,110,115,0.10);color:var(--muted);}
+.zc-notice-chip.watch{background:rgba(0,113,227,0.08);color:var(--accent);}
+.zc-notice-reg{
+  font-size:0.75rem;font-weight:600;color:var(--accent);
+  text-decoration:none;
+}
+.zc-notice-reg:hover{opacity:0.75;}
+
+/* 竞赛卡片：截止时间 + 报名按钮 */
+.zc-deadline{
+  display:inline-block;margin-left:8px;padding:1px 8px;
+  border-radius:var(--radius-pill);
+  background:rgba(110,110,115,0.10);color:var(--muted);
+  font-size:11px;font-weight:600;white-space:nowrap;
+}
+.zc-deadline.urgent{background:rgba(22,163,74,0.14);color:#15803d;}
+.zc-reg-btn{
+  display:inline-block;margin-left:8px;padding:3px 12px;
+  border-radius:var(--radius-pill);
+  background:var(--accent);color:#fff;
+  font-size:11px;font-weight:600;text-decoration:none;white-space:nowrap;
+  transition:background var(--motion-fast) var(--ease-standard);
+}
+.zc-reg-btn:hover{background:var(--accent-hover);}
+.zc-comp-note.closed{background:rgba(110,110,115,0.05);border-color:var(--border-soft);}
+.zc-comp-note.closed a{color:var(--muted);}
+
+body.dark .zc-notice-title{color:#f5f5f7;}
+body.dark .zc-notice-col{background:#2c2c2e;color:#98989d;}
+body.dark .zc-notice-row{border-bottom-color:rgba(255,255,255,0.08);}
+body.dark .zc-deadline{background:rgba(255,255,255,0.08);color:#98989d;}
+body.dark .zc-deadline.urgent{background:rgba(74,222,128,0.15);color:#4ade80;}
+body.dark .zc-notice-chip.open{background:rgba(74,222,128,0.15);color:#4ade80;}
+body.dark .zc-notice-chip.soon{background:rgba(251,191,36,0.15);color:#fbbf24;}
+body.dark .zc-notice-chip.closed{background:rgba(255,255,255,0.08);color:#98989d;}
+body.dark .zc-notice-chip.watch{background:rgba(41,151,255,0.15);color:#7cc0ff;}
+body.dark .zc-comp-note.closed{background:rgba(255,255,255,0.03);border-color:rgba(255,255,255,0.08);}
+
+/* 状态证据行（校内通知 / 官网核验） */
+.zc-comp-note-meta{
+  display:block;margin-top:4px;
+  font-size:11px;color:var(--meta);font-weight:400;
+}
+.zc-comp-note-alt{
+  margin-top:6px;
+  background:rgba(0,113,227,0.05);
+  border-color:rgba(0,113,227,0.16);
+}
+.zc-comp-note-alt a{color:var(--accent);}
+body.dark .zc-comp-note-alt{background:rgba(41,151,255,0.08);border-color:rgba(41,151,255,0.2);}
+body.dark .zc-comp-note-meta{color:#636366;}

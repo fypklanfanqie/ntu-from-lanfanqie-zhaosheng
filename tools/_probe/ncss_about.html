@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html xmlns:shiro="http://www.ncss.cn/thymeleaf/shiro">
+  <head>
+    <meta charset="UTF-8" />
+    <title>关于创业网</title>
+    <meta name="keywords" content="大学生创业" />
+    <meta name="description" content="全国大学生创业服务网(cy.ncss.cn)，是中华人民共和国教育部唯一专门宣传、鼓励、引导、帮助大学生创业的官方网站。" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="x-dns-prefetch-control" content="on" />
+    <link rel="dns-prefetch" href="//t1.chei.com.cn" />
+    <link rel="dns-prefetch" href="//t2.chei.com.cn" />
+    <link rel="dns-prefetch" href="//t3.chei.com.cn" />
+    <link rel="dns-prefetch" href="//t4.chei.com.cn" />
+    <link rel="dns-prefetch" href="//www.google-analytics.com" />
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="Cache-Control" content="max-age=3600" />
+    <link rel="shortcut icon" type="image/x-icon" href="https://t3.chei.com.cn/ncss/cy/favicon.ico" />
+    <link rel="stylesheet" href="https://t4.chei.com.cn/ncss/cy/web/lib/bootstrap.min-1.0.0.css" />
+    <link rel="stylesheet" href="https://t1.chei.com.cn/ncss/cy/web/css/iconfont-1.0.1.css?t=20220414" />
+    <link rel="stylesheet" href="https://t4.chei.com.cn/ncss/cy/web/lib/common-1.0.3.css?t=20260817" />
+    <link rel="stylesheet" href="https://t3.chei.com.cn/ncss/cy/web/css/modal-1.0.2.css?t=20220707" />
+    <script src="https://t2.chei.com.cn/ncss/cy/web/lib/jquery-1.11.1.min.js"></script>
+    <script src="https://t3.chei.com.cn/ncss/cy/web/lib/bootstrap.min-1.0.0.js"></script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-105074615-4"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-105074615-4');
+function gaTrackerOutboundLink(ele, eventCategory, eventAction, eventLabel) {
+  gtag('event', eventAction, {
+    event_category: eventCategory,
+    event_label: eventLabel
+  });
+  return true;
+}
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?def1ae32881539a90b21cb0f3038c2f5";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </head>
+
+  <link rel="stylesheet" href="https://t4.chei.com.cn/ncss/cy/web/css/contest-1.0.1.css" />
+
+  <body>
+    <!-- 页头开始 -->
+    <div>
+      <div class="mobile-tip hidden" style="text-align: center; width: 1180px; font-size: 32px; padding: 10px 0; margin: 0 auto; color: darkred">为了获得更好的体验，请使用电脑版浏览器。</div>
+      <div class="header">
+        <div class="container pr0 pl0">
+          <div class="row" id="topNav">
+            <div class="col-xs-3 header-left">
+              <a href="/" class="top-logo"> </a>
+            </div>
+            <div class="col-xs-6 header-mid">
+              <div class="header-middle text-center">
+                <a style="float: left" data-link="index" href="/">首页</a>
+                <a style="float: left" data-link="cyfh" target="_blank" href="/ap/index">创业孵化</a>
+                <a style="float: left" data-link="zmzl" target="_blank" href="/redactivity/index">筑梦之旅</a>
+                <a style="float: left" data-link="cymt" target="_blank" href="/mtcontest/index">产业赛道</a>
+                <a target="_blank" href="/en" style="float: left; font-size: 12px; line-height: 18px; padding-top: 3px">International Participant Application<br />for Higher Education Track</a>
+              </div>
+            </div>
+            
+            <div class="col-xs-3 text-right header-right line-center"><a class="username" href="/chsiredirect">登录</a><span class="header-space">|</span> <a href="/chsi/register" class="logout">注册</a><span class="header-space">|</span><a class="username" href="/gl/login">管理入口</a></div>
+          </div>
+        </div>
+        <div class="modal fade bs-prompt-modal-sm" id="prompts" tabindex="-1" role="dialog" aria-labelledby="confirm" aria-hidden="true">
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+              <div class="modal-body project-modal-text">
+                <div class="project-modal-info" style="padding: 30px 0 0">
+                  <p class="project-modal-del del-html text-center" id="prompt-text">当前使用的浏览器暂不支持本系统，请使用 Chrome 最新版浏览器访问。</p>
+                  <div class="form-group modal-confirm"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 头部开始 -->
+    <div class="container">
+      <!-- 容器开始 -->
+      <h1 class="about-tit text-c"><strong>关于创业网</strong><span class="tit-top"></span></h1>
+      <div class="about-content">
+        <div class="fl about-left">
+          <p class="p1">全国大学生创业服务网（cy.ncss. cn），是中华人民共和国教育部唯一专门宣传、鼓励、引导、帮助大学生创业的官方网站。</p>
+          <p class="p1">
+            网站于2011年3月29日，由前中共中央政治局常委、十二届全国政协主席俞正声，前中央政治局委员，国务院副总理刘延东共同开通，在教育部高校学生司的指导下，由教育部学生服务与素质发展中心负责网站具体运营。
+          </p>
+          <p class="p1">
+            网站致力于打造创新大赛支持、创业项目对接、创业培训实训、政策典型宣传、创业专业咨询五大功能的大学生创业服务平台。
+          </p>
+          <p class="p2 fr">
+            2011年全国大学生创业服务网开通
+          </p>
+        </div>
+        <img class="fr" src="https://t4.chei.com.cn/ncss/cy/web/img/about_pic.jpg" />
+      </div>
+    </div>
+    <!-- 容器结束-->
+
+    <!-- 尾部内容 -->
+    <div>
+      <div class="footer">
+        <div class="container pl0 pr0" style="line-height: 1.43;">
+          <div class="row">
+            <div class="col-xs-8">
+              <div class="logo pull-left">
+                <img alt="" src="https://t2.chei.com.cn/ncss/cy/web/icon/logo_bottom.png" />
+              </div>
+              <div class="content pull-left">
+                <p class="f14">
+                  <a href="https://www.ncss.cn" target="_blank">国家大学生就业服务平台</a>
+                  <span class="footer-space">|</span> <a href="https://www.chsi.com.cn" target="_blank">学信网</a> <span class="footer-space">|</span> <a href="/about" target="_blank">关于创业网</a> <span class="footer-space">|</span> <a href="/contact" target="_blank">联系我们</a>
+                </p>
+                <p class="mt14" style="font-size: 12px;margin-bottom: 8.5px;">版权所有：教育部学生服务与素质发展中心</p>
+                <p style="line-height: 20px;font-size: 12px;margin-bottom: 8.5px;">
+                  <a href="https://beian.miit.gov.cn" target="_blank" rel="noopenner noreferrer" style="color: #ccc;float:left;margin-right: 1em;">京ICP备19004913号-1</a>
+                  <a target="_blank" rel="noopenner noreferrer" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010202009747" style="margin-right: 10px;">
+                    <img src="https://t1.chei.com.cn/chsi/images/jgwab.svg" style="float:left;"/>
+                    <span style="float:left; color:#ccc;margin-left: 5px;">京公网安备11010202009747号</span>
+                  </a>
+                </p>
+              </div>
+            </div>
+
+            <div class="col-md-4 text-right">
+              <!-- <div class="footer-logo text-center">
+                <img chsi:img="@{/icon/APPerweima.png}" alt="">
+                <p>大创网APP下载</p>
+            </div> -->
+              <div class="footer-logo text-center">
+                <img alt="" src="https://t2.chei.com.cn/ncss/cy/web/icon/footer_96_96.png" />
+                <p>大创网官方微信平台</p>
+              </div>
+              <div class="footer-logo text-center">
+                <img alt="" src="https://t2.chei.com.cn/ncss/cy/web/icon/footer_erweima.png?t=20240105" />
+                <p>大赛官方微信号</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script src="https://t3.chei.com.cn/ncss/cy/web/js/common-1.0.1.js"></script>
+        <script src="https://t4.chei.com.cn/ncss/cy/web/js/escape-json.js"></script>
+      </div>
+      <script>
+        $(document).ready(function () {
+          var windowHeight = $(window).height();
+          var bodyHeight = $(document.body).height();
+          var dValue = windowHeight - bodyHeight;
+          if (dValue > 0) {
+            dValue += 56;
+            $('#stick').css('height', dValue);
+          }
+          $('#prompts,#notToday')
+            .find('.modal-dialog')
+            .css({
+              'margin-top': windowHeight / 2 - 200
+            });
+          var Sys = {},
+            ua = navigator.userAgent.toLowerCase(),
+            s,
+            mobileAgent = ['iphone', 'ipod', 'ipad', 'android', 'mobile', 'blackberry', 'webos', 'incognito', 'webmate', 'bada', 'nokia', 'lg', 'ucweb', 'skyfire'];
+          (s = ua.match(/msie ([\d.]+)/)) ? (Sys.ie = s[1]) : 0;
+          if (Sys.ie) {
+            if (parseFloat(Sys.ie) < 10) {
+              $('#prompts').modal('show');
+            }
+          }
+          for (var i = 0; i < mobileAgent.length; i++) {
+            if (ua.indexOf(mobileAgent[i]) != -1) {
+              $('.mobile-tip').removeClass('hidden');
+              break;
+            }
+          }
+        });
+      </script>
+      
+    </div>
+
+    <script>
+      $(function() {
+        var height = $(window).height();
+        console.log(height);
+        if (height > 700) {
+          $(".footer").css({
+            position: "fixed",
+            bottom: "0",
+            left: "0"
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

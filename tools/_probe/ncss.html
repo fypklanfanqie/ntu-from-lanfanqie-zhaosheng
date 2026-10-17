@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html xmlns:shiro="http://www.ncss.cn/thymeleaf/shiro" xmlns="http://www.w3.org/1999/html">
+  <head>
+    <meta charset="UTF-8" />
+    <title>全国大学生创业服务网</title>
+    <meta name="keywords" content="大学生创业" />
+    <meta name="description" content="全国大学生创业服务网(cy.ncss.cn)，是中华人民共和国教育部唯一专门宣传、鼓励、引导、帮助大学生创业的官方网站。" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="x-dns-prefetch-control" content="on" />
+    <link rel="dns-prefetch" href="//t1.chei.com.cn" />
+    <link rel="dns-prefetch" href="//t2.chei.com.cn" />
+    <link rel="dns-prefetch" href="//t3.chei.com.cn" />
+    <link rel="dns-prefetch" href="//t4.chei.com.cn" />
+    <link rel="dns-prefetch" href="//www.google-analytics.com" />
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="Cache-Control" content="max-age=3600" />
+    <link rel="shortcut icon" type="image/x-icon" href="https://t3.chei.com.cn/ncss/cy/favicon.ico" />
+    <link rel="stylesheet" href="https://t4.chei.com.cn/ncss/cy/web/lib/bootstrap.min-1.0.0.css" />
+    <link rel="stylesheet" href="https://t3.chei.com.cn/ncss/cy/web/css/iconfont-1.0.1.css?t=20220414" />
+    <link rel="stylesheet" href="https://t3.chei.com.cn/ncss/cy/web/lib/common-1.0.3.css?t=20260817" />
+    <link rel="stylesheet" href="https://t3.chei.com.cn/ncss/cy/web/css/modal-1.0.2.css?t=20220707" />
+    <script src="https://t1.chei.com.cn/ncss/cy/web/lib/jquery-1.11.1.min.js"></script>
+    <script src="https://t1.chei.com.cn/ncss/cy/web/lib/bootstrap.min-1.0.0.js"></script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-105074615-4"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-105074615-4');
+function gaTrackerOutboundLink(ele, eventCategory, eventAction, eventLabel) {
+  gtag('event', eventAction, {
+    event_category: eventCategory,
+    event_label: eventLabel
+  });
+  return true;
+}
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?def1ae32881539a90b21cb0f3038c2f5";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </head>
+  <link rel="stylesheet" href="https://t1.chei.com.cn/ncss/cy/web/css/account-1.0.4.css?t=20260806" />
+  <link rel="stylesheet" href="https://t1.chei.com.cn/ncss/cy/web/css/index-1.0.4.css?t=20240617" />
+  <style>
+    video:focus {
+      outline: none;
+    }
+
+    .jobIcon-box {
+      margin: 0 auto;
+      margin-top: 10px;
+      position: relative;
+    }
+    .jobIcon-box .list-item {
+      text-align: center;
+    }
+    .jobIcon-box .list {
+      padding: 0;
+      display: inline-block;
+      text-align: center;
+      margin: 0;
+    }
+    .jobIcon-box .item {
+      width: 132px;
+      padding: 0 4px;
+      height: 60px;
+      margin-right: 30px;
+      display: inline-block;
+      margin-top: 20px;
+      position: relative;
+      background-color: #fff;
+      border-radius: 5px;
+      overflow: hidden;
+      line-height: 60px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .jobIcon-box .item:last-child {
+        margin-right: 0;
+    }
+    .jobIcon-box .item a {
+      display: none;
+      width: 100%;
+      position: absolute;
+      height: 100%;
+      background: rgba(10, 189, 255, 0.8);
+      top: 0;
+      left: 0;
+      border-radius: 5px;
+      color: #fff;
+      font-size: 16px;
+      padding-top: 8px;
+      line-height: 22px;
+    }
+    .jobIcon-box .item img {
+      width: 100%;
+    }
+    .text-box .p-com img {
+      vertical-align: middle;
+      margin: 0 5px;
+    }
+    .text-box .p-com .shu {
+      margin: 0 14px;
+    }
+    .link-a {
+      text-align: center;
+      font-size: 26px;
+      margin-top: 26px;
+    }
+    .link-a a {
+      color: #ffd36b;
+    }
+    .right-box {
+      padding: 10px 10px 24px 84px;
+      position: relative;
+    }
+    .item:hover .mask {
+      display: block;
+    }
+    .text-box {
+      padding-top: 360px;
+      color: #fff;
+      font-size: 14px;
+      line-height: 14px;
+    }
+    .right-content h4 {
+      max-height: 52px;
+    }
+    .p-block-text-content {
+      max-height: 78px;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+    }
+    .dynamics-text-content {
+      max-height: 40px;
+      height: auto;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      margin-top: 2px;
+    }
+    .dynamics-text-title {
+      max-height: 72px;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+    }
+    .mid-title-box {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      margin-top: 26px;
+      margin-bottom: 20px;
+    }
+    .outer-url,
+    .file-download {
+      cursor: pointer;
+    }
+    .down-list {
+      margin-top: 40px;
+    }
+    .down-list li {
+      margin-bottom: 40px;
+    }
+    .shortcut-menu-item span {
+      padding-top: 17px;
+    }
+    .closeTip {
+      position: relative;
+      z-index: 100;
+    }
+    .lxzp-part .page-titledl{
+      margin-top: 90px;
+      font-size: 80px;
+      line-height: 120px;
+      font-weight: 700;
+      margin-bottom: 90px;
+        color: #fff;
+    }
+    .lxzp-part .page-titledl .year{
+        color: #ffc232;
+        font-size: 50px;
+		    line-height: 77px;
+    }
+    .lxzp-part .p-com {
+        font-size: 14px;
+        color: #fff;
+        /* margin-top: 435px; */
+        text-align: center;
+        line-height: 22px;
+    }
+    /* 无href的 a标签 */
+    .review-block a:not([href]) {
+      color: inherit;
+      text-decoration: none ;
+    }
+    @media (min-width: 1921px) {
+        .banner .bd li a.links {
+            width: 1920px;
+            margin: 0 auto;
+        }
+        .banner-icon-a {
+            right: calc(50% - 817px);
+        }
+        .banner .hd {
+            width: 1920px;
+            left: 50%;
+            margin-left: -960px;
+        }
+        .banner .prev {
+            left: calc(50% - 900px);
+        }
+        .banner .next {
+            right: calc(50% - 900px);
+        }
+    }
+  </style>
+  <body style="position: relative">
+    <!-- 页头开始 -->
+    <div>
+      <div class="mobile-tip hidden" style="text-align: center; width: 1180px; font-size: 32px; padding: 10px 0; margin: 0 auto; color: darkred">为了获得更好的体验，请使用电脑版浏览器。</div>
+      <div class="header">
+        <div class="container pr0 pl0">
+          <div class="row" id="topNav">
+            <div class="col-xs-3 header-left">
+              <a href="/" class="top-logo"> </a>
+            </div>
+            <div class="col-xs-6 header-mid">
+              <div class="header-middle text-center">
+                <a style="float: left" data-link="index" href="/">首页</a>
+                <a style="float: left" data-link="cyfh" target="_blank" href="/ap/index">创业孵化</a>
+                <a style="float: left" data-link="zmzl" target="_blank" href="/redactivity/index">筑梦之旅</a>
+                <a style="float: left" data-link="cymt" target="_blank" href="/mtcontest/index">产业赛道</a>
+                <a target="_blank" href="/en" style="float: left; font-size: 12px; line-height: 18px; padding-top: 3px">International Participant Application<br />for Higher Education Track</a>
+              </div>
+            </div>
+            
+            <div class="col-xs-3 text-right header-right line-center"><a class="username" href="/chsiredirect">登录</a><span class="header-space">|</span> <a href="/chsi/register" class="logout">注册</a><span class="header-space">|</span><a class="username" href="/gl/login">管理入口</a></div>
+          </div>
+        </div>
+        <div class="modal fade bs-prompt-modal-sm" id="prompts" tabindex="-1" role="dialog" aria-labelledby="confirm" aria-hidden="true">
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+              <div class="modal-body project-modal-text">
+                <div class="project-modal-info" style="padding: 30px 0 0">
+                  <p class="project-modal-del del-html text-center" id="prompt-text">当前使用的浏览器暂不支持本系统，请使用 Chrome 最新版浏览器访问。</p>
+                  <div class="form-group modal-confirm"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--轮播图-->
+    <div class="banner" id="banner">
+      <div class="bd">
+        <a class="banner-icon-a">
+          <img src="https://t4.chei.com.cn/ncss/cy/web/img/erweima_nor.png" />
+          <div class="two-bar-codes">
+            <img src="https://t3.chei.com.cn/ncss/cy/web/img/top_erweima_n.png?t=20240105" />
+          </div>
+        </a>
+        <ul>
+          <li _src="url(https://t3.chei.com.cn/ncss/cy/web/img/banner_top_2026_1.jpg)" style="background: url(https://t3.chei.com.cn/ncss/cy/web/img/banner_top_2026_1.jpg) center center no-repeat #1446a0;"></li>
+          <li _src="url(https://t2.chei.com.cn/ncss/cy/web/img/banner_top_7th_2_n.jpg)" style="background: center center no-repeat #1446a0;cursor: pointer">
+            <a class="links outer-url" target="_blank" rel="noopenner noreferrer" data-url="https://movie.wanxue.cn/movie" style="cursor: pointer"></a>
+          </li>
+          <li _src="url(https://t1.chei.com.cn/ncss/cy/web/img/banner_top_2026_3.jpg)" style="background: center center no-repeat #1446a0;"><a class="links" href="#"></a></li>
+          <li _src="url(https://t4.chei.com.cn/ncss/cy/web/img/banner_top_2026_4.jpg)" style="background: center center no-repeat #1446a0;"><a class="links" href="#"></a></li>
+          <li _src="url(https://t3.chei.com.cn/ncss/cy/web/img/banner_top_2026_5.jpg)" style="background: center center no-repeat #1446a0;"><a class="links" href="#"></a></li>
+          <li class="lxzp-part" _src="url(https://t3.chei.com.cn/ncss/cy/web/img/lhzp-banner.jpg)" style="background: center center no-repeat #1446a0;">
+            <div class="page-titledl">
+              <div class="year">2027届高校毕业生</div>
+              <div>全国网络联合招聘</div>
+            </div>
+            <div class="p-com">指导单位：教育部高校学生司（高校毕业生就业服务司）<span class="shu"> | </span>主办方：教育部学生服务与素质发展中心<span class="shu"> | </span>承办单位：国家大学生就业服务平台、各省高校毕业生就业网</div>
+            <div class="p-com" style="margin: 0 auto;margin-top: 10px;">协办单位：国投人力（国聘）、中智集团、卫人就业网、前程无忧、智联招聘、BOSS直聘、中华英才网、猎聘网、一览英才网、阿里巴巴集团（阿里巴巴国际站）、实习僧、蚂蚁集团（支付宝）</div>
+            <div class="jobIcon-box">
+              <div class="list-item">
+                <div class="list clearfix">
+                  <div class="item pull-left">
+                    <img class="cionimg-3" src="https://t4.chei.com.cn/ncss/student/img/gp-logo.png" />
+                    <a class="mask outer-url" data-url="https://www.iguopin.com" target="_blank" rel="noopenner noreferrer"> 点击<br />进入分会场 </a>
+                  </div>
+                  <div class="item pull-left">
+                    <img class="cionimg-3" src="https://t4.chei.com.cn/ncss/student/img/job-iocn7.jpg" />
+                    <a class="mask outer-url" data-url="https://www.myjob500.com/yq/notice7" target="_blank" rel="noopenner noreferrer"> 点击<br />进入分会场 </a>
+                  </div>
+                  <div class="item pull-left">
+                    <img class="cionimg-3" src="https://t4.chei.com.cn/ncss/student/img/wrjyw.svg" />
+                    <a class="mask outer-url" data-url="https://www.weirenjob.com/24365xyzpfw/" target="_blank" rel="noopenner noreferrer"> 点击<br />进入分会场 </a>
+                  </div>
+                  <div class="item pull-left">
+                    <img class="cionimg-1" src="https://t1.chei.com.cn/ncss/student/img/job-iocnqcwy.png" />
+                    <a class="mask outer-url" data-url="https://mkt.51job.com/2020jyb/" target="_blank" rel="noopenner noreferrer"> 点击<br />进入分会场 </a>
+                  </div>
+                  <div class="item pull-left">
+                    <img class="cionimg-2" src="https://t2.chei.com.cn/ncss/student/img/job-iocn2-1.jpg" />
+                    <a class="mask outer-url" data-url="https://xiaoyuan.zhaopin.com/zhuanti/first2019/index.html#/collegesEmployment" target="_blank" rel="noopenner noreferrer"> 点击<br />进入分会场 </a>
+                  </div>
+                  <div class="item pull-left">
+                    <img class="cionimg-3" src="https://t4.chei.com.cn/ncss/student/img/job-iocn3.jpg" />
+                    <a class="mask outer-url" data-url="https://www.zhipin.com/xiaoyuan/wh/?ka=school_picture_click_2" target="_blank" rel="noopenner noreferrer"> 点击<br />进入分会场 </a>
+                  </div>
+                </div>
+              </div>
+              <div class="list-item">
+                <div class="list clearfix">
+                  <div class="item pull-left">
+                    <img class="cionimg-4" src="https://t2.chei.com.cn/ncss/student/img/job-iocn4.jpg" />
+                    <a class="mask outer-url" data-url="https://www.chinahr.com/" target="_blank" rel="noopenner noreferrer"> 点击<br />进入分会场 </a>
+                  </div>
+                  <div class="item pull-left">
+                    <img class="cionimg-5" src="https://t1.chei.com.cn/ncss/student/img/job-iocnlp2024.png" />
+                    <a class="mask outer-url" data-url="https://wow.liepin.com/t1012569/479f48d4.html" target="_blank" rel="noopenner noreferrer"> 点击<br />进入分会场 </a>
+                  </div>
+                  <div class="item pull-left">
+                    <img class="cionimg-5" src="https://t1.chei.com.cn/ncss/student/img/job-iocn9.png" />
+                    <a class="mask outer-url" data-url="http://yjs.job1001.com/24365" target="_blank" rel="noopenner noreferrer"> 点击<br />进入分会场 </a>
+                  </div>
+                  <div class="item pull-left">
+                    <img class="cionimg-5" src="https://t2.chei.com.cn/ncss/student/img/job-iocn11.png" />
+                    <!-- <a class="mask outer-url" data-url="https://sale.alibaba.com/p/jyb243652023?wx_navbar_transparent=true&path=/p/jyb243652023&ncms_spm=a27aq.27726681&prefetchKey=met" target="_blank" rel="noopenner noreferrer"> 点击<br />进入分会场 </a> -->
+                  </div>
+                  <div class="item pull-left">
+                    <img class="cionimg-5" src="https://t2.chei.com.cn/ncss/student/img/sxs24365icon.png" />
+                    <a class="mask outer-url" data-url="https://ac.shixiseng.com/newvolcano/act_devujrktftws?utm_source=sf-24365-zq&utm_campaign=hd-xzjyfw" target="_blank" rel="noopenner noreferrer"> 点击<br />进入分会场 </a>
+                  </div>
+                  <div class="item pull-left">
+                    <img class="cionimg-5" src="https://t3.chei.com.cn/ncss/student/img/zfb34365icon.png" />
+                    <!-- <a class="mask outer-url" data-url="https://img.alicdn.com/imgextra/i3/O1CN01LBBfja1ROJ2yNvkVO_!!6000000002101-0-tps-1080-1920.jpg" target="_blank" rel="noopenner noreferrer"> 点击<br />进入分会场 </a> -->
+                  </div>
+                </div>
+              </div>
+
+              <div class="link-a">
+                <a href="https://job.ncss.cn/student/jobfair/fairdetails.html?fairId=7fUt9qv2RwqKhHb6rrcQgL" target="_blank">&gt;&gt;&gt;点击此处进入联合招聘会主场&lt;&lt;&lt;</a>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="hd">
+        <ul></ul>
+      </div>
+      <span class="prev"></span> <span class="next"></span>
+    </div>
+    <div class="entrepreneurs">
+      <div class="container index-title-block">
+        <div class="entre-logo-left"></div>
+        <div class="index-line-white"></div>
+        <h1 class="index-samll-title index-title-white">我敢闯 我会创</h1>
+      </div>
+      <div class="container entre-main">
+        <div class="entre-logo-right"></div>
+        <a href="/userhome" class="entre-block">报名参赛</a>
+        <!-- <a class="entre-block" th:href="@{/searchinvestor}">寻找融资</a>
+        <a th:href="@{/search/projects}" class="entre-block">寻找项目</a> -->
+        <a class="entre-block" href="https://job.ncss.cn/corp/signin.html" target="_blank" style="position: relative">寻找人才</a>
+      </div>
+    </div>
+
+    <div class="shortcut-menu-num" id="menu-list">
+      <div class="shortcut-menu-item">
+        <a href="/userhome">
+          <i class="iconfont icon-trophy pull-right"></i>
+          <span>报名参赛</span>
+        </a>
+      </div>
+      <div class="shortcut-menu-item">
+        <a href="/problem" target="_blank"> <i class="iconfont icon-question pull-right"></i> <span>常见问题</span> </a>
+      </div>
+      <div class="shortcut-menu-item shortcut-long">
+        <a href="/provincecontact" target="_blank">
+          <i class="iconfont icon-phone-book pull-right"></i>
+          <span>各省联系方式</span>
+        </a>
+      </div>
+      <div class="shortcut-menu-item-back back-to-top-index"></div>
+    </div>
+    <!--大赛动态-->
+    <div class="dynamics">
+      <div class="container index-div-block index-title-block">
+        <div class="index-line-black"></div>
+        <h1 class="index-title-black index-samll-title">大赛动态</h1>
+        <div class="index-more-block">
+          <a href="/information/dsdt?typeCode=CYDS_2TH_DSDT" target="_blank">更多→</a>
+        </div>
+      </div>
+      <div class="container index-div-block dynamics-main">
+        <ul>
+          <li class="dynamics-block clearfix">
+            <a href="/information/2c93f4c6a05c38d901a13ea86ea200bd" target="_blank" class="dynamics-img">
+              <img onerror="javascript:this.src='https://t4.chei.com.cn/ncss/cy/web/img/dsdt.jpg';this.onerror=null;" src="https://t4.chei.com.cn/ncss/cy/web/cdn/img/m1ryhuwr6bsxsb79.png" />
+               
+            </a>
+            <div class="dynamics-text">
+              <a href="/information/2c93f4c6a05c38d901a13ea86ea200bd" target="_blank" class="dynamics-href"></a>
+              <h2 class="dynamics-text-title">关于开展中国国际大学生创新大赛（2026）优秀项目资源对接活动的通知</h2>
+              <p class="dynamics-text-content">关于开展中国国际大学生创新大赛（2026）优秀项目资源对接活动的通知</p>
+              <p class="dynamics-text-time">2026-10-15</p>
+            </div>
+          </li>
+          <li class="dynamics-block clearfix">
+            <a href="/information/2c93f4c6a05c38d901a06a421bf30013" target="_blank" class="dynamics-img">
+              <img onerror="javascript:this.src='https://t4.chei.com.cn/ncss/cy/web/img/dsdt.jpg';this.onerror=null;" src="https://t4.chei.com.cn/ncss/cy/web/cdn/img/xd4onfqx0rb02hma.png" />
+               
+            </a>
+            <div class="dynamics-text">
+              <a href="/information/2c93f4c6a05c38d901a06a421bf30013" target="_blank" class="dynamics-href"></a>
+              <h2 class="dynamics-text-title">关于加强中国国际大学生创新大赛（2026）评审专家库建设的通知</h2>
+              <p class="dynamics-text-content">关于加强中国国际大学生创新大赛（2026）评审专家库建设的通知</p>
+              <p class="dynamics-text-time">2026-09-04</p>
+            </div>
+          </li>
+          <li class="dynamics-block clearfix">
+            <a href="/information/2c958332a00f078c01a03db264240029" target="_blank" class="dynamics-img">
+              <img onerror="javascript:this.src='https://t4.chei.com.cn/ncss/cy/web/img/dsdt.jpg';this.onerror=null;" src="https://t3.chei.com.cn/ncss/cy/web/cdn/img/ocrdsdpz0o0jk03p.png" />
+               
+            </a>
+            <div class="dynamics-text">
+              <a href="/information/2c958332a00f078c01a03db264240029" target="_blank" class="dynamics-href"></a>
+              <h2 class="dynamics-text-title">关于公布中国国际大学生创新大赛（2026）产业赛道入选企业命题的通知</h2>
+              <p class="dynamics-text-content">关于公布中国国际大学生创新大赛（2026）产业赛道入选企业命题的通知</p>
+              <p class="dynamics-text-time">2026-08-26</p>
+            </div>
+          </li>
+          <li class="dynamics-block clearfix">
+            <a href="/information/2c958332a00f078c01a03dafa4420025" target="_blank" class="dynamics-img">
+              <img onerror="javascript:this.src='https://t4.chei.com.cn/ncss/cy/web/img/dsdt.jpg';this.onerror=null;" src="https://t3.chei.com.cn/ncss/cy/web/cdn/img/eagk2aqctk4u5jgr.png" />
+               
+            </a>
+            <div class="dynamics-text">
+              <a href="/information/2c958332a00f078c01a03dafa4420025" target="_blank" class="dynamics-href"></a>
+              <h2 class="dynamics-text-title">关于征集中国国际大学生创新大赛（2026）吉祥物的公告</h2>
+              <p class="dynamics-text-content">关于征集中国国际大学生创新大赛（2026）吉祥物的公告</p>
+              <p class="dynamics-text-time">2026-08-26</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!--省市动态-->
+    <div class="province">
+      <div class="container index-title-block">
+        <div class="index-line-white"></div>
+        <h1 class="index-title-white index-samll-title">省市高校动态</h1>
+        <div class="index-more-block-white">
+          <a href="/information/ssdt?typeCode=CYDS_2TH_SSDT" target="_blank">更多→</a>
+        </div>
+      </div>
+      <div class="container index-div-block province-main clearfix">
+        <div class="province-block1 p-block">
+          <div class="p-block1-img">
+            <a href="/information/2c9583329dfca68e019e4837f8550018" target="_blank">
+              <img onerror="javascript:this.src='https://t4.chei.com.cn/ncss/cy/web/img/ssdt.jpg';this.onerror=null;" src="https://t1.chei.com.cn/ncss/cy/web/cdn/img/lw74jfznk7qc5tsp.png" />
+               
+            </a>
+          </div>
+          <div class="p-block-text">
+            <a href="/information/2c9583329dfca68e019e4837f8550018" target="_blank" class="p-block-back"></a>
+            <h3 class="p-block-text-time">2026-05-21</h3>
+            <span class="p-block-text-content">山东省 | 山东省大学生创新大赛（2026） “青年红色筑梦之旅”...</span>
+          </div>
+        </div>
+        <div class="province-block2 p-block">
+          <div class="p-block1-img">
+            <a href="/information/2c9583329714f6920198402d8176018a" target="_blank">
+              <img onerror="javascript:this.src='https://t4.chei.com.cn/ncss/cy/web/img/ssdt.jpg';this.onerror=null;" src="https://t3.chei.com.cn/ncss/cy/web/cdn/img/nui0dvdjrp0xnngh.png" />
+               
+            </a>
+          </div>
+          <div class="p-block-text">
+            <a href="/information/2c9583329714f6920198402d8176018a" target="_blank" class="p-block-back"></a>
+            <h3 class="p-block-text-time">2025-07-25</h3>
+            <span class="p-block-text-content">辽宁省 | “建行杯”辽宁省大学生创新大赛总决赛暨中国国际大学生创...</span>
+          </div>
+        </div>
+        <div class="province-block3 p-block">
+          <div class="p-block1-img">
+            <a href="/information/2c93f4c697a3de630197e7a38e4f0077" target="_blank">
+              <img onerror="javascript:this.src='https://t4.chei.com.cn/ncss/cy/web/img/ssdt.jpg';this.onerror=null;" src="https://t3.chei.com.cn/ncss/cy/web/cdn/img/l0uao0wsgzg1hhwj.png" />
+               
+            </a>
+          </div>
+          <div class="p-block-text">
+            <a href="/information/2c93f4c697a3de630197e7a38e4f0077" target="_blank" class="p-block-back"></a>
+            <h3 class="p-block-text-time">2025-07-08</h3>
+            <span class="p-block-text-content">江苏省 | 中国国际大学生创新大赛（2025）江苏赛区动员部署会在...</span>
+          </div>
+        </div>
+        <div class="province-block4 p-block">
+          <div class="p-block1-img">
+            <a href="/information/2c9583329714f6920197c9decaea016c" target="_blank">
+              <img onerror="javascript:this.src='https://t4.chei.com.cn/ncss/cy/web/img/ssdt.jpg';this.onerror=null;" src="https://t4.chei.com.cn/ncss/cy/web/cdn/img/m9iljet06f0zxvk3.png" />
+               
+            </a>
+          </div>
+          <div class="p-block-text">
+            <a href="/information/2c9583329714f6920197c9decaea016c" target="_blank" class="p-block-back"></a>
+            <h3 class="p-block-text-time">2025-06-23</h3>
+            <span class="p-block-text-content">黑龙江 | 中国国际大学生创新大赛(2025)黑龙江赛区决赛在哈尔...</span>
+          </div>
+        </div>
+        <div class="province-block5 p-block">
+          <div class="p-block1-img">
+            <a href="/information/2c93f4c69714f3730197204891bf1b74" target="_blank">
+              <img onerror="javascript:this.src='https://t4.chei.com.cn/ncss/cy/web/img/ssdt.jpg';this.onerror=null;" src="https://t1.chei.com.cn/ncss/cy/web/cdn/img/o8xnk2e6gcvsam92.png" />
+               
+            </a>
+          </div>
+          <div class="p-block-text">
+            <a href="/information/2c93f4c69714f3730197204891bf1b74" target="_blank" class="p-block-back"></a>
+            <h3 class="p-block-text-time">2025-05-30</h3>
+            <span class="p-block-text-content">陕西省 | 中国国际大学生创新大赛（2025）陕西赛区省级复赛暨“...</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--大赛相关-->
+    <div class="relevant">
+      <div class="container index-title-block">
+        <div class="index-line-black"></div>
+        <h1 class="index-samll-title index-title-black">大赛相关</h1>
+      </div>
+      <div class="container rele-content">
+        <div class="clearfix">
+          <div class="rele-left">
+            <div class="left-box">
+              <span class="contest-icon first-icon"></span>
+              <div class="left-inner">
+                <h2 class="r-small-title">大赛组委会</h2>
+                <p class="r-top-text">大赛设立组织委员会，由教育部和江苏省人民政府主要负责同志担任主任、教育部和江苏省分管负责同志担任副主任、教育部高等教育司主要负责同志担任秘书长、有关部门（单位）负责同志作为成员，负责大赛的组织实施。大赛组委会办公室设在教育部学生服务与素质发展中心。</p>
+              </div>
+            </div>
+          </div>
+          <div class="rele-right">
+            <div class="right-box">
+              <!-- <span class="contest-icon second-icon"></span> -->
+              <!-- <span class="contest-icon jljd-icon" style="top: 84px;"></span> -->
+              <span class="contest-icon jljd-icon"></span>
+              <div class="right-inner">
+                <!-- <h2 class="r-small-title">专家委员会</h2>
+                <p class="r-top-text">大赛设立专家委员会，负责项目评审等工作。</p> -->
+                <!-- <h2 class="r-small-title" style="margin-top: 20px">纪律与监督委员会</h2> -->
+                <h2 class="r-small-title">纪律与监督委员会</h2>
+                <p class="r-top-text">大赛设立纪律与监督委员会，在大赛组委会指导下，负责对赛事组织、参赛项目评审、协办单位相关工作等进行监督，对违反大赛纪律的行为予以处理。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="clearfix">
+          <div class="rele-left">
+            <div class="left-box">
+              <span class="contest-icon third-icon"></span>
+              <div class="left-inner">
+                <h2 class="r-small-title">大赛组委会联系方式</h2>
+                <a href="/problem" target="_blank" class="question-link">常见问题<span class="question">?</span></a>
+
+                <p class="title-p" style="position: relative; top: 12px">
+                  <span class="r-title-color" style="margin-left: 212px; width: 328px; display: block; font-size: 14px">教育部学生服务与素质发展中心</span>
+                </p>
+                <div class="clearfix contact-content" style="margin-top: 24px">
+                  <div class="qr-box clearfix" style="position: relative; width: 190px">
+                    <p style="position: absolute; top: -33px; font-size: 14px; left: -29px; color: #fb3e3c">请通过官方微信公众号进行咨询</p>
+                    <div class="qr-inner" style="margin-left: 27px">
+                      <img src="https://t3.chei.com.cn/ncss/cy/web/icon/footer_erweima.png?t=20240105" />
+                      <p>大赛官方微信号</p>
+                    </div>
+                  </div>
+                  <div class="contact-box" style="padding-left: 20px">
+                    <p class="rule-info">地址：北京市西城区西直门外大街18号<br /><span style="margin-left: 3em">金贸大厦C3座</span></p>
+                    <p class="rule-info">邮编：100044</p>
+                    <p class="rule-info">大赛投诉：cxcydsjd@163.com</p>
+                    <a href="/provincecontact" target="_blank" class="r-more-block"><i class="iconfont icon-phone-receiver"></i>各省联系方式 ></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="rele-right">
+            <div class="right-box">
+              <span class="contest-icon forth-icon"></span>
+              <span class="contest-icon fifth-icon" style="top: 174px"></span>
+              <div class="right-inner">
+                <h2 class="r-small-title">参赛组别</h2>
+                <p class="r-top-text">
+                  <strong>高教主赛道：</strong>1. 本科生组：创意组、创业组&ensp;&ensp;&ensp;&ensp;2. 研究生组：创意组、创业组<br />
+                  <strong>青年红色筑梦之旅赛道：</strong>公益组、创意组、创业组<br />
+                  <strong>职教赛道：</strong>创意组、创业组<br />
+                  <strong>产业赛道：</strong>1. 企业命题组：产教协同创新组、区域特色产业组、国产操作系统软件组&ensp;&ensp;&ensp;&ensp;2. 成果转化组
+                </p>
+                <h2 class="r-small-title" style="margin-top: 20px">参赛类别</h2>
+                <p class="r-top-text">
+                  <strong>高教主赛道：</strong>新工科类、新医科类、新农科类、新文科类、人工智能+<br />
+                  <strong>青年红色筑梦之旅赛道：</strong>现代农业、制造业、信息技术服务、文化创意服务、社会服务<br />
+                  <strong>职教赛道：</strong>创新类、商业类、工匠类
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="clearfix">
+          <div class="rele-left">
+            <div class="left-box">
+              <span class="contest-icon sixth-icon"></span>
+              <div class="left-inner">
+                <h2 class="r-small-title">资料下载</h2>
+                <ul class="down-list clearfix">
+                  <li>
+                    <a href="https://t3.chei.com.cn/ncss/cy/web/lib/dasaitongzhi-2026.zip">大赛通知</a>
+                  </li>
+                  <li>
+                    <a href="https://t3.chei.com.cn/ncss/cy/web/lib/pingshenguize-2026.zip">评审规则</a>
+                  </li>
+                  <li>
+                    <a data-href="/downloadhomefile?type=1" data-check="/checkdownloadhomefile?type=1" class="file-download">省级校级操作手册</a>
+                  </li>
+                  <li>
+                    <a data-href="/downloadhomefile?type=2" data-check="/checkdownloadhomefile?type=2" class="file-download">学生操作手册</a>
+                  </li>
+                  <!-- <li style="margin-bottom: 0;">
+                    <a data-toggle="modal" data-target="#updatingTip" style="cursor: pointer; text-decoration: none">大赛指南</a>
+                  </li> -->
+                  <!-- <li style="margin-bottom: 0;">
+                    <a data-toggle="modal" data-target="#updatingTip" style="cursor: pointer; text-decoration: none">大赛评审手册</a>
+                  </li> -->
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="rele-right">
+            <div class="right-box">
+              <span class="contest-icon seventh-icon"></span>
+              <div class="right-inner award-inner">
+                <h2 class="r-small-title">奖项设置</h2>
+                <p class="r-top-text" style="margin-bottom: 5px"><strong>高教主赛道：</strong>中国大陆参赛项目设金奖240个、银奖480个、铜奖1440个，中国港澳台地区参赛项目设金奖12个、银奖24个、铜奖54个，国际参赛项目设金奖60个、银奖120个、铜奖420个。获得金奖项目的指导教师为“优秀创新创业导师”（限前五名）。</p>
+                <p class="r-top-text" style="margin-bottom: 5px"><strong>青年红色筑梦之旅赛道：</strong>设置金奖70个、银奖140个、铜奖440个。获得金奖项目的指导教师为“优秀创新创业导师”（限前五名）。</p>
+                <p class="r-top-text" style="margin-bottom: 5px"><strong>职教赛道：</strong>设置金奖70个、银奖140个、铜奖440个。获得金奖项目的指导教师为“优秀创新创业导师”（限前五名）。</p>
+                <p class="r-top-text" style="margin-bottom: 5px"><strong>产业赛道：</strong>设置金奖70个、银奖140个和铜奖440个。</p>
+                <p class="r-top-text"><strong>萌芽赛道：</strong>设置创新潜力奖20个。入围总决赛但未获创新潜力奖的项目，发放“入围总决赛”证书。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="video-bottom">
+        <div class="container index-div-block video-main">
+          <div class="video-main-logo-left"></div>
+          <div class="video-main-logo-right"></div>
+          <ul class="clearfix video-main-ul">
+            <li class="video-block">
+              <h2 class="v-title">报名启动</h2>
+            </li>
+            <li class="video-block">
+              <h3 class="v-time">7月-9月</h3>
+              <h3 class="v-text">参赛报名</h3>
+            </li>
+            <li class="video-block">
+              <h3 class="v-time">8月-10月</h3>
+              <h3 class="v-text">高校初赛</h3>
+            </li>
+            <li class="video-block">
+              <h3 class="v-time">8月-10月</h3>
+              <h3 class="v-text">省市复赛</h3>
+            </li>
+            <li class="video-block">
+              <h3 class="v-time">11月</h3>
+              <h3 class="v-text">总决赛</h3>
+            </li>
+            <li class="video-block">
+              <h2 class="v-title">大赛结束</h2>
+            </li>
+          </ul>
+        </div>
+        <div class="container index-div-block video-text" style="white-space: nowrap; width: 1380px">大赛主要采用校级初赛、省级复赛、总决赛三级赛制（不含萌芽赛道以及国际参赛项目）。总决赛由各地按照大赛组委会确定的配额择优遴选推荐项目。大赛共产生<span class="v-count">5000个</span>项目入围总决赛（港澳台地区参赛名额单列）。</div>
+      </div>
+    </div>
+    <!--大赛宣传视频-->
+    <div class="video">
+      <div class="container index-title-block">
+        <div class="index-line-black"></div>
+        <h1 class="index-samll-title index-title-black">大赛宣传视频</h1>
+      </div>
+      <div class="video-img-main" id="video" style="height: 520px;">
+        <!-- <i class="video-play" id="videoplay"></i> -->
+        <video controls preload="none" id="customVideo" poster="https://t2.chei.com.cn/ncss/cy/web/img/video-poster2025.jpg" src="https://chsi-v.oss-cn-beijing.aliyuncs.com/ncss/cy/2025-index.mp4"></video>
+      </div>
+    </div>
+
+    <div class="review">
+      <div class="container index-title-block">
+        <div class="index-line-black review-line"></div>
+        <div class="mid-title-box">
+          <img alt="logo" style="margin-right: 10px" src="https://t4.chei.com.cn/ncss/cy/web/img/tit1.png?t=20240105" />
+          <h1 class="index-title-black review-title" style="margin-top: 10px">2025年大赛精彩回顾</h1>
+          <img alt="吉祥物" style="margin-left: 6px;" src="https://t3.chei.com.cn/ncss/cy/web/img/jxw-2025.png" />
+        </div>
+      </div>
+      <div class="container clearfix review-top">
+        <div class="review-right" id="review-right" style="width: 100%;">
+          <div class="smallbd">
+            <ul>
+              <li _src="url(https://t3.chei.com.cn/ncss/cy/web/img/banner_mid_2026_1.jpg)" style="background: center center no-repeat"></li>
+              <li _src="url(https://t2.chei.com.cn/ncss/cy/web/img/banner_mid_2026_2.jpg)" style="background: center center no-repeat"></li>
+              <li _src="url(https://t1.chei.com.cn/ncss/cy/web/img/banner_mid_2026_3.jpg)" style="background: center center no-repeat"></li>
+            </ul>
+          </div>
+          <span class="prev" style="z-index: 10"></span> <span class="next" style="z-index: 10"></span>
+        </div>
+      </div>
+      <div class="container index-div-block">
+        <ul class="clearfix">
+          <li class="review-block">
+            <div class="left-pic">
+              <a title="基于类脑架构的下一代通用模型及智能体生态"><img src="https://t1.chei.com.cn/ncss/cy/web/img/bot_project_2025_1.jpg" /></a>
+              <i class="iconfont icon-crown gold" title="冠军"></i>
+            </div>
+            <div class="right-content">
+              <h4>
+                <a title="基于类脑架构的下一代通用模型及智能体生态">基于类脑架构的下一代通用模型及智能体生态</a>
+              </h4>
+              <p>清华大学</p>
+            </div>
+          </li>
+          <li class="review-block">
+            <div class="left-pic">
+              <a title="一知智能——AI大模型互动营销服务产业引领者"><img src="https://t1.chei.com.cn/ncss/cy/web/img/bot_project_2025_2.jpg" /></a>
+              <i class="iconfont icon-crown silver" title="亚军"></i>
+            </div>
+            <div class="right-content">
+              <h4>
+                <a title="一知智能——AI大模型互动营销服务产业引领者">一知智能——AI大模型互动营销服务产业引领者</a>
+              </h4>
+              <p>浙江大学</p>
+            </div>
+          </li>
+          <li class="review-block">
+            <div class="left-pic">
+              <a title="光隐——面向AI训练的高速缆用电磁屏蔽膜"><img src="https://t3.chei.com.cn/ncss/cy/web/img/bot_project_2025_3.jpg" /></a>
+              <i class="iconfont icon-crown copper" title="季军"></i>
+            </div>
+            <div class="right-content">
+              <h4>
+                <a title="光隐——面向AI训练的高速缆用电磁屏蔽膜">光隐——面向AI训练的高速缆用电磁屏蔽膜</a>
+              </h4>
+              <p>南京理工大学</p>
+            </div>
+          </li>
+          <li class="review-block">
+            <div class="left-pic">
+              <a title="御洪——水利安全卫士"><img src="https://t3.chei.com.cn/ncss/cy/web/img/bot_project_2025_4.jpg" /></a>
+              <i class="iconfont icon-medal gold" title="金奖"></i>
+            </div>
+            <div class="right-content">
+              <h4>
+                <a title="御洪——水利安全卫士">御洪——水利安全卫士</a>
+              </h4>
+              <p>郑州大学</p>
+            </div>
+          </li>
+          <li class="review-block">
+            <div class="left-pic">
+              <a title="桥介数物——通用机器人小脑研发领航者"><img src="https://t2.chei.com.cn/ncss/cy/web/img/bot_project_2025_5.jpg" /></a>
+              <i class="iconfont icon-medal gold" title="金奖"></i>
+            </div>
+            <div class="right-content">
+              <h4>
+                <a title="桥介数物——通用机器人小脑研发领航者">桥介数物——通用机器人小脑研发领航者</a>
+              </h4>
+              <p>华中科技大学</p>
+            </div>
+          </li>
+          <li class="review-block">
+            <div class="left-pic">
+              <a title="极动智能-智能便携运动恢复装备引领者"><img src="https://t4.chei.com.cn/ncss/cy/web/img/bot_project_2025_6.jpg" /></a>
+              <i class="iconfont icon-medal gold" title="金奖"></i>
+            </div>
+            <div class="right-content">
+              <h4>
+                <a title="极动智能-智能便携运动恢复装备引领者">极动智能-智能便携运动恢复装备引领者</a>
+              </h4>
+              <p>哈尔滨工业大学（深圳）</p>
+            </div>
+          </li>
+          <li class="review-block">
+            <div class="left-pic">
+              <a title="XQ-12「九天玄女」"><img src="https://t2.chei.com.cn/ncss/cy/web/img/bot_project_2025_7.jpg" /></a>
+              <i class="iconfont icon-medal gold" title="金奖"></i>
+            </div>
+            <div class="right-content">
+              <h4>
+                <a title="XQ-12「九天玄女」">XQ-12「九天玄女」</a>
+              </h4>
+              <p>广西师范大学</p>
+            </div>
+          </li>
+          <li class="review-block">
+            <div class="left-pic">
+              <a title="太虚方寸——面向 6G 射频前端的毫米波高集成封装阵列天线"><img src="https://t3.chei.com.cn/ncss/cy/web/img/bot_project_2025_8.jpg" /></a>
+              <i class="iconfont icon-medal gold" title="金奖"></i>
+            </div>
+            <div class="right-content">
+              <h4>
+                <a title="太虚方寸——面向 6G 射频前端的毫米波高集成封装阵列天线">太虚方寸——面向 6G 射频前端的毫米波高集成封装阵列天线</a>
+              </h4>
+              <p>电子科技大学</p>
+            </div>
+          </li>
+          <li class="review-block">
+            <div class="left-pic">
+              <a title="Voxsee-面向视障者的普惠级无障碍智能辅具"><img src="https://t1.chei.com.cn/ncss/cy/web/img/bot_project_2025_9.jpg" /></a>
+              <i class="iconfont icon-medal gold" title="金奖"></i>
+            </div>
+            <div class="right-content">
+              <h4>
+                <a title="Voxsee-面向视障者的普惠级无障碍智能辅具">Voxsee-面向视障者的普惠级无障碍智能辅具</a>
+              </h4>
+              <p>浙江大学</p>
+            </div>
+          </li>
+          <li class="review-block">
+            <div class="left-pic">
+              <a title="磁合星枢——面向巨星座建设的新体制“细胞”卫星平台"><img src="https://t1.chei.com.cn/ncss/cy/web/img/bot_project_2025_10.jpg" /></a>
+              <i class="iconfont icon-medal gold" title="金奖"></i>
+            </div>
+            <div class="right-content last">
+              <h4>
+                <a title="磁合星枢——面向巨星座建设的新体制“细胞”卫星平台">磁合星枢——面向巨星座建设的新体制“细胞”卫星平台</a>
+              </h4>
+              <p>哈尔滨工业大学</p>
+            </div>
+          </li>
+          <li class="review-block">
+            <div class="left-pic">
+              <a title="BioPilot——智能活菌机器人肿瘤疫苗的开拓先锋"><img src="https://t4.chei.com.cn/ncss/cy/web/img/bot_project_2025_11.jpg" /></a>
+              <i class="iconfont icon-medal gold" title="金奖"></i>
+            </div>
+            <div class="right-content last">
+              <h4>
+                <a title="BioPilot——智能活菌机器人肿瘤疫苗的开拓先锋">BioPilot——智能活菌机器人肿瘤疫苗的开拓先锋</a>
+              </h4>
+              <p>南京大学</p>
+            </div>
+          </li>
+          <li class="review-block">
+            <div class="left-pic">
+              <a title="光影跃动——智能三维视觉的全栈“中国芯”方案"><img src="https://t3.chei.com.cn/ncss/cy/web/img/bot_project_2025_12.jpg" /></a>
+              <i class="iconfont icon-medal gold" title="金奖"></i>
+            </div>
+            <div class="right-content">
+              <h4>
+                <a title="光影跃动——智能三维视觉的全栈“中国芯”方案">光影跃动——智能三维视觉的全栈“中国芯”方案</a>
+              </h4>
+              <p>南京理工大学</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <!-- <div class="container index-div-block review-bottom">
+        <a th:href="@{/search/projects}" target="_blank">更多→</a>
+      </div> -->
+    </div>
+
+    <div>
+      <div class="footer">
+        <div class="container pl0 pr0" style="line-height: 1.43;">
+          <div class="row">
+            <div class="col-xs-8">
+              <div class="logo pull-left">
+                <img alt="" src="https://t3.chei.com.cn/ncss/cy/web/icon/logo_bottom.png" />
+              </div>
+              <div class="content pull-left">
+                <p class="f14">
+                  <a href="https://www.ncss.cn" target="_blank">国家大学生就业服务平台</a>
+                  <span class="footer-space">|</span> <a href="https://www.chsi.com.cn" target="_blank">学信网</a> <span class="footer-space">|</span> <a href="/about" target="_blank">关于创业网</a> <span class="footer-space">|</span> <a href="/contact" target="_blank">联系我们</a>
+                </p>
+                <p class="mt14" style="font-size: 12px;margin-bottom: 8.5px;">版权所有：教育部学生服务与素质发展中心</p>
+                <p style="line-height: 20px;font-size: 12px;margin-bottom: 8.5px;">
+                  <a href="https://beian.miit.gov.cn" target="_blank" rel="noopenner noreferrer" style="color: #ccc;float:left;margin-right: 1em;">京ICP备19004913号-1</a>
+                  <a target="_blank" rel="noopenner noreferrer" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010202009747" style="margin-right: 10px;">
+                    <img src="https://t1.chei.com.cn/chsi/images/jgwab.svg" style="float:left;"/>
+                    <span style="float:left; color:#ccc;margin-left: 5px;">京公网安备11010202009747号</span>
+                  </a>
+                </p>
+              </div>
+            </div>
+
+            <div class="col-md-4 text-right">
+              <!-- <div class="footer-logo text-center">
+                <img chsi:img="@{/icon/APPerweima.png}" alt="">
+                <p>大创网APP下载</p>
+            </div> -->
+              <div class="footer-logo text-center">
+                <img alt="" src="https://t2.chei.com.cn/ncss/cy/web/icon/footer_96_96.png" />
+                <p>大创网官方微信平台</p>
+              </div>
+              <div class="footer-logo text-center">
+                <img alt="" src="https://t1.chei.com.cn/ncss/cy/web/icon/footer_erweima.png?t=20240105" />
+                <p>大赛官方微信号</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script src="https://t2.chei.com.cn/ncss/cy/web/js/common-1.0.1.js"></script>
+        <script src="https://t4.chei.com.cn/ncss/cy/web/js/escape-json.js"></script>
+      </div>
+      <script>
+        $(document).ready(function () {
+          var windowHeight = $(window).height();
+          var bodyHeight = $(document.body).height();
+          var dValue = windowHeight - bodyHeight;
+          if (dValue > 0) {
+            dValue += 56;
+            $('#stick').css('height', dValue);
+          }
+          $('#prompts,#notToday')
+            .find('.modal-dialog')
+            .css({
+              'margin-top': windowHeight / 2 - 200
+            });
+          var Sys = {},
+            ua = navigator.userAgent.toLowerCase(),
+            s,
+            mobileAgent = ['iphone', 'ipod', 'ipad', 'android', 'mobile', 'blackberry', 'webos', 'incognito', 'webmate', 'bada', 'nokia', 'lg', 'ucweb', 'skyfire'];
+          (s = ua.match(/msie ([\d.]+)/)) ? (Sys.ie = s[1]) : 0;
+          if (Sys.ie) {
+            if (parseFloat(Sys.ie) < 10) {
+              $('#prompts').modal('show');
+            }
+          }
+          for (var i = 0; i < mobileAgent.length; i++) {
+            if (ua.indexOf(mobileAgent[i]) != -1) {
+              $('.mobile-tip').removeClass('hidden');
+              break;
+            }
+          }
+        });
+      </script>
+      
+    </div>
+    <div class="modal fade" tabindex="-1" role="dialog" id="urlModal" aria-hidden="true">
+    <div class="modal-dialog modal-sm" style="margin-top: calc(50vh - 150px);">
+      <div class="modal-content">
+        <div class="modal-header modal-header-defined">
+          <button type="button" class="close close-defined" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <h4 class="modal-title modal-title-defined text-center">温馨提示</h4>
+        </div>
+        <div class="modal-body project-modal-text">
+          <span class="project-modal-prompt"></span>
+          <div class="project-modal-info">
+            <p class="project-modal-del">您即将离开全国大学生创业服务网，进入组委会合作网站。</p>
+            <div class="form-group modal-confirm">
+              <a class="btn btn-default modal-btn-info-save" id="urlConfirm" target="_blank" rel="noopener noreferrer" href="#">确定</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    <div class="appTip">
+      <div class="popover top ex-drop" id="ex-drop" style="top: auto; bottom: 115px; left: 50%; margin-left: -410px; display: none; border: 1px solid #84efff">
+        <div class="arrow" style="border-top-color: #84efff"></div>
+        <div class="popover-content" style="padding: 10px 9px 6px">
+          <div style="text-align: center"><img style="width: 100px; padding: 4px" src="https://t3.chei.com.cn/ncss/cy/web/icon/footer_erweima.png?t=20240105" /></div>
+          <div style="line-height: 20px; margin-top: 5px; text-align: center">请关注官方微信公众号<br />查看常见问题</div>
+        </div>
+      </div>
+      <div class="closeWraper"><span class="closeTip iconfont icon-guanbi"></span></div>
+      <a id="contact" target="_blank" style="display: block; position: absolute; width: 420px; height: 90px; background: url(https://t2.chei.com.cn/ncss/cy/web/img/index-contact2.png) no-repeat; left: 50%; margin-left: 105px; top: 15px" href="/provincecontact"></a>
+      <a id="question" style="display: block; position: absolute; width: 300px; height: 80px; background: url(https://t2.chei.com.cn/ncss/cy/web/img/index-questions2.png) no-repeat; left: 50%; margin-left: -470px; top: 15px; cursor: pointer"></a>
+      <p style="color: #fff; font-size: 14px; position: absolute; left: 50%; margin-left: -468px; margin-bottom: 0; bottom: 0">请在报名参赛前仔细阅读，如有疑问请点击各省联系方式，咨询所在省份。</p>
+    </div>
+    <div class="modal fade" tabindex="-1" role="dialog" id="updatingTip" aria-hidden="true">
+      <div class="modal-dialog modal-sm" style="margin-top: calc(50vh - 150px);">
+        <div class="modal-content">
+          <div class="modal-header modal-header-defined">
+            <button type="button" class="close close-defined" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title modal-title-defined text-center">温馨提示</h4>
+          </div>
+          <div class="modal-body project-modal-text">
+            <span class="project-modal-prompt"></span>
+            <div class="project-modal-info">
+              <p class="project-modal-del">待发布</p>
+              <div class="form-group modal-confirm">
+                <button class="btn btn-default modal-btn-info-save" data-dismiss="modal">确定</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="redTip" aria-hidden="true">
+      <div class="modal-dialog modal-sm" style="margin-top: calc(50vh - 150px);">
+        <div class="modal-content">
+          <div class="modal-header modal-header-defined">
+            <button type="button" class="close close-defined" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title modal-title-defined text-center">各省红旅启动仪式展板模板</h4>
+          </div>
+          <div class="modal-body project-modal-text">
+            <span class="project-modal-download"></span>
+            <div class="project-modal-info">
+              <ul class="modal-down-list clearfix">
+                <li>
+                  <a href="https://t2.chei.com.cn/ncss/cy/web/lib/shandongsheng.zip">山东省</a>
+                </li>
+                <li>
+                  <a href="https://t2.chei.com.cn/ncss/cy/web/lib/heilongjiangsheng.zip">黑龙江省</a>
+                </li>
+                <li>
+                  <a href="https://t2.chei.com.cn/ncss/cy/web/lib/jiangxisheng.zip">江西省</a>
+                </li>
+                <li>
+                  <a href="https://t2.chei.com.cn/ncss/cy/web/lib/anhuisheng.zip">安徽省</a>
+                </li>
+              </ul>
+              <div class="form-group modal-confirm">
+                <button class="btn btn-default modal-btn-info-save" data-dismiss="modal">确定</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" tabindex="-1" role="dialog" id="resultTip" aria-hidden="true">
+      <div class="modal-dialog modal-sm" style="margin-top: calc(50vh - 150px);">
+        <div class="modal-content">
+          <div class="modal-header modal-header-defined">
+            <button type="button" class="close close-defined" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title modal-title-defined text-center">温馨提示</h4>
+          </div>
+          <div class="modal-body project-modal-text">
+            <span class="project-modal-prompt"></span>
+            <div class="project-modal-info">
+              <p class="project-modal-del" id="resultMessage"></p>
+              <div class="form-group modal-confirm">
+                <button class="btn btn-default modal-btn-info-save" data-dismiss="modal">确定</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade bs-project-modal-sm" id="loginModal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-sm" style="margin-top: calc(50vh - 150px);">
+        <div class="modal-content">
+          <div class="modal-header modal-header-defined">
+            <button type="button" class="close close-defined" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title text-center modal-title-defined">温馨提示</h4>
+          </div>
+          <div class="modal-body project-modal-text">
+            <span class="project-modal-prompt"></span>
+            <div class="project-modal-info">
+              <p class="project-modal-del">请登录后重试。</p>
+              <div class="form-group modal-confirm">
+                <a href="/chsiredirect" target="_blank" id="loginBtn" class="btn btn-default modal-btn-info-save">登录</a>
+                <button class="btn btn-default modal-btn-info-cancel" data-dismiss="modal">取消</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <input type="hidden" id="topnavactiveinput" value="index" />
+    <script src="https://t4.chei.com.cn/ncss/cy/web/js/superslide.2.1.3.js"></script>
+    <script>
+      /* global $ */
+
+      $(function () {
+        var _con = $('#ex-drop');
+        $(document).on('click', function (event) {
+          if ($('#question').is(event.target)) {
+            _con.show();
+          } else {
+            if (!_con.is(event.target) && _con.has(event.target).length === 0) {
+              if (_con.is(':visible')) {
+                _con.hide();
+              }
+            }
+          }
+        });
+
+        $(window).scroll(function () {
+          var height = $(window).scrollTop();
+          if (height >= 826) {
+            $('#menu-list').removeClass('shortcut-menu-num').addClass('shortcut-menu');
+          } else {
+            $('#menu-list').removeClass('shortcut-menu').addClass('shortcut-menu-num');
+          }
+        });
+        $('.closeTip').on('click', function () {
+          $('.appTip').addClass('hide');
+        });
+        $('.dynamics-text').hover(
+          function () {
+            $(this).find('.dynamics-href').animate({
+              width: '338px'
+            });
+          },
+          function () {
+            $(this).find('.dynamics-href').animate({
+              width: '0px'
+            });
+          }
+        );
+        $('.p-block-text').hover(
+          function () {
+            $(this).find('.p-block-back').animate({
+              width: '210px'
+            });
+          },
+          function () {
+            $(this).find('.p-block-back').animate({
+              width: '0px'
+            });
+          }
+        );
+        $('#banner').slide({
+          titCell: '.hd ul',
+          mainCell: '.bd ul',
+          effect: 'fold',
+          autoPlay: true,
+          autoPage: true,
+          trigger: 'click',
+          startFun: function (i) {
+            var curLi = $('#banner .bd li').eq(i);
+            if (curLi.attr('_src')) {
+              curLi.css('background-image', curLi.attr('_src')).removeAttr('_src');
+            }
+          }
+        });
+        $('#review-right').slide({
+          mainCell: '.smallbd ul',
+          effect: 'fold',
+          autoPlay: true,
+          autoPage: true,
+          trigger: 'click',
+          startFun: function (i) {
+            var curLi = $('#review-right .smallbd li').eq(i);
+            if (curLi.attr('_src')) {
+              curLi.css('background-image', curLi.attr('_src')).removeAttr('_src');
+            }
+          }
+        });
+        $('.outer-url').click(function () {
+          $('#urlConfirm').attr('href', $(this).attr('data-url'));
+          $('#urlModal').modal('show');
+        });
+        $('#urlConfirm').click(function () {
+          $('#urlModal').modal('hide');
+        });
+
+        /* 下载判断 */
+        $('.file-download').click(function () {
+          var $this = $(this);
+          $this.addClass('disabled');
+          $.ajax({
+            url: $this.attr('data-check'),
+            type: 'GET',
+            success: function (data) {
+              $this.removeClass('disabled');
+              if (data.status == 0) {
+                window.location.href = $this.attr('data-href');
+              } else {
+                if (data.message == '1') {
+                  $('#loginModal').modal('show');
+                } else {
+                  $('#resultMessage').text(data.message);
+                  $('#resultTip').modal('show');
+                }
+              }
+            },
+            error: function (e) {
+              $this.removeClass('disabled');
+              $('#resultMessage').text('网络异常，请稍后再试。');
+              $('#resultTip').modal('show');
+            }
+          });
+        });
+        $('#loginBtn').on('click', function () {
+          $('#loginModal').modal('hide');
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,110 @@
+<!doctype html><html><head><meta charset="utf-8"><meta http-equiv="x-ua-compatible" content="ie=edge"><meta name="renderer" content="webkit"><meta name="description" property="og:description" content="中国高校计算机大赛-团体程序设计天梯赛"><meta property="og:image" content="//static.pintia.cn/gplt/icons/PTA-logo.svg"><meta property="og:image:width" content="240"><meta property="og:image:height" content="150"><link rel="apple-touch-icon" sizes="180x180" href="//static.pintia.cn/gplt/icons/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="192x192" href="//static.pintia.cn/gplt/icons/android-chrome.png"><link rel="shortcut icon" href="//static.pintia.cn/gplt/icons/favicon.ico"><title>团体程序设计天梯赛</title><meta name="git-commit-hash" content="2950d307f3a6e25a3e674d12cb6271348479beb8"><script defer="defer" src="//static.pintia.cn/gplt/persistent/3rd-party.823a8febf7c0c46dc116.chunk.js"></script><script defer="defer" src="//static.pintia.cn/gplt/406.d07979c390523d7b415c.js"></script><script defer="defer" src="//static.pintia.cn/gplt/main.f76f32e95b0590615942.js"></script></head><body><div id="gplt"></div></body><script>/* 改动此文件需要进行IE浏览器测试 */
+/* eslint-disable no-alert */
+/* eslint-disable prefer-template */
+/* eslint-disable no-var */
+var startTime = Date.now()
+var deprecationMsgCN = '本站已停止支持您正在使用的 IE 相关内核或其他老旧版本的浏览器。请使用新版 Edge，Chrome，Firefox，QQ 浏览器或其他现代浏览器。'
+var deprecationMsgEN = 'We have ceased the support for legacy browsers that you \'re currently using. Please switch to more recent versions of Microsoft Edge, Google Chrome, Firefox or QQ Browser.'
+
+var ieDeprecationHTML = '<div id="unsupported-browser">'
+  + '<svg width="100%" height="300px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 1500" fill="#d93e36">'
+    + '<path d="M512 64c247.381333 0.106667 447.893333 200.618667 448 448-0.106667 247.381333-200.618667 447.893333-448 448-247.381333-0.106667-447.893333-200.618667-448-448 0.106667-247.381333 200.618667-447.893333 448-448z m152.96 234.666667L512 451.626667 359.04 298.666667 298.666667 359.04 451.626667 512 298.666667 664.96 359.04 725.333333 512 572.373333 664.96 725.333333 725.333333 664.96 572.373333 512 725.333333 359.04 664.96 298.666667z"  />'
+  + '</svg>'
+ + ' <p>'
+    + deprecationMsgCN
+  + '</p>'
+  + '<p>'
+   + deprecationMsgEN
+  + '</p>'
++ '</div>'
+var style = document.createElement('style')
+style.innerHTML = '#unsupported-browser p {'
+  + 'text-align: center;'
+  + '}'
+
+function isIE() {
+  var myNav = navigator.userAgent.toLowerCase()
+
+  if ('ActiveXObject' in window) {
+    return true
+  }
+  if (typeof window.Proxy === 'undefined') {
+    return true
+  }
+  // https://stackoverflow.com/questions/65259661/detecting-edge-legacy-browser-not-edge-chromium
+  if (myNav.indexOf('edge') > 0) {
+    return true
+  }
+
+  return (myNav.indexOf('msie') > 0) ? parseInt(myNav.split('msie')[1], 10) : false
+}
+
+// The minimum version of Chromium among all OMS Clients available to use, released on September 21, 2021
+const CHROME_LIMIT_VERSION = 94
+// The first version to support `:has()`, released on December 19, 2023
+const FIREFOX_LIMIT_VERSION = 121
+
+function isBrowserVersionLow() {
+  const { userAgent = '' } = navigator
+  const getBrowserVersion = (browser) => {
+    try {
+      return Number(userAgent.match(new RegExp(browser + '/([\\d.]+)'))[1].split('.')[0])
+    } catch (e) {
+      return Number.MAX_SAFE_INTEGER
+    }
+  }
+  if (userAgent.indexOf('Chrome') > -1) {
+    return getBrowserVersion('Chrome') < CHROME_LIMIT_VERSION
+  }
+  if (userAgent.indexOf('Firefox') > -1) {
+    return getBrowserVersion('Firefox') < FIREFOX_LIMIT_VERSION
+  }
+  return false
+}
+
+function isOmsClient() {
+  return navigator.userAgent.indexOf('OMSClient') !== -1
+}
+
+if (!isOmsClient() && (isIE() || isBrowserVersionLow())) {
+  document.head.appendChild(style)
+  const ele = document.createElement('div')
+  ele.innerHTML = ieDeprecationHTML
+  document.body.insertBefore(ele, document.body.firstChild)
+} else {
+  // eslint-disable-next-line func-names
+  window.PRELOAD_GLOBAL_ERROR_HANDLER = function (msg) {
+    if (msg.toString() === 'NS_ERROR_STORAGE_CONSTRAINT') {
+      alert('您的浏览器缓存已满，请清理缓存后再试。')
+    } else if (msg.toString() !== 'Script error.') {
+      alert(msg + '\n\n' + deprecationMsgCN + '\n' + deprecationMsgEN + '\n\n' + navigator.userAgent)
+    }
+    if (window.services && window.services.assert) {
+      window.services.assert.assert(Date.now() - startTime < 10000, 'PRELOAD_GLOBAL_ERROR_HANDLER', window.CLEAR_DEPRECATION_ERROR_HANDLER + msg + navigator.userAgent)
+    }
+  }
+
+  window.onerror = window.PRELOAD_GLOBAL_ERROR_HANDLER
+}
+
+const PUBLIC_PATH_CACHE_KEY = 'PUBLIC_PATH_CACHE'
+const PUBLIC_PATH_CACHE_TTL_KEY = 'PUBLIC_PATH_CACHE_TTL'
+
+try {
+  const queryStrings = location.search.slice(1).split('&')
+  if (!queryStrings.find(qs => qs === 'proxyCDN=1')) {
+    const url = localStorage.getItem(PUBLIC_PATH_CACHE_KEY)
+    const time = localStorage.getItem(PUBLIC_PATH_CACHE_TTL_KEY)
+    if (url && time) {
+      const lastUpdate = parseInt(time, 10)
+      const now = Date.now()
+      if (now - lastUpdate < 24 * 60 * 60 * 1000 ) { // 1 day in ms
+        const urlObj = new URL(location.href)
+        urlObj.searchParams.set('proxyCDN', '1')
+        location.href = urlObj.toString()
+      }
+    }
+  }
+} catch (e) {
+  console.error(e)
+}</script></html>

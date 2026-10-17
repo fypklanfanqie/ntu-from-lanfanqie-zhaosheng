@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>竞赛追踪 - 南通大学综测帮</title>
-  <meta name="description" content="南通大学可报名竞赛追踪：按文理科/学院智能推荐，覆盖《南通大学大学生学科竞赛目录（2026年版）》全部172项，附官方报名链接与每周更新时间戳。">
+  <meta name="description" content="南通大学可报名竞赛追踪：每天自动抓取官方通知，按文理科/学院智能推荐，显示报名截止时间与官方报名入口，覆盖《南通大学大学生学科竞赛目录（2026年版）》全部172项。">
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/liquid-glass.css">
   <link rel="stylesheet" href="../css/zongce.css">
@@ -43,24 +43,23 @@
           综测帮 · 子功能二
         </span>
         <h1>竞赛追踪</h1>
-        <p>覆盖《南通大学大学生学科竞赛目录（2026年版）》全部 172 项。选择你的科类与学院，优先看到与你最相关的比赛；每项附官方入口与报名状态。</p>
+        <p>覆盖《南通大学大学生学科竞赛目录（2026年版）》全部 172 项。每天自动抓取官方通知，显示报名截止时间与报名入口；选择科类与学院，优先看到与你相关的比赛。</p>
       </header>
 
       <!-- 统计条 -->
       <div class="zc-stats">
         <div class="zc-stat"><div class="zc-stat-num"><em id="stat-total">172</em></div><div class="zc-stat-label">目录竞赛总数</div></div>
-        <div class="zc-stat"><div class="zc-stat-num" id="stat-open">–</div><div class="zc-stat-label">可报名 / 报名中</div></div>
-        <div class="zc-stat"><div class="zc-stat-num" id="stat-soon">–</div><div class="zc-stat-label">即将开始报名</div></div>
+        <div class="zc-stat"><div class="zc-stat-num" id="stat-open">–</div><div class="zc-stat-label">正在报名</div></div>
+        <div class="zc-stat"><div class="zc-stat-num" id="stat-soon">–</div><div class="zc-stat-label">即将开始</div></div>
         <div class="zc-stat"><div class="zc-stat-num" id="stat-match">–</div><div class="zc-stat-label">匹配你的学院</div></div>
       </div>
 
       <!-- 筛选栏 -->
       <div class="zc-filter-bar">
-        <!-- 第一步：你是谁 -->
         <div class="zc-filter-step">
           <div class="zc-step-tag">① 你是谁</div>
           <div class="zc-filter-row" style="margin-top:10px;">
-            <div class="zc-field" style="max-width:220px;">
+            <div class="zc-field" style="max-width:240px;">
               <div class="zc-pills" id="field-pills">
                 <button class="zc-pill active" data-field="all">所有学生</button>
                 <button class="zc-pill" data-field="理">理科生</button>
@@ -72,16 +71,15 @@
             </div>
           </div>
         </div>
-        <!-- 第二步：找什么 -->
         <div class="zc-filter-step">
           <div class="zc-step-tag">② 找什么</div>
           <div class="zc-filter-row" style="margin-top:10px;">
             <div class="zc-field" style="flex:1;min-width:220px;">
               <input type="text" id="kw-input" class="zc-input" placeholder="按名称搜索：数学建模、机器人、成图…" autocomplete="off">
             </div>
-            <div class="zc-field" style="max-width:220px;">
+            <div class="zc-field" style="max-width:330px;">
               <div class="zc-pills" id="class-pills">
-                <button class="zc-pill active" data-class="all">全部类别</button>
+                <button class="zc-pill active" data-class="all">全部</button>
                 <button class="zc-pill" data-class="Ⅰ">Ⅰ类</button>
                 <button class="zc-pill" data-class="Ⅱ">Ⅱ类</button>
                 <button class="zc-pill" data-class="Ⅲ">Ⅲ类</button>
@@ -89,28 +87,29 @@
             </div>
           </div>
         </div>
-        <!-- 第三步：报名状态 -->
         <div class="zc-filter-step">
           <div class="zc-step-tag">③ 报名状态</div>
           <div class="zc-filter-row" style="margin-top:10px;align-items:center;">
             <div class="zc-pills" id="status-pills">
               <button class="zc-pill active" data-status="all">全部</button>
-              <button class="zc-pill" data-status="open">🟢 可报名</button>
+              <button class="zc-pill" data-status="recommend">⭐ 推荐</button>
+              <button class="zc-pill" data-status="open">🟢 正在报名</button>
               <button class="zc-pill" data-status="soon">🟡 即将开始</button>
-              <button class="zc-pill" data-status="watch">⚪ 持续关注</button>
+              <button class="zc-pill" data-status="closed">⚫ 已结束</button>
+              <button class="zc-pill" data-status="watch">⚪ 无通知</button>
             </div>
             <div class="zc-updated" style="margin-left:auto;">
               <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm6.93 6h-2.95c-.32-1.25-.78-2.45-1.38-3.56 1.84.63 3.37 1.91 4.33 3.56zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2 0 .68.06 1.34.14 2H4.26zm.82 2h2.95c.32 1.25.78 2.45 1.38 3.56-1.84-.63-3.37-1.9-4.33-3.56zm2.95-8H5.08c.96-1.66 2.49-2.93 4.33-3.56C8.81 5.55 8.35 6.75 8.03 8zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66c-.09-.66-.16-1.32-.16-2 0-.68.07-1.35.16-2h4.68c.09.65.16 1.32.16 2 0 .68-.07 1.34-.16 2zm.25 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95c-.96 1.65-2.49 2.93-4.33 3.56zM16.36 14c.08-.66.14-1.32.14-2 0-.68-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2h-3.38z"/></svg>
-              <span id="updated-time">数据每周自动更新 · 最近核验 2026-10</span>
+              <span id="updated-time">数据每天自动更新</span>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- 官方通知区（Worker/快照填充） -->
+      <!-- 官方通知区（按学院筛选） -->
       <div id="notify-area"></div>
 
-      <!-- 推荐说明条 -->
+      <!-- 推荐说明 -->
       <div id="recommend-note" style="display:none;margin-bottom:20px;">
         <div class="zc-scope-banner" style="background:rgba(0,113,227,0.06);border-color:rgba(0,113,227,0.2);">
           <svg viewBox="0 0 24 24" fill="#0071e3"><path d="M12 2l2.4 4.8 5.3.8-3.85 3.75.9 5.3L12 14.1l-4.75 2.5.9-5.3L4.3 7.6l5.3-.8z"/></svg>
@@ -122,12 +121,11 @@
       <div class="zc-comp-grid" id="comp-grid"></div>
       <div class="zc-basis-empty" id="empty-tip" style="display:none;">没有符合条件的竞赛，试试放宽筛选</div>
 
-      <!-- 官方通知来源 -->
+      <!-- 来源 -->
       <div class="zc-source-note">
         <strong>报名状态与信息来源：</strong>
-        本页报名状态基于南通大学创新创业教育学院<a href="https://cxcyxy.ntu.edu.cn/10412/list.htm" target="_blank" rel="noopener">通知公告</a>及各承办学院官网通知每周核验更新；竞赛归属与认定类别依据《南通大学大学生学科竞赛目录（2026年版）》。
-        各竞赛官方入口以主办方官网为准，报名前请以校内通知的具体安排（校级选拔/直报）为准。<br>
-        <strong>免责声明：</strong>报名时间、方式可能调整，请务必进入官方链接核实最新通知。
+        报名状态由「创新创业教育学院通知公告」及商学院 / 信息科学技术学院 / 医学院 / 人工智能与计算机学院通知公告、教务处等官方页面<b>每天自动抓取</b>，并从通知正文中提取<b>报名截止时间</b>与<b>报名入口</b>后判定（截止日未到＝正在报名，已过＝已结束）；竞赛归属与认定类别依据《南通大学大学生学科竞赛目录（2026年版）》。<br>
+        <strong>免责声明：</strong>报名时间、方式可能调整，请以官方通知与学院安排为准。
       </div>
 
     </div>
@@ -142,14 +140,15 @@
 
   <script src="../js/competitions-data.js"></script>
   <script src="../js/competition-links.js"></script>
+  <script src="../js/competition-status-override.js"></script>
   <script>
   (function(){
   'use strict';
 
   var comps = window.NTU_COMPETITIONS || [];
   var $ = function (s) { return document.querySelector(s); };
+  var DATA = { items: [], matches: {}, updated: '', stats: {} };
 
-  /* ---------- 26 学院（官网 yxsz 名录）→ 归属科类 ---------- */
   var COLLEGES = [
     '机械工程学院','信息科学技术学院（通科微电子学院）','微电子学院（集成电路学院）',
     '人工智能与计算机学院（阿里云大数据学院）','电气与自动化学院','交通与土木工程学院（交通学院）',
@@ -159,139 +158,339 @@
     '文学院','历史文化学院（法学院）','外国语学院','商学院（管理学院）',
     '教育科学学院','教师教育学院','艺术学院（建筑学院）','马克思主义学院','国际教育学院'
   ];
+  var LI_COLLEGES = COLLEGES.filter(function (c) { return !/文学院|历史文化|外国语|商学院|教育科学|教师教育|艺术学院|马克思|国际教育/.test(c); });
 
-  /* 学院 → 竞赛承办学院名匹配词（目录中的写法） */
-  var COLLEGE_MATCH = {
-    '机械工程学院': ['机械工程学院'],
-    '信息科学技术学院（通科微电子学院）': ['信息科学技术学院'],
-    '微电子学院（集成电路学院）': ['微电子学院'],
-    '人工智能与计算机学院（阿里云大数据学院）': ['人工智能与计算机学院'],
-    '电气与自动化学院': ['电气与自动化学院'],
-    '交通与土木工程学院（交通学院）': ['交通与土木工程学院'],
-    '化学化工学院': ['化学化工学院'],
-    '纺织服装学院': ['纺织服装学院'],
-    '生命科学学院（海洋学院）': ['生命科学学院'],
-    '地理科学学院': ['地理科学学院'],
-    '物理科学与技术学院': ['物理科学与技术学院'],
-    '数学与统计学院': ['数学与统计学院'],
-    '医学院': ['医学院'],
-    '护理与康复学院': ['护理与康复学院'],
-    '公共卫生学院': ['公共卫生学院'],
-    '药学院': ['药学院'],
-    '体育科学学院': ['体育科学学院'],
-    '张謇学院': ['张謇学院'],
-    '锡耶纳未来生物技术学院': ['锡耶纳未来生物技术学院'],
-    '文学院': ['文学院'],
-    '历史文化学院（法学院）': ['历史文化学院'],
-    '外国语学院': ['外国语学院'],
-    '商学院（管理学院）': ['商学院'],
-    '教育科学学院': ['教育科学学院'],
-    '教师教育学院': ['教师教育学院'],
-    '艺术学院（建筑学院）': ['艺术学院'],
-    '马克思主义学院': ['马克思主义学院'],
-    '国际教育学院': ['国际教育学院']
-  };
+  /* 目录中承办学院写法 → 学院匹配词 */
+  var COLLEGE_MATCH = {};
+  COLLEGES.forEach(function (c) {
+    var core = c.replace(/（[^）]*）/g, '');
+    COLLEGE_MATCH[c] = [core];
+  });
+  COLLEGE_MATCH['信息科学技术学院（通科微电子学院）'] = ['信息科学技术学院'];
+  COLLEGE_MATCH['人工智能与计算机学院（阿里云大数据学院）'] = ['人工智能与计算机学院'];
+  COLLEGE_MATCH['交通与土木工程学院（交通学院）'] = ['交通与土木工程学院', '交通学院'];
+  COLLEGE_MATCH['生命科学学院（海洋学院）'] = ['生命科学学院'];
+  COLLEGE_MATCH['微电子学院（集成电路学院）'] = ['微电子学院'];
+  COLLEGE_MATCH['艺术学院（建筑学院）'] = ['艺术学院'];
+  COLLEGE_MATCH['商学院（管理学院）'] = ['商学院'];
+  COLLEGE_MATCH['历史文化学院（法学院）'] = ['历史文化学院', '法学院'];
 
-  /* ---------- 状态 ---------- */
+  function isLiCollege(c) { return LI_COLLEGES.indexOf(c) >= 0; }
+
   var state = {
-    field: 'all',      // all|理|文
-    college: '',
-    kw: '',
-    status: 'all',
-    klass: 'all',
-    statusData: {}     // no -> {status, until, source}
+    field: 'all', college: '', kw: '', status: 'all', klass: 'all',
+    noticeScope: 'all'
   };
 
-  /* ---------- 官方通知数据（Worker 每周抓取 → 静态快照兜底） ---------- */
-  /* 部署 Worker 后可把 WORKER_API 填上实时地址，例如:
-     const WORKER_API = 'https://ntu-zongce-fetcher.lanfanqie.workers.dev/api/notifications'; */
-  const WORKER_API = 'https://ntu-zongce-fetcher.lanfanqie.workers.dev/api/notifications';
-  function esc2(s) {
-    return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  /* ================================================================
+     数据加载：Worker /api/all → 静态快照兜底
+     ================================================================ */
+  var API = 'https://ntu-zongce-fetcher.lanfanqie.workers.dev/api/all';
+
+  function loadData() {
+    return fetch(API, { cache: 'no-cache' })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (j) { return j && j.data ? j.data : null; })
+      .catch(function () { return null; })
+      .then(function (d) {
+        if (d && d.items && d.items.length) return d;
+        /* 兜底：本地快照 */
+        return fetch('data/notifications-snapshot.json', { cache: 'no-cache' })
+          .then(function (r) { return r.ok ? r.json() : null; })
+          .then(function (s) { return s || { items: [], matches: {} }; })
+          .catch(function () { return { items: [], matches: {} }; });
+      });
   }
 
-  /* ---------- 通知 → 竞赛状态映射 ----------
-     规则: 通知标题含"举办/启动/报名/选拔赛"且命中目录竞赛名关键词 → open
-           含"即将/预通知/预告" → soon；命中但为"获奖/公示" → 忽略
-     覆盖: 通知日期在 120 天内视为有效 */
-  function mapNotifications(items) {
+  function fmtTime(iso) {
+    if (!iso) return '数据每天自动更新';
+    try {
+      var d = new Date(iso);
+      var p = function (n) { return (n < 10 ? '0' : '') + n; };
+      return '数据更新于 ' + d.getFullYear() + '-' + p(d.getMonth() + 1) + '-' + p(d.getDate()) +
+        ' ' + p(d.getHours()) + ':' + p(d.getMinutes()) + ' · 每天自动抓取';
+    } catch (e) { return '数据每天自动更新'; }
+  }
+
+  /* 状态：校内通知（服务端匹配） + 官网核验覆盖 合并 */
+  var STATUS_RANK = { open: 3, soon: 2, watch: 1, closed: 0 };
+  var STATUS_MAP = {};
+
+  function buildStatusMap() {
+    var map = {};
     var now = Date.now();
-    items.forEach(function (n) {
-      if (!n.title) return;
-      if (/获奖|公示|结果|喜报|获佳绩|斩获|评选结果|结题|名单/.test(n.title)) return;
-      var age = n.date ? (now - new Date(n.date).getTime()) : 0;
-      if (age > 120 * 86400e3) return;
-      var isSoon = /即将|预通知|预告|将举办|拟举办/.test(n.title);
-      var isOpen = /报名|启动|举办|选拔赛|开始|组织参加|组织学生/.test(n.title) && !isSoon;
-      if (!isSoon && !isOpen) return;
-      /* 与目录匹配：目录名去括号后 ≥4 字子串命中，或关键词命中 */
-      comps.forEach(function (c) {
-        if (state.statusData[c.no] && state.statusData[c.no].status === 'open') return; /* 已命中更高状态 */
-        var short = c.name.replace(/[（(].*?[)）]/g, '');
-        var core = short.length > 6 ? short.slice(0, 8) : short;
-        var hit = n.title.indexOf(core) >= 0;
-        if (!hit) {
-          /* 常用别名 */
-          var ALIAS = { '数学建模': '数学建模', '挑战杯': '挑战杯', '互联网': '中国国际大学生创新大赛', '创新大赛': '中国国际大学生创新大赛', '机器人': '机器人', '成图': '先进成图', '蓝桥杯': '蓝桥杯', '金相': '金相', '节能减排': '节能减排', '三创': '电子商务', '机械创新': '机械创新' };
-          for (var k in ALIAS) {
-            if (n.title.indexOf(k) >= 0 && (c.name.indexOf(ALIAS[k]) >= 0)) { hit = true; break; }
-          }
-        }
-        if (hit) {
-          state.statusData[c.no] = {
-            status: isSoon ? 'soon' : 'open',
-            until: n.date || '',
-            from: n.title,
-            url: n.url || ''
-          };
-        }
+
+    Object.keys(DATA.matches || {}).forEach(function (no) {
+      var m = DATA.matches[no];
+      if (!m || !m.status) return;
+      map[no] = {
+        status: m.status,
+        deadline: m.deadline || '',
+        notice: m.notice || null,
+        evidence: [{
+          type: 'notice',
+          text: (m.notice && m.notice.title) || '',
+          url: (m.notice && m.notice.url) || '',
+          date: (m.notice && m.notice.date) || '',
+          college: (m.notice && m.notice.college) || '',
+          regUrl: (m.notice && m.notice.regUrl) || '',
+          regLabel: (m.notice && m.notice.regLabel) || ''
+        }]
+      };
+    });
+
+    /* 官网核验覆盖（60 天内有效） */
+    var OV = window.NTU_STATUS_OVERRIDE || {};
+    Object.keys(OV).forEach(function (no) {
+      var ov = OV[no];
+      if (!ov || !ov.status) return;
+      var ts = ov.checkedAt ? Date.parse(ov.checkedAt + 'T00:00:00Z') : 0;
+      if (ts && (now - ts) > 60 * 864e5) return; /* 过期不采用 */
+
+      var cur = map[no];
+      if (!cur) {
+        cur = map[no] = { status: 'watch', deadline: '', notice: null, evidence: [] };
+      }
+      if ((STATUS_RANK[ov.status] || 0) > (STATUS_RANK[cur.status] || 0)) {
+        cur.status = ov.status;
+      }
+      if (!cur.deadline && ov.deadline) cur.deadline = ov.deadline;
+      cur.evidence.push({
+        type: 'official',
+        text: ov.evidence || '',
+        url: ov.url || '',
+        date: ov.checkedAt || '',
+        deadline: ov.deadline || ''
       });
     });
+
+    return map;
   }
-  function loadNotifications() {
-    var tryWorker = WORKER_API
-      ? fetch(WORKER_API, { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) { return j && j.data && j.data.items ? j.data.items : null; }).catch(function () { return null; })
-      : Promise.resolve(null);
-    tryWorker
-      .then(function (items) {
-        if (!items) {
-          return fetch('data/notifications-snapshot.json', { cache: 'no-cache' })
-            .then(function (r) { return r.ok ? r.json() : null; })
-            .then(function (d) { return d && d.notifications ? d.notifications : []; });
-        }
-        return items;
-      })
-      .then(function (items) {
-        if (!items || !items.length) return;
-        var updatedEl = document.getElementById('updated-time');
-        if (updatedEl) updatedEl.textContent = '最新通知 ' + (items[0].date || '近期') + ' · 数据每周自动核验';
-        /* 关键：把通知标题映射到竞赛目录 → 设置报名状态 */
-        mapNotifications(items);
-        render();
-        /* 通知卡片 */
-        var box = document.getElementById('notify-area');
-        if (!box) return;
-        box.innerHTML = '<div class="zc-card" style="padding:20px 24px;margin-bottom:24px;">'
-          + '<div class="zc-section-label" style="margin-bottom:10px;">📢 最新竞赛相关通知（官方来源 · 每周自动更新）</div>'
-          + items.slice(0, 6).map(function (n) {
-            return '<div style="display:flex;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:1px solid var(--border-soft);">'
-              + '<a href="' + esc2(n.url) + '" target="_blank" rel="noopener" style="font-size:0.875rem;color:var(--fg);line-height:1.5;">' + esc2(n.title) + '</a>'
-              + '<span style="font-size:0.75rem;color:var(--meta);white-space:nowrap;">' + esc2(n.college || '校级') + ' · ' + esc2(n.date || '') + '</span>'
-              + '</div>';
-          }).join('')
-          + '</div>';
-      })
-      .catch(function () {});
-  }
-  loadNotifications();
 
   function statusOf(no) {
-    var s = state.statusData[no] || state.statusData[String(no)];
-    if (s && s.status) return s;
-    return { status: 'watch' };
+    return STATUS_MAP[no] || { status: 'watch', evidence: [] };
   }
 
-  /* ---------- 学院下拉 ---------- */
+  /* ================================================================
+     通知区（支持「全校 / 我的学院」筛选）
+     ================================================================ */
+  function renderNotices() {
+    var box = $('#notify-area');
+    if (!box) return;
+    var items = DATA.items || [];
+
+    /* 统计各范围条数 */
+    var schoolN = items.filter(function (n) { return (n.college || '校级') === '校级'; }).length;
+    var colN = state.college ? items.filter(function (n) { return n.college === state.college; }).length : 0;
+
+    var scope = state.noticeScope;
+    if (scope === 'college' && !state.college) scope = 'all';
+
+    var list = items.filter(function (n) {
+      if (scope === 'school') return (n.college || '校级') === '校级';
+      if (scope === 'college') return n.college === state.college;
+      return true;
+    }).slice(0, 12);
+
+    var tabs = '<div class="zc-pills" id="notice-pills" style="margin-bottom:12px;">'
+      + '<button class="zc-pill' + (scope === 'all' ? ' active' : '') + '" data-scope="all">全部通知 ' + items.length + '</button>'
+      + '<button class="zc-pill' + (scope === 'school' ? ' active' : '') + '" data-scope="school">全校通知 ' + schoolN + '</button>'
+      + (state.college
+          ? '<button class="zc-pill' + (scope === 'college' ? ' active' : '') + '" data-scope="college">'
+            + esc(state.college.replace(/（[^）]*）/g, '')) + ' ' + colN + '</button>'
+          : '')
+      + '</div>';
+
+    var rows = list.map(function (n) {
+      var st = n.status || 'watch';
+      var chip = { open: '🟢 正在报名', soon: '🟡 即将开始', closed: '⚫ 已结束', watch: '⚪ 参考' }[st] || '';
+      var dl = n.deadline ? '<span class="zc-notice-dl">截止 ' + esc(n.deadline) + '</span>' : '';
+      var reg = n.regUrl ? '<a class="zc-notice-reg" href="' + esc(n.regUrl) + '" target="_blank" rel="noopener">' + esc(n.regLabel || '报名入口') + ' ↗</a>' : '';
+      return '<div class="zc-notice-row">'
+        + '<div class="zc-notice-main">'
+        +   '<a class="zc-notice-title" href="' + esc(n.url) + '" target="_blank" rel="noopener">' + esc(n.title) + '</a>'
+        +   '<div class="zc-notice-meta"><span class="zc-notice-col">' + esc((n.college || '校级').replace(/（[^）]*）/g, '')) + '</span>'
+        +   '<span>' + esc(n.date || '') + '</span>' + dl + '</div>'
+        + '</div>'
+        + '<div class="zc-notice-side"><span class="zc-notice-chip ' + st + '">' + chip + '</span>' + reg + '</div>'
+        + '</div>';
+    }).join('') || '<div class="zc-basis-empty" style="padding:20px;">该范围内暂无通知</div>';
+
+    box.innerHTML = '<div class="zc-card" style="padding:20px 24px;margin-bottom:24px;">'
+      + '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:12px;">'
+      +   '<div class="zc-section-label" style="margin:0;">📢 最新竞赛相关通知 · 官方来源</div>'
+      +   '<span style="font-size:0.75rem;color:var(--meta);">' + esc(fmtTime(DATA.updated)) + '</span>'
+      + '</div>'
+      + tabs + rows
+      + '</div>';
+
+    var pills = $('#notice-pills');
+    if (pills) {
+      pills.addEventListener('click', function (e) {
+        var btn = e.target.closest('.zc-pill');
+        if (!btn) return;
+        state.noticeScope = btn.dataset.scope;
+        renderNotices();
+      });
+    }
+  }
+
+  /* ================================================================
+     推荐评分：可报名 > 即将开始 > 学院承办 > 高类别
+     ================================================================ */
+  function collegeHit(c) {
+    if (!state.college) return false;
+    var words = COLLEGE_MATCH[state.college] || [state.college];
+    return c.orgs.some(function (o) {
+      return words.some(function (w) { return w && o.indexOf(w) >= 0; });
+    });
+  }
+  function recScore(c) {
+    var st = statusOf(c.no).status;
+    var s = st === 'open' ? 100 : st === 'soon' ? 70 : st === 'closed' ? 12 : 30;
+    if (collegeHit(c)) s += 45;
+    var cls = c.class === 'Ⅰ' ? 30 : c.class === 'Ⅱ' ? 16 : 8;
+    var tier = { '甲': 8, '乙': 5, '丙': 3, '丁': 1 }[c.tier] || 0;
+    return s + cls + tier;
+  }
+  function isRecommended(c) {
+    var st = statusOf(c.no).status;
+    return st === 'open' || st === 'soon' || collegeHit(c);
+  }
+
+  /* ================================================================
+     过滤 & 排序
+     ================================================================ */
+  function filtered() {
+    return comps.filter(function (c) {
+      if (state.field === '理' && c.field === '文') return false;
+      if (state.field === '文' && c.field === '理') return false;
+      if (state.college && !collegeHit(c)) return false;
+      if (state.klass !== 'all' && c.class !== state.klass) return false;
+      if (state.kw && c.name.toLowerCase().indexOf(state.kw.toLowerCase()) < 0) return false;
+      if (state.status === 'recommend') { if (!isRecommended(c)) return false; }
+      else if (state.status !== 'all' && statusOf(c.no).status !== state.status) return false;
+      return true;
+    });
+  }
+  function sorted(list) {
+    return list.slice().sort(function (a, b) {
+      var d = recScore(b) - recScore(a);
+      if (d !== 0) return d;
+      return a.no - b.no;
+    });
+  }
+
+  /* ================================================================
+     渲染
+     ================================================================ */
+  var TAG_CLASS = { 'Ⅰ': 'c1', 'Ⅱ': 'c2', 'Ⅲ': 'c3' };
+  var STATUS_META = {
+    open:  { cls: 'open',  label: '正在报名' },
+    soon:  { cls: 'soon',  label: '即将开始' },
+    watch: { cls: 'watch', label: '无通知' },
+    closed:{ cls: 'closed', label: '已结束' }
+  };
+
+  function render() {
+    renderNotices();
+
+    var list = sorted(filtered());
+    var grid = $('#comp-grid');
+    $('#empty-tip').style.display = list.length ? 'none' : '';
+
+    /* 统计（全目录口径） */
+    var openN = 0, soonN = 0, matchN = 0, recN = 0, closedN = 0;
+    comps.forEach(function (c) {
+      var st = statusOf(c.no).status;
+      if (st === 'open') openN++;
+      else if (st === 'soon') soonN++;
+      else if (st === 'closed') closedN++;
+      if (collegeHit(c)) matchN++;
+      if (isRecommended(c)) recN++;
+    });
+    $('#stat-open').textContent = openN;
+    $('#stat-soon').textContent = soonN;
+    $('#stat-match').textContent = state.college ? matchN : '–';
+
+    /* 推荐说明 */
+    var note = $('#recommend-note');
+    if (state.college) {
+      note.style.display = '';
+      $('#recommend-text').textContent = '已按「' + state.college.replace(/（[^）]*）/g, '') + '」筛选：本学院承办/相关竞赛 ' + matchN + ' 项；可选「⭐ 推荐」查看系统推荐（正在报名 ' + openN + ' 项 + 即将开始 ' + soonN + ' 项 + 本学院 ' + matchN + ' 项 = ' + recN + ' 项）。';
+    } else if (state.status === 'recommend') {
+      note.style.display = '';
+      $('#recommend-text').textContent = '「⭐ 推荐」= 正在报名 ' + openN + ' 项 + 即将开始 ' + soonN + ' 项 + 你学院承办的赛事。选择上方学院可得到更精准的推荐。';
+    } else {
+      note.style.display = 'none';
+    }
+
+    grid.innerHTML = list.map(function (c) {
+      var st = statusOf(c.no);
+      var sm = STATUS_META[st.status] || STATUS_META.watch;
+      var hit = collegeHit(c);
+      var linkArr = (window.NTU_LINKS && window.NTU_LINKS[c.no]) || null;
+      var official = linkArr ? linkArr[0] : '';
+      var linkLabel = linkArr
+        ? (linkArr[1] === 'official' ? '官方入口' : (linkArr[2] || '承办学院'))
+        : '官方入口';
+      var n = st.notice || {};
+
+      /* 状态说明行：校内通知 + 官网核验（可多条） */
+      var evRows = '';
+      (st.evidence || []).forEach(function (ev, i) {
+        if (!ev.text) return;
+        var isNotice = ev.type === 'notice';
+        var rowCls = 'zc-comp-note' + (st.status === 'closed' ? ' closed' : '') + (i > 0 ? ' zc-comp-note-alt' : '');
+        var head = isNotice ? '📢 ' : '🏛 ';
+        var dl = (isNotice ? st.deadline : ev.deadline)
+          ? '<span class="zc-deadline' + (st.status === 'open' ? ' urgent' : '') + '">截止 ' + esc(isNotice ? st.deadline : ev.deadline) + '</span>'
+          : '';
+        var hasReg = (st.status === 'open' || st.status === 'soon') && isNotice && ev.regUrl;
+        var reg = hasReg ? '<a class="zc-reg-btn" href="' + esc(ev.regUrl) + '" target="_blank" rel="noopener">' + esc(ev.regLabel || '立即报名') + ' ↗</a>' : '';
+        var label = isNotice
+          ? esc((ev.college || '').replace(/（[^）]*）/g, '') + ' · ' + (ev.date || ''))
+          : '官网核验 · ' + esc(ev.date || '');
+        evRows += '<div class="' + rowCls + '">'
+          + head + '<a href="' + esc(ev.url || '#') + '" target="_blank" rel="noopener">' + esc(ev.text.slice(0, 46)) + (ev.text.length > 46 ? '…' : '') + '</a>'
+          + dl + reg
+          + '<span class="zc-comp-note-meta">' + label + '</span>'
+          + '</div>';
+      });
+
+      var foot = '';
+      if (n && n.regUrl) {
+        foot = '<a class="zc-comp-link" href="' + esc(n.regUrl) + '" target="_blank" rel="noopener">报名入口<svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg></a>';
+      } else if (n && n.url) {
+        foot = '<a class="zc-comp-link" href="' + esc(n.url) + '" target="_blank" rel="noopener">校内通知<svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg></a>';
+      } else if (official) {
+        foot = '<a class="zc-comp-link" href="' + official + '" target="_blank" rel="noopener">' + linkLabel + '<svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg></a>';
+      } else {
+        foot = '<span class="zc-comp-nolink">入口见学院通知</span>';
+      }
+
+      return '<div class="zc-comp-card' + (st.status === 'open' ? ' zc-comp-active' : st.status === 'soon' ? ' zc-comp-soon' : '') + '">'
+        + '<div class="zc-comp-top"><span class="zc-comp-name">' + esc(c.name) + '</span>'
+        + '<span class="zc-status ' + sm.cls + '">' + sm.label + '</span></div>'
+        + evRows
+        + '<div class="zc-comp-host">主办：' + esc(c.host) + '</div>'
+        + '<div class="zc-comp-orgs">'
+        +   '<span class="zc-tag ' + TAG_CLASS[c.class] + '">' + c.class + '类' + c.tier + '</span>'
+        +   c.orgs.map(function (o) { return '<span class="zc-comp-org' + (hit ? ' match' : '') + '">' + esc(o) + '</span>'; }).join('')
+        + '</div>'
+        + '<div class="zc-comp-foot">' + foot + '<span class="zc-comp-host">#' + c.no + '</span></div>'
+        + '</div>';
+    }).join('');
+  }
+
+  function esc(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  /* ================================================================
+     事件
+     ================================================================ */
   var collegeSel = $('#college-select');
   function fillColleges(field) {
     var list = COLLEGES.filter(function (c) {
@@ -299,34 +498,34 @@
       if (field === '文') return !isLiCollege(c);
       return true;
     });
+    var keep = state.college;
     collegeSel.innerHTML = '<option value="">全部学院</option>' +
       list.map(function (c) { return '<option value="' + c + '">' + c + '</option>'; }).join('');
+    if (keep && list.indexOf(keep) >= 0) collegeSel.value = keep; else state.college = '';
   }
-  var LI_COLLEGES = ['机械工程学院','信息科学技术学院（通科微电子学院）','微电子学院（集成电路学院）','人工智能与计算机学院（阿里云大数据学院）','电气与自动化学院','交通与土木工程学院（交通学院）','化学化工学院','纺织服装学院','生命科学学院（海洋学院）','地理科学学院','物理科学与技术学院','数学与统计学院','医学院','护理与康复学院','公共卫生学院','药学院','体育科学学院','张謇学院','锡耶纳未来生物技术学院'];
-  function isLiCollege(c) { return LI_COLLEGES.indexOf(c) >= 0; }
 
-  /* ---------- 筛选事件 ---------- */
   $('#field-pills').addEventListener('click', function (e) {
     var btn = e.target.closest('.zc-pill'); if (!btn) return;
     this.querySelectorAll('.zc-pill').forEach(function (b) { b.classList.remove('active'); });
     btn.classList.add('active');
     state.field = btn.dataset.field;
-    if (state.field === '理') {
-      $('#college-field').style.display = '';
-      fillColleges('理');
-      state.college = collegeSel.value;
-    } else if (state.field === '文') {
-      $('#college-field').style.display = '';
-      fillColleges('文');
-      state.college = collegeSel.value;
-    } else {
+    if (state.field === 'all') {
       $('#college-field').style.display = 'none';
       state.college = '';
+      fillColleges('all');
+    } else {
+      $('#college-field').style.display = '';
+      fillColleges(state.field);
     }
     render();
   });
 
-  collegeSel.addEventListener('change', function () { state.college = this.value; render(); });
+  collegeSel.addEventListener('change', function () {
+    state.college = this.value;
+    if (!state.college && state.noticeScope === 'college') state.noticeScope = 'school';
+    render();
+  });
+
   $('#status-pills').addEventListener('click', function (e) {
     var btn = e.target.closest('.zc-pill'); if (!btn) return;
     this.querySelectorAll('.zc-pill').forEach(function (b) { b.classList.remove('active'); });
@@ -343,111 +542,23 @@
     render();
   });
 
-  /* ---------- 过滤 ---------- */
-  function filtered() {
-    return comps.filter(function (c) {
-      if (state.field === '理' && c.field !== '理' && c.field !== '综') return false;
-      if (state.field === '文' && c.field !== '文' && c.field !== '综') return false;
-      if (state.college) {
-        var words = COLLEGE_MATCH[state.college] || [state.college.slice(0, 4)];
-        if (!c.orgs.some(function (o) { return words.some(function (w) { return o.indexOf(w) >= 0; }); })) return false;
-      }
-      if (state.klass !== 'all' && c.class !== state.klass) return false;
-      if (state.status !== 'all' && statusOf(c.no).status !== state.status) return false;
-      if (state.kw && c.name.toLowerCase().indexOf(state.kw.toLowerCase()) < 0) return false;
-      return true;
-    });
-  }
-
-  /* ---------- 排序：匹配学院优先 → 状态优先 → 类别高优先 ---------- */
-  var STATUS_ORDER = { open: 0, soon: 1, watch: 2, closed: 3 };
-  function sorted(list) {
-    var col = state.college;
-    var words = col ? (COLLEGE_MATCH[col] || [col.slice(0, 4)]) : null;
-    return list.slice().sort(function (a, b) {
-      if (words) {
-        var ma = a.orgs.some(function (o) { return words.some(function (w) { return o.indexOf(w) >= 0; }); }) ? 0 : 1;
-        var mb = b.orgs.some(function (o) { return words.some(function (w) { return o.indexOf(w) >= 0; }); }) ? 0 : 1;
-        if (ma !== mb) return ma - mb;
-      }
-      var sa = STATUS_ORDER[statusOf(a.no).status], sb = STATUS_ORDER[statusOf(b.no).status];
-      if (sa !== sb) return sa - sb;
-      var wa = (a.class === 'Ⅰ' ? 3 : a.class === 'Ⅱ' ? 2 : 1) * 10 + (a.tier === '甲' ? 3 : a.tier === '乙' ? 2 : 1);
-      var wb = (b.class === 'Ⅰ' ? 3 : b.class === 'Ⅱ' ? 2 : 1) * 10 + (b.tier === '甲' ? 3 : b.tier === '乙' ? 2 : 1);
-      return wb - wa;
-    });
-  }
-
-  /* ---------- 渲染 ---------- */
-  var TAG_CLASS = { 'Ⅰ': 'c1', 'Ⅱ': 'c2', 'Ⅲ': 'c3' };
-  var STATUS_META = {
-    open:  { cls: 'open',  label: '可报名' },
-    soon:  { cls: 'soon',  label: '即将开始' },
-    watch: { cls: 'watch', label: '持续关注' },
-    closed:{ cls: 'closed',label: '报名截止' }
-  };
-
-  function render() {
-    var list = sorted(filtered());
-    var grid = $('#comp-grid');
-    $('#empty-tip').style.display = list.length ? 'none' : '';
-    var openN = 0, soonN = 0, matchN = 0;
-    var words = state.college ? (COLLEGE_MATCH[state.college] || []) : null;
-    comps.forEach(function (c) {
-      var st = statusOf(c.no).status;
-      if (st === 'open') openN++;
-      if (st === 'soon') soonN++;
-      if (words && c.orgs.some(function (o) { return words.some(function (w) { return o.indexOf(w) >= 0; }); })) matchN++;
-    });
-    $('#stat-open').textContent = openN;
-    $('#stat-soon').textContent = soonN;
-    $('#stat-match').textContent = state.college ? matchN : '–';
-
-    /* 推荐说明 */
-    if (state.college) {
-      $('#recommend-note').style.display = '';
-      $('#recommend-text').textContent = '已按「' + state.college + '」承办/相关竞赛优先排序，匹配 ' + matchN + ' 项。同时也保留了面向全校的通用赛事。';
-    } else if (state.field !== 'all') {
-      $('#recommend-note').style.display = '';
-      $('#recommend-text').textContent = state.field === '理' ? '已为你筛除纯文科赛事；选择具体学院可进一步精准推荐。' : '已为你筛除纯理工科赛事；文科通用赛事仍会展示。';
-    } else {
-      $('#recommend-note').style.display = 'none';
-    }
-
-    grid.innerHTML = list.map(function (c) {
-      var st = statusOf(c.no);
-      var sm = STATUS_META[st.status] || STATUS_META.watch;
-      var isMatch = words && c.orgs.some(function (o) { return words.some(function (w) { return o.indexOf(w) >= 0; }); });
-      var link = (window.NTU_LINKS && window.NTU_LINKS[c.no]) || '';
-      var linkHtml = link
-        ? '<a class="zc-comp-link" href="' + link + '" target="_blank" rel="noopener">官方入口<svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg></a>'
-        : '<span class="zc-comp-nolink">入口见学院通知</span>';
-      var activeNote = (st.status === 'open' || st.status === 'soon') && st.from
-        ? '<div class="zc-comp-note">📢 <a href="' + (st.url || '#') + '" target="_blank" rel="noopener">' + esc(st.from.slice(0, 44)) + (st.from.length > 44 ? '…' : '') + '</a></div>'
-        : '';
-      return '<div class="zc-comp-card' + (st.status === 'open' ? ' zc-comp-active' : st.status === 'soon' ? ' zc-comp-soon' : '') + '">'
-        + '<div class="zc-comp-top"><span class="zc-comp-name">' + esc(c.name) + '</span>'
-        + '<span class="zc-status ' + sm.cls + '">' + sm.label + '</span></div>'
-        + activeNote
-        + '<div class="zc-comp-host">主办：' + esc(c.host) + '</div>'
-        + '<div class="zc-comp-orgs">'
-        +   '<span class="zc-tag ' + TAG_CLASS[c.class] + '">' + c.class + '类' + c.tier + '</span>'
-        +   c.orgs.map(function (o) { return '<span class="zc-comp-org' + (isMatch && o.indexOf((words[0]||'').slice(0,2)) >= 0 ? ' match' : '') + '">' + esc(o) + '</span>'; }).join('')
-        + '</div>'
-        + '<div class="zc-comp-foot">' + linkHtml
-        +   '<span class="zc-comp-host">#' + c.no + '</span>'
-        + '</div>'
-        + '</div>';
-    }).join('');
-  }
-
-  function esc(s) {
-    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-  }
-
-  /* init */
+  /* ================================================================
+     初始化
+     ================================================================ */
   fillColleges('all');
   render();
+
+  loadData().then(function (d) {
+    DATA.items = d.items || [];
+    DATA.matches = d.matches || {};
+    DATA.updated = d.updated || '';
+    DATA.stats = d.stats || {};
+    STATUS_MAP = buildStatusMap();
+    var u = $('#updated-time');
+    if (u) u.textContent = fmtTime(DATA.updated);
+    render();
+  }).catch(function () { render(); });
+
   })();
   </script>
   <script src="../js/theme.js"></script>

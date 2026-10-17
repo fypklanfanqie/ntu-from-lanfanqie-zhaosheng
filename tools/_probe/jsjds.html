@@ -1,0 +1,556 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>中国大学生计算机设计大赛</title><meta name="pageType" content="1">
+<meta name="pageTitle" content="中国大学生计算机设计大赛">
+<META Name="keywords" Content="中国大学生计算机设计大赛" />
+
+<link href="css/style.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery-migrate.min.js"></script>
+<link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+<script type="text/javascript">
+jQuery.browser={};(function(){jQuery.browser.msie=false; jQuery.browser.version=0;if(navigator.userAgent.match(/MSIE ([0-9]+)./)){ jQuery.browser.msie=true;jQuery.browser.version=RegExp.$1;}})();
+</script>
+
+
+
+<!--Announced by Visual SiteBuilder 9-->
+<script language="javascript" src="_sitegray/_sitegray.js"></script>
+<!-- CustomerNO:77656262657232307e7847525255574200050000435d -->
+<link rel="stylesheet" type="text/css" href="index.vsb.css" />
+<script type="text/javascript" src="/system/resource/js/counter.js"></script>
+<script type="text/javascript">_jsq_(1001,'/index.jsp',-1,1825439128)</script>
+</head>
+<body>
+<div class="wid100 fl">
+    <div class="top">
+        
+<a href="https://2026.jsjds.com.cn/" target="_blank" class="logo"><img src="images/new-logo.JPG"></a>
+        <div class="top-right fr">
+          <script language="javascript" src="/system/resource/js/dynclicks.js"></script><script language="javascript" src="/system/resource/js/openlink.js"></script>
+            <!-- 3.1.3版本 -->
+
+
+
+<script language="javascript" src="/system/resource/js/base64.js"></script><script language="javascript" src="/system/resource/vue/vue.js"></script><script language="javascript" src="/system/resource/vue/bluebird.min.js"></script><script language="javascript" src="/system/resource/vue/axios.js"></script><script language="javascript" src="/system/resource/vue/polyfill.js"></script><script language="javascript" src="/system/resource/vue/token.js"></script><LINK href="/system/resource/vue/static/element/index.css" type="text/css" rel="stylesheet"><script language="javascript" src="/system/resource/vue/static/element/index.js"></script><script language="javascript" src="/system/resource/vue/static/public.js"></script><script language="javascript" src="/system/resource/openapp/search/js/containsHtmlTags.js"></script><script language="javascript" src="/system/resource/openapp/search/layui/layui.js"></script><style>
+    #appu2 .qwss{
+        height: 31px;
+        font-size: 12px;
+        min-width: 190px;
+        max-width: 600px;
+        width: 60%;
+        margin-top: -15px;
+        outline: none;
+        padding-left: 10px;
+        border-radius: 2px;
+        border: 1px solid #e4e7ed;}
+    #appu2 .tj{
+        padding-left: 6px;
+        letter-spacing: 5px;
+        color: white;
+        min-width: 53px;
+        max-width: 150px;
+        height: 32px;
+        border: 0;
+        border-radius: 2px;
+        background-color: #1890FF;
+        position: relative;
+        top: 1px;
+        width: 20%;
+        margin-top: -15px;}
+</style>
+<div id="divu2"></div>
+<script type="text/html" id="htmlu2">
+    <div id="appu2">
+        <div v-if="!isError">
+        
+        
+        <div class="search fr">
+                <input  class="search-input" value="请输入搜索内容..." autocomplete=off v-model=query.keyWord @keyup.enter="onSubmit"> 
+                <input name="search-btn" type="image" class="search-btn" src="images/search-btn.png" v-on:click="onSubmit()"/>
+            </div>
+        
+        </div>
+        <div v-if="isError" style="color: #b30216; font-size:18px;text-align: center;padding:20px;">
+            应用维护中！
+        </div>
+    </div>
+</script>
+<script>
+    $("#divu2").html($("#htmlu2").text());
+</script>
+<script>
+    var appOwner = "1825439128";
+    var token = gettoken(10);
+    var urlPrefix = "/aop_component/";
+
+    jQuery.support.cors = true;
+    $.ajaxSetup({
+        beforeSend: function (request, settings) {
+            request.setRequestHeader("Authorization", token);
+            request.setRequestHeader("owner", appOwner);
+        }
+    });
+
+    new Vue({
+        el: "#appu2",
+        data: function () {
+            return {
+                query: {
+                    keyWord: "",//搜索关键词
+                    owner: appOwner,
+                    token: token,
+                    urlPrefix: urlPrefix,
+                    lang:"i18n_zh_CN"
+                },
+                isError: false
+            }
+        },
+        mounted: function () {
+            var _this = this;
+            // _this.init();
+        },
+        methods: {
+            init: function(){
+                $.ajax({
+                    url: "/aop_component//webber/search/test",
+                    type: "get",
+                    success: function (response) {
+                        if (response.code == "0000") {
+                        } else if (response.code == "220") {
+                            _this.isError = true;
+                            console.log(response);
+                        } else if (!response.code) {
+                            _this.isError = true;
+                            console.log(response);
+                        }
+                    },
+                    error: function (response) {
+                        _this.isError = true;
+                    }
+                });
+            },
+            onSubmit: function (e) {
+                var url = "/aop_views/search/modules/resultpc/soso.html";
+                if ("10" == "1" || "10" == "2") {
+                    url = "" + url;
+                }
+                var _this = this;
+                var query = _this.query;
+                if (url.indexOf("?") > -1) {
+                    url = url.split("?")[0];
+                }
+                if (query.keyWord) {
+                    var query = new Base64().encode(JSON.stringify(query));
+                    window.open(url + "?query=" + query);
+                } else {
+                    alert("请填写搜索内容")
+                }
+            },
+        }
+    })
+</script>
+
+<script>
+   var appElementu2 = document.querySelector("#appu2");
+   if (appElementu2 && appElementu2.__vue__) {
+
+   } else {
+      $("#divu2").html($("#htmlu2").text());
+      var appOwner = "1825439128";   
+      var urlPrefix = "/aop_component/";
+      var ifLogin="";
+      var token = ifLogin=='true'?gettoken(10, true).trim():'tourist';
+      if (containsHtmlTags(token) || !token) { 
+         token = 'tourist';
+      }
+      jQuery.support.cors = true;
+      $.ajaxSetup({
+        beforeSend: function (request, settings) {
+            request.setRequestHeader("Authorization", token);
+            request.setRequestHeader("owner", appOwner);
+        }
+      });
+      var queryInfou2 = {
+        query: {
+            keyWord: "",//搜索关键词
+            owner: appOwner,
+            token: token,
+            urlPrefix: urlPrefix,
+            lang:"i18n_zh_CN"
+        },
+        isError: false
+      };
+      function keyUpFunu2(e){
+        var theEvent = e || window.event;
+        var keyCode = theEvent.keyCode || theEvent.which || theEvent.charCode;
+        if(keyCode == 13){
+          onSubmitu2();
+        }
+      };
+
+      function onSubmitu2(e) {
+        queryInfou2.query.keyWord= $("#appu2  .qwss").val();
+        
+        var url = "/aop_views/search/modules/resultpc/soso.html";      
+        if ("10" == "1" || "10" == "2") {
+           url = "" + url;
+        }
+        var query = queryInfou2.query;
+        if (url.indexOf("?") > -1) {
+            url = url.split("?")[0];
+        }
+        if (query.keyWord) {
+            var query = new Base64().encode(JSON.stringify(query));
+            window.open(url + "?query=" + query);
+        } else {
+            alert("请填写搜索内容")
+        }
+      };
+   }
+</script>
+        </div>
+    </div>
+</div> 
+<div class="menu-nav fl">
+    <div id="menu">    
+      <ul class="l1-nav">    
+        <li class="l1-nav">  
+          <a class="l1-nav" href="index.htm">首页</a>
+        </li>
+        <li class="l1-nav">  
+          <a class="l1-nav" href="dsdt.htm">大赛动态</a>
+        </li>
+        <li class="l1-nav">  
+          <a class="l1-nav" href="wjss.htm">往届赛事</a>
+        </li>
+        <li class="l1-nav">  
+          <a class="l1-nav" href="gyds1/dsjj.htm">关于大赛</a>
+          <ul class="l2-nav">       
+            <li class="l2-nav"><a class="l2-nav" href="gyds1/dsjj.htm">大赛简介</a></li>
+            <li class="l2-nav"><a class="l2-nav" href="gyds1/csyq.htm">参赛要求</a></li>
+            <li class="l2-nav"><a class="l2-nav" href="gyds1/lxfs.htm">联系方式</a></li>
+            <li class="l2-nav"><a class="l2-nav" href="gyds1/wyds.htm">我与大赛</a></li>
+          </ul>
+        </li>
+        <li class="l1-nav">  
+          <a class="l1-nav" href="zlxz.htm">资料下载</a>
+        </li>
+        <li class="l1-nav">  
+          <a class="l1-nav" href="gsjs1.htm">国赛决赛</a>
+          <ul class="l2-nav">       
+            <li class="l2-nav"><a class="l2-nav" href="gsjs1/shjsq.htm">上海决赛区</a></li>
+            <li class="l2-nav"><a class="l2-nav" href="gsjs1/hzjsq.htm">杭州决赛区</a></li>
+            <li class="l2-nav"><a class="l2-nav" href="gsjs1/njnjsq.htm">南京南决赛区</a></li>
+            <li class="l2-nav"><a class="l2-nav" href="gsjs1/njd2jsq.htm">南京东2决赛区</a></li>
+            <li class="l2-nav"><a class="l2-nav" href="gsjs1/jnjsq.htm">济南决赛区</a></li>
+            <li class="l2-nav"><a class="l2-nav" href="gsjs1/njd1jsq.htm">南京东1决赛区</a></li>
+          </ul>
+        </li>
+
+</ul>
+    
+    </div>  
+</div> 
+<div class="slide_container">
+      <ul class="rslides" id="sliders">
+    <li><img src="images/banner11.PNG" alt=""></li>
+</ul>
+
+</div>
+<script src="js/responsiveslides.min.js"></script>
+<script>
+$(function () {
+    $("#sliders").responsiveSlides({
+    auto: true,
+    pager: false,
+    nav: true,
+    speed: 500,
+    // 对应外层div的class : slide_container
+    namespace: "slide"
+    });
+});
+</script>
+<div class="sy-xw fl">
+    <div class="wid1000">
+        <div class="xwdt fl">
+            <div class="title fl">
+                <h3>大赛焦点</h3><a href="dsjd.htm" class="more">更多>></a>
+            </div>
+            <div class="xwdt-con fl">
+                <div class="xwdt-pic fl">
+                    <div class="yx-rotaion fl">
+                        
+
+<script language="javascript" src="/system/resource/js/centerCutImg.js"></script><ul class="rotaion_list">
+ </ul>
+
+
+                    </div>
+                    <script type="text/javascript" src="js/jquery.yx_rotaion.js"></script>
+                    <script type="text/javascript">
+                    $(document).ready(function(){
+                        $(".yx-rotaion").yx_rotaion({auto:true});
+                    });
+                    </script>
+                </div>
+                <div class="xwdt-txt fl">
+                    
+
+<script language="javascript" src="/system/resource/js/ajax.js"></script><ul>
+                        <li>
+                            <a href="info/1041/2944.htm">
+                                <span><i>
+                                09-18
+                                </i>.2026</span>
+                                <h3>中国大学生计算机设计大赛二十周年征文通知</h3>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="info/1041/2914.htm">
+                                <span><i>
+                                09-14
+                                </i>.2026</span>
+                                <h3>2026年（第19届）中国大学生计算机设计大赛获奖公告</h3>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="info/1041/2894.htm">
+                                <span><i>
+                                09-01
+                                </i>.2026</span>
+                                <h3>2026年（第19届）中国大学生计算机设计大赛 评审结果公示</h3>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="info/1041/2884.htm">
+                                <span><i>
+                                08-30
+                                </i>.2026</span>
+                                <h3>2026 年（第 19 届）中国大学生计算机设计大赛 第 6 场国赛决赛在江南大学圆满落幕</h3>
+                            </a>
+                        </li>
+                        <li style="border-bottom:0;">
+                            <a href="info/1041/2874.htm">
+                                <span><i>
+                                08-24
+                                </i>.2026</span>
+                                <h3>2026年（第19届）中国大学生计算机设计大赛软件应用与开发类别全国决赛在青岛农业大学圆满落幕</h3>
+                            </a>
+                        </li>
+ </ul><script>_showDynClickBatch(['dynclicks_u6_2944','dynclicks_u6_2914','dynclicks_u6_2894','dynclicks_u6_2884','dynclicks_u6_2874'],[2944,2914,2894,2884,2874],"wbnews", 1825439128)</script>
+
+                </div>
+            </div>
+        </div><!--------xwdt--------->
+    </div>
+</div>
+
+
+<div class="wid100 fl" style="margin-top: 15px;    border-bottom: 1px solid #f2f2f2;    height: 270px;">    
+    <div class="wid1000">
+        <div class="title fl">
+            <h3>国赛决赛与作品类别简介</h3>
+        </div>
+        <div class="xmt-con fl">
+            
+
+<ul>
+                     <li class="xmt-1">
+                    <a href="gsjs1/shjsq.htm">
+                        <h3>上海决赛区</h3>
+                        <p>大数据应用<br>数媒静态设计</p>
+                    </a>
+                </li>
+
+
+                     <li class="xmt-2">
+                    <a href="gsjs1/hzjsq.htm">
+                        <h3>杭州决赛区</h3>
+                        <p>物联网应用与物联网创新转化（创业实践）<br>计算机音乐创作<br>国际生“汉学”</p>
+                    </a>
+                </li>
+
+
+                     <li class="xmt-3">
+                    <a href="gsjs1/njnjsq.htm">
+                        <h3>南京南决赛区</h3>
+                        <p>微课与AI辅助教学</p>
+                    </a>
+                </li>
+
+
+                     <li class="xmt-4">
+                    <a href="gsjs1/njd2jsq.htm">
+                        <h3>南京东2决赛区</h3>
+                        <p>信息可视化设计<br>数媒动漫与短片</p>
+                    </a>
+                </li>
+
+
+                     <li class="xmt-5">
+                    <a href="gsjs1/jnjsq.htm">
+                        <h3>济南决赛区</h3>
+                        <p>软件应用与开发
+</p>
+                    </a>
+                </li>
+
+
+                     <li class="xmt-6">
+                    <a href="gsjs1/njd1jsq.htm">
+                        <h3>南京东1决赛区</h3>
+                        <p>人工智能应用<br>数媒游戏与交互设计</p>
+                    </a>
+                </li>
+
+
+ </ul>
+ 
+ 
+<script>_showDynClickBatch(['dynclicks_u7_1039','dynclicks_u7_1038','dynclicks_u7_1042','dynclicks_u7_2254','dynclicks_u7_1041','dynclicks_u7_2284'],[1039,1038,1042,2254,1041,2284],"wbnews", 1825439128)</script>
+
+        </div>
+    </div>
+</div>
+
+
+
+<div class="wid100 fl" style="border-bottom:1px solid #f2f2f2;">
+    <div class="wid1000">
+        <div class="tzgg fl">
+            <div class="title fl">
+                <h3>大赛动态</h3><a href="dsdt.htm" class="more">更多>></a>
+            </div>
+            <div class="tzgg-con fl">
+                
+
+<ul>
+
+  <li>
+                        <a href="info/1042/2904.htm">
+                            <div class="date fl"><div class="date-r">14</div><div class="date-n">2026.09</div></div>
+                            <div class="tzgg-txt fr">2026年（第19届）中国大学生计算机设计大赛获奖公告</div>
+                        </a>
+   </li>
+
+
+  <li>
+                        <a href="info/1042/2934.htm">
+                            <div class="date fl"><div class="date-r">14</div><div class="date-n">2026.09</div></div>
+                            <div class="tzgg-txt fr">2026年（第19届）中国大学生计算机设计大赛 申诉投诉处理结果...</div>
+                        </a>
+   </li>
+
+
+  <li>
+                        <a href="info/1042/2844.htm">
+                            <div class="date fl"><div class="date-r">26</div><div class="date-n">2026.07</div></div>
+                            <div class="tzgg-txt fr">物联赋能创新 青春唱响钱塘—2026年第19届中国大学生计算机设...</div>
+                        </a>
+   </li>
+
+
+  <li>
+                        <a href="info/1042/2824.htm" style="font-weight:bold;">
+                            <div class="date fl"><div class="date-r">23</div><div class="date-n">2026.07</div></div>
+                            <div class="tzgg-txt fr">第19届中国大学生计算机设计大赛上海决赛区圆满落幕</div>
+                        </a>
+   </li>
+
+ </ul>
+<script>_showDynClickBatch(['dynclicks_u8_2904','dynclicks_u8_2934','dynclicks_u8_2844','dynclicks_u8_2824'],[2904,2934,2844,2824],"wbnews", 1825439128)</script>
+
+            </div>
+        </div>
+        <div class="gyhd fl">
+            <div class="title fl">
+                <h3>往届赛事</h3><a href="wjss.htm" class="more">更多>></a>
+            </div>
+            <div class="gyhd-con fl">
+                
+
+<ul>
+                    <li><a href="info/1043/2204.htm">2025年（第18届）中国大学生计算机设计大赛 申诉投诉处理结果公告</a></li>
+                    <li><a href="info/1043/2434.htm">2025年（第18届）中国大学生计算机设计大赛获奖公告</a></li>
+                    <li><a href="info/1043/2424.htm">2025年（第18届）中国大学生计算机设计大赛 评审结果公示</a></li>
+                    <li><a href="info/1043/2194.htm">4C2025关于参赛作品信息限时核查完善的通知</a></li>
+                    <li><a href="info/1043/2184.htm">4C2025年国赛入围作品信息公告</a></li>
+ </ul>
+<script>_showDynClickBatch(['dynclicks_u9_2204','dynclicks_u9_2434','dynclicks_u9_2424','dynclicks_u9_2194','dynclicks_u9_2184'],[2204,2434,2424,2194,2184],"wbnews", 1825439128)</script>
+
+            </div>
+        </div>
+        <div class="xshd fl">
+            <div class="title fl">
+                <h3>资料下载</h3><a href="zlxz.htm" class="more">更多>></a>
+            </div>
+            <div class="xshd-con fl">
+                
+
+<ul>
+                    <li><a href="info/1045/2013.htm">4C2026参赛作品提交要求（4月17日）</a></li>
+                    <li><a href="info/1045/1915.htm">4C2024参赛作品提交要求（11大类，5月1日更新）</a></li>
+                    <li><a href="info/1045/1785.htm">软件应用与开发类作品提交要求及文档模板（2023版）</a></li>
+                    <li><a href="info/1045/1784.htm">微课与教学辅助作品提交要求及文档模板（2023版）</a></li>
+                    <li><a href="info/1045/1783.htm">物联网应用作品作品提交要求及文档模板（2023版）</a></li>
+ </ul>
+<script>_showDynClickBatch(['dynclicks_u10_2013','dynclicks_u10_1915','dynclicks_u10_1785','dynclicks_u10_1784','dynclicks_u10_1783'],[2013,1915,1785,1784,1783],"wbnews", 1825439128)</script>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="foot fl">
+    <div class="wid1000">
+
+        <!-- 版权内容请在本组件"内容配置-版权"处填写 -->
+
+
+<div class="foot-left fl">
+<p>版权所有©中国大学生计算机设计大赛组织委员会&nbsp; &nbsp; 网站建设：北京语言大学信息科学学院； 技术支持：北京语言大学信息化办公室</p>
+</div>
+
+
+    </div>
+    
+    
+   
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

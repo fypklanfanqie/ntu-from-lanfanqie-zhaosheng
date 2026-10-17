@@ -2,9 +2,10 @@ name = "ntu-zongce-fetcher"
 main = "src/index.js"
 compatibility_date = "2024-09-01"
 
-# 每周一 UTC 00:00 = 北京时间周一 08:00 抓取
+# 每天一次（UTC 00:00 = 北京时间 08:00），单次全量抓取全部源
+# 手动立即刷新：POST /api/trigger?full=1
 [triggers]
-crons = ["0 0 * * 1"]
+crons = ["0 0 * * *"]
 
 # KV 命名空间（部署前先执行:
 #   npx wrangler kv namespace create ZC_KV
