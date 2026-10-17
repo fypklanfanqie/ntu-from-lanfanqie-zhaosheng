@@ -30,3 +30,11 @@ phys_rule*
 tky_rule*
 wxy_rule*
 
+tools/_probe/
+tools/*.json
+ys_2026.*
+ys_extract/
+tools/*.pdf
+tools/*.doc
+tools/*.docx
+
