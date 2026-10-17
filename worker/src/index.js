@@ -29,6 +29,8 @@ const SOURCES = [
   { id: 'sem', name: '商学院·通知公告', listUrl: 'https://sem.ntu.edu.cn/11410/list.htm', college: '商学院（管理学院）' },
   { id: 'sem2', name: '商学院·通知公告(2)', listUrl: 'https://sem.ntu.edu.cn/11410/list2.htm', college: '商学院（管理学院）' },
   { id: 'sme', name: '机械工程学院·通知公告', listUrl: 'https://sme.ntu.edu.cn/tzgg_1145/list.htm', college: '机械工程学院' },
+  { id: 'sme2', name: '机械工程学院·通知公告(2)', listUrl: 'https://sme.ntu.edu.cn/tzgg_1145/list2.htm', college: '机械工程学院' },
+  { id: 'sme3', name: '机械工程学院·共青团工作', listUrl: 'https://sme.ntu.edu.cn/gqtgz/list.htm', college: '机械工程学院' },
   { id: 'dqxy', name: '电气与自动化学院·通知公告', listUrl: 'https://dqxy.ntu.edu.cn/tzgg/list.htm', college: '电气与自动化学院' },
   { id: 'jttm', name: '交通与土木工程学院·学院公告', listUrl: 'https://jttm.ntu.edu.cn/xygg/list.htm', college: '交通与土木工程学院（交通学院）' },
   { id: 'hgxy', name: '化学化工学院·学生工作', listUrl: 'https://hgxy.ntu.edu.cn/xshd/list.htm', college: '化学化工学院' },

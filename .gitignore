@@ -38,3 +38,5 @@ tools/*.pdf
 tools/*.doc
 tools/*.docx
 
+competition_registration*.json
+tools/override_*.json

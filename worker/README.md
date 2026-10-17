@@ -1,42 +1,51 @@
-# Cloudflare Worker — 竞赛通知每周抓取
+# Cloudflare Worker — 竞赛通知每日抓取
 
-「综测帮 · 竞赛追踪」的报名状态数据由本 Worker 每周自动抓取官方通知生成。
+「综测帮 · 竞赛追踪」的报名状态与官方通知由本 Worker **每天自动抓取**生成。
 
 ## 工作原理
 
-1. **Cron Trigger** 每周一北京时间 08:00 自动运行
-2. 抓取南通大学创新创业教育学院「通知公告」及各承办学院官网的通知列表
-3. 过滤出含「竞赛 / 大赛 / 报名 / 选拔赛」等关键词、且不是获奖公示的通知
-4. 结果（标题 + 日期 + 原文链接 + 来源学院）存入 **Cloudflare KV**，保留近 90 天
-5. 每次运行轮转抓取一部分学院（免费版 CPU 时间限制），两~三周完整覆盖一轮
+1. **Cron Trigger** 每天 UTC 00:00（北京时间 08:00）运行一次全量抓取
+2. 抓取 **31 个官方页面**：
+   - 创新创业教育学院「通知公告」第 1-5 页（校级竞赛通知发布口，每次必抓）
+   - 16 个学院中确有竞赛通知的栏目（机械/电气/交通/化工/纺服/信科/微电子/人工智能/数理/物理/地科/医/公卫/药/艺术/体育/教育/教师教育/张謇/文学院等）
+   - 校团委、学生工作处、教务处
+3. 只接受 webplus CMS 标准文章链接（`/20XX/MMDD/cNNNaNNNNN/page.htm`）——天然过滤导航菜单等垃圾条目
+4. 去除「获奖 / 名单 / 公示 / 职称 / 推免」等非报名通知
+5. **抓取文章详情**，从正文中提取：
+   - **报名截止时间**（分句匹配「截止/截至」+「报名/提交」，支持「X月X日—X月X日」时间范围、`请于X月X日前`）
+   - **比赛/举办时间**（用于判断是否已结束）
+   - **报名入口链接**（腾讯文档/问卷星/学习通/报名系统等外链）
+6. 状态判定：有截止日期 → 按日期（未到＝正在报名，已过＝已结束）；无截止但比赛时间已过 → 已结束；正文有报名方式且通知 ≤45 天 → 正在报名；其余 → 待关注
+7. **服务端竞赛匹配**：内置 172 项目录 + 137 条别名（「机创」「美赛」「数模」「蓝桥杯」等），把通知映射到竞赛编号，按「有截止日期优先 → 日期最新」择优
+8. 结果存入 **Cloudflare KV**（保留 210 天），并生成 `zc:matches` 状态表
 
-## 部署步骤（一次性）
+## 接口
+
+| 接口 | 说明 |
+|---|---|
+| `GET /api/notifications` | 通知列表（含 status / deadline / regUrl） |
+| `GET /api/matches` | 竞赛编号 → {status, deadline, notice} |
+| `GET /api/all` | 两者合并（前端只需请求一次） |
+| `POST /api/trigger` | 手动触发（轮转抓取，测试用） |
+| `POST /api/trigger?full=1` | 手动全量抓取 |
+
+均带 CORS，可直接被静态站调用。
+
+## 部署
 
 ```bash
 cd worker
-npm i -g wrangler          # 或 npx wrangler
-wrangler login             # 登录你的 Cloudflare 账号
-wrangler kv namespace create ZC_KV   # 创建 KV，把输出的 id 填入 wrangler.toml
-wrangler deploy
+npx wrangler login
+npx wrangler kv namespace create ZC_KV   # 输出 id 填入 wrangler.toml
+npx wrangler deploy
 ```
 
-部署后：
-- Worker URL 形如 `https://ntu-zongce-fetcher.<你的子域>.workers.dev`
-- `GET /api/notifications` 返回最新通知 JSON（已带 CORS，可被网站前端直接调用）
-- `POST /api/trigger`（带 `X-Auth-Token` 头 = TRIGGER_SECRET）可手动触发立即抓取
+## 数据准确性机制
 
-## 网站前端如何消费
+- **校内通知**：真实抓取，含截止日期与原文链接
+- **官网核验覆盖表**（`js/competition-status-override.js`）：部分竞赛只在主办方官网报名（如蓝桥杯、美赛），校内通知滞后。该表人工核验官网后写入，带 `checkedAt`，超过 60 天自动失效；与校内通知冲突时取更乐观状态并同时展示两个来源
+- 两者都没有的竞赛显示「无通知」，用户可点「官方入口/承办学院」自行核实
 
-`tracker.html` 会尝试读取本地快照 `zongce/data/competitions-status.json`；
-若要改为实时读取 Worker：
+## 成本
 
-```js
-fetch('https://ntu-zongce-fetcher.xxx.workers.dev/api/notifications')
-  .then(r => r.json())
-  .then(d => { /* d.data.items 即通知数组 */ });
-```
-
-## 免费额度说明
-
-Cloudflare Workers 免费版每天 10 万次请求、每次 CPU 10ms——本 Worker 每周一次
-定时抓取 + 前端 KV 读取，远在额度之内。
+免费版：每天 10 万次请求。每天 1 次全量抓取（约 31 个列表 + 30 篇文章）＋ 用户读取 KV，远在额度内。

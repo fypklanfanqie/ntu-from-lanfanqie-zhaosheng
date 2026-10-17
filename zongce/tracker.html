@@ -213,7 +213,7 @@
   }
 
   /* 状态：校内通知（服务端匹配） + 官网核验覆盖 合并 */
-  var STATUS_RANK = { open: 3, soon: 2, watch: 1, closed: 0 };
+  var STATUS_RANK = { open: 3, soon: 2, closed: 1, watch: 0 };
   var STATUS_MAP = {};
 
   function buildStatusMap() {
@@ -314,7 +314,11 @@
         + '</div>'
         + '<div class="zc-notice-side"><span class="zc-notice-chip ' + st + '">' + chip + '</span>' + reg + '</div>'
         + '</div>';
-    }).join('') || '<div class="zc-basis-empty" style="padding:20px;">该范围内暂无通知</div>';
+    }).join('') || '<div class="zc-basis-empty" style="padding:20px;">'
+      + (scope === 'college'
+          ? '本学院暂无独立竞赛通知，请查看「全校通知」（校级通知对各学院均适用）'
+          : '该范围内暂无通知')
+      + '</div>';
 
     box.innerHTML = '<div class="zc-card" style="padding:20px 24px;margin-bottom:24px;">'
       + '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:12px;">'
