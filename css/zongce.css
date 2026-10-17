@@ -870,3 +870,37 @@ body.dark .zc-comp-note.closed{background:rgba(255,255,255,0.03);border-color:rg
 .zc-comp-note-alt a{color:var(--accent);}
 body.dark .zc-comp-note-alt{background:rgba(41,151,255,0.08);border-color:rgba(41,151,255,0.2);}
 body.dark .zc-comp-note-meta{color:#636366;}
+
+/* ================================================================
+   竞赛认定类别 · 自动填入提示
+   ================================================================ */
+.zc-auto-badge{
+  display:inline-block;margin-left:6px;
+  padding:1px 7px;border-radius:var(--radius-pill);
+  background:rgba(0,113,227,0.10);color:var(--accent);
+  font-size:10px;font-weight:600;letter-spacing:0.02em;
+  vertical-align:middle;
+  animation:zcAutoIn .28s var(--ease-standard);
+}
+@keyframes zcAutoIn{
+  from{opacity:0;transform:translateY(-3px) scale(.94);}
+  to{opacity:1;transform:none;}
+}
+.zc-field-hint-auto{color:var(--accent);}
+.zc-field-hint-manual{color:#b45309;}
+
+/* 自动填入时输入框轻微高亮 */
+.zc-select.zc-auto-flash{
+  animation:zcSelectFlash 1.4s var(--ease-standard);
+  border-color:var(--accent);
+}
+@keyframes zcSelectFlash{
+  0%{box-shadow:0 0 0 0 rgba(0,113,227,0.35);}
+  40%{box-shadow:0 0 0 4px rgba(0,113,227,0.16);}
+  100%{box-shadow:0 0 0 0 rgba(0,113,227,0);}
+}
+
+body.dark .zc-auto-badge{background:rgba(41,151,255,0.18);color:#7cc0ff;}
+body.dark .zc-field-hint-auto{color:#7cc0ff;}
+body.dark .zc-field-hint-manual{color:#fbbf24;}
+body.dark .zc-select.zc-auto-flash{border-color:#2997ff;}

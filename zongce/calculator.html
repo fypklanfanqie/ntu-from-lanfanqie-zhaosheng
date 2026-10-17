@@ -80,8 +80,11 @@
             </select>
           </div>
           <div class="zc-field" style="flex:1;min-width:180px;" id="field-class">
-            <label class="zc-field-label" for="class-select">竞赛认定类别</label>
+            <label class="zc-field-label" for="class-select">竞赛认定类别
+              <span class="zc-auto-badge" id="class-badge" style="display:none;">已自动填入</span>
+            </label>
             <select id="class-select" class="zc-select"></select>
+            <p class="zc-field-hint" id="class-hint">选择竞赛后自动带入《竞赛目录（2026年版）》的认定类别</p>
           </div>
           <div class="zc-field" style="flex:1;min-width:180px;" id="field-level">
             <label class="zc-field-label" for="level-select">获奖级别</label>
@@ -179,7 +182,6 @@
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;" id="quick-tables"></div>
         <p style="font-size:0.8125rem;color:var(--meta);margin-top:16px;" id="quick-note"></p>
       </div>
-      </div>
 
       <!-- 来源说明 -->
       <div class="zc-source-note">
@@ -219,6 +221,10 @@
   var authorSel = $('#author-select');
   var collegeSel = $('#college-select'), classSel = $('#class-select');
   var innoSel = $('#inno-select');
+  var classBadge = $('#class-badge'), classHint = $('#class-hint');
+  var pickedComp = null;        /* 当前选中的竞赛（用于学院切换后重新自动填入） */
+  var autoClassTag = '';        /* 系统自动填入的类别，用于判断用户是否手动改过 */
+  var suppressClassEvent = false;
 
   /* ---------- 学院下拉（已收录细则的学院） ---------- */
   (function fillColleges() {
@@ -252,11 +258,91 @@
     $('#college-hint').textContent = rule
       ? '已按「' + rule.name + '」计算（官方原文核验）'
       : '未收录该学院细则，按学校办法计算；团队折算由学院酌情';
+    /* 学院变了，类别选项会重建 → 若已选竞赛则重新自动填入 */
+    if (pickedComp) applyAutoClass(pickedComp, { silent: true });
+    else resetClassHint();
   }
   collegeSel.addEventListener('change', fillClassOptions);
   collegeSel.addEventListener('change', renderQuickTables);
   fillClassOptions();
   renderQuickTables();
+
+  /* ================================================================
+     竞赛认定类别：自动填入 + 提示
+     ================================================================ */
+  function resetClassHint() {
+    classBadge.style.display = 'none';
+    classHint.className = 'zc-field-hint';
+    classHint.textContent = '选择竞赛后自动带入《竞赛目录（2026年版）》的认定类别';
+  }
+
+  function setClassValue(v) {
+    suppressClassEvent = true;
+    classSel.value = v;
+    suppressClassEvent = false;
+  }
+
+  /**
+   * 自动填入认定类别
+   * 依次尝试：完整档次（Ⅰ丙）→ 仅类别（Ⅰ）→ 同类前缀 → 保持默认
+   * 有学院细则的学院可能只分到类别级，例如体育/文学院按 Ⅰ/Ⅱ/Ⅲ 组别
+   */
+  function applyAutoClass(c, opts) {
+    opts = opts || {};
+    if (!c) { resetClassHint(); return; }
+
+    var tag = c.class + c.tier;
+    var has = function (v) { return [].some.call(classSel.options, function (o) { return o.value === v; }); };
+    var hitVal = '', mode = '';
+
+    if (has(tag)) { hitVal = tag; mode = 'exact'; }
+    else if (has(c.class)) { hitVal = c.class; mode = 'class'; }
+    else {
+      var pref = [].filter.call(classSel.options, function (o) { return o.value.indexOf(c.class) === 0; });
+      if (pref.length) { hitVal = pref[0].value; mode = 'prefix'; }
+    }
+
+    if (!hitVal) {
+      /* 该学院类别表里没有这一大类（如体育学院只列了体育相关），保留当前值 */
+      classBadge.style.display = 'none';
+      classHint.className = 'zc-field-hint';
+      classHint.textContent = '该学院细则未列「' + c.class + '类」档次，请按本院文件手动选择';
+      autoClassTag = '';
+      return;
+    }
+
+    setClassValue(hitVal);
+    autoClassTag = hitVal;
+
+    var shown = classSel.options[classSel.selectedIndex].text.replace(/\s*层次$/, '');
+    var why = mode === 'exact'
+      ? '已自动填入「' + shown + '」· 依据《竞赛目录（2026年版）》第 ' + c.no + ' 项'
+      : '已自动填入「' + shown + '」· 目录认定 ' + tag + '，本院细则按该类计分';
+
+    classBadge.style.display = '';
+    classHint.className = 'zc-field-hint zc-field-hint-auto';
+    classHint.textContent = why;
+
+    if (!opts.silent) {
+      /* 轻微高亮，让用户注意到系统帮填了 */
+      classSel.classList.remove('zc-auto-flash');
+      void classSel.offsetWidth;
+      classSel.classList.add('zc-auto-flash');
+      setTimeout(function () { classSel.classList.remove('zc-auto-flash'); }, 1400);
+    }
+  }
+
+  /* 用户手动改类别 → 提示改为"已手动调整" */
+  classSel.addEventListener('change', function () {
+    if (suppressClassEvent) return;
+    if (!pickedComp) { resetClassHint(); return; }
+    if (autoClassTag && this.value === autoClassTag) return;  /* 改回原值，视作未改 */
+
+    var now = this.options[this.selectedIndex].text.replace(/\s*层次$/, '');
+    classBadge.style.display = 'none';
+    classHint.className = 'zc-field-hint zc-field-hint-manual';
+    classHint.textContent = '已手动改为「' + now + '」· 目录认定为 ' + pickedComp.class + pickedComp.tier + '，与本院文件不符时以文件为准';
+  });
 
   /* ---------- 速查表（随学院联动） ---------- */
   function renderQuickTables() {
@@ -375,21 +461,49 @@
     }
   }
   typeSel.addEventListener('change', onTypeChangeCet);
+  /* 用户手动切换加分类型时，同步更新认定类别提示 */
+  typeSel.addEventListener('change', function () {
+    if (typeSel.value !== 'contest') {
+      autoClassTag = '';
+      classBadge.style.display = 'none';
+      classHint.className = 'zc-field-hint';
+      classHint.textContent = '当前加分类型非「学科竞赛」，认定类别不参与计算';
+    } else if (pickedComp) {
+      applyAutoClass(pickedComp, { silent: true });
+    } else {
+      resetClassHint();
+    }
+  });
 
   /* 选定竞赛后自动设置类型/类别 */
   function onPickComp(c) {
+    pickedComp = c;
+    autoClassTag = '';
+
     if (/英语四级|CET-?4|四级/.test(c.name)) { typeSel.value = 'cet'; prizeSel.innerHTML = '<option value="4">英语/日语 四级</option>'; prizeSel.value = '4'; }
     else if (/英语六级|CET-?6|六级/.test(c.name)) { typeSel.value = 'cet'; prizeSel.innerHTML = '<option value="6" selected>英语/日语 六级</option>'; prizeSel.value = '6'; }
     else if (/计算机(二级|等级)|NCRE/.test(c.name)) { typeSel.value = 'ncre'; }
     else if (c.sports) { typeSel.value = 'sport'; }
     else { typeSel.value = 'contest'; }
     refreshFields();
-    /* 自动选中认定类别 */
+
+    /* 自动填入认定类别 + 提示（非竞赛类只提示类别不适用） */
     if (typeSel.value === 'contest') {
-      var tag = c.class + c.tier;
-      if ([].some.call(classSel.options, function (o) { return o.value === tag; })) classSel.value = tag;
+      applyAutoClass(c);
+    } else {
+      autoClassTag = '';
+      classBadge.style.display = 'none';
+      classHint.className = 'zc-field-hint';
+      classHint.textContent = '当前加分类型非「学科竞赛」，认定类别不参与计算';
     }
     if (typeSel.value === 'sport') levelSel.value = 'national';
+  }
+
+  /* 清空输入 / 换类型 → 复位提示 */
+  function clearPickComp() {
+    pickedComp = null;
+    autoClassTag = '';
+    resetClassHint();
   }
 
   /* ---------- 联想搜索 UI ---------- */
@@ -415,7 +529,11 @@
     hoverIdx = -1;
   }
 
-  input.addEventListener('input', function () { renderList(input.value); });
+  input.addEventListener('input', function () {
+    renderList(input.value);
+    /* 清空输入 → 复位认定类别提示 */
+    if (!input.value.trim() && pickedComp) clearPickComp();
+  });
   input.addEventListener('focus', function () { if (input.value.trim()) renderList(input.value); });
   input.addEventListener('blur', function () { setTimeout(function () { list.classList.remove('open'); }, 180); });
 

@@ -52,9 +52,13 @@ t('实测提示: 英语竞赛特等奖限制', R.calculate({category:'contest',l
 
 console.log('[competition-links]');
 const linkNos = Object.keys(L).map(Number);
-t('45 个链接', linkNos.length === 45, linkNos.length);
+t('全部 172 项均有入口链接', linkNos.length === 172, linkNos.length);
 t('全部链接属于目录内竞赛', linkNos.every(no => no >= 1 && no <= 172));
-t('verified 均为 http(s) URL', Object.values(L).filter(x => x[1] === 'verified' && x[0]).every(x => /^https?:\/\//.test(x[0])));
+t('全部链接为 http(s) URL', Object.values(L).every(x => /^https?:\/\//.test(x[0])));
+t('官方站(official) ≥ 60 项', Object.values(L).filter(x => x[1] === 'official').length >= 60,
+  Object.values(L).filter(x => x[1] === 'official').length);
+t('其余为承办学院回退', Object.values(L).filter(x => x[1] === 'college').length > 90,
+  Object.values(L).filter(x => x[1] === 'college').length);
 t('机械学院相关竞赛有链接', [12, 52, 53, 54, 55, 56, 144].every(no => L[no]));
 t('热门竞赛有链接', [1, 2, 4, 100, 80].every(no => L[no] && L[no][0]));
 
