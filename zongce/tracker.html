@@ -295,11 +295,15 @@
     var tabs = '<div class="zc-pills" id="notice-pills" style="margin-bottom:12px;">'
       + '<button class="zc-pill' + (scope === 'all' ? ' active' : '') + '" data-scope="all">全部通知 ' + items.length + '</button>'
       + '<button class="zc-pill' + (scope === 'school' ? ' active' : '') + '" data-scope="school">全校通知 ' + schoolN + '</button>'
-      + (state.college
+      + (state.college && colN > 0
           ? '<button class="zc-pill' + (scope === 'college' ? ' active' : '') + '" data-scope="college">'
             + esc(state.college.replace(/（[^）]*）/g, '')) + ' ' + colN + '</button>'
           : '')
-      + '</div>';
+      + '</div>'
+      + (state.college && colN === 0
+          ? '<div style="font-size:0.75rem;color:var(--meta);margin:-4px 0 10px;">'
+            + esc(state.college.replace(/（[^）]*）/g, '')) + ' 近期暂无独立竞赛通知，以下为全校通用通知（对全校学生适用）</div>'
+          : '');
 
     var rows = list.map(function (n) {
       var st = n.status || 'watch';
